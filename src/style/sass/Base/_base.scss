@@ -8,6 +8,7 @@ html {
 }
 body {
     min-height: 100vh;
+    font-family: "Oswald", sans-serif;
 }
 #root {
     min-height: 100vh;
@@ -17,5 +18,8 @@ a, a:visited {
 }
 ul {
     list-style: none;
+}
+button, input, textarea {
+    font-family: "Oswald", sans-serif;
 }
 

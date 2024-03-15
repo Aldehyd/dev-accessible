@@ -1,0 +1,82 @@
+.animations-toggle-button {
+    position: relative;
+    margin: auto;
+    padding: 1rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    background-color: map-get($colors,darkBackground);
+    border-radius: 1rem;
+    border: solid 0.2rem map-get($colors,white);
+    cursor: pointer;
+    &_overflow-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 1rem;
+        overflow: hidden;
+    }
+    &_text-container {
+        position: absolute;
+        top: 1rem;
+        /* left: 1.1rem; */
+        left: 10%;
+        width: 23rem;
+        display: flex;
+        flex-direction: row;
+        gap: 1.5rem;
+        transition: 400ms ease-in-out;
+    }
+}
+
+.animations-toggle-button.on .animations-toggle-button_text-container {
+    transform: translateX(0);
+}
+.animations-toggle-button:not(.on) .animations-toggle-button_text-container {
+    transform: translateX(-52%);
+}
+.animations-toggle-button_text-container p {
+    display: flex;
+    gap: 0.6rem;
+}
+.animations-toggle-button_on {
+    color: map-get($colors,green);
+    text-shadow: 0px 2px 4px map-get($colors,green);
+}
+.animations-toggle-button_off {
+    color: map-get($colors,red);
+    text-shadow: 0px 2px 4px map-get($colors,red);
+}
+.animations-toggle-button_invisible-text {
+    opacity: 0;
+}
+.animations-toggle-button::before {
+    content: "";
+    position: absolute;
+    z-index:-1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 1rem;
+    box-shadow: 0 0 2rem 1rem map-get($colors,darkBackground);
+    transform: scale(0.9);
+}
+.animations-toggle-button:hover::before {
+    transform: scale(1);
+    animation: onHoverBeforeButton 1400ms ease-in-out infinite;
+}
+.animations-toggle-button:hover {
+    animation: onHoverButton 1400ms ease-in-out infinite;
+}
+
+@keyframes onHoverBeforeButton {
+    0% {
+        transform: scale(0.9);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0.9);
+    }
+}

@@ -1,11 +1,13 @@
 .components-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
     min-height: 100vh;
     padding: 20px;
-    background-color: #1c1919;
+    background-color: map-get($colors,darkBackground);
     &_animation-toggle-buttons-container {
         display: flex;
         justify-content: space-evenly;
-        gap: 20px;
     }
     &_buttons-container {
         display: flex;

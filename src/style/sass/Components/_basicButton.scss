@@ -10,7 +10,8 @@
 .basic-button {
     position: relative;
     padding: 1rem;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+    font-weight: 600;
     background-color: map-get($colors,blue);
     border: none;
     border-radius: 1rem;
@@ -68,6 +69,12 @@ body.contrast .basic-button {
         opacity: 1;
     }
     &[aria-disabled="false"]:hover::after {
+        opacity: 1;
+    }
+    &:not([aria-disabled]):focus::after {
+        opacity: 1;
+    }
+    &[aria-disabled="false"]:focus::after {
         opacity: 1;
     }
 }
