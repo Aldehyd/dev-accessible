@@ -35,8 +35,8 @@ export default function AnimationToggleButton(): React.JSX.Element {
             <span class="animations-toggle-button_overflow-container">
                 <span aria-hidden="true" class="animations-toggle-button_invisible-text">Animations OFF</span>
                 <span class="animations-toggle-button_text-container">
-                    <span class="animations-toggle-button_on" aria-hidden="false">Animations <span lang="en">ON</span></span>
-                    <span class="animations-toggle-button_off" aria-hidden="true">Animations <span lang="en">OFF</span></span>
+                    <span class="animations-toggle-button_on" aria-hidden={(!animationsStatus).toString()}>Animations <span lang="en">ON</span></span>
+                    <span class="animations-toggle-button_off" aria-hidden={animationsStatus.toString()}>Animations <span lang="en">OFF</span></span>
                 </span>
             </span>
         </button>
