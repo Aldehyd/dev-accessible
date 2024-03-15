@@ -1,10 +1,8 @@
 
 export default function Components(): React.JSX.Element {
     return(
-        <>
-        <div>
+        <div className="components-layout">
         <p>test</p>
         </div>
-        </>
     )
 }
