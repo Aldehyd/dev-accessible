@@ -1,4 +1,5 @@
 import AnimationToggleButton from "./animation-toggle-button.tsx";
+import Switch from "./switch.tsx";
 import BasicButton from "./basic-button.tsx";
 
 export default function Components(): React.JSX.Element {
@@ -6,6 +7,9 @@ export default function Components(): React.JSX.Element {
         <div className="components-layout">
             <div className="components-layout_animation-toggle-buttons-container">
                 <AnimationToggleButton />
+            </div>
+            <div className="components-layout_switches-container">
+                <Switch name="contrasted-theme" frenchLabel="Thème contrasté" englishLabel="Contrasted theme" />
             </div>
             <div className="components-layout_buttons-container">
                 <BasicButton text="Bouton basique" />
