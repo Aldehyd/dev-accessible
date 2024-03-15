@@ -2,7 +2,11 @@
     min-height: 100vh;
     padding: 20px;
     background-color: #1c1919;
-
+    &_animation-toggle-buttons-container {
+        display: flex;
+        justify-content: space-evenly;
+        gap: 20px;
+    }
     &_buttons-container {
         display: flex;
         justify-content: space-evenly;

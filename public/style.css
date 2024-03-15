@@ -37,7 +37,7 @@ ul {
   position: relative;
   padding: 1rem;
   font-size: 1.6rem;
-  background-color: hsl(175deg, 85%, 55%);
+  background-color: hsl(175deg, 95%, 55%);
   border: none;
   border-radius: 1rem;
   cursor: pointer;
@@ -63,7 +63,7 @@ ul {
   width: 100%;
   height: 100%;
   border-radius: 1rem;
-  box-shadow: #fff 0.2rem 0.2rem 0.2rem 0.1rem;
+  box-shadow: #f1f1f1 0.2rem 0.2rem 0.2rem 0.1rem;
 }
 .basic-button[aria-disabled=false]:active + .basic-button-shadow {
   transform: scale(0.8);
@@ -73,7 +73,7 @@ ul {
 }
 
 body.contrast .basic-button {
-  border: solid 0.4rem #fff;
+  border: solid 0.4rem #f1f1f1;
 }
 body.contrast .basic-button-shadow {
   transform: scale(0);
@@ -86,8 +86,8 @@ body.contrast .basic-button::after {
   left: -0.4rem;
   width: 100%;
   height: 100%;
-  background-color: #fff;
-  border: solid 0.4rem hsl(175deg, 85%, 55%);
+  background-color: #f1f1f1;
+  border: solid 0.4rem hsl(175deg, 95%, 55%);
   border-radius: 1rem;
   opacity: 0;
 }
@@ -96,6 +96,14 @@ body.contrast .basic-button:not([aria-disabled]):hover::after {
 }
 body.contrast .basic-button[aria-disabled=false]:hover::after {
   opacity: 1;
+}
+
+body.contrast.purple .basic-button::after {
+  border-color: hsl(295deg, 95%, 55%);
+}
+
+body.purple .basic-button {
+  background-color: hsl(295deg, 95%, 55%);
 }
 
 body.animations .basic-button {
@@ -112,6 +120,11 @@ body.animations .basic-button::after {
   min-height: 100vh;
   padding: 20px;
   background-color: #1c1919;
+}
+.components-layout_animation-toggle-buttons-container {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20px;
 }
 .components-layout_buttons-container {
   display: flex;

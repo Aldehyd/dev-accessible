@@ -1,3 +1,4 @@
+
 .basic-button-container {
     position: relative;
     z-index: 0;
@@ -10,7 +11,7 @@
     position: relative;
     padding: 1rem;
     font-size: 1.6rem;
-    background-color: hsl(175,85%,55%);
+    background-color: map-get($colors,blue);
     border: none;
     border-radius: 1rem;
     cursor: pointer;
@@ -35,7 +36,7 @@
         width: 100%;
         height: 100%;
         border-radius: 1rem;
-        box-shadow: #fff 0.2rem 0.2rem 0.2rem 0.1rem;
+        box-shadow: map-get($colors,white) 0.2rem 0.2rem 0.2rem 0.1rem;
     }
     &[aria-disabled='false']:active + .basic-button-shadow {
         transform: scale(0.8);
@@ -46,7 +47,7 @@
 }
 
 body.contrast .basic-button {
-    border: solid 0.4rem #fff;
+    border: solid 0.4rem map-get($colors,white);
     &-shadow {
         transform: scale(0);
     }
@@ -58,8 +59,8 @@ body.contrast .basic-button {
         left: -0.4rem;
         width: 100%;
         height: 100%;
-        background-color: #fff;
-        border: solid 0.4rem hsl(175,85%,55%);
+        background-color: map-get($colors,white);
+        border: solid 0.4rem map-get($colors,blue);
         border-radius: 1rem;
         opacity: 0;
     }
@@ -69,6 +70,13 @@ body.contrast .basic-button {
     &[aria-disabled="false"]:hover::after {
         opacity: 1;
     }
+}
+body.contrast.purple .basic-button::after {
+    border-color: map-get($colors,purple);
+}
+
+body.purple .basic-button {
+    background-color: map-get($colors,purple);
 }
 
 body.animations {
