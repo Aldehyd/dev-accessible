@@ -1,8 +1,14 @@
+import BasicButton from "./basic-button.tsx";
 
 export default function Components(): React.JSX.Element {
     return(
         <div className="components-layout">
-        <p>test</p>
+            <div className="components-layout_buttons-container">
+                <BasicButton text="Bouton basique" />
+                <BasicButton text="Bouton basique activé" disableAbility={true} />
+                <BasicButton text="Bouton basique désactivé" disableAbility={true} disabledStatus="true" />
+            </div>
+            
         </div>
     )
 }

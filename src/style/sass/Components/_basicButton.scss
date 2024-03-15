@@ -1,0 +1,51 @@
+.basic-button-container {
+    position: relative;
+    z-index: 0;
+    width: fit-content;
+    &.disabled {
+        opacity: 0.6;
+    }
+}
+.basic-button {
+    position: relative;
+    padding: 1rem;
+    font-size: 1.6rem;
+    background-color: hsl(175,85%,55%);
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    &[aria-disabled='true'] {
+        cursor: default;
+    }
+    &[aria-disabled='false']:active {
+        transform: translate(0.2rem,0.2rem);
+    }
+    &:not([aria-disabled]):active {
+        transform: translate(0.2rem,0.2rem);
+    }
+    &-shadow {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 1rem;
+        box-shadow: #fff 0.2rem 0.2rem 0.2rem 0.1rem;
+    }
+    &[aria-disabled='false']:active + .basic-button-shadow {
+        transform: scale(0.8);
+    }
+    &:not([aria-disabled]):active + .basic-button-shadow {
+        transform: scale(0.8);
+    }
+}
+body.animations {
+    & .basic-button {
+        transition: 200ms ease-in-out;
+    }
+    & .basic-button-shadow {
+        transition: 100ms ease-in-out;
+    }
+}
+
