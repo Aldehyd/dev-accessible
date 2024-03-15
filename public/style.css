@@ -139,6 +139,9 @@ body.animations .basic-button::after {
   border: solid 0.2rem #f1f1f1;
   cursor: pointer;
 }
+.animations-toggle-button:hover {
+  animation: onHoverButton 1400ms ease-in-out infinite;
+}
 .animations-toggle-button_overflow-container {
   position: absolute;
   top: 0;
@@ -149,7 +152,6 @@ body.animations .basic-button::after {
 .animations-toggle-button_text-container {
   position: absolute;
   top: 1rem;
-  /* left: 1.1rem; */
   left: 10%;
   width: 23rem;
   display: flex;
@@ -157,34 +159,17 @@ body.animations .basic-button::after {
   gap: 1.5rem;
   transition: 400ms ease-in-out;
 }
-
-.animations-toggle-button.on .animations-toggle-button_text-container {
-  transform: translateX(0);
-}
-
-.animations-toggle-button:not(.on) .animations-toggle-button_text-container {
-  transform: translateX(-52%);
-}
-
-.animations-toggle-button_text-container p {
-  display: flex;
-  gap: 0.6rem;
-}
-
 .animations-toggle-button_on {
   color: hsl(120deg, 95%, 55%);
   text-shadow: 0px 2px 4px hsl(120deg, 95%, 55%);
 }
-
 .animations-toggle-button_off {
   color: hsl(0deg, 95%, 55%);
   text-shadow: 0px 2px 4px hsl(0deg, 95%, 55%);
 }
-
 .animations-toggle-button_invisible-text {
   opacity: 0;
 }
-
 .animations-toggle-button::before {
   content: "";
   position: absolute;
@@ -197,14 +182,17 @@ body.animations .basic-button::after {
   box-shadow: 0 0 2rem 1rem hsl(0deg, 6%, 10%);
   transform: scale(0.9);
 }
-
 .animations-toggle-button:hover::before {
   transform: scale(1);
   animation: onHoverBeforeButton 1400ms ease-in-out infinite;
 }
 
-.animations-toggle-button:hover {
-  animation: onHoverButton 1400ms ease-in-out infinite;
+.animations-toggle-button.on .animations-toggle-button_text-container {
+  transform: translateX(0);
+}
+
+.animations-toggle-button:not(.on) .animations-toggle-button_text-container {
+  transform: translateX(-52%);
 }
 
 @keyframes onHoverBeforeButton {
