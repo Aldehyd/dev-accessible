@@ -91,6 +91,26 @@
     }
 }
 
+@keyframes onHoverBeforeButton {
+    0% {
+        transform: scale(0.9);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0.9);
+    }
+}
+@keyframes currentLanguageAppear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 body.animations {
     & .language-select:hover::before {
         animation: onHoverBeforeButton 1400ms ease-in-out infinite;
@@ -112,28 +132,17 @@ body.animations {
     }
 }
 
-@keyframes onHoverBeforeButton {
-    0% {
-        transform: scale(0.9);
-    }
-    50% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(0.9);
-    }
-}
-@keyframes currentLanguageAppear {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
 body:not(.contrast) {
     & .language-select {
         text-shadow: 0px 2px 4px map-get($colors,blue);
+    }
+    &.purple {
+        & .language-select {
+            color: map-get($colors,purple);
+            text-shadow: 0px 2px 4px map-get($colors,purple);
+        }
+        & .language-select_center span::before {
+            background-color: map-get($colors,purple);
+        }
     }
 }

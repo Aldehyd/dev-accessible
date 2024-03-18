@@ -530,25 +530,6 @@ body.animations .radio-button[aria-checked=true] .radio-button_input::after {
   height: 0rem;
 }
 
-body.animations .language-select:hover::before {
-  animation: onHoverBeforeButton 1400ms ease-in-out infinite;
-}
-body.animations .language-select_top span {
-  animation: currentLanguageAppear 600ms ease-in-out forwards;
-}
-body.animations .language-select[aria-expanded=true] .language-select_center {
-  transition: 400ms ease-in-out;
-}
-body.animations .language-select[aria-expanded=false] .language-select_center {
-  transition: 300ms 400ms ease-in-out;
-}
-body.animations .language-select_center span {
-  transition: opacity 400ms 200ms ease-in-out;
-}
-body.animations .language-select_center span::before {
-  transition: 200ms ease-in-out;
-}
-
 @keyframes onHoverBeforeButton {
   0% {
     transform: scale(0.9);
@@ -568,8 +549,34 @@ body.animations .language-select_center span::before {
     opacity: 1;
   }
 }
+body.animations .language-select:hover::before {
+  animation: onHoverBeforeButton 1400ms ease-in-out infinite;
+}
+body.animations .language-select_top span {
+  animation: currentLanguageAppear 600ms ease-in-out forwards;
+}
+body.animations .language-select[aria-expanded=true] .language-select_center {
+  transition: 400ms ease-in-out;
+}
+body.animations .language-select[aria-expanded=false] .language-select_center {
+  transition: 300ms 400ms ease-in-out;
+}
+body.animations .language-select_center span {
+  transition: opacity 400ms 200ms ease-in-out;
+}
+body.animations .language-select_center span::before {
+  transition: 200ms ease-in-out;
+}
+
 body:not(.contrast) .language-select {
   text-shadow: 0px 2px 4px hsl(175deg, 95%, 55%);
+}
+body:not(.contrast).purple .language-select {
+  color: hsl(295deg, 95%, 55%);
+  text-shadow: 0px 2px 4px hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .language-select_center span::before {
+  background-color: hsl(295deg, 95%, 55%);
 }
 
 .radio-group {
