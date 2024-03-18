@@ -7,18 +7,19 @@ interface radioButtonGroupProps {
     name: string,
     frenchLegend: string,
     englishLegend: string,
-    radioButtonsData: radioButtonDataInterface[]
+    radioButtonsData: radioButtonDataInterface[],
+    handleChoice: (checkedButton: string) => void
 }
 
-export default function RadioButtonGroup({name,frenchLegend,englishLegend,radioButtonsData} : radioButtonGroupProps): React.JSX.Element {
+export default function RadioButtonGroup({name,frenchLegend,englishLegend,radioButtonsData,handleChoice} : radioButtonGroupProps): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
-
-    const [checkedButton,setCheckedButton] = useState<string>("blue");
-
-    const [buttonFocused,setButtonFocused] = useState<string>("blue");
     
     const options: string[] = radioButtonsData.map(radio => {return(radio.name)});
+
+    const [checkedButton,setCheckedButton] = useState<string>(options[0]);
+
+    const [buttonFocused,setButtonFocused] = useState<string>(options[0]);
 
     const handleKeyDown: (e:KeyboardEvent)=>void = (e)=> {
         let index = options.indexOf(checkedButton);
@@ -60,9 +61,6 @@ export default function RadioButtonGroup({name,frenchLegend,englishLegend,radioB
         };
         setButtonFocused(options[index]);
     }
-    useEffect(()=> {
-        console.log(buttonFocused)
-    },[buttonFocused])
 
     useEffect(()=> {
         const savedStatus = localStorage.getItem(name);
@@ -70,19 +68,12 @@ export default function RadioButtonGroup({name,frenchLegend,englishLegend,radioB
         if(savedStatus !== undefined && savedStatus !== null) {
             setCheckedButton(savedStatus);
         } else {
-            setCheckedButton("blue");
+            setCheckedButton(options[0]);
         };
     },[]);
 
     useEffect(()=> {
-        switch(checkedButton) {
-            case "blue":
-                document.body.classList.remove('purple');
-                break;
-            default:
-                document.body.classList.add('purple');
-                break;
-        };
+        handleChoice(checkedButton);
         localStorage.setItem(name,checkedButton.toString());
     },[checkedButton,name]);
 
