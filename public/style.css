@@ -13,6 +13,19 @@ body {
   font-family: "Oswald", sans-serif;
 }
 
+@font-face {
+  body.open-dyslexic {
+    font-family: "openDyslexic";
+    src: url("../../fonts/OpenDyslexic-Regular.otf") format("opentype");
+  }
+}
+@font-face {
+  body.open-dyslexic button, body.open-dyslexic input, body.open-dyslexic textarea {
+    font-family: "openDyslexic";
+    src: url("../../fonts/OpenDyslexic-Regular.otf") format("opentype");
+  }
+}
+
 #root {
   min-height: 100vh;
 }

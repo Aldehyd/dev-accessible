@@ -2,7 +2,10 @@ import AnimationToggleButton from "./animation-toggle-button.tsx";
 import Switch from "./switch.tsx";
 import BasicButton from "./basic-button.tsx";
 import RadioButtonGroup from "../Layout/RadioButtonsGroup.tsx";
-import { colorsRadioButtonsData } from "../Datas/colorsRadioButtonsData.tsx";
+import { fontsRadioButtonsData } from "../Datas/fontsRadioButtonsData.tsx";
+import { handleFont } from "../Functions/handleFont.tsx";
+import {colorsRadioButtonsData} from "../Datas/colorsRadioButtonsData.tsx";
+import { handleMainColor } from "../Functions/handleMainColor.tsx";
 
 export default function Components(): React.JSX.Element {
     return(
@@ -14,7 +17,10 @@ export default function Components(): React.JSX.Element {
                 <Switch name="contrasted-theme" frenchLabel="Thème contrasté" englishLabel="Contrasted theme" />
             </div>
             <div className="components-layout_radio-buttons">
-                <RadioButtonGroup name="color" frenchLegend="Couleur" englishLegend="Color" radioButtonsData={colorsRadioButtonsData} />
+                <RadioButtonGroup name="color" frenchLegend="Couleur" englishLegend="Color" radioButtonsData={colorsRadioButtonsData} handleChoice={handleMainColor} />
+            </div>
+            <div className="components-layout_radio-buttons">
+                <RadioButtonGroup name="font" frenchLegend="Police" englishLegend="Font" radioButtonsData={fontsRadioButtonsData} handleChoice={handleFont} />
             </div>
             <div className="components-layout_buttons-container">
                 <BasicButton text="Bouton basique" />
