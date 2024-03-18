@@ -1,0 +1,66 @@
+.radio-button {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    cursor: pointer;
+    &_label {
+        position: relative;
+        margin-left: 0.5rem;
+        padding: 0.5rem 1rem;
+        font-size: 1.4rem;
+        text-transform: capitalize;
+        background-color: map-get($colors,darkBackground);
+        border-radius: 1rem;
+        cursor: pointer;
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translate(-100%,-50%) scaleX(1.6);
+            width: 0.5rem;
+            height: 1rem;
+            background-color: map-get($colors,darkBackground);
+        }
+    }
+    &_input {
+        position: relative;
+        display: inline-block;
+        height: 2rem;
+        width: 2rem;
+        border-radius: 50%;
+        background-color: map-get($colors,darkBackground);
+    }
+    &[aria-checked="true"] .radio-button_input::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 50%;
+        height: 50%;
+        background-color: map-get($colors,blue);
+        box-shadow: 0 0 0.25rem map-get($colors,blue);
+        border-radius: 50%;
+        opacity: 1;
+    }
+}
+
+@keyframes radioInputAfterAppear {
+    from {
+        opacity: 0
+    }
+}
+
+body.purple {
+    & .radio-button[aria-checked="true"] .radio-button_input::after {
+        background-color: map-get($colors,purple);
+        box-shadow: 0 0 0.25rem map-get($colors,purple);
+    }
+}
+
+body.animations {
+    & .radio-button[aria-checked="true"] .radio-button_input::after {
+    animation: radioInputAfterAppear 400ms ease-in-out forwards;
+    }
+}

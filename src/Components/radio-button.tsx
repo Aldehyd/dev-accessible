@@ -1,14 +1,15 @@
 import { useContext } from "react";
-import LanguageContext from "../Contexts/language-context";
+import LanguageContext from "../Contexts/language-context.tsx";
 
-export default function RadioButton({name,frenchLabel,englishLabel,checkedButton}): React.JSX.Element {
+export default function RadioButton({name,frenchLabel,englishLabel,checkedButton,setCheckedButton}): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
 
     return(
-        <li role="radio" aria-checked={checkedButton === name ? "true" : "false"} tabindex={checkedButton === name ? "0" : "-1"}>
-            <span className="radio-input"></span>
-            <label>{language === "french" ? frenchLabel : englishLabel}</label>
+        <li role="radio" className="radio-button" aria-checked={checkedButton === name ? "true" : "false"} 
+            tabindex={checkedButton === name ? "0" : "-1"} onClick={()=> setCheckedButton(name)}>
+            <span className="radio-button_input"></span>
+            <label className="radio-button_label">{language === "french" ? frenchLabel : englishLabel}</label>
         </li>
     )
 }

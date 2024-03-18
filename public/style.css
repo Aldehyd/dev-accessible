@@ -232,7 +232,6 @@ body:not(.contrast) .animations-toggle-button_off {
   height: 100%;
   border-radius: 1rem;
   background-color: transparent;
-  box-shadow: 0 0 1rem hsl(175deg, 95%, 55%);
   transform: scale(0.97, 0.9);
 }
 .switch-container label {
@@ -316,6 +315,9 @@ body:not(.contrast) .animations-toggle-button_off {
 body.animations .switch-container:hover::before {
   animation: onHoverBeforeSwitch 2000ms ease-in-out infinite;
 }
+body.animations .switch-container:focus-within::before {
+  animation: onHoverBeforeSwitch 2000ms ease-in-out infinite;
+}
 body.animations .switch_cursor {
   transition: transform 200ms ease-in-out;
 }
@@ -342,6 +344,10 @@ body.contrast .switch_off {
   color: hsl(0deg, 95%, 55%);
 }
 
+body:not(.contrast) .switch-container::before {
+  box-shadow: 0 0 1rem hsl(175deg, 95%, 55%);
+}
+
 body:not(.contrast).purple .switch_cursor {
   background-color: hsl(295deg, 95%, 55%);
   box-shadow: 0 0 0.4rem hsl(295deg, 95%, 55%);
@@ -350,8 +356,142 @@ body:not(.contrast).purple .switch_state {
   color: hsl(295deg, 95%, 55%);
   text-shadow: 0 0.2rem 0.4rem hsl(295deg, 95%, 55%);
 }
+body:not(.contrast).purple .switch-container::before {
+  box-shadow: 0 0 1rem hsl(295deg, 95%, 55%);
+}
+
+.radio-button {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+.radio-button_label {
+  position: relative;
+  margin-left: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.4rem;
+  text-transform: capitalize;
+  background-color: hsl(0deg, 6%, 10%);
+  border-radius: 1rem;
+  cursor: pointer;
+}
+.radio-button_label::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-100%, -50%) scaleX(1.6);
+  width: 0.5rem;
+  height: 1rem;
+  background-color: hsl(0deg, 6%, 10%);
+}
+.radio-button_input {
+  position: relative;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  background-color: hsl(0deg, 6%, 10%);
+}
+.radio-button[aria-checked=true] .radio-button_input::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+  background-color: hsl(175deg, 95%, 55%);
+  box-shadow: 0 0 0.25rem hsl(175deg, 95%, 55%);
+  border-radius: 50%;
+  opacity: 1;
+}
+
+@keyframes radioInputAfterAppear {
+  from {
+    opacity: 0;
+  }
+}
+body.purple .radio-button[aria-checked=true] .radio-button_input::after {
+  background-color: hsl(295deg, 95%, 55%);
+  box-shadow: 0 0 0.25rem hsl(295deg, 95%, 55%);
+}
+
+body.animations .radio-button[aria-checked=true] .radio-button_input::after {
+  animation: radioInputAfterAppear 400ms ease-in-out forwards;
+}
+
+.radio-group {
+  position: relative;
+  margin: auto;
+  padding: 1rem;
+  color: hsl(175deg, 95%, 55%);
+  background-color: #f1f1f1;
+  border-radius: 1rem;
+  border: none;
+}
+
+.radio-group::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -20%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  border-radius: 1rem;
+  background-color: transparent;
+  transform: scale(0.95, 0.95);
+}
+
+.radio-group legend {
+  padding: 1rem;
+  font-size: 1.8rem;
+  background-color: hsl(0deg, 6%, 10%);
+  border-radius: 1rem;
+  border: solid 0.4rem #f1f1f1;
+}
+
+@keyframes onHoverBeforeRadioGroup {
+  0% {
+    transform: scale(0.9, 0.9);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.9, 0.9);
+  }
+}
+body:not(.contrast) .radio-group {
+  text-shadow: 0 0.2rem 0.4rem hsl(175deg, 95%, 55%);
+  box-shadow: inset rgba(0, 0, 0, 0.3) 0.5rem 0.5rem 0.5rem;
+}
+body:not(.contrast) .radio-group::before {
+  box-shadow: 0 0 2rem hsl(175deg, 95%, 55%), inset 0 0 2rem hsl(175deg, 95%, 55%);
+}
+body:not(.contrast).purple .radio-group {
+  text-shadow: 0 0.2rem 0.4rem hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .radio-group::before {
+  box-shadow: 0 0 2rem hsl(295deg, 95%, 55%), inset 0 0 2rem hsl(295deg, 95%, 55%);
+}
+
+body.purple .radio-group {
+  color: hsl(295deg, 95%, 55%);
+}
+
+body.animations .radio-group:hover::before {
+  animation: onHoverBeforeRadioGroup 2000ms ease-in-out infinite;
+}
+body.animations .radio-group:focus-within::before {
+  animation: onHoverBeforeRadioGroup 2000ms ease-in-out infinite;
+}
 
 .components-layout {
+  position: relative;
+  z-index: 0;
   display: flex;
   flex-direction: column;
   align-items: center;

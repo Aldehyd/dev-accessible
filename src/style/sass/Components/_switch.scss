@@ -18,7 +18,6 @@
         height: 100%;
         border-radius: 1rem;
         background-color: transparent;
-        box-shadow: 0 0 1rem map-get($colors,blue);
         transform: scale(0.97,0.9);
     }
     & label {
@@ -104,6 +103,9 @@ body.animations {
     & .switch-container:hover::before {
         animation: onHoverBeforeSwitch 2000ms ease-in-out infinite; 
     }
+    & .switch-container:focus-within::before {
+        animation: onHoverBeforeSwitch 2000ms ease-in-out infinite; 
+    }
     & .switch_cursor {
         transition: transform 200ms ease-in-out;
     }
@@ -132,7 +134,9 @@ body.contrast {
         color: map-get($colors,red);
     }
 }
-
+body:not(.contrast) .switch-container::before {
+    box-shadow: 0 0 1rem map-get($colors,blue);
+}
 body:not(.contrast).purple {
     & .switch_cursor {
         background-color: map-get($colors,purple);
@@ -141,5 +145,8 @@ body:not(.contrast).purple {
     & .switch_state {
         color: map-get($colors,purple);
         text-shadow: 0 0.2rem 0.4rem map-get($colors,purple);
+    }
+    & .switch-container::before {
+        box-shadow: 0 0 1rem map-get($colors,purple);
     }
 }
