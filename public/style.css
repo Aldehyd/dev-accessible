@@ -437,6 +437,138 @@ body.animations .radio-button[aria-checked=true] .radio-button_input::after {
   animation: radioInputAfterAppear 400ms ease-in-out forwards;
 }
 
+.language-select {
+  position: relative;
+  margin: 2rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: hsl(175deg, 95%, 55%);
+  text-shadow: 0px 2px 4px hsl(175deg, 95%, 55%);
+  cursor: pointer;
+}
+.language-select::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 0 2rem 1rem hsl(0deg, 6%, 10%);
+  transform: scale(0.9);
+}
+.language-select_top {
+  padding: 0.5rem 0.5rem 0 0.5rem;
+  background-color: hsl(0deg, 6%, 10%);
+  border-radius: 1rem 1rem 0 0;
+  border: solid #f1f1f1;
+  border-width: 0.2rem 0.2rem 0 0.2rem;
+}
+.language-select_top span {
+  display: none;
+  padding: 0.5rem;
+  opacity: 1;
+}
+.language-select_top.fr .language-select_top_fr {
+  display: inline-block;
+}
+.language-select_top.en .language-select_top_en {
+  display: inline-block;
+}
+.language-select_center {
+  height: 0;
+  background-color: hsl(0deg, 6%, 10%);
+  border: solid #fff;
+  border-width: 0 0.2rem;
+}
+.language-select_center.fr .language-select_center_fr {
+  display: inline-block;
+}
+.language-select_center.en .language-select_center_en {
+  display: inline-block;
+}
+.language-select_center span {
+  display: none;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  margin: 0.5rem;
+  padding: 0.3rem 0.5rem;
+}
+.language-select_center span:hover {
+  color: hsl(0deg, 6%, 10%);
+}
+.language-select_center span:hover::before {
+  opacity: 1;
+}
+.language-select_center span::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: hsl(175deg, 95%, 55%);
+  border-radius: 0.5rem;
+  opacity: 0;
+}
+.language-select_bottom {
+  height: 1rem;
+  background-color: hsl(0deg, 6%, 10%);
+  border-radius: 0 0 1rem 1rem;
+  border: solid #f1f1f1;
+  border-width: 0 0.2rem 0.2rem 0.2rem;
+}
+.language-select[aria-expanded=true] .language-select_center {
+  height: 2.6rem;
+}
+.language-select[aria-expanded=true] .language-select_center span {
+  opacity: 1;
+}
+.language-select[aria-expanded=false] .language-select_center {
+  height: 0rem;
+}
+
+body.animations .language-select:hover::before {
+  animation: onHoverBeforeButton 1400ms ease-in-out infinite;
+}
+body.animations .language-select_top span {
+  animation: currentLanguageAppear 600ms ease-in-out forwards;
+}
+body.animations .language-select[aria-expanded=true] .language-select_center {
+  transition: 400ms ease-in-out;
+}
+body.animations .language-select[aria-expanded=false] .language-select_center {
+  transition: 300ms 400ms ease-in-out;
+}
+body.animations .language-select_center span {
+  transition: opacity 400ms 200ms ease-in-out;
+}
+body.animations .language-select_center span::before {
+  transition: 200ms ease-in-out;
+}
+
+@keyframes onHoverBeforeButton {
+  0% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.9);
+  }
+}
+@keyframes currentLanguageAppear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .radio-group {
   position: relative;
   margin: auto;

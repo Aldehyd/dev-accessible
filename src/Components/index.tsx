@@ -6,6 +6,7 @@ import { fontsRadioButtonsData } from "../Datas/fontsRadioButtonsData.tsx";
 import { handleFont } from "../Functions/handleFont.tsx";
 import {colorsRadioButtonsData} from "../Datas/colorsRadioButtonsData.tsx";
 import { handleMainColor } from "../Functions/handleMainColor.tsx";
+import LanguageSelect from "./language-select.tsx";
 
 export default function Components(): React.JSX.Element {
     return(
@@ -27,7 +28,9 @@ export default function Components(): React.JSX.Element {
                 <BasicButton text="Bouton basique activé" disableAbility={true} />
                 <BasicButton text="Bouton basique désactivé" disableAbility={true} disabledStatus="true" />
             </div>
-            
+            <div className="components-layout_radio-buttons">
+                <LanguageSelect />
+            </div>
         </div>
     )
 }
