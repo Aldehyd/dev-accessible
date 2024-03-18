@@ -1,5 +1,10 @@
+interface BasicButtonPropsInterface {
+    text: string,
+    disableAbility: boolean,
+    disabledStatus: string
+}
 
-export default function BasicButton({text,disableAbility=false,disabledStatus="false"}): React.JSX.Element {
+export default function BasicButton({text,disableAbility=false,disabledStatus="false"}: BasicButtonPropsInterface): React.JSX.Element {
     
     let basicButtonClassNames = `basic-button-container ${disabledStatus==="true" ? "disabled" : ""}`;
 

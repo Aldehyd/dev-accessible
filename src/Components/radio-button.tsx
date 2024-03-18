@@ -1,7 +1,16 @@
 import { useContext, useEffect, useRef } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 
-export default function RadioButton({name,frenchLabel,englishLabel,checkedButton,setCheckedButton,buttonFocused}): React.JSX.Element {
+interface RadioButtonPropsInterface {
+    name: string,
+    frenchLabel: string,
+    englishLabel: string,
+    checkedButton: string,
+    setCheckedButton: (checkedButton:string)=>void,
+    buttonFocused: string
+}
+
+export default function RadioButton({name,frenchLabel,englishLabel,checkedButton,setCheckedButton,buttonFocused}: RadioButtonPropsInterface): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
     const buttonElement = useRef(null);

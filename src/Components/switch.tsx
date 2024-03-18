@@ -1,7 +1,13 @@
 import { useContext, useState, useEffect } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 
-export default function Switch({name,frenchLabel,englishLabel}): React.JSX.Element {
+interface SwitchPropsInterface {
+    name: string,
+    frenchLabel: string,
+    englishLabel: string
+}
+
+export default function Switch({name,frenchLabel,englishLabel}: SwitchPropsInterface): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
 
