@@ -6,7 +6,7 @@ export default function RadioButton({name,frenchLabel,englishLabel,checkedButton
     const {language} = useContext(LanguageContext);
 
     return(
-        <li role="radio" aria-checked={checkedButton === name ? "true" : "false"} tabindex="0">
+        <li role="radio" aria-checked={checkedButton === name ? "true" : "false"} tabindex={checkedButton === name ? "0" : "-1"}>
             <span className="radio-input"></span>
             <label>{language === "french" ? frenchLabel : englishLabel}</label>
         </li>
