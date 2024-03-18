@@ -30,11 +30,9 @@
     }
     &_on {
         color: map-get($colors,green);
-        text-shadow: 0px 2px 4px map-get($colors,green);
     }
     &_off {
         color: map-get($colors,red);
-        text-shadow: 0px 2px 4px map-get($colors,red);
     }
     &_invisible-text {
         opacity: 0;
@@ -73,5 +71,14 @@
     }
     100% {
         transform: scale(0.9);
+    }
+}
+
+body:not(.contrast) .animations-toggle-button {
+    &_on {
+        text-shadow: 0px 2px 4px map-get($colors,green);
+    }
+    &_off {
+        text-shadow: 0px 2px 4px map-get($colors,red);
     }
 }
