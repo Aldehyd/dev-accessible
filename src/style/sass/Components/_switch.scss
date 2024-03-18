@@ -7,7 +7,6 @@
     width: fit-content;
     background-color: map-get($colors,white);
     border-radius: 1rem;
-    box-shadow: map-get($colors,switchBlackBoxShadow) inset 0.5rem 0.5rem 0.5rem;
     &::before {
         content: "";
         position: absolute;
@@ -134,8 +133,11 @@ body.contrast {
         color: map-get($colors,red);
     }
 }
-body:not(.contrast) .switch-container::before {
+body:not(.contrast) .switch-container {
+    box-shadow: map-get($colors,switchBlackBoxShadow) inset 0.5rem 0.5rem 0.5rem;
+    &::before {
     box-shadow: 0 0 1rem map-get($colors,blue);
+    }
 }
 body:not(.contrast).purple {
     & .switch_cursor {
