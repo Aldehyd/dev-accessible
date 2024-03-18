@@ -15,6 +15,48 @@ export default function RadioButtonGroup({name,frenchLegend,englishLegend,radioB
     const {language} = useContext(LanguageContext);
 
     const [checkedButton,setCheckedButton] = useState<string>("blue");
+    
+    const options: string[] = radioButtonsData.map(radio => {return(radio.name)});
+
+    const handleKeyDown: (e:KeyboardEvent)=>void = (e)=> {
+        let index = options.indexOf(checkedButton);
+        switch(e.key) {
+            case "ArrowDown": 
+                if(index === options.length-1) {
+                    index = 0;
+                } else {
+                    index++;
+                };
+                setCheckedButton(options[index]);
+                break;
+            case "ArrowRight": 
+                if(index === options.length-1) {
+                    index = 0;
+                } else {
+                    index++;
+                };
+                setCheckedButton(options[index]);
+                break;
+            case "ArrowUp": 
+                if(index === 0) {
+                    index = options.length-1;
+                } else {
+                    index--;
+                };
+                setCheckedButton(options[index]);
+                break;
+            case "ArrowLeft": 
+                if(index === 0) {
+                    index = options.length-1;
+                } else {
+                    index--;
+                };
+                setCheckedButton(options[index]);
+                break;
+            default:
+                break;
+        };
+    }
 
     useEffect(()=> {
         const savedStatus = localStorage.getItem(name);
@@ -39,7 +81,7 @@ export default function RadioButtonGroup({name,frenchLegend,englishLegend,radioB
     },[checkedButton,name]);
 
     return(
-        <fieldset className="radio-group">
+        <fieldset className="radio-group" onKeyDown={(e)=>handleKeyDown(e)}>
             <legend>{language === 'french' ? frenchLegend : englishLegend}</legend>
             <ul>
                 {
