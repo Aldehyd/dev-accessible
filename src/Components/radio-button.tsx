@@ -7,8 +7,8 @@ export default function RadioButton({name,frenchLabel,englishLabel,checkedButton
     const buttonElement = useRef(null);
 
     useEffect(()=> {
-        buttonElement.current && buttonElement.current.focus();
-    },[buttonFocused]);
+        buttonElement.current !== null && buttonFocused === name  && buttonElement.current.focus();
+    },[buttonFocused,name]);
 
     return(
         <li role="radio" className="radio-button" aria-labelledby={"radio-button-label--" + name}

@@ -60,6 +60,9 @@ export default function RadioButtonGroup({name,frenchLegend,englishLegend,radioB
         };
         setButtonFocused(options[index]);
     }
+    useEffect(()=> {
+        console.log(buttonFocused)
+    },[buttonFocused])
 
     useEffect(()=> {
         const savedStatus = localStorage.getItem(name);
