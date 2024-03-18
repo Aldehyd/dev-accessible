@@ -443,7 +443,6 @@ body.animations .radio-button[aria-checked=true] .radio-button_input::after {
   font-size: 1.6rem;
   font-weight: bold;
   color: hsl(175deg, 95%, 55%);
-  text-shadow: 0px 2px 4px hsl(175deg, 95%, 55%);
   cursor: pointer;
 }
 .language-select::before {
@@ -569,6 +568,10 @@ body.animations .language-select_center span::before {
     opacity: 1;
   }
 }
+body:not(.contrast) .language-select {
+  text-shadow: 0px 2px 4px hsl(175deg, 95%, 55%);
+}
+
 .radio-group {
   position: relative;
   margin: auto;
