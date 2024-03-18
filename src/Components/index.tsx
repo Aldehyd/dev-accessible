@@ -5,7 +5,6 @@ import RadioButtonGroup from "../Layout/RadioButtonsGroup.tsx";
 import { colorsRadioButtonsData } from "../Datas/colorsRadioButtonsData.tsx";
 
 export default function Components(): React.JSX.Element {
-    console.log(colorsRadioButtonsData)
     return(
         <div className="components-layout">
             <div className="components-layout_animation-toggle-buttons-container">

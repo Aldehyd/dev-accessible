@@ -31,12 +31,12 @@ export default function AnimationToggleButton(): React.JSX.Element {
 
     return(
         <button className={classNames} onClick={()=> setAnimationsStatus(animationsStatus => !animationsStatus)}>
-            <span aria-hidden="true" class="animations-toggle-button_invisible-text">Animations OFF</span>
-            <span class="animations-toggle-button_overflow-container">
-                <span aria-hidden="true" class="animations-toggle-button_invisible-text">Animations OFF</span>
-                <span class="animations-toggle-button_text-container">
-                    <span class="animations-toggle-button_on" aria-hidden={(!animationsStatus).toString()}>Animations <span lang="en">ON</span></span>
-                    <span class="animations-toggle-button_off" aria-hidden={animationsStatus.toString()}>Animations <span lang="en">OFF</span></span>
+            <span aria-hidden="true" className="animations-toggle-button_invisible-text">Animations OFF</span>
+            <span className="animations-toggle-button_overflow-container">
+                <span aria-hidden="true" className="animations-toggle-button_invisible-text">Animations OFF</span>
+                <span className="animations-toggle-button_text-container">
+                    <span className="animations-toggle-button_on" aria-hidden={(!animationsStatus).toString()}>Animations <span lang="en">ON</span></span>
+                    <span className="animations-toggle-button_off" aria-hidden={animationsStatus.toString()}>Animations <span lang="en">OFF</span></span>
                 </span>
             </span>
         </button>

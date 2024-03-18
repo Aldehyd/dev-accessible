@@ -42,7 +42,7 @@ export default function Switch({name,frenchLabel,englishLabel}): React.JSX.Eleme
     return (
         <div className="switch-container" onClick={()=> setSwitchStatus(switchStatus => !switchStatus)}>
             <label id="contrast-switch-label">{language === "french" ? frenchLabel : englishLabel} :</label>
-            <div className="switch switch-button" tabindex="0" aria-checked={switchStatus.toString()} 
+            <div className="switch switch-button" tabIndex="0" aria-checked={switchStatus.toString()} 
                 role="switch" aria-labelledby="contrast-switch-label" onKeyDown={(e)=> handleKeyDown(e)}>
                 <span className="switch_cursor"></span>
                 {switchStatus && <span className="switch_state switch_on" lang="en">ON</span>}

@@ -15,6 +15,8 @@ export default function RadioButtonGroup({name,frenchLegend,englishLegend,radioB
     const {language} = useContext(LanguageContext);
 
     const [checkedButton,setCheckedButton] = useState<string>("blue");
+
+    const [buttonFocused,setButtonFocused] = useState<string>("blue");
     
     const options: string[] = radioButtonsData.map(radio => {return(radio.name)});
 
@@ -56,6 +58,7 @@ export default function RadioButtonGroup({name,frenchLegend,englishLegend,radioB
             default:
                 break;
         };
+        setButtonFocused(options[index]);
     }
 
     useEffect(()=> {
@@ -86,7 +89,7 @@ export default function RadioButtonGroup({name,frenchLegend,englishLegend,radioB
             <ul>
                 {
                     radioButtonsData.map(radio => {
-                        return (<RadioButton name={radio.name} frenchLabel={radio.frenchLabel} englishLabel={radio.englishLabel} checkedButton={checkedButton} setCheckedButton={setCheckedButton} />)
+                        return (<RadioButton key={radio.id} name={radio.name} frenchLabel={radio.frenchLabel} englishLabel={radio.englishLabel} checkedButton={checkedButton} setCheckedButton={setCheckedButton} buttonFocused={buttonFocused} />)
                     })
                 }
             </ul>
