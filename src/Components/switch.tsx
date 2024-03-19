@@ -39,6 +39,7 @@ export default function Switch({name,frenchLabel,englishLabel}: SwitchPropsInter
     useEffect(()=> {
         if(switchStatus) {
             document.body.classList.add('contrast');
+            document.body.classList.remove('purple');
         } else {
             document.body.classList.remove('contrast');
         };
