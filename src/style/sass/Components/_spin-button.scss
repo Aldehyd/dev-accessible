@@ -25,28 +25,9 @@
     }
 }
 
-body.animations {
-    & .font-size-spin-button-container:hover::before {
-        animation: onHoverBeforeSpinButton 2000ms ease-in-out infinite; 
-    }
-    & .font-size-spin-button-container:focus-within::before {
-        animation: onHoverBeforeSpinButton 2000ms ease-in-out infinite; 
-    }
-}
-body:not(.contrast) {
-    & .font-size-spin-button-container {
-        box-shadow: inset map-get($colors,switchBlackBoxShadow) 0.5rem 0.5rem 0.5rem;
-        &::before {
-            box-shadow: 0 0 1rem map-get($colors,blue), inset 0 0 1rem map-get($colors,blue);
-        }
-    }
-    & .spin-button-container .input-container::after {
-        text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
-    }
-    & .spin-button_input {
-        text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
-    }
-}
+
+
+
 .spin-button-container {
     display: flex;
     gap: 1rem;
@@ -113,5 +94,43 @@ body:not(.contrast) {
     }
     100% {
         transform: scale(0.97,0.9);
+    }
+}
+
+body.animations {
+    & .font-size-spin-button-container:hover::before {
+        animation: onHoverBeforeSpinButton 2000ms ease-in-out infinite; 
+    }
+    & .font-size-spin-button-container:focus-within::before {
+        animation: onHoverBeforeSpinButton 2000ms ease-in-out infinite; 
+    }
+}
+body:not(.contrast) {
+    & .font-size-spin-button-container {
+        box-shadow: inset map-get($colors,switchBlackBoxShadow) 0.5rem 0.5rem 0.5rem;
+        &::before {
+            box-shadow: 0 0 1rem map-get($colors,blue), inset 0 0 1rem map-get($colors,blue);
+        }
+    }
+    & .spin-button-container .input-container::after {
+        text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
+    }
+    & .spin-button_input {
+        text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
+    }
+}
+body:not(.contrast).purple {
+    & .font-size-spin-button-container::before {
+            box-shadow: 0 0 1rem map-get($colors,purple), inset 0 0 1rem map-get($colors,purple);
+    }
+    & .spin-button-container .input-container::after {
+        text-shadow: 0 0.2rem 0.4rem map-get($colors,purple);
+    }
+    & .spin-button_input {
+        color: map-get($colors,purple);
+        text-shadow: 0 0.2rem 0.4rem map-get($colors,purple);
+    }
+    & .input-container::after {
+        color: map-get($colors,purple);
     }
 }

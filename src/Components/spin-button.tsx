@@ -1,5 +1,6 @@
 import { Component, createRef } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
+import BasicButton from "./basic-button.tsx";
 
 export default class SpinButton extends Component {
 
@@ -36,6 +37,7 @@ export default class SpinButton extends Component {
                     } else {
                         this.input.current.value = 200;
                     };
+                    this.setFontSize();
                     break;
                 case 'ArrowDown':
                     if(this.input.current.value > 100) {
@@ -47,6 +49,7 @@ export default class SpinButton extends Component {
                     } else {
                         this.input.current.value = 100;
                     };
+                    this.setFontSize();
                     break;
                 case 'PageUp':
                     e.preventDefault();
@@ -59,6 +62,7 @@ export default class SpinButton extends Component {
                     } else if(this.input.current.value > 190) {
                         this.input.current.value = 200;
                     };
+                    this.setFontSize();
                     break;
                 case 'PageDown':
                     e.preventDefault();
@@ -71,14 +75,17 @@ export default class SpinButton extends Component {
                     } else if(this.input.current.value < 110) {
                         this.input.current.value = 100;
                     };
+                    this.setFontSize();
                     break;
                 case 'Home':
                     e.preventDefault();
                     this.input.current.value = 100;
+                    this.setFontSize();
                     break;
                 case 'End':
                     e.preventDefault();
                     this.input.current.value = 200;
+                    this.setFontSize();
                     break;    
                 case 'Enter':
                     this.handleInputValue();
@@ -146,17 +153,11 @@ export default class SpinButton extends Component {
             <div className="font-size-spin-button-container">
                 <label id="font-size-spin-button-label">{language === "french" ? "Taille de la police" : "Font size"} : </label>
                 <div className="spin-button-container">
-                    <button tabIndex="-1" className="basic-button" 
-                        aria-disabled={this.state.currentValue <= 100 ? "true" : "false"} onClick={()=>this.decrease()}>
-                            <span>-</span>
-                        </button>
+                    <BasicButton text="-" tabIndex="-1" disableAbility={true} disabledStatus={this.state.currentValue <= 100 ? "true" : "false"} onWhiteBackground={true} onClickFunction={this.decrease} />
                     <span className="input-container">  
                         <input type="text" ref={this.input} onChange={(e)=> this.handleChange(e)} onKeyDown={(e)=> this.handleKeyDown(e)} maxLength="3" className="spin-button_input" role="spinbutton" defaultValue="100" aria-valuenow={this.state.currentValue} aria-valuemin="100" aria-valuemax="200" aria-valuetext={this.state.currentValue + "%"} aria-invalid={this.state.currentValue >200 || this.state.currentValue <100 ? "true" : "false"} aria-labelledby="font-size-spin-button-label" />
                     </span>
-                    <button tabIndex="-1" className="basic-button" 
-                        aria-disabled={this.state.currentValue >= 200 ? "true" : "false"} onClick={()=>this.increase()}>
-                        <span>+</span>
-                    </button>
+                    <BasicButton text="+" tabIndex="-1" disableAbility={true} disabledStatus={this.state.currentValue >= 200 ? "true" : "false"} onWhiteBackground={true} onClickFunction={this.increase} />
                 </div>
             </div>
         )
