@@ -9,7 +9,7 @@ import {colorsRadioButtonsData} from "../Datas/colorsRadioButtonsData.tsx";
 import { handleMainColor } from "../Functions/handleMainColor.tsx";
 import LanguageSelect from "./language-select.tsx";
 import SpinButton from "./spin-button.tsx";
-import {handleFontSizeSwitch} from "../Functions/handleFontSizeSwitch.tsx";
+import {handleContrastedThemeSwitch} from "../Functions/handleContrastedThemeSwitch.tsx"
 
 export default function Components(): React.JSX.Element {
 
@@ -19,7 +19,7 @@ export default function Components(): React.JSX.Element {
                 <AnimationToggleButton />
             </div>
             <div className="components-layout_switches-container">
-                <Switch name="contrasted-theme" frenchLabel="Thème contrasté" englishLabel="Contrasted theme" onSwitchFunction={handleFontSizeSwitch} />
+                <Switch name="contrasted-theme" frenchLabel="Thème contrasté" englishLabel="Contrasted theme" onSwitchFunction={handleContrastedThemeSwitch} />
             </div>
             <div className="components-layout_radio-buttons">
                 <RadioButtonGroup name="color" frenchLegend="Couleur" englishLegend="Color" radioButtonsData={colorsRadioButtonsData} handleChoice={handleMainColor} />
@@ -40,7 +40,7 @@ export default function Components(): React.JSX.Element {
                 <LanguageSelect />
             </div>
             <div className="components-layout_radio-buttons">
-                <SpinButton />
+                <SpinButton frenchLabel="Taille de la police" englishLabel="Font size" minValue={100} maxValue={200} defaultValue={100} />
             </div>
         </div>
     )

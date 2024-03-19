@@ -1,5 +1,5 @@
 
-export const handleFontSizeSwitch = (status: boolean) => {
+export const handleContrastedThemeSwitch = (status: boolean) => {
     if(status) {
         document.body.classList.add('contrast');
         document.body.classList.remove('purple');
