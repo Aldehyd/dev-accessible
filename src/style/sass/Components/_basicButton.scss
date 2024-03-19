@@ -46,6 +46,11 @@
         transform: scale(0.8);
     }
 }
+.basic-button-container--on-white-background {
+    & .basic-button-shadow {
+        box-shadow: map-get($colors,darkBackground) 0.2rem 0.2rem 0.2rem 0.1rem;
+    }
+}
 
 body.contrast .basic-button {
     border: solid 0.4rem map-get($colors,white);
@@ -78,8 +83,9 @@ body.contrast .basic-button {
         opacity: 1;
     }
 }
-body.contrast.purple .basic-button::after {
-    border-color: map-get($colors,purple);
+body.contrast .basic-button-container--on-white-background .basic-button {
+    border: solid 0.4rem map-get($colors,blue);
+
 }
 
 body.purple .basic-button {

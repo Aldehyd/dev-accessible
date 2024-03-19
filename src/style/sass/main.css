@@ -88,6 +88,10 @@ button, input, textarea {
   transform: scale(0.8);
 }
 
+.basic-button-container--on-white-background .basic-button-shadow {
+  box-shadow: hsl(0, 6%, 10%) 0.2rem 0.2rem 0.2rem 0.1rem;
+}
+
 body.contrast .basic-button {
   border: solid 0.4rem #f1f1f1;
 }
@@ -120,8 +124,8 @@ body.contrast .basic-button[aria-disabled=false]:focus::after {
   opacity: 1;
 }
 
-body.contrast.purple .basic-button::after {
-  border-color: hsl(295, 95%, 55%);
+body.contrast .basic-button-container--on-white-background .basic-button {
+  border: solid 0.4rem hsl(175, 95%, 55%);
 }
 
 body.purple .basic-button {
@@ -780,4 +784,9 @@ body.animations .radio-group:focus-within::before {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
+}
+
+.white-background {
+  padding: 20px;
+  background-color: #f1f1f1;
 }/*# sourceMappingURL=main.css.map */

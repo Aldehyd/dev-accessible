@@ -28,7 +28,11 @@ export default function Components(): React.JSX.Element {
                 <BasicButton text="Bouton basique" />
                 <BasicButton text="Bouton basique activé" disableAbility={true} />
                 <BasicButton text="Bouton basique désactivé" disableAbility={true} disabledStatus="true" />
+                
             </div>
+            <div className="white-background">
+                    <BasicButton text="Bouton sur fond blanc" onWhiteBackground={true}  />
+                </div>
             <div className="components-layout_radio-buttons">
                 <LanguageSelect />
             </div>
