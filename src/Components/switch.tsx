@@ -4,10 +4,11 @@ import LanguageContext from "../Contexts/language-context.tsx";
 interface SwitchPropsInterface {
     name: string,
     frenchLabel: string,
-    englishLabel: string
+    englishLabel: string,
+    onSwitchFunction: (status: boolean)=> void
 }
 
-export default function Switch({name,frenchLabel,englishLabel}: SwitchPropsInterface): React.JSX.Element {
+export default function Switch({name,frenchLabel,englishLabel,onSwitchFunction}: SwitchPropsInterface): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
 
@@ -38,10 +39,9 @@ export default function Switch({name,frenchLabel,englishLabel}: SwitchPropsInter
 
     useEffect(()=> {
         if(switchStatus) {
-            document.body.classList.add('contrast');
-            document.body.classList.remove('purple');
+            onSwitchFunction(true);
         } else {
-            document.body.classList.remove('contrast');
+            onSwitchFunction(false);
         };
         localStorage.setItem(name,switchStatus.toString());
     },[switchStatus,name]);
