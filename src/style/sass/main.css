@@ -608,26 +608,6 @@ body:not(.contrast).purple .language-select_center span::before {
   transform: scale(0.97, 0.9);
 }
 
-body.animations .font-size-spin-button-container:hover::before {
-  animation: onHoverBeforeSpinButton 2000ms ease-in-out infinite;
-}
-body.animations .font-size-spin-button-container:focus-within::before {
-  animation: onHoverBeforeSpinButton 2000ms ease-in-out infinite;
-}
-
-body:not(.contrast) .font-size-spin-button-container {
-  box-shadow: inset rgba(0, 0, 0, 0.3) 0.5rem 0.5rem 0.5rem;
-}
-body:not(.contrast) .font-size-spin-button-container::before {
-  box-shadow: 0 0 1rem hsl(175, 95%, 55%), inset 0 0 1rem hsl(175, 95%, 55%);
-}
-body:not(.contrast) .spin-button-container .input-container::after {
-  text-shadow: 0 0.2rem 0.4rem hsl(175, 95%, 55%);
-}
-body:not(.contrast) .spin-button_input {
-  text-shadow: 0 0.2rem 0.4rem hsl(175, 95%, 55%);
-}
-
 .spin-button-container {
   display: flex;
   gap: 1rem;
@@ -698,6 +678,40 @@ body:not(.contrast) .spin-button_input {
     transform: scale(0.97, 0.9);
   }
 }
+body.animations .font-size-spin-button-container:hover::before {
+  animation: onHoverBeforeSpinButton 2000ms ease-in-out infinite;
+}
+body.animations .font-size-spin-button-container:focus-within::before {
+  animation: onHoverBeforeSpinButton 2000ms ease-in-out infinite;
+}
+
+body:not(.contrast) .font-size-spin-button-container {
+  box-shadow: inset rgba(0, 0, 0, 0.3) 0.5rem 0.5rem 0.5rem;
+}
+body:not(.contrast) .font-size-spin-button-container::before {
+  box-shadow: 0 0 1rem hsl(175, 95%, 55%), inset 0 0 1rem hsl(175, 95%, 55%);
+}
+body:not(.contrast) .spin-button-container .input-container::after {
+  text-shadow: 0 0.2rem 0.4rem hsl(175, 95%, 55%);
+}
+body:not(.contrast) .spin-button_input {
+  text-shadow: 0 0.2rem 0.4rem hsl(175, 95%, 55%);
+}
+
+body:not(.contrast).purple .font-size-spin-button-container::before {
+  box-shadow: 0 0 1rem hsl(295, 95%, 55%), inset 0 0 1rem hsl(295, 95%, 55%);
+}
+body:not(.contrast).purple .spin-button-container .input-container::after {
+  text-shadow: 0 0.2rem 0.4rem hsl(295, 95%, 55%);
+}
+body:not(.contrast).purple .spin-button_input {
+  color: hsl(295, 95%, 55%);
+  text-shadow: 0 0.2rem 0.4rem hsl(295, 95%, 55%);
+}
+body:not(.contrast).purple .input-container::after {
+  color: hsl(295, 95%, 55%);
+}
+
 .radio-group {
   position: relative;
   margin: auto;

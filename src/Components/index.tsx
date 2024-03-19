@@ -1,3 +1,4 @@
+import { useState } from "react";
 import AnimationToggleButton from "./animation-toggle-button.tsx";
 import Switch from "./switch.tsx";
 import BasicButton from "./basic-button.tsx";
@@ -10,6 +11,7 @@ import LanguageSelect from "./language-select.tsx";
 import SpinButton from "./spin-button.tsx";
 
 export default function Components(): React.JSX.Element {
+
     return(
         <div className="components-layout">
             <div className="components-layout_animation-toggle-buttons-container">

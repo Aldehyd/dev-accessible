@@ -146,13 +146,17 @@ export default class SpinButton extends Component {
             <div className="font-size-spin-button-container">
                 <label id="font-size-spin-button-label">{language === "french" ? "Taille de la police" : "Font size"} : </label>
                 <div className="spin-button-container">
-                    <button tabIndex="-1" className="spin-button_button spin-button_button--decrease" 
-                        aria-disabled={this.state.currentValue <= 100 ? "true" : "false"} onClick={()=>this.decrease()}>-</button>
+                    <button tabIndex="-1" className="basic-button" 
+                        aria-disabled={this.state.currentValue <= 100 ? "true" : "false"} onClick={()=>this.decrease()}>
+                            <span>-</span>
+                        </button>
                     <span className="input-container">  
                         <input type="text" ref={this.input} onChange={(e)=> this.handleChange(e)} onKeyDown={(e)=> this.handleKeyDown(e)} maxLength="3" className="spin-button_input" role="spinbutton" defaultValue="100" aria-valuenow={this.state.currentValue} aria-valuemin="100" aria-valuemax="200" aria-valuetext={this.state.currentValue + "%"} aria-invalid={this.state.currentValue >200 || this.state.currentValue <100 ? "true" : "false"} aria-labelledby="font-size-spin-button-label" />
                     </span>
-                    <button tabIndex="-1" className="spin-button_button spin-button_button--increase" 
-                        aria-disabled={this.state.currentValue >= 200 ? "true" : "false"} onClick={()=>this.increase()}>+</button>
+                    <button tabIndex="-1" className="basic-button" 
+                        aria-disabled={this.state.currentValue >= 200 ? "true" : "false"} onClick={()=>this.increase()}>
+                        <span>+</span>
+                    </button>
                 </div>
             </div>
         )
