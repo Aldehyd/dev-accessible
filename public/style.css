@@ -590,12 +590,10 @@ body:not(.contrast).purple .language-select_center span::before {
   border-radius: 1rem;
   box-shadow: inset rgba(0, 0, 0, 0.3) 0.5rem 0.5rem 0.5rem;
 }
-
 .font-size-spin-button-container label {
   font-size: 1.4rem;
   font-weight: bold;
 }
-
 .font-size-spin-button-container::before {
   content: "";
   position: absolute;
@@ -622,6 +620,20 @@ body.animations .font-size-spin-button-container:focus-within::before {
   gap: 1rem;
   align-items: center;
 }
+.spin-button-container .input-container {
+  position: relative;
+}
+.spin-button-container .input-container::after {
+  content: "%";
+  position: absolute;
+  bottom: -0.6rem;
+  right: 1rem;
+  height: 100%;
+  width: fit-content;
+  color: hsl(175deg, 85%, 55%);
+  font-size: 1.6rem;
+  text-shadow: 0 0.2rem 0.4rem hsl(175deg, 85%, 55%);
+}
 
 .spin-button_button {
   position: relative;
@@ -632,7 +644,6 @@ body.animations .font-size-spin-button-container:focus-within::before {
   border-radius: 1rem;
   cursor: pointer;
 }
-
 .spin-button_button::before {
   content: "";
   position: absolute;
@@ -645,11 +656,9 @@ body.animations .font-size-spin-button-container:focus-within::before {
   box-shadow: #1C1919 0 0 0.5rem;
   transition: 200ms ease-in-out;
 }
-
 .spin-button_button[aria-disabled=false]:active::before {
   transform: scale(0.5);
 }
-
 .spin-button_button[aria-disabled=true] {
   opacity: 0.6;
   cursor: default;
@@ -664,22 +673,6 @@ body.animations .font-size-spin-button-container:focus-within::before {
   background: #1C1919;
   border: none;
   border-radius: 1rem;
-}
-
-.spin-button-container .input-container {
-  position: relative;
-}
-
-.spin-button-container .input-container::after {
-  content: "%";
-  position: absolute;
-  bottom: -0.6rem;
-  right: 1rem;
-  height: 100%;
-  width: fit-content;
-  color: hsl(175deg, 85%, 55%);
-  font-size: 1.6rem;
-  text-shadow: 0 0.2rem 0.4rem hsl(175deg, 85%, 55%);
 }
 
 @keyframes onHoverBeforeSpinButton {
