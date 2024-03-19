@@ -1,0 +1,781 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Oswald", sans-serif;
+}
+
+@font-face {
+  font-family: "openDyslexic";
+  src: url("../../fonts/OpenDyslexic-Regular.otf") format("opentype");
+}
+@font-face {
+  font-family: "openDyslexic";
+  src: url("../../fonts/OpenDyslexic-Regular.otf") format("opentype");
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button, input, textarea {
+  font-family: "Oswald", sans-serif;
+}
+
+.basic-button-container {
+  position: relative;
+  z-index: 0;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.basic-button-container.disabled {
+  opacity: 0.6;
+}
+
+.basic-button {
+  position: relative;
+  padding: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  background-color: hsl(175, 95%, 55%);
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+.basic-button[aria-disabled=true] {
+  cursor: default;
+}
+.basic-button_text {
+  position: relative;
+  z-index: 1;
+}
+.basic-button[aria-disabled=false]:active {
+  transform: translate(0.2rem, 0.2rem);
+}
+.basic-button:not([aria-disabled]):active {
+  transform: translate(0.2rem, 0.2rem);
+}
+.basic-button-shadow {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  box-shadow: #f1f1f1 0.2rem 0.2rem 0.2rem 0.1rem;
+}
+.basic-button[aria-disabled=false]:active + .basic-button-shadow {
+  transform: scale(0.8);
+}
+.basic-button:not([aria-disabled]):active + .basic-button-shadow {
+  transform: scale(0.8);
+}
+
+body.contrast .basic-button {
+  border: solid 0.4rem #f1f1f1;
+}
+body.contrast .basic-button-shadow {
+  transform: scale(0);
+}
+body.contrast .basic-button::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: -0.4rem;
+  left: -0.4rem;
+  width: 100%;
+  height: 100%;
+  background-color: #f1f1f1;
+  border: solid 0.4rem hsl(175, 95%, 55%);
+  border-radius: 1rem;
+  opacity: 0;
+}
+body.contrast .basic-button:not([aria-disabled]):hover::after {
+  opacity: 1;
+}
+body.contrast .basic-button[aria-disabled=false]:hover::after {
+  opacity: 1;
+}
+body.contrast .basic-button:not([aria-disabled]):focus::after {
+  opacity: 1;
+}
+body.contrast .basic-button[aria-disabled=false]:focus::after {
+  opacity: 1;
+}
+
+body.contrast.purple .basic-button::after {
+  border-color: hsl(295, 95%, 55%);
+}
+
+body.purple .basic-button {
+  background-color: hsl(295, 95%, 55%);
+}
+
+body.animations .basic-button {
+  transition: 200ms ease-in-out;
+}
+body.animations .basic-button-shadow {
+  transition: 100ms ease-in-out;
+}
+body.animations .basic-button::after {
+  transition: 200ms ease-in-out;
+}
+
+.animations-toggle-button {
+  position: relative;
+  margin: auto;
+  padding: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  background-color: hsl(0, 6%, 10%);
+  border-radius: 1rem;
+  border: solid 0.2rem #f1f1f1;
+  cursor: pointer;
+}
+.animations-toggle-button:hover {
+  animation: onHoverButton 1400ms ease-in-out infinite;
+}
+.animations-toggle-button_overflow-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 1rem;
+  overflow: hidden;
+}
+.animations-toggle-button_text-container {
+  position: absolute;
+  top: 1rem;
+  left: 10%;
+  width: 23rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  transition: 400ms ease-in-out;
+}
+.animations-toggle-button_on {
+  color: hsl(120, 95%, 55%);
+}
+.animations-toggle-button_off {
+  color: hsl(0, 95%, 55%);
+}
+.animations-toggle-button_invisible-text {
+  opacity: 0;
+}
+.animations-toggle-button::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 0 2rem 1rem hsl(0, 6%, 10%);
+  transform: scale(0.9);
+}
+.animations-toggle-button:hover::before {
+  transform: scale(1);
+  animation: onHoverBeforeButton 1400ms ease-in-out infinite;
+}
+
+.animations-toggle-button.on .animations-toggle-button_text-container {
+  transform: translateX(0);
+}
+
+.animations-toggle-button:not(.on) .animations-toggle-button_text-container {
+  transform: translateX(-52%);
+}
+
+@keyframes onHoverBeforeButton {
+  0% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.9);
+  }
+}
+body:not(.contrast) .animations-toggle-button_on {
+  text-shadow: 0px 2px 4px hsl(120, 95%, 55%);
+}
+body:not(.contrast) .animations-toggle-button_off {
+  text-shadow: 0px 2px 4px hsl(0, 95%, 55%);
+}
+
+.switch-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  position: relative;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: #f1f1f1;
+  border-radius: 1rem;
+}
+.switch-container::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  background-color: transparent;
+  transform: scale(0.97, 0.9);
+}
+.switch-container label {
+  font-size: 1.4rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.switch {
+  position: relative;
+  width: 6.5rem;
+  height: 3rem;
+  padding: 0.5rem;
+  background-color: #000;
+  border-radius: 1.5rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+.switch-button {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.switch_cursor {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+  background-color: hsl(175, 95%, 55%);
+  box-shadow: 0 0 0.4rem hsl(175, 95%, 55%);
+  border-radius: 50%;
+}
+.switch_state {
+  position: absolute;
+  opacity: 1;
+  font-weight: bold;
+  color: hsl(175, 95%, 55%);
+  text-shadow: 0 0.2rem 0.4rem hsl(175, 95%, 55%);
+}
+.switch_off {
+  right: 1rem;
+}
+.switch_on {
+  left: 1rem;
+}
+.switch[aria-checked=true] .switch_off {
+  display: none;
+}
+.switch[aria-checked=false] .switch_on {
+  display: none;
+}
+
+.switch[aria-checked=false] .switch_cursor {
+  transform: translateX(0);
+}
+
+.switch[aria-checked=true] .switch_cursor {
+  transform: translateX(3.5rem);
+}
+
+@keyframes onHoverBeforeSwitch {
+  0% {
+    transform: scale(0.97, 0.9);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.97, 0.9);
+  }
+}
+@keyframes switchStateAppear {
+  from {
+    opacity: 0;
+  }
+}
+body.animations .switch-container:hover::before {
+  animation: onHoverBeforeSwitch 2000ms ease-in-out infinite;
+}
+body.animations .switch-container:focus-within::before {
+  animation: onHoverBeforeSwitch 2000ms ease-in-out infinite;
+}
+body.animations .switch_cursor {
+  transition: transform 200ms ease-in-out;
+}
+body.animations .switch_state {
+  animation: switchStateAppear 400ms ease-in-out forwards;
+}
+
+body.contrast .switch_cursor {
+  box-shadow: none;
+}
+body.contrast .switch[aria-checked=false] .switch_cursor {
+  background-color: hsl(0, 95%, 55%);
+}
+body.contrast .switch[aria-checked=true] .switch_cursor {
+  background-color: hsl(120, 95%, 55%);
+}
+body.contrast .switch_state {
+  text-shadow: none;
+}
+body.contrast .switch_on {
+  color: hsl(120, 95%, 55%);
+}
+body.contrast .switch_off {
+  color: hsl(0, 95%, 55%);
+}
+
+body:not(.contrast) .switch-container {
+  box-shadow: rgba(0, 0, 0, 0.3) inset 0.5rem 0.5rem 0.5rem;
+}
+body:not(.contrast) .switch-container::before {
+  box-shadow: 0 0 1rem hsl(175, 95%, 55%);
+}
+
+body:not(.contrast).purple .switch_cursor {
+  background-color: hsl(295, 95%, 55%);
+  box-shadow: 0 0 0.4rem hsl(295, 95%, 55%);
+}
+body:not(.contrast).purple .switch_state {
+  color: hsl(295, 95%, 55%);
+  text-shadow: 0 0.2rem 0.4rem hsl(295, 95%, 55%);
+}
+body:not(.contrast).purple .switch-container::before {
+  box-shadow: 0 0 1rem hsl(295, 95%, 55%);
+}
+
+.radio-button {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+.radio-button_label {
+  position: relative;
+  margin-left: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.4rem;
+  text-transform: capitalize;
+  background-color: hsl(0, 6%, 10%);
+  border-radius: 1rem;
+  cursor: pointer;
+}
+.radio-button_label::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-100%, -50%) scaleX(1.6);
+  width: 0.5rem;
+  height: 1rem;
+  background-color: hsl(0, 6%, 10%);
+}
+.radio-button_input {
+  position: relative;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  background-color: hsl(0, 6%, 10%);
+}
+.radio-button[aria-checked=true] .radio-button_input::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+  background-color: hsl(175, 95%, 55%);
+  box-shadow: 0 0 0.25rem hsl(175, 95%, 55%);
+  border-radius: 50%;
+  opacity: 1;
+}
+
+@keyframes radioInputAfterAppear {
+  from {
+    opacity: 0;
+  }
+}
+body.purple .radio-button[aria-checked=true] .radio-button_input::after {
+  background-color: hsl(295, 95%, 55%);
+  box-shadow: 0 0 0.25rem hsl(295, 95%, 55%);
+}
+
+body.animations .radio-button[aria-checked=true] .radio-button_input::after {
+  animation: radioInputAfterAppear 400ms ease-in-out forwards;
+}
+
+.language-select {
+  position: relative;
+  margin: 2rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: hsl(175, 95%, 55%);
+  cursor: pointer;
+}
+.language-select::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 0 2rem 1rem hsl(0, 6%, 10%);
+  transform: scale(0.9);
+}
+.language-select_top {
+  padding: 0.5rem 0.5rem 0 0.5rem;
+  background-color: hsl(0, 6%, 10%);
+  border-radius: 1rem 1rem 0 0;
+  border: solid #f1f1f1;
+  border-width: 0.2rem 0.2rem 0 0.2rem;
+}
+.language-select_top span {
+  display: none;
+  padding: 0.5rem;
+  opacity: 1;
+}
+.language-select_top.fr .language-select_top_fr {
+  display: inline-block;
+}
+.language-select_top.en .language-select_top_en {
+  display: inline-block;
+}
+.language-select_center {
+  height: 0;
+  background-color: hsl(0, 6%, 10%);
+  border: solid #fff;
+  border-width: 0 0.2rem;
+}
+.language-select_center.fr .language-select_center_fr {
+  display: inline-block;
+}
+.language-select_center.en .language-select_center_en {
+  display: inline-block;
+}
+.language-select_center span {
+  display: none;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  margin: 0.5rem;
+  padding: 0.3rem 0.5rem;
+}
+.language-select_center span:hover {
+  color: hsl(0, 6%, 10%);
+}
+.language-select_center span:hover::before {
+  opacity: 1;
+}
+.language-select_center span::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: hsl(175, 95%, 55%);
+  border-radius: 0.5rem;
+  opacity: 0;
+}
+.language-select_bottom {
+  height: 1rem;
+  background-color: hsl(0, 6%, 10%);
+  border-radius: 0 0 1rem 1rem;
+  border: solid #f1f1f1;
+  border-width: 0 0.2rem 0.2rem 0.2rem;
+}
+.language-select[aria-expanded=true] .language-select_center {
+  height: 2.6rem;
+}
+.language-select[aria-expanded=true] .language-select_center span {
+  opacity: 1;
+}
+.language-select[aria-expanded=false] .language-select_center {
+  height: 0rem;
+}
+
+@keyframes onHoverBeforeButton {
+  0% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.9);
+  }
+}
+@keyframes currentLanguageAppear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+body.animations .language-select:hover::before {
+  animation: onHoverBeforeButton 1400ms ease-in-out infinite;
+}
+body.animations .language-select_top span {
+  animation: currentLanguageAppear 600ms ease-in-out forwards;
+}
+body.animations .language-select[aria-expanded=true] .language-select_center {
+  transition: 400ms ease-in-out;
+}
+body.animations .language-select[aria-expanded=false] .language-select_center {
+  transition: 300ms 400ms ease-in-out;
+}
+body.animations .language-select_center span {
+  transition: opacity 400ms 200ms ease-in-out;
+}
+body.animations .language-select_center span::before {
+  transition: 200ms ease-in-out;
+}
+
+body:not(.contrast) .language-select {
+  text-shadow: 0px 2px 4px hsl(175, 95%, 55%);
+}
+body:not(.contrast).purple .language-select {
+  color: hsl(295, 95%, 55%);
+  text-shadow: 0px 2px 4px hsl(295, 95%, 55%);
+}
+body:not(.contrast).purple .language-select_center span::before {
+  background-color: hsl(295, 95%, 55%);
+}
+
+.font-size-spin-button-container {
+  margin: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: inset rgba(0, 0, 0, 0.3) 0.5rem 0.5rem 0.5rem;
+}
+
+.font-size-spin-button-container label {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.font-size-spin-button-container::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  background-color: transparent;
+  box-shadow: 0 0 1rem hsl(175, 85%, 55%), inset 0 0 1rem hsl(175, 85%, 55%);
+  transform: scale(0.97, 0.9);
+}
+
+body.animations .font-size-spin-button-container:hover::before {
+  animation: onHoverBeforeSpinButton 2000ms ease-in-out infinite;
+}
+body.animations .font-size-spin-button-container:focus-within::before {
+  animation: onHoverBeforeSpinButton 2000ms ease-in-out infinite;
+}
+
+.spin-button-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.spin-button_button {
+  position: relative;
+  padding: 1rem;
+  font-size: 1.6rem;
+  background-color: hsl(175, 85%, 55%);
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+.spin-button_button::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  box-shadow: #1C1919 0 0 0.5rem;
+  transition: 200ms ease-in-out;
+}
+
+.spin-button_button[aria-disabled=false]:active::before {
+  transform: scale(0.5);
+}
+
+.spin-button_button[aria-disabled=true] {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.spin-button_input {
+  padding: 0.5rem 1rem;
+  width: 7rem;
+  font-size: 1.6rem;
+  color: hsl(175, 85%, 55%);
+  text-shadow: 0 0.2rem 0.4rem hsl(175, 85%, 55%);
+  background: #1C1919;
+  border: none;
+  border-radius: 1rem;
+}
+
+.spin-button-container .input-container {
+  position: relative;
+}
+
+.spin-button-container .input-container::after {
+  content: "%";
+  position: absolute;
+  bottom: -0.6rem;
+  right: 1rem;
+  height: 100%;
+  width: -moz-fit-content;
+  width: fit-content;
+  color: hsl(175, 85%, 55%);
+  font-size: 1.6rem;
+  text-shadow: 0 0.2rem 0.4rem hsl(175, 85%, 55%);
+}
+
+@keyframes onHoverBeforeSpinButton {
+  0% {
+    transform: scale(0.97, 0.9);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.97, 0.9);
+  }
+}
+.radio-group {
+  position: relative;
+  margin: auto;
+  padding: 1rem;
+  color: hsl(175, 95%, 55%);
+  background-color: #f1f1f1;
+  border-radius: 1rem;
+  border: none;
+}
+
+.radio-group::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -20%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  border-radius: 1rem;
+  background-color: transparent;
+  transform: scale(0.95, 0.95);
+}
+
+.radio-group legend {
+  padding: 1rem;
+  font-size: 1.8rem;
+  background-color: hsl(0, 6%, 10%);
+  border-radius: 1rem;
+  border: solid 0.4rem #f1f1f1;
+}
+
+@keyframes onHoverBeforeRadioGroup {
+  0% {
+    transform: scale(0.9, 0.9);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.9, 0.9);
+  }
+}
+body:not(.contrast) .radio-group {
+  text-shadow: 0 0.2rem 0.4rem hsl(175, 95%, 55%);
+  box-shadow: inset rgba(0, 0, 0, 0.3) 0.5rem 0.5rem 0.5rem;
+}
+body:not(.contrast) .radio-group::before {
+  box-shadow: 0 0 2rem hsl(175, 95%, 55%), inset 0 0 2rem hsl(175, 95%, 55%);
+}
+body:not(.contrast).purple .radio-group {
+  text-shadow: 0 0.2rem 0.4rem hsl(295, 95%, 55%);
+}
+body:not(.contrast).purple .radio-group::before {
+  box-shadow: 0 0 2rem hsl(295, 95%, 55%), inset 0 0 2rem hsl(295, 95%, 55%);
+}
+
+body.purple .radio-group {
+  color: hsl(295, 95%, 55%);
+}
+
+body.animations .radio-group:hover::before {
+  animation: onHoverBeforeRadioGroup 2000ms ease-in-out infinite;
+}
+body.animations .radio-group:focus-within::before {
+  animation: onHoverBeforeRadioGroup 2000ms ease-in-out infinite;
+}
+
+.components-layout {
+  position: relative;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: hsl(0, 6%, 10%);
+}
+.components-layout_animation-toggle-buttons-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+.components-layout_buttons-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}/*# sourceMappingURL=main.css.map */

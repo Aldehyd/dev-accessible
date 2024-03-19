@@ -5,10 +5,10 @@ export default class SpinButton extends Component {
 
     constructor(props) {
         super(props);
+
+        this.input = createRef()
         this.state = {
-            temporaryValue: 100,
-            currentValue : 100,
-            input : createRef()
+            currentValue : 100
         };
 
         this.handleKeyDown = this.handleKeyDown.bind(this);
@@ -27,58 +27,58 @@ export default class SpinButton extends Component {
         } else {
             switch(e.key) {
                 case 'ArrowUp':
-                    if(this.state.currentValue < 200) {
-                        if(this.state.currentValue >= 100) {
-                            this.setState({currentValue : this.state.currentValue+1});
+                    if(this.input.current.value < 200) {
+                        if(this.input.current.value >= 100) {
+                            this.input.current.value++;
                         } else {
-                            this.setState({currentValue : 100});
+                            this.input.current.value = 100;
                         };
                     } else {
-                        this.setState({currentValue : 200});
+                        this.input.current.value = 200;
                     };
                     break;
                 case 'ArrowDown':
-                    if(this.state.currentValue > 100) {
-                        if(this.state.currentValue <= 200) {
-                            this.setState({currentValue : this.state.currentValue-1});
+                    if(this.input.current.value > 100) {
+                        if(this.input.current.value <= 200) {
+                            this.input.current.value--;
                         } else {
-                            this.setState({currentValue : 200});
+                            this.input.current.value = 200;
                         };
                     } else {
-                        this.setState({currentValue : 100});
+                        this.input.current.value = 100;
                     };
                     break;
                 case 'PageUp':
                     e.preventDefault();
-                    if(this.state.currentValue <= 190) {
-                        if(this.state.currentValue >=100) {
-                            this.setState({currentValue : this.state.currentValue +=10});
+                    if(this.input.current.value <= 190) {
+                        if(this.input.current.value >=100) {
+                            this.input.current.value += 10;
                         } else {
-                            this.setState({currentValue : 100});
+                            this.input.current.value = 100;
                         };
-                    } else if(this.state.currentValue > 190) {
-                        this.setState({currentValue : 200});
+                    } else if(this.input.current.value > 190) {
+                        this.input.current.value = 200;
                     };
                     break;
                 case 'PageDown':
                     e.preventDefault();
-                    if(this.state.currentValue >= 110) {
-                        if(this.state.currentValue <= 200) {
-                            this.setState({currentValue : this.state.currentValue -=10});
+                    if(this.input.current.value >= 110) {
+                        if(this.input.current.value <= 200) {
+                            this.input.current.value -= 10;
                         } else {
-                            this.setState({currentValue : 200});
+                            this.input.current.value = 200;
                         };
-                    } else if(this.state.currentValue < 110) {
-                        this.setState({currentValue : 100});
+                    } else if(this.input.current.value < 110) {
+                        this.input.current.value = 100;
                     };
                     break;
                 case 'Home':
                     e.preventDefault();
-                    this.setState({currentValue : 100});
+                    this.input.current.value = 100;
                     break;
                 case 'End':
                     e.preventDefault();
-                    this.setState({currentValue : 200});
+                    this.input.current.value = 200;
                     break;    
                 case 'Enter':
                     this.handleInputValue();
@@ -87,54 +87,56 @@ export default class SpinButton extends Component {
                     break;
             };
         };
+        this.setState({currentValue : this.input.current.value});
     }
     handleInputValue() {
-        console.log(this.state.temporaryValue)
-        if(this.state.temporaryValue > 200 ) {
-            this.setState({currentValue : 200});
-        } else if (this.state.temporaryValue < 100) {
-            this.setState({currentValue : 100});
-        } else {
-            this.setState({currentValue: this.state.temporaryValue});
+        if(this.input.current.value > 200 ) {
+            this.input.current.value = 200;
+        } else if (this.input.current.value < 100) {
+            this.input.current.value = 100;
         };
+        this.setFontSize();
     }
     increase() {
-        if(this.state.currentValue < 100) {
-            this.setState({currentValue : 100});
-        } else if(this.state.currentValue < 125) {
-            this.setState({currentValue : 125});
-        } else if(this.state.currentValue < 150) {
-            this.setState({currentValue : 150});
-        } else if(this.state.currentValue < 175) {
-            this.setState({currentValue : 175});
-        } else {
-            this.setState({currentValue : 200});
+        if(this.input.current.value < 200) {
+            if(this.input.current.value < 100) {
+                this.input.current.value = 100;
+            } else if(this.input.current.value < 125) {
+                this.input.current.value = 125;
+            } else if(this.input.current.value < 150) {
+                this.input.current.value = 150;
+            } else if(this.input.current.value < 175) {
+                this.input.current.value = 175;
+            } else {
+                this.input.current.value = 200;
+            };
+        this.setState({currentValue: this.input.current.value});
+        this.setFontSize();
         };
     }
     decrease() {
-        if(this.state.currentValue > 200) {
-            this.setState({currentValue : 200});
-        } else if(this.state.currentValue > 175) {
-            this.setState({currentValue : 175});
-        } else if(this.state.currentValue > 150) {
-            this.setState({currentValue : 150});
-        } else if(this.state.currentValue > 125) {
-            this.setState({currentValue : 125});
-        } else {
-            this.setState({currentValue : 100});
+        if(this.input.current.value > 100) {
+            if(this.input.current.value > 200) {
+                this.input.current.value = 200;
+            } else if(this.input.current.value > 175) {
+                this.input.current.value = 175;
+            } else if(this.input.current.value > 150) {
+                this.input.current.value = 150;
+            } else if(this.input.current.value > 125) {
+                this.input.current.value = 125;
+            } else {
+                this.input.current.value = 100;
+            };
+            this.setState({currentValue: this.input.current.value});
+            this.setFontSize();
         };
     }
     setFontSize() {
-        document.documentElement.style.fontSize = `${this.state.currentValue/100*62.5}%`;
+        document.documentElement.style.fontSize = `${this.input.current.value/100*62.5}%`;
     }
     handleChange(e) {
-        console.log(e.target.value)
-        this.setState({temporaryValue: parseInt(e.target.value)});
-    }
-
-    componentDidUpdate() {
-        this.setFontSize();
-        console.log(this.state.temporaryValue,this.state.currentValue)
+        this.input.current.value = e.target.value;
+        this.setState({currentValue: e.target.value});
     }
 
     render() {
@@ -147,7 +149,7 @@ export default class SpinButton extends Component {
                     <button tabIndex="-1" className="spin-button_button spin-button_button--decrease" 
                         aria-disabled={this.state.currentValue <= 100 ? "true" : "false"} onClick={()=>this.decrease()}>-</button>
                     <span className="input-container">  
-                        <input type="text" ref="input" onChange={(e)=> this.handleChange(e)} onKeyDown={(e)=> this.handleKeyDown(e)} maxLength="3" className="spin-button_input" role="spinbutton" value={this.state.currentValue} aria-valuenow={this.state.currentValue} aria-valuemin="100" aria-valuemax="200" aria-valuetext={this.state.currentValue + "%"} aria-invalid={this.state.currentValue >200 || this.state.currentValue <100 ? "true" : "false"} aria-labelledby="font-size-spin-button-label" />
+                        <input type="text" ref={this.input} onChange={(e)=> this.handleChange(e)} onKeyDown={(e)=> this.handleKeyDown(e)} maxLength="3" className="spin-button_input" role="spinbutton" defaultValue="100" aria-valuenow={this.state.currentValue} aria-valuemin="100" aria-valuemax="200" aria-valuetext={this.state.currentValue + "%"} aria-invalid={this.state.currentValue >200 || this.state.currentValue <100 ? "true" : "false"} aria-labelledby="font-size-spin-button-label" />
                     </span>
                     <button tabIndex="-1" className="spin-button_button spin-button_button--increase" 
                         aria-disabled={this.state.currentValue >= 200 ? "true" : "false"} onClick={()=>this.increase()}>+</button>
