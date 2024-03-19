@@ -7,6 +7,7 @@ import { handleFont } from "../Functions/handleFont.tsx";
 import {colorsRadioButtonsData} from "../Datas/colorsRadioButtonsData.tsx";
 import { handleMainColor } from "../Functions/handleMainColor.tsx";
 import LanguageSelect from "./language-select.tsx";
+import SpinButton from "./spin-button.tsx";
 
 export default function Components(): React.JSX.Element {
     return(
@@ -30,6 +31,9 @@ export default function Components(): React.JSX.Element {
             </div>
             <div className="components-layout_radio-buttons">
                 <LanguageSelect />
+            </div>
+            <div className="components-layout_radio-buttons">
+                <SpinButton />
             </div>
         </div>
     )
