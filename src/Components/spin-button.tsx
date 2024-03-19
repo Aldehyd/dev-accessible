@@ -4,19 +4,17 @@ import BasicButton from "./basic-button.tsx";
 
 export default class SpinButton extends Component {
 
-    constructor(props) {
+    constructor(props,frenchLabel: string,englishLabel: string,minValue: number = 0,maxValue: number = 100,defaultValue: number = 0,inputUnit: string, maxInputLength: number = 3, handleKeyDown) {
         super(props);
-
         this.input = createRef()
         this.state = {
-            currentValue : 100
+            currentValue : 100,
         };
 
         this.handleKeyDown = this.handleKeyDown.bind(this);
         this.handleInputValue = this.handleInputValue.bind(this);
         this.increase = this.increase.bind(this);
         this.decrease = this.decrease.bind(this);
-        this.setFontSize = this.setFontSize.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -95,7 +93,7 @@ export default class SpinButton extends Component {
             };
         };
         this.setState({currentValue : this.input.current.value});
-    }
+    }   
     handleInputValue() {
         if(this.input.current.value > 200 ) {
             this.input.current.value = 200;
@@ -148,16 +146,16 @@ export default class SpinButton extends Component {
 
     render() {
         const {language} = this.context;
-
+    
         return(
             <div className="font-size-spin-button-container">
-                <label id="font-size-spin-button-label">{language === "french" ? "Taille de la police" : "Font size"} : </label>
+                <label id="spin-button-label">{language === "french" ? this.props.frenchLabel : this.props.englishLabel} : </label>
                 <div className="spin-button-container">
-                    <BasicButton text="-" tabIndex="-1" disableAbility={true} disabledStatus={this.state.currentValue <= 100 ? "true" : "false"} onWhiteBackground={true} onClickFunction={this.decrease} />
+                    <BasicButton text="-" tabIndex="-1" disableAbility={true} disabledStatus={this.state.currentValue <= this.props.minValue ? "true" : "false"} onWhiteBackground={true} onClickFunction={this.decrease} />
                     <span className="input-container">  
-                        <input type="text" ref={this.input} onChange={(e)=> this.handleChange(e)} onKeyDown={(e)=> this.handleKeyDown(e)} maxLength="3" className="spin-button_input" role="spinbutton" defaultValue="100" aria-valuenow={this.state.currentValue} aria-valuemin="100" aria-valuemax="200" aria-valuetext={this.state.currentValue + "%"} aria-invalid={this.state.currentValue >200 || this.state.currentValue <100 ? "true" : "false"} aria-labelledby="font-size-spin-button-label" />
+                        <input type="text" ref={this.input} onChange={(e)=> this.handleChange(e)} onKeyDown={(e)=> this.handleKeyDown(e)} maxLength={this.props.maxInputLength} className="spin-button_input" role="spinbutton" defaultValue={this.props.defaultValue} aria-valuenow={this.state.currentValue} aria-valuemin={this.props.minValue} aria-valuemax={this.props.maxValue} aria-valuetext={this.state.currentValue + "%"} aria-invalid={this.state.currentValue > this.props.maxValue || this.state.currentValue < this.props.minValue ? "true" : "false"} aria-labelledby="spin-button-label" />
                     </span>
-                    <BasicButton text="+" tabIndex="-1" disableAbility={true} disabledStatus={this.state.currentValue >= 200 ? "true" : "false"} onWhiteBackground={true} onClickFunction={this.increase} />
+                    <BasicButton text="+" tabIndex="-1" disableAbility={true} disabledStatus={this.state.currentValue >= this.props.maxValue ? "true" : "false"} onWhiteBackground={true} onClickFunction={this.increase} />
                 </div>
             </div>
         )
