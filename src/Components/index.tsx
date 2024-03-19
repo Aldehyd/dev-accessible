@@ -10,6 +10,10 @@ import { handleMainColor } from "../Functions/handleMainColor.tsx";
 import LanguageSelect from "./language-select.tsx";
 import SpinButton from "./spin-button.tsx";
 import {handleContrastedThemeSwitch} from "../Functions/handleContrastedThemeSwitch.tsx"
+import { handleKeyDown } from "../Functions/fontSizeSpinButton/handleKeyDown.tsx";
+import {increase} from "../Functions/fontSizeSpinButton/increase.tsx";
+import {decrease} from "../Functions/fontSizeSpinButton/decrease.tsx";
+import {setFontSize} from "../Functions/fontSizeSpinButton/setFontSize.tsx";
 
 export default function Components(): React.JSX.Element {
 
@@ -40,7 +44,7 @@ export default function Components(): React.JSX.Element {
                 <LanguageSelect />
             </div>
             <div className="components-layout_radio-buttons">
-                <SpinButton frenchLabel="Taille de la police" englishLabel="Font size" minValue={100} maxValue={200} defaultValue={100} />
+                <SpinButton frenchLabel="Taille de la police" englishLabel="Font size" minValue={100} maxValue={200} defaultValue={100} handleKeyDown={handleKeyDown} increase={increase} decrease={decrease} effectFunction={setFontSize} />
             </div>
         </div>
     )
