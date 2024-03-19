@@ -44,7 +44,7 @@ export default function Components(): React.JSX.Element {
                 <LanguageSelect />
             </div>
             <div className="components-layout_radio-buttons">
-                <SpinButton frenchLabel="Taille de la police" englishLabel="Font size" minValue={100} maxValue={200} defaultValue={100} handleKeyDown={handleKeyDown} increase={increase} decrease={decrease} effectFunction={setFontSize} />
+                <SpinButton name="fontSize" frenchLabel="Taille de la police" englishLabel="Font size" minValue={100} maxValue={200} defaultValue={100} handleKeyDown={handleKeyDown} increase={increase} decrease={decrease} effectFunction={setFontSize} />
             </div>
         </div>
     )
