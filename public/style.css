@@ -252,6 +252,10 @@ body:not(.contrast) .animations-toggle-button_off {
   text-shadow: 0px 2px 4px hsl(0deg, 95%, 55%);
 }
 
+body.contrast .animations-toggle-button {
+  border-color: hsl(0deg, 6%, 10%);
+}
+
 .switch-container {
   display: flex;
   align-items: center;
