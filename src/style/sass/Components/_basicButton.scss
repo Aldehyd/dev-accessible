@@ -87,7 +87,6 @@ body.contrast .basic-button-container--on-white-background .basic-button {
     &::after {
         border-color: map-get($colors,darkBackground);
     }
-
 }
 
 body.purple .basic-button {

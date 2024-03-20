@@ -784,14 +784,6 @@ body:not(.contrast).purple .input-container::after {
   opacity: 1;
 }
 
-.accessibility-analysis-indicator.on .accessibility-analysis-toggle-button_off {
-  display: none;
-}
-
-.accessibility-analysis-indicator.off .accessibility-analysis-toggle-button_on {
-  display: none;
-}
-
 .accessibility-analysis-help-button {
   padding: 0 1rem;
   font-size: 1.8rem;
