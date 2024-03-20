@@ -17,6 +17,7 @@ export default function Switch({name,frenchLabel,englishLabel,onSwitchFunction}:
     const handleKeyDown : (e: KeyboardEvent) => void = (e)=> {
         switch(e.key) {
             case ' ':
+                e.preventDefault();
                 setSwitchStatus(switchStatus => !switchStatus);
                 break;
             case 'Enter':
