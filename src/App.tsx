@@ -5,7 +5,7 @@ import LanguageContext from './Contexts/language-context.tsx';
 
 export default function App(): React.JSX.Element {
 
-    const [language,setLanguage] = useState('french'); //vérifier valeur dans local storage
+    const [language,setLanguage] = useState(localStorage.getItem('language') !== undefined && localStorage.getItem('language') !== null && localStorage.getItem('language') === "english" ? "english" : "french"); 
 
     const changeLanguage : (language: string) => void = (language)=> {
         setLanguage(language);

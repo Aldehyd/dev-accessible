@@ -46,6 +46,8 @@ export default function LanguageSelect(): React.JSX.Element {
         setSelectClassList(`language-select ${language === "french" ? "fr" : "en"}`);
         setTopClassList(`language-select_top ${language === "french" ? "fr" : "en"}`);
         setCenterClassList(`language-select_center ${language === "french" ? "en" : "fr"}`);
+
+        localStorage.setItem('language',language);
     },[language]);
     
     useEffect(()=> {
