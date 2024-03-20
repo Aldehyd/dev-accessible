@@ -1,0 +1,60 @@
+.basic-picture-container {
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 70%;
+    height: fit-content;
+    overflow: hidden;
+}
+.basic-picture {
+    display: block;
+    margin: auto;
+    width: 100%;
+    object-fit: contain;
+    max-height: 95%;
+    transform-origin: 50% 0;
+    transform: scaleY(1);
+    opacity: 1;
+    &-mask {
+        position: absolute;
+        top: 1rem;
+        left: 0;
+        background-color: map-get($colors,darkBackground);
+        width: 100%;
+        height: 100%;
+        transform-origin: 50% 100%;
+        transform: translateY(100%);
+        opacity: 0;
+        box-shadow: 0 -2rem 2rem 0.2rem map-get($colors,blue);
+    }
+}
+
+body.animations {
+    & .basic-picture {
+        animation: basicPictureAppear 1s ease-in-out backwards;
+        &-mask {
+            animation: basicPictureMaskDisappear 1s ease-in-out backwards;
+        }
+    }
+    &:not(.contrast).purple {
+        & .basic-picture-mask {
+            box-shadow: 0 -2rem 2rem 0.2rem map-get($colors,purple);
+        }
+    }
+}
+
+@keyframes basicPictureAppear {
+    from {
+        opacity: 0;
+    }
+}
+
+@keyframes basicPictureMaskDisappear {
+    0% {
+        transform: translateY(0);
+        opacity: 1
+    }
+    80% {
+        opacity: 1
+    }
+}

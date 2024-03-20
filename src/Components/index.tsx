@@ -1,4 +1,4 @@
-
+import image from './dyskredy-preview.png';
 import AnimationToggleButton from "./animation-toggle-button.tsx";
 import Switch from "./switch.tsx";
 import BasicButton from "./basic-button.tsx";
@@ -23,6 +23,7 @@ import SearchBar from "./search-bar.tsx";
 import BurgerMenuButton from "./burger-menu-button.tsx";
 import AccessibilitySettingsButton from "./accessibility-settings-button.tsx";
 import MainLink from "./main-link.tsx";
+import BasicPicture from "./basic-picture.tsx";
 
 export default function Components(): React.JSX.Element {
 
@@ -92,6 +93,9 @@ export default function Components(): React.JSX.Element {
             </div>
             <div className="components-layout_radio-buttons">
                 <MainLink frenchText="lien principal" englishText="main link" route="../" />
+            </div>
+            <div className="components-layout_pictures">
+                <BasicPicture image={image} frenchAlt="très beau site" englishAlt="beautiful website" />
             </div>
         </div>
     )

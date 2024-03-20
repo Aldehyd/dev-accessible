@@ -1187,6 +1187,64 @@ body:not(.contrast).purple .main-link:focus-within::after {
   box-shadow: 0 0 1rem 0.4rem hsl(295, 95%, 55%);
 }
 
+.basic-picture-container {
+  position: relative;
+  display: block;
+  margin: auto;
+  width: 70%;
+  height: -moz-fit-content;
+  height: fit-content;
+  overflow: hidden;
+}
+
+.basic-picture {
+  display: block;
+  margin: auto;
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  max-height: 95%;
+  transform-origin: 50% 0;
+  transform: scaleY(1);
+  opacity: 1;
+}
+.basic-picture-mask {
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  background-color: hsl(0, 6%, 10%);
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 100%;
+  transform: translateY(100%);
+  opacity: 0;
+  box-shadow: 0 -2rem 2rem 0.2rem hsl(175, 95%, 55%);
+}
+
+body.animations .basic-picture {
+  animation: basicPictureAppear 1s ease-in-out backwards;
+}
+body.animations .basic-picture-mask {
+  animation: basicPictureMaskDisappear 1s ease-in-out backwards;
+}
+body.animations:not(.contrast).purple .basic-picture-mask {
+  box-shadow: 0 -2rem 2rem 0.2rem hsl(295, 95%, 55%);
+}
+
+@keyframes basicPictureAppear {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes basicPictureMaskDisappear {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+}
 .radio-group {
   position: relative;
   margin: auto;
@@ -1278,6 +1336,9 @@ body.animations .radio-group:focus-within::before {
   padding: 20px;
   background-color: white;
   color: #000;
+}
+.components-layout_pictures {
+  width: 90%;
 }
 
 .white-background {
