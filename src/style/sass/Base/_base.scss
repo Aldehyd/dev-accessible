@@ -41,6 +41,12 @@ body {
         & button, input, textarea {
             word-spacing: calc(0.12*1.4rem);
         }
+        & .language-select {
+            letter-spacing: calc(0.12*1.6rem);
+        }
+        & .spin-button_input {
+            letter-spacing: calc(0.12*1.6rem);
+        }
     }
 }
 #root {
@@ -53,6 +59,7 @@ ul {
     list-style: none;
 }
 button, input, textarea {
+    font-size: 1.4rem;
     font-family: "Oswald", sans-serif;
 }
 
