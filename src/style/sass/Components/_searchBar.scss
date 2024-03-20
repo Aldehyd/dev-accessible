@@ -47,7 +47,6 @@
     border: 0.2rem map-get($colors,white) solid;
     border-radius: 50%;
     text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
-    box-shadow: 0 0 1rem map-get($colors,darkBackground);
     cursor: pointer;
 }
 
@@ -80,6 +79,9 @@
 }
 
 body:not(.contrast) {
+    & .search-button {
+        box-shadow: 0 0 1rem map-get($colors,darkBackground);
+    }
     & .search-bar-container::before {
         box-shadow: 0 0 2rem 1rem map-get($colors,darkBackground);
     }
@@ -98,6 +100,9 @@ body:not(.contrast) {
             box-shadow: 0 0 1rem 0.4rem map-get($colors,purple);
         }
     }
+}
+body.contrast .search-bar-container .search-button {
+    border-color: map-get($colors,darkBackground);
 }
 body.animations .search-bar-container.searching .input-container::after {
     content: "";
