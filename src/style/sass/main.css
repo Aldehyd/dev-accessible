@@ -743,9 +743,7 @@ body:not(.contrast).purple .input-container::after {
   padding: 1rem;
   background-color: #f1f1f1;
   border-radius: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.3) inset 0.5rem 0.5rem 0.5rem;
 }
-
 .accessibility-analysis-indicator::before {
   content: "";
   position: absolute;
@@ -755,17 +753,10 @@ body:not(.contrast).purple .input-container::after {
   height: 100%;
   width: 100%;
   border-radius: 1rem;
-  box-shadow: 0 0 2rem 1rem hsl(0, 6%, 10%);
   transform: scale(0.95, 0.9);
 }
-
-.accessibility-analysis-indicator.on:hover::before {
-  transform: scale(1);
-  animation: onHoverBeforeButton 1400ms ease-in-out infinite;
-}
-
-.accessibility-analysis-indicator:hover {
-  animation: onHoverButton 1400ms ease-in-out infinite;
+.accessibility-analysis-indicator.on .accessibility-analysis-toggle-button {
+  cursor: pointer;
 }
 
 .accessibility-analysis-toggle-button {
@@ -778,24 +769,12 @@ body:not(.contrast).purple .input-container::after {
   border-radius: 1rem;
   border: none;
 }
-
-.accessibility-analysis-indicator.on .accessibility-analysis-toggle-button {
-  cursor: pointer;
-}
-
 .accessibility-analysis-toggle-button_on {
   color: hsl(120, 95%, 55%);
-  text-shadow: 0px 2px 4px hsl(120, 95%, 55%);
 }
-
 .accessibility-analysis-toggle-button_off {
   color: hsl(0, 95%, 55%);
-  text-shadow: 0px 2px 4px hsl(0, 95%, 55%);
   opacity: 1;
-}
-
-.accessibility-analysis-indicator.animations .accessibility-analysis-toggle-button_off {
-  animation: desactivatedTextAppear 400ms ease-in-out forwards;
 }
 
 .accessibility-analysis-indicator.on .accessibility-analysis-toggle-button_off {
@@ -814,14 +793,7 @@ body:not(.contrast).purple .input-container::after {
   background-color: hsl(0, 6%, 10%);
   border: 0.2rem #f1f1f1 solid;
   border-radius: 50%;
-  text-shadow: 0 0.2rem 0.4rem hsl(175, 95%, 55%);
-  box-shadow: 0 0 1rem hsl(0, 6%, 10%);
   cursor: pointer;
-}
-.accessibility-analysis-help-button:hover span {
-  display: inline-block;
-  transform-origin: 50% 100%;
-  animation: onHoverHelpButton 1s ease-in-out infinite;
 }
 
 @keyframes onHoverBeforeButton {
@@ -854,6 +826,51 @@ body:not(.contrast).purple .input-container::after {
     transform: scaleY(1) translateY(0);
   }
 }
+body.animations .accessibility-analysis-indicator:hover {
+  animation: onHoverButton 1400ms ease-in-out infinite;
+}
+body.animations .accessibility-analysis-indicator.on:hover::before {
+  transform: scale(1);
+  animation: onHoverBeforeButton 1400ms ease-in-out infinite;
+}
+body.animations .accessibility-analysis-indicator .accessibility-analysis-toggle-button_off {
+  animation: desactivatedTextAppear 400ms ease-in-out forwards;
+}
+body.animations .accessibility-analysis-indicator .accessibility-analysis-help-button:hover span {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  animation: onHoverHelpButton 1s ease-in-out infinite;
+}
+
+body:not(.contrast) .accessibility-analysis-indicator {
+  box-shadow: rgba(0, 0, 0, 0.3) inset 0.5rem 0.5rem 0.5rem;
+}
+body:not(.contrast) .accessibility-analysis-indicator::before {
+  box-shadow: 0 0 2rem 1rem hsl(0, 6%, 10%);
+}
+body:not(.contrast) .accessibility-analysis-toggle-button_on {
+  text-shadow: 0px 2px 4px hsl(120, 95%, 55%);
+}
+body:not(.contrast) .accessibility-analysis-toggle-button_off {
+  text-shadow: 0px 2px 4px hsl(0, 95%, 55%);
+}
+body:not(.contrast) .accessibility-analysis-help-button {
+  text-shadow: 0 0.2rem 0.4rem hsl(175, 95%, 55%);
+  box-shadow: 0 0 1rem hsl(0, 6%, 10%);
+}
+
+body:not(.contrast).purple .accessibility-analysis-help-button {
+  color: hsl(295, 95%, 55%);
+  text-shadow: 0 0.2rem 0.4rem hsl(295, 95%, 55%);
+}
+
+body.contrast .accessibility-analysis-indicator {
+  border: solid 0.4rem hsl(0, 6%, 10%);
+}
+body.contrast .accessibility-analysis-help-button {
+  border-color: hsl(0, 6%, 10%);
+}
+
 .radio-group {
   position: relative;
   margin: auto;

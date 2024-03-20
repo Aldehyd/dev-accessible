@@ -7,27 +7,22 @@
     padding: 1rem;
     background-color: map-get($colors,white);
     border-radius: 1rem;
-    box-shadow: map-get($colors,switchBlackBoxShadow) inset 0.5rem 0.5rem 0.5rem;
+    &::before {
+        content: "";
+        position: absolute;
+        z-index:-1;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        border-radius: 1rem;
+        transform: scale(0.95,0.9);
+    }
+    &.on .accessibility-analysis-toggle-button {
+        cursor: pointer;
+    }
 }
-.accessibility-analysis-indicator::before {
-    content: "";
-    position: absolute;
-    z-index:-1;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    border-radius: 1rem;
-    box-shadow: 0 0 2rem 1rem map-get($colors,darkBackground);
-    transform: scale(0.95,0.9);
-}
-.accessibility-analysis-indicator.on:hover::before {
-    transform: scale(1);
-    animation: onHoverBeforeButton 1400ms ease-in-out infinite;
-}
-.accessibility-analysis-indicator:hover {
-    animation: onHoverButton 1400ms ease-in-out infinite;
-}
+
 .accessibility-analysis-toggle-button {
     position: relative;
     margin: auto;
@@ -37,22 +32,15 @@
     background-color: map-get($colors,darkBackground);
     border-radius: 1rem;
     border: none;
+    &_on {
+        color: map-get($colors,green);
+    }
+    &_off {
+        color: map-get($colors,red);
+        opacity: 1;
+    }
 }
-.accessibility-analysis-indicator.on .accessibility-analysis-toggle-button {
-    cursor: pointer;
-}
-.accessibility-analysis-toggle-button_on {
-    color: map-get($colors,green);
-    text-shadow: 0px 2px 4px map-get($colors,green);
-}
-.accessibility-analysis-toggle-button_off {
-    color: map-get($colors,red);
-    text-shadow: 0px 2px 4px map-get($colors,red);
-    opacity: 1;
-}
-.accessibility-analysis-indicator.animations .accessibility-analysis-toggle-button_off {
-    animation: desactivatedTextAppear 400ms ease-in-out forwards;
-}
+
 .accessibility-analysis-indicator.on .accessibility-analysis-toggle-button_off {
     display: none;
 }
@@ -67,14 +55,7 @@
     background-color: map-get($colors,darkBackground);
     border: 0.2rem map-get($colors,white) solid;
     border-radius: 50%;
-    text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
-    box-shadow: 0 0 1rem map-get($colors,darkBackground);
     cursor: pointer;
-    &:hover span {
-        display: inline-block;
-        transform-origin: 50% 100%;
-        animation: onHoverHelpButton 1s ease-in-out infinite;
-    }
 }
 
 @keyframes onHoverBeforeButton {
@@ -105,5 +86,59 @@
     }
     100% {
         transform: scaleY(1) translateY(0) ;
+    }
+}
+
+body.animations {
+    & .accessibility-analysis-indicator {
+        &:hover {
+            animation: onHoverButton 1400ms ease-in-out infinite;
+        }
+        &.on:hover::before {
+            transform: scale(1);
+            animation: onHoverBeforeButton 1400ms ease-in-out infinite;
+        }
+        & .accessibility-analysis-toggle-button_off {
+            animation: desactivatedTextAppear 400ms ease-in-out forwards;
+        }
+        & .accessibility-analysis-help-button:hover span {
+            display: inline-block;
+            transform-origin: 50% 100%;
+            animation: onHoverHelpButton 1s ease-in-out infinite;
+        }
+    }
+}
+body:not(.contrast) {
+    & .accessibility-analysis-indicator {
+        box-shadow: map-get($colors,switchBlackBoxShadow) inset 0.5rem 0.5rem 0.5rem;
+        &::before {
+            box-shadow: 0 0 2rem 1rem map-get($colors,darkBackground);
+        }
+    }
+    & .accessibility-analysis-toggle-button {
+        &_on {
+            text-shadow: 0px 2px 4px map-get($colors,green);
+        }
+        &_off {
+            text-shadow: 0px 2px 4px map-get($colors,red);
+        }
+    }
+    & .accessibility-analysis-help-button {
+        text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
+        box-shadow: 0 0 1rem map-get($colors,darkBackground);
+    }
+}
+body:not(.contrast).purple {
+    & .accessibility-analysis-help-button {
+        color: map-get($colors,purple);
+        text-shadow: 0 0.2rem 0.4rem map-get($colors,purple);
+    }
+}
+body.contrast {
+    & .accessibility-analysis-indicator {
+        border: solid 0.4rem map-get($colors,darkBackground);
+    }
+    & .accessibility-analysis-help-button {
+        border-color: map-get($colors,darkBackground);
     }
 }
