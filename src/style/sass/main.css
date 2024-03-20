@@ -747,7 +747,7 @@ body:not(.contrast).purple .input-container::after {
   position: relative;
   height: -moz-fit-content;
   height: fit-content;
-  padding: 1rem;
+  padding: 0.4rem;
   background-color: #f1f1f1;
   border-radius: 1rem;
 }
@@ -870,6 +870,126 @@ body.contrast .accessibility-analysis-help-button {
   border-color: hsl(0, 6%, 10%);
 }
 
+.search-bar-container {
+  position: relative;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-right: 0.5rem;
+  /* position: relative; */
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 1rem;
+  background-color: #fff;
+  /* box-shadow: 0 0 1.5rem rgba(0,0,0,0.5); */
+  border: solid 0.4rem #fff;
+}
+
+.search-bar-container::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 0 2rem 1rem #1C1919;
+  transform: scale(0.95, 0.9);
+}
+
+.search-bar-container input {
+  padding: 1rem 1rem;
+  width: 15rem;
+  color: hsl(175, 85%, 55%);
+  font-size: 1.4rem;
+  background-color: #1C1919;
+  border-radius: 1rem;
+  border: none;
+}
+
+.search-bar-container .input-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.search-bar-container.animations.searching .input-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  height: 100%;
+  width: 0rem;
+  box-shadow: 0 0 1rem 0.4rem hsl(175, 85%, 55%);
+  animation: searchingAnimation 1000ms ease-in-out forwards;
+}
+
+.search-button {
+  position: relative;
+  padding: 0.5rem;
+  height: 3rem;
+  width: 3rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: hsl(175, 85%, 55%);
+  background-color: #1C1919;
+  border: 0.2rem #fff solid;
+  border-radius: 50%;
+  text-shadow: 0 0.2rem 0.4rem hsl(175, 85%, 55%);
+  box-shadow: 0 0 1rem #1C1919;
+  cursor: pointer;
+}
+
+/* .search-bar-container.animations button:hover .circle,.search-bar-container button:hover .rectangle {
+    animation: onHoverSearchButton 2000ms ease-in-out infinite;
+} */
+.circle {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: solid hsl(175, 85%, 55%) 0.2rem;
+}
+
+.rectangle {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.5rem;
+  width: 0.3rem;
+  height: 0.8rem;
+  background-color: hsl(175, 85%, 55%);
+  transform: rotate(-45deg);
+}
+
+@keyframes onHoverSearchButton {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes searchingAnimation {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(13rem);
+  }
+}
 .radio-group {
   position: relative;
   margin: auto;

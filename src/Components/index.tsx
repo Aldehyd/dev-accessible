@@ -19,6 +19,7 @@ import {increase} from "../Functions/fontSizeSpinButton/increase.tsx";
 import {decrease} from "../Functions/fontSizeSpinButton/decrease.tsx";
 import {setFontSize} from "../Functions/fontSizeSpinButton/setFontSize.tsx";
 import AccessibilityAnalysisIndicator from "./accessibility-analysis-indicator.tsx";
+import SearchBar from "./search-bar.tsx";
 
 export default function Components(): React.JSX.Element {
 
@@ -77,6 +78,9 @@ export default function Components(): React.JSX.Element {
             </div>
             <div className="components-layout_radio-buttons">
                 <AccessibilityAnalysisIndicator />
+            </div>
+            <div className="components-layout_radio-buttons">
+                <SearchBar />
             </div>
         </div>
     )
