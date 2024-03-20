@@ -1,0 +1,143 @@
+.carousel {
+    margin: auto;
+    position: relative;
+}
+.carousel_button {
+    position: absolute;
+    top: 50%;
+    width: fit-content;
+    transform: translateY(-50%);
+}
+.carousel_button--previous {
+    left: -10rem;
+}
+.carousel_button--next {
+    right: -8rem;
+}
+.basic-button-container {
+    z-index: 0;
+    transition: 200ms ease-in-out;
+}
+.basic-button {
+    position: relative;
+    z-index: 1;
+    padding: 1rem;
+    font-weight: bold;
+    background-color: #fff;
+    border: none;
+    border-radius: 1rem;
+    box-shadow: inset 0.5rem 0.5rem 0.5rem rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: 200ms ease-in-out;
+}
+.basic-button_shadow {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 1rem;
+    box-shadow: 0.5rem 0.5rem 0.5rem #000;
+    transition: 200ms ease-in-out;
+}
+.basic-button:hover {
+    transform: translate(0.3rem,0.3rem);
+}
+.basic-button-container:hover .basic-button_shadow {
+    transform: scale(0);
+}
+.carousel_pictures-container {
+    position: relative;
+    display: block;
+    width: 400px;
+    height: fit-content;
+    overflow: hidden;
+    box-shadow: 0 0 0.5rem 0.2rem hsl(175,95%,55%);
+}
+.carousel_pictures-container.transition::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    box-shadow: 0 0 3rem 1.5rem hsl(175,95%,55%), inset 0 0 3rem 1.5rem hsl(175,95%,55%);
+    transform: translateX(0);
+    transform-origin: 0 50%;
+    opacity: 0;
+    animation: carouselAfterTranslate 1s ease-in-out;
+}
+@keyframes carouselAfterTranslate {
+    0% {
+        transform: translateX(400px);
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+.carousel_picture {
+    display: block;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    transform-origin: 50% 0;
+    transform: scaleY(1);
+}
+.current-picture {
+    opacity: 1;
+    clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
+}
+.carousel_pictures-container.transition .current-picture {
+    animation: previousPictureDisappear 1s ease-in-out forwards;
+}
+.next-picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    clip-path: polygon(100% 100%, 100% 0%, 100% 0%, 100% 100%);
+}
+.carousel_pictures-container.transition .next-picture {
+    animation: nextPictureAppear 1s ease-in-out forwards;
+}
+
+@keyframes previousPictureDisappear {
+    to {
+        clip-path: polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%);
+    }
+}
+@keyframes nextPictureAppear {
+    to {
+        clip-path: polygon(0% 100%, 0% 0%, 100% 0%, 100% 100%);
+    }
+}
+.carousel_pictures-container.transition .basic-picture-mask {
+    position: absolute;
+    top: 1rem;
+    left: 0;
+    background-color: #1C1919;
+    width: 100%;
+    height: 100%;
+    transform-origin: 50% 100%;
+    transform: translateY(100%);
+    opacity: 0;
+    animation: basicPictureMaskDisappear 1s ease-in-out backwards;
+    box-shadow: 0 -2rem 2rem 0.2rem hsl(175,95%,55%);
+}
+@keyframes basicPictureMaskDisappear {
+    0% {
+        transform: translateY(0);
+        opacity: 1
+    }
+    80% {
+        opacity: 1
+    }
+}
