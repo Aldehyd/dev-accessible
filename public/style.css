@@ -1013,7 +1013,6 @@ body.animations .search-bar-container.searching .input-container::after {
   background-color: #000;
   border: solid #f1f1f1 0.2rem;
   border-radius: 1rem;
-  box-shadow: 0 0 1rem 0.2rem hsl(175deg, 95%, 55%);
   cursor: pointer;
 }
 .main-burger-menu span {
@@ -1021,10 +1020,23 @@ body.animations .search-bar-container.searching .input-container::after {
   height: 0.3rem;
   width: 4rem;
   background-color: hsl(175deg, 95%, 55%);
-  box-shadow: 0 0 0.5rem 0.2rem hsl(175deg, 95%, 55%);
   border-radius: 0.15rem;
   transform: scaleX(1);
   opacity: 1;
+}
+
+body:not(.contrast) .main-burger-menu {
+  box-shadow: 0 0 1rem 0.2rem hsl(175deg, 95%, 55%);
+}
+body:not(.contrast) .main-burger-menu span {
+  box-shadow: 0 0 0.5rem 0.2rem hsl(175deg, 95%, 55%);
+}
+body:not(.contrast).purple .main-burger-menu {
+  box-shadow: 0 0 1rem 0.2rem hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .main-burger-menu span {
+  background-color: hsl(295deg, 95%, 55%);
+  box-shadow: 0 0 0.5rem 0.2rem hsl(295deg, 95%, 55%);
 }
 
 body.animations .main-burger-menu_line--1 {

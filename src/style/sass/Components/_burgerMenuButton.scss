@@ -8,17 +8,33 @@
     background-color: map-get($colors,dark);
     border: solid map-get($colors,white) 0.2rem;
     border-radius: 1rem;
-    box-shadow: 0 0 1rem 0.2rem map-get($colors,blue);
     cursor: pointer;
     & span {
         display: inline-block;
         height: 0.3rem;
         width: 4rem;
         background-color: map-get($colors,blue);
-        box-shadow: 0 0 0.5rem 0.2rem map-get($colors,blue);
         border-radius: 0.15rem;
         transform: scaleX(1);
         opacity: 1;
+    }
+}
+
+body:not(.contrast) {
+    & .main-burger-menu {
+        box-shadow: 0 0 1rem 0.2rem map-get($colors,blue);
+        & span {
+            box-shadow: 0 0 0.5rem 0.2rem map-get($colors,blue);
+        }
+    }
+    &.purple {
+        & .main-burger-menu {
+            box-shadow: 0 0 1rem 0.2rem map-get($colors,purple);
+            & span {
+                background-color: map-get($colors,purple);
+                box-shadow: 0 0 0.5rem 0.2rem map-get($colors,purple);
+            }
+        }
     }
 }
 
