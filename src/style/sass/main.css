@@ -37,6 +37,9 @@ body.word-spacing button, body.word-spacing input, body.word-spacing textarea {
 body.word-spacing .main-link {
   word-spacing: 0.288rem;
 }
+body.word-spacing .main-title {
+  word-spacing: 0.32rem;
+}
 body.letter-spacing {
   letter-spacing: 0.168rem;
 }
@@ -51,6 +54,9 @@ body.letter-spacing .spin-button_input {
 }
 body.letter-spacing .main-link {
   letter-spacing: 0.216rem;
+}
+body.letter-spacing .main-title {
+  letter-spacing: 0.24rem;
 }
 
 #root {
@@ -1126,7 +1132,7 @@ body:not(.contrast).purple .accessibility-settings-button {
 .main-link {
   display: inline-block;
   position: relative;
-  padding: 1.5rem;
+  padding: 1rem;
   text-decoration: none;
   font-size: 1.8rem;
   color: hsl(175, 95%, 55%);
@@ -1245,6 +1251,29 @@ body.animations:not(.contrast).purple .basic-picture-mask {
     opacity: 1;
   }
 }
+.main-title {
+  padding: 0.8rem 1.8rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: hsl(175, 95%, 55%);
+  text-transform: capitalize;
+  background-color: #000;
+  border: solid #f1f1f1 0.2rem;
+  border-radius: 4rem 4rem 1rem 1rem;
+}
+
+.main-title--home {
+  border-radius: 2rem;
+}
+
+body:not(.contrast) .main-title {
+  text-shadow: 0 0.2rem 0.4rem hsl(175, 95%, 55%);
+}
+body:not(.contrast).purple .main-title {
+  color: hsl(295, 95%, 55%);
+  text-shadow: 0 0.2rem 0.4rem hsl(295, 95%, 55%);
+}
+
 .radio-group {
   position: relative;
   margin: auto;

@@ -1,0 +1,25 @@
+.main-title {
+    padding: 0.8rem 1.8rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: map-get($colors,blue);
+    text-transform: capitalize;
+    background-color: map-get($colors,dark);
+    border: solid map-get($colors,white) 0.2rem;
+    border-radius: 4rem 4rem 1rem 1rem;
+}
+.main-title--home {
+    border-radius: 2rem;
+}
+
+body:not(.contrast) {
+    & .main-title {
+        text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
+    }
+    &.purple {
+        & .main-title {
+            color: map-get($colors,purple);
+            text-shadow: 0 0.2rem 0.4rem map-get($colors,purple);
+        }
+    }
+}
