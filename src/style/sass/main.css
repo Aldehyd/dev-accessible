@@ -1076,6 +1076,47 @@ body.animations .main-burger-menu:hover .main-burger-menu_line--3 {
     transform: scaleX(0.5);
   }
 }
+.accessibility-settings-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: hsl(175, 95%, 55%);
+  font-size: 1.6rem;
+  text-shadow: 0 0.2rem 0.4rem hsl(175, 95%, 55%);
+  padding: 1rem;
+  background-color: hsl(0, 6%, 10%);
+  border-radius: 1rem;
+  border: solid 0.2rem #f1f1f1;
+  cursor: pointer;
+}
+.accessibility-settings-button::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 0 2rem 1rem hsl(0, 6%, 10%);
+  transform: scale(0.95, 0.9);
+}
+
+body:not(.contrast).purple .accessibility-settings-button {
+  color: hsl(295, 95%, 55%);
+  text-shadow: 0 0.2rem 0.4rem hsl(295, 95%, 55%);
+}
+
+.wheel-symbol {
+  display: inline-block;
+  height: 1.5rem;
+  width: 1.5rem;
+  border: solid 0.2rem hsl(175, 95%, 55%);
+  border-radius: 50%;
+  box-shadow: 0 0 0.3rem 0.05rem hsl(175, 95%, 55%), inset 0 0 0.3rem 0.05rem hsl(175, 95%, 55%);
+}
+
 .radio-group {
   position: relative;
   margin: auto;

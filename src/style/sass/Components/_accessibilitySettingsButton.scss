@@ -1,0 +1,45 @@
+.accessibility-settings-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: map-get($colors,blue);
+    font-size: 1.6rem;
+    text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
+    padding: 1rem;
+    background-color: map-get($colors,darkBackground);
+    border-radius: 1rem;
+    border: solid 0.2rem map-get($colors,white);
+    cursor: pointer;
+    &::before {
+        content: "";
+        position: absolute;
+        z-index:-1;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        border-radius: 1rem;
+        box-shadow: 0 0 2rem 1rem map-get($colors,darkBackground);
+        transform: scale(0.95,0.9);
+    }
+}
+
+body:not(.contrast) {
+    &.purple {
+        & .accessibility-settings-button {
+            color: map-get($colors,purple);
+            text-shadow: 0 0.2rem 0.4rem map-get($colors,purple);
+        }
+    }
+}
+
+//temporary
+.wheel-symbol {
+    display: inline-block;
+    height: 1.5rem;
+    width: 1.5rem;
+    border: solid 0.2rem map-get($colors,blue);
+    border-radius: 50%;
+    box-shadow: 0 0 0.3rem 0.05rem map-get($colors,blue), inset 0 0 0.3rem 0.05rem map-get($colors,blue);
+}
