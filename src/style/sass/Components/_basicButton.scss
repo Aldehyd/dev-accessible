@@ -83,7 +83,10 @@ body.contrast .basic-button {
     }
 }
 body.contrast .basic-button-container--on-white-background .basic-button {
-    border: solid 0.4rem map-get($colors,blue);
+    border: solid 0.4rem map-get($colors,darkBackground);
+    &::after {
+        border-color: map-get($colors,darkBackground);
+    }
 
 }
 

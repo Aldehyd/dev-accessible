@@ -153,7 +153,10 @@ body.contrast .basic-button[aria-disabled=false]:focus::after {
 }
 
 body.contrast .basic-button-container--on-white-background .basic-button {
-  border: solid 0.4rem hsl(175deg, 95%, 55%);
+  border: solid 0.4rem hsl(0deg, 6%, 10%);
+}
+body.contrast .basic-button-container--on-white-background .basic-button::after {
+  border-color: hsl(0deg, 6%, 10%);
 }
 
 body.purple .basic-button {
