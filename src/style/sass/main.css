@@ -821,7 +821,7 @@ body:not(.contrast).purple .input-container::after {
 .accessibility-analysis-help-button:hover span {
   display: inline-block;
   transform-origin: 50% 100%;
-  animation: onHoverHelpButton 1s ease-in infinite;
+  animation: onHoverHelpButton 1s ease-in-out infinite;
 }
 
 @keyframes onHoverBeforeButton {
