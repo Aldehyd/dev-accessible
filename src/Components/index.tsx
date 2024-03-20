@@ -18,6 +18,7 @@ import { handleKeyDown } from "../Functions/fontSizeSpinButton/handleKeyDown.tsx
 import {increase} from "../Functions/fontSizeSpinButton/increase.tsx";
 import {decrease} from "../Functions/fontSizeSpinButton/decrease.tsx";
 import {setFontSize} from "../Functions/fontSizeSpinButton/setFontSize.tsx";
+import AccessibilityAnalysisIndicator from "./accessibility-analysis-indicator.tsx";
 
 export default function Components(): React.JSX.Element {
 
@@ -73,6 +74,9 @@ export default function Components(): React.JSX.Element {
                 Et nihil distinctio accusantium, doloribus, quam atque eligendi iure ea vel esse suscipit illum aut modi ut voluptatem consectetur alias velit natus corrupti aperiam tenetur ex minima iste eum. Mollitia.</p>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia aliquam, itaque, ipsa mollitia doloremque cum suscipit exercitationem, cupiditate omnis consequatur vero eum voluptates! Voluptates asperiores assumenda beatae fugit unde voluptatem.
                 Incidunt dolorem voluptatibus at, vero, quidem fuga ea hic perferendis quae modi nostrum ex necessitatibus eius id odio. Neque minus delectus incidunt atque voluptatibus, labore porro voluptatem aspernatur illo tempore.</p>
+            </div>
+            <div className="components-layout_radio-buttons">
+                <AccessibilityAnalysisIndicator />
             </div>
         </div>
     )

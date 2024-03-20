@@ -1,0 +1,90 @@
+.accessibility-analysis-indicator {
+    margin: auto;
+    display: flex;
+    gap: 1rem;
+    position: relative;
+    height: fit-content;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: rgba(0,0,0,0.3) inset 0.5rem 0.5rem 0.5rem;
+}
+.accessibility-analysis-indicator::before {
+    content: "";
+    position: absolute;
+    z-index:-1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 1rem;
+    box-shadow: 0 0 2rem 1rem #1C1919;
+    transform: scale(0.95,0.9);
+}
+.accessibility-analysis-indicator.on:hover::before {
+    transform: scale(1);
+    animation: onHoverBeforeButton 1400ms ease-in-out infinite;
+}
+.accessibility-analysis-indicator:hover {
+    animation: onHoverButton 1400ms ease-in-out infinite;
+}
+.accessibility-analysis-toggle-button {
+    position: relative;
+    margin: auto;
+    padding: 1rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+    background-color: #1C1919;
+    border-radius: 1rem;
+    border: none;
+}
+.accessibility-analysis-indicator.on .accessibility-analysis-toggle-button {
+    cursor: pointer;
+}
+.accessibility-analysis-toggle-button_on {
+    color: hsl(120,95%,55%);
+    text-shadow: 0px 2px 4px hsl(120,85%,55%);
+}
+.accessibility-analysis-toggle-button_off {
+    color: hsl(360,95%,55%);
+    text-shadow: 0px 2px 4px hsl(360,85%,55%);
+    opacity: 1;
+}
+.accessibility-analysis-indicator.animations .accessibility-analysis-toggle-button_off {
+    animation: desactivatedTextAppear 400ms ease-in-out forwards;
+}
+.accessibility-analysis-indicator.on .accessibility-analysis-toggle-button_off {
+    display: none;
+}
+.accessibility-analysis-indicator.off .accessibility-analysis-toggle-button_on {
+    display: none;
+}
+.accessibility-analysis-help-button {
+    padding: 0 1rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: hsl(175,85%,55%);
+    background-color: #1C1919;
+    border: 0.2rem #fff solid;
+    border-radius: 50%;
+    text-shadow: 0 0.2rem 0.4rem hsl(175,85%,55%);
+    box-shadow: 0 0 1rem #1C1919;
+    cursor: pointer;
+}
+
+@keyframes onHoverBeforeButton {
+    0% {
+        transform: scale(0.95,0.9);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0.95,0.9);
+    }
+}
+@keyframes desactivatedTextAppear {
+    from {
+        opacity: 0;
+    }
+}
