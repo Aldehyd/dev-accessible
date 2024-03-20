@@ -5,7 +5,7 @@ export default function AccessibilityAnalysisIndicator(): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
 
-    const [status,setStatus] = useState<boolean>(true);
+    const [status,setStatus] = useState<boolean>(false);
 
     const handleClick = ()=> {
         if(status) {
