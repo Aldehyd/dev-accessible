@@ -35,6 +35,9 @@ body {
         & button, input, textarea {
             word-spacing: calc(0.16*1.4rem);
         }
+        & .main-link {
+            word-spacing: calc(0.16*1.8rem);
+        }
     }
     &.letter-spacing {
         letter-spacing: calc(0.12*1.4rem);
@@ -46,6 +49,9 @@ body {
         }
         & .spin-button_input {
             letter-spacing: calc(0.12*1.6rem);
+        }
+        & .main-link {
+            letter-spacing: calc(0.12*1.8rem);
         }
     }
 }
