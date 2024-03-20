@@ -22,6 +22,7 @@ import AccessibilityAnalysisIndicator from "./accessibility-analysis-indicator.t
 import SearchBar from "./search-bar.tsx";
 import BurgerMenuButton from "./burger-menu-button.tsx";
 import AccessibilitySettingsButton from "./accessibility-settings-button.tsx";
+import MainLink from "./main-link.tsx";
 
 export default function Components(): React.JSX.Element {
 
@@ -52,13 +53,12 @@ export default function Components(): React.JSX.Element {
                 <RadioButtonGroup name="font" frenchLegend="Police" englishLegend="Font" radioButtonsData={fontsRadioButtonsData} handleChoice={handleFont} />
             </div>
             <div className="components-layout_buttons-container">
-                <BasicButton text="Bouton basique" />
-                <BasicButton text="Bouton basique activé" disableAbility={true} />
-                <BasicButton text="Bouton basique désactivé" disableAbility={true} disabledStatus="true" />
-                
+                <BasicButton frenchText="Bouton basique" englishText="Basic button" />
+                <BasicButton frenchText="Bouton basique activé" englishText="Basic button active" disableAbility={true} />
+                <BasicButton frenchText="Bouton basique désactivé" englishText="Basic button desactived" disableAbility={true} disabledStatus="true" />
             </div>
             <div className="white-background">
-                    <BasicButton text="Bouton sur fond blanc" onWhiteBackground={true}  />
+                    <BasicButton frenchText="Bouton sur fond blanc" englishText="Button on white bg" onWhiteBackground={true}  />
                 </div>
             <div className="components-layout_radio-buttons">
                 <LanguageSelect />
@@ -89,6 +89,9 @@ export default function Components(): React.JSX.Element {
             </div>
             <div className="components-layout_radio-buttons">
                 <AccessibilitySettingsButton />
+            </div>
+            <div className="components-layout_radio-buttons">
+                <MainLink frenchText="lien principal" englishText="main link" route="../" />
             </div>
         </div>
     )
