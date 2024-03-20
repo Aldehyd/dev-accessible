@@ -93,7 +93,7 @@ export default function Components(): React.JSX.Element {
                 <AccessibilitySettingsButton />
             </div>
             <div className="components-layout_radio-buttons">
-                <MainLink frenchText="lien principal" englishText="main link" route="../" />
+                <MainLink frenchText="lien principal" englishText="main link" route="../layouts" />
             </div>
             <div className="components-layout_pictures">
                 <BasicPicture image={image} frenchAlt="très beau site" englishAlt="beautiful website" />
