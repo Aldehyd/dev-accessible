@@ -20,6 +20,7 @@ import {decrease} from "../Functions/fontSizeSpinButton/decrease.tsx";
 import {setFontSize} from "../Functions/fontSizeSpinButton/setFontSize.tsx";
 import AccessibilityAnalysisIndicator from "./accessibility-analysis-indicator.tsx";
 import SearchBar from "./search-bar.tsx";
+import BurgerMenuButton from "./burger-menu-button.tsx";
 
 export default function Components(): React.JSX.Element {
 
@@ -81,6 +82,9 @@ export default function Components(): React.JSX.Element {
             </div>
             <div className="components-layout_radio-buttons">
                 <SearchBar />
+            </div>
+            <div className="components-layout_radio-buttons">
+                <BurgerMenuButton />
             </div>
         </div>
     )

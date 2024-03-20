@@ -1004,6 +1004,66 @@ body.animations .search-bar-container.searching .input-container::after {
   transform: rotate(-45deg);
 }
 
+.main-burger-menu {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem;
+  background-color: #000;
+  border: solid #f1f1f1 0.2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem 0.2rem hsl(175, 95%, 55%);
+  cursor: pointer;
+}
+.main-burger-menu span {
+  display: inline-block;
+  height: 0.3rem;
+  width: 4rem;
+  background-color: hsl(175, 95%, 55%);
+  box-shadow: 0 0 0.5rem 0.2rem hsl(175, 95%, 55%);
+  border-radius: 0.15rem;
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+body.animations .main-burger-menu_line--1 {
+  transform-origin: 0 50%;
+  animation: mainBurgerMenuAppear 200ms ease-in-out backwards;
+}
+body.animations .main-burger-menu_line--2 {
+  transform-origin: 0 50%;
+  animation: mainBurgerMenuAppear 200ms 150ms ease-in-out backwards;
+}
+body.animations .main-burger-menu_line--3 {
+  transform-origin: 0 50%;
+  animation: mainBurgerMenuAppear 200ms 300ms ease-in-out backwards;
+}
+body.animations .main-burger-menu:hover .main-burger-menu_line--1 {
+  transform-origin: 50% 50%;
+  animation: mainBurgerMenuHover 600ms ease-in-out infinite alternate;
+}
+body.animations .main-burger-menu:hover .main-burger-menu_line--2 {
+  transform-origin: 50% 50%;
+  animation: mainBurgerMenuHover 600ms 500ms ease-in-out infinite alternate;
+}
+body.animations .main-burger-menu:hover .main-burger-menu_line--3 {
+  transform-origin: 50% 50%;
+  animation: mainBurgerMenuHover 600ms 1000ms ease-in-out infinite alternate;
+}
+
+@keyframes mainBurgerMenuAppear {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+}
+@keyframes mainBurgerMenuHover {
+  to {
+    transform: scaleX(0.5);
+  }
+}
 .radio-group {
   position: relative;
   margin: auto;
