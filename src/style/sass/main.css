@@ -10,6 +10,7 @@ html {
 
 body {
   min-height: 100vh;
+  font-size: 1.4rem;
   font-family: "Oswald", sans-serif;
 }
 
@@ -20,6 +21,24 @@ body {
 @font-face {
   font-family: "openDyslexic";
   src: url("../../fonts/OpenDyslexic-Regular.otf") format("opentype");
+}
+body.paragraph-height p {
+  margin-bottom: 2.8rem;
+}
+body.line-height {
+  line-height: 2.1rem;
+}
+body.word-spacing {
+  word-spacing: 0.224rem;
+}
+body.word-spacing button, body.word-spacing input, body.word-spacing textarea {
+  word-spacing: 0.224rem;
+}
+body.letter-spacing {
+  letter-spacing: 0.168rem;
+}
+body.letter-spacing button, body.letter-spacing input, body.letter-spacing textarea {
+  word-spacing: 0.168rem;
 }
 
 #root {
@@ -798,6 +817,11 @@ body.animations .radio-group:focus-within::before {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
+}
+.components-layout_paragraphs {
+  padding: 20px;
+  background-color: white;
+  color: #000;
 }
 
 .white-background {

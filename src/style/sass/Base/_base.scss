@@ -8,17 +8,38 @@ html {
 }
 body {
     min-height: 100vh;
+    font-size: 1.4rem;
     font-family: "Oswald", sans-serif;
 }
-body.open-dyslexic {
-    @font-face {
-        font-family: 'openDyslexic';
-        src: url('../../fonts/OpenDyslexic-Regular.otf') format('opentype');
-    }
-    button, input, textarea {
+body {
+    &.open-dyslexic {
         @font-face {
             font-family: 'openDyslexic';
             src: url('../../fonts/OpenDyslexic-Regular.otf') format('opentype');
+        }
+        button, input, textarea {
+            @font-face {
+                font-family: 'openDyslexic';
+                src: url('../../fonts/OpenDyslexic-Regular.otf') format('opentype');
+            }
+        }
+    }
+    &.paragraph-height p {
+        margin-bottom: calc(2*1.4rem);
+    }
+    &.line-height {
+        line-height: calc(1.5*1.4rem);
+    }
+    &.word-spacing {
+        word-spacing: calc(0.16*1.4rem);
+        & button, input, textarea {
+            word-spacing: calc(0.16*1.4rem);
+        }
+    }
+    &.letter-spacing {
+        letter-spacing: calc(0.12*1.4rem);
+        & button, input, textarea {
+            word-spacing: calc(0.12*1.4rem);
         }
     }
 }
