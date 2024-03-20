@@ -741,7 +741,7 @@ body:not(.contrast).purple .input-container::after {
   height: -moz-fit-content;
   height: fit-content;
   padding: 1rem;
-  background-color: #fff;
+  background-color: #f1f1f1;
   border-radius: 1rem;
   box-shadow: rgba(0, 0, 0, 0.3) inset 0.5rem 0.5rem 0.5rem;
 }
@@ -755,7 +755,7 @@ body:not(.contrast).purple .input-container::after {
   height: 100%;
   width: 100%;
   border-radius: 1rem;
-  box-shadow: 0 0 2rem 1rem #1C1919;
+  box-shadow: 0 0 2rem 1rem hsl(0, 6%, 10%);
   transform: scale(0.95, 0.9);
 }
 
@@ -774,7 +774,7 @@ body:not(.contrast).purple .input-container::after {
   padding: 1rem;
   font-size: 1.4rem;
   font-weight: bold;
-  background-color: #1C1919;
+  background-color: hsl(0, 6%, 10%);
   border-radius: 1rem;
   border: none;
 }
@@ -785,12 +785,12 @@ body:not(.contrast).purple .input-container::after {
 
 .accessibility-analysis-toggle-button_on {
   color: hsl(120, 95%, 55%);
-  text-shadow: 0px 2px 4px hsl(120, 85%, 55%);
+  text-shadow: 0px 2px 4px hsl(120, 95%, 55%);
 }
 
 .accessibility-analysis-toggle-button_off {
   color: hsl(0, 95%, 55%);
-  text-shadow: 0px 2px 4px hsl(0, 85%, 55%);
+  text-shadow: 0px 2px 4px hsl(0, 95%, 55%);
   opacity: 1;
 }
 
@@ -810,13 +810,18 @@ body:not(.contrast).purple .input-container::after {
   padding: 0 1rem;
   font-size: 1.8rem;
   font-weight: bold;
-  color: hsl(175, 85%, 55%);
-  background-color: #1C1919;
-  border: 0.2rem #fff solid;
+  color: hsl(175, 95%, 55%);
+  background-color: hsl(0, 6%, 10%);
+  border: 0.2rem #f1f1f1 solid;
   border-radius: 50%;
-  text-shadow: 0 0.2rem 0.4rem hsl(175, 85%, 55%);
-  box-shadow: 0 0 1rem #1C1919;
+  text-shadow: 0 0.2rem 0.4rem hsl(175, 95%, 55%);
+  box-shadow: 0 0 1rem hsl(0, 6%, 10%);
   cursor: pointer;
+}
+.accessibility-analysis-help-button:hover span {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  animation: onHoverHelpButton 1s ease-in infinite;
 }
 
 @keyframes onHoverBeforeButton {
@@ -833,6 +838,20 @@ body:not(.contrast).purple .input-container::after {
 @keyframes desactivatedTextAppear {
   from {
     opacity: 0;
+  }
+}
+@keyframes onHoverHelpButton {
+  5% {
+    transform: scaleY(0.9);
+  }
+  40% {
+    transform: scaleY(0.6);
+  }
+  70% {
+    transform: scaleY(1) translateY(-20%);
+  }
+  100% {
+    transform: scaleY(1) translateY(0);
   }
 }
 .radio-group {

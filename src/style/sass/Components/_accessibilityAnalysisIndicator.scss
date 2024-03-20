@@ -5,9 +5,9 @@
     position: relative;
     height: fit-content;
     padding: 1rem;
-    background-color: #fff;
+    background-color: map-get($colors,white);
     border-radius: 1rem;
-    box-shadow: rgba(0,0,0,0.3) inset 0.5rem 0.5rem 0.5rem;
+    box-shadow: map-get($colors,switchBlackBoxShadow) inset 0.5rem 0.5rem 0.5rem;
 }
 .accessibility-analysis-indicator::before {
     content: "";
@@ -18,7 +18,7 @@
     height: 100%;
     width: 100%;
     border-radius: 1rem;
-    box-shadow: 0 0 2rem 1rem #1C1919;
+    box-shadow: 0 0 2rem 1rem map-get($colors,darkBackground);
     transform: scale(0.95,0.9);
 }
 .accessibility-analysis-indicator.on:hover::before {
@@ -34,7 +34,7 @@
     padding: 1rem;
     font-size: 1.4rem;
     font-weight: bold;
-    background-color: #1C1919;
+    background-color: map-get($colors,darkBackground);
     border-radius: 1rem;
     border: none;
 }
@@ -42,12 +42,12 @@
     cursor: pointer;
 }
 .accessibility-analysis-toggle-button_on {
-    color: hsl(120,95%,55%);
-    text-shadow: 0px 2px 4px hsl(120,85%,55%);
+    color: map-get($colors,green);
+    text-shadow: 0px 2px 4px map-get($colors,green);
 }
 .accessibility-analysis-toggle-button_off {
-    color: hsl(360,95%,55%);
-    text-shadow: 0px 2px 4px hsl(360,85%,55%);
+    color: map-get($colors,red);
+    text-shadow: 0px 2px 4px map-get($colors,red);
     opacity: 1;
 }
 .accessibility-analysis-indicator.animations .accessibility-analysis-toggle-button_off {
@@ -63,13 +63,18 @@
     padding: 0 1rem;
     font-size: 1.8rem;
     font-weight: bold;
-    color: hsl(175,85%,55%);
-    background-color: #1C1919;
-    border: 0.2rem #fff solid;
+    color: map-get($colors,blue);
+    background-color: map-get($colors,darkBackground);
+    border: 0.2rem map-get($colors,white) solid;
     border-radius: 50%;
-    text-shadow: 0 0.2rem 0.4rem hsl(175,85%,55%);
-    box-shadow: 0 0 1rem #1C1919;
+    text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
+    box-shadow: 0 0 1rem map-get($colors,darkBackground);
     cursor: pointer;
+    &:hover span {
+        display: inline-block;
+        transform-origin: 50% 100%;
+        animation: onHoverHelpButton 1s ease-in infinite;
+    }
 }
 
 @keyframes onHoverBeforeButton {
@@ -86,5 +91,19 @@
 @keyframes desactivatedTextAppear {
     from {
         opacity: 0;
+    }
+}
+@keyframes onHoverHelpButton {
+    5% {
+        transform: scaleY(0.9);
+    }
+    40% {
+        transform: scaleY(0.6);
+    }
+    70% {
+        transform: scaleY(1) translateY(-20%) ;
+    }
+    100% {
+        transform: scaleY(1) translateY(0) ;
     }
 }
