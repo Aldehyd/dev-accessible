@@ -11,6 +11,11 @@ import RadioButtonGroup from "./RadioButtonsGroup.tsx";
 import { handleMainColor } from "../Functions/handleMainColor.tsx";
 import { colorsRadioButtonsData } from "../Datas/colorsRadioButtonsData.tsx";
 import LanguageSelect from '../Components/language-select.tsx';
+import SpinButton from '../Components/spin-button.tsx';
+import {increase} from '../Functions/fontSizeSpinButton/increase.tsx';
+import {decrease} from '../Functions/fontSizeSpinButton/decrease.tsx';
+import {handleKeyDown} from '../Functions/fontSizeSpinButton/handleKeyDown.tsx';
+import {setFontSize} from '../Functions/fontSizeSpinButton/setFontSize.tsx';
 
 export default function Layouts(): React.JSX.Element {
 
@@ -53,6 +58,7 @@ export default function Layouts(): React.JSX.Element {
             <LanguageSelect />
             <Switch name="contrasted-theme" frenchLabel="Thème contrasté" englishLabel="Contrasted theme" onSwitchFunction={handleContrastedThemeSwitch} />
             <RadioButtonGroup name="color" frenchLegend="Couleur" englishLegend="Color" radioButtonsData={colorsRadioButtonsData} handleChoice={handleMainColor} />
+            <SpinButton name="fontSize" frenchLabel="Taille de la police" englishLabel="Font size" minValue={100} maxValue={200} defaultValue={100} handleKeyDown={handleKeyDown} increase={increase} decrease={decrease} effectFunction={setFontSize} />
             <Carousel pictures={pictures} />
         </div>
     )
