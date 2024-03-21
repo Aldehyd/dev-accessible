@@ -5,6 +5,6 @@ interface ShortcutsContextInterface {
     changeShortcuts: (shortcuts: {exitAccessibilityMode: string})=> void
 }
 
-const LanguageContext = createContext<ShortcutsContextInterface>({shortcuts: {exitAccessibilityMode: 'Escape'}});
+const ShortcutsContext = createContext<ShortcutsContextInterface>({shortcuts: {exitAccessibilityMode: 'Escape'}});
 
-export default LanguageContext;
+export default ShortcutsContext;
