@@ -3,7 +3,8 @@ import LanguageContext from "../Contexts/language-context.tsx";
 import CarouselPicture from "../Components/carousel-picture.tsx";
 import CarouselButton from "../Components/carousel-button.tsx";
 interface CarouselPropsInterface {
-    pictures: {id: number, element: any, frenchAlt: string, englishAlt: string}[]
+    pictures: {id: number, element: any, frenchAlt: string, englishAlt: string}[],
+    labelId: string
 }
 
 export default function Carousel({pictures}: CarouselPropsInterface): React.JSX.Element {
@@ -22,16 +23,16 @@ export default function Carousel({pictures}: CarouselPropsInterface): React.JSX.
     },[picturesToShow]);
 
     return(
-        <div className="carousel">
+        <div className="carousel" role="group" aria-roledescription="carousel" aria-labelledby="achievment-details-carousel-label">
             <CarouselButton roleButton="previous" picturesToShow={picturesToShow} setPicturesToShow={setPicturesToShow} disabledStatus={picturesToShow.current === 0 ? "true" : "false"} setCurrentPictureMovement={setPictureMovement} />
-            <CarouselButton roleButton="next" picturesToShow={picturesToShow} setPicturesToShow={setPicturesToShow} disabledStatus={picturesToShow.current === picturesToShow.amount-1 ? "true" : "false"} setCurrentPictureMovement={setPictureMovement} />
-            <div className={classList} ref={picturesContainer}>
+            <div className={classList} ref={picturesContainer} aria-atomic="false" aria-live="polite">
                 {
                     pictures.map(picture => {return (
                         <CarouselPicture key={picture.id} language={language} picture={picture} picturesToShow={picturesToShow} pictureMovement={pictureMovement} />
                     )})
                 }
             </div>
+            <CarouselButton roleButton="next" picturesToShow={picturesToShow} setPicturesToShow={setPicturesToShow} disabledStatus={picturesToShow.current === picturesToShow.amount-1 ? "true" : "false"} setCurrentPictureMovement={setPictureMovement} />
         </div>
     )
 }
