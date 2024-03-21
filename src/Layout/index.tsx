@@ -61,7 +61,7 @@ export default function Layouts(): React.JSX.Element {
             <RadioButtonGroup name="color" frenchLegend="Couleur" englishLegend="Color" radioButtonsData={colorsRadioButtonsData} handleChoice={handleMainColor} />
             <SpinButton name="fontSize" frenchLabel="Taille de la police" englishLabel="Font size" minValue={100} maxValue={200} defaultValue={100} handleKeyDown={handleKeyDown} increase={increase} decrease={decrease} effectFunction={setFontSize} />
             <Carousel pictures={pictures} />
-            <ShortcutModifier name="exitAccessibilityModeShortcut" frenchLabel="Quitter le mode analyse de l'accessibilité" englishLabel="Exit accessibility analysis mode" defaultKey="Escape" />
+            <ShortcutModifier name="exitAccessibilityMode" frenchLabel="Quitter le mode analyse de l'accessibilité" englishLabel="Exit accessibility analysis mode" defaultKey="Escape" />
         </div>
     )
 }

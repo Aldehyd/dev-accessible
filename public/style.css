@@ -1766,14 +1766,15 @@ body.contrast .carousel_pictures-container {
   border-radius: 0.4rem;
   box-shadow: 0 0 0.5rem 0.1rem hsl(175deg, 95%, 55%);
   transform: scale(0);
-  transition: 200ms ease-in-out;
+  animation: 200ms ease-in-out keyPictureAppear forwards;
   overflow: hidden;
 }
 
-.shortcut-setting-container_key-pictures.show {
-  transform: scale(1);
+@keyframes keyPictureAppear {
+  to {
+    transform: scale(1);
+  }
 }
-
 .shortcut-setting-container_key-pictures img {
   width: 100%;
   height: 100%;

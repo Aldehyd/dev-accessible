@@ -1,6 +1,17 @@
 import { useContext, useState, useEffect, useRef } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 import BasicButton from "../Components/basic-button.tsx";
+import ShortcutsContext from "../Contexts/shortcuts-context.tsx";
+
+import home from '../Pictures/keys/home.png';
+import pagedown from '../Pictures/keys/page-down.png';
+import pageup from '../Pictures/keys/page-up.png';
+
+const keyPictures = {
+    home: home,
+    pagedown: pagedown,
+    pageup: pageup
+}
 
 interface ShortcutModifierPropsInterface {
     name: string,
@@ -10,15 +21,11 @@ interface ShortcutModifierPropsInterface {
     modifyFunction: ()=>void
 }
 
-export default function ShortcutModifier({name,frenchLabel,englishLabel,defaultKey,modifyFunction}: ShortcutModifierPropsInterface): React.JSX.Element {
+export default function ShortcutModifier({name,frenchLabel,englishLabel}: ShortcutModifierPropsInterface): React.JSX.Element {
     
     const {language} = useContext(LanguageContext);
 
-    const [currentKey,setCurrentKey] = useState<string>('Escape');
-
-    const [inputValue,setInputValue] = useState<{french: string, english : string}>({french: "",english: ""});
-
-    const input = useRef(null);
+    const {shortcuts,changeShortcuts} = useContext(ShortcutsContext);
 
     const translateFunction: (key: string)=> string = (key)=> {
         let translatedValue ="";
@@ -80,25 +87,21 @@ export default function ShortcutModifier({name,frenchLabel,englishLabel,defaultK
         return translatedValue;
     };
 
-    useEffect(()=> {
-        const savedKey = localStorage.getItem(name);
+    const [currentKey,setCurrentKey] = useState<string>(shortcuts[name]);
 
-        if(savedKey !== undefined && savedKey !== null) {
-            setCurrentKey(savedKey);
-            setInputValue({french: translateFunction(savedKey), english: savedKey});
-        } else {
-            setCurrentKey(defaultKey);
-            setInputValue({french: translateFunction(defaultKey), english: defaultKey});
-        };
-    },[]);
+    const [inputValue,setInputValue] = useState<{french: string, english : string}>({french: translateFunction(shortcuts[name]),english: shortcuts[name]});
+
+    const input = useRef(null);
 
     const [toolTipDisplayed,setToolTipDisplayed] = useState<boolean>(false);
     const [successMessageDisplayed,setSuccessMessageDisplayed] = useState<boolean>(false);
-    const [keyPictureDisplayed,setKeyPictureDisplayed] = useState<boolean>(false);
+    const [keyPictureDisplayed,setKeyPictureDisplayed] = useState<boolean | string>(false);
 
     const handleKeyDown = (e:KeyboardEvent)=> {
         if(e.key === 'Escape') {
             setToolTipDisplayed(false);
+            setSuccessMessageDisplayed(false);
+            setKeyPictureDisplayed(false);
         };
         if(e.key !=='Tab' && e.key !=='Enter' && e.key !=='Meta') {
             e.preventDefault();
@@ -109,20 +112,37 @@ export default function ShortcutModifier({name,frenchLabel,englishLabel,defaultK
             };
         } else if(e.key === 'Enter') {
             if(inputValue.english !== currentKey) {
-                onClickFunction();
+                modifyShortcuts();
             };
         };
+    };
+
+    const handleFocus = ()=> {
+        setToolTipDisplayed(true);
+        setSuccessMessageDisplayed(false);
     };
 
     useEffect(()=> {
         console.log(inputValue)
         if(input.current)
             input.current.value = (language === "french" ? inputValue.french : inputValue.english);
+
+        const keyToShowPictureOf = ["pageup","pagedown","home"];
+        if(keyToShowPictureOf.includes(inputValue.english.toLowerCase())) {
+            setKeyPictureDisplayed(inputValue.english.toLowerCase());
+        } else {
+            setKeyPictureDisplayed(false);
+        };
+
     },[inputValue,language]);
 
-    const onClickFunction = ()=> {
-        localStorage.setItem(name,inputValue.english);
-        modifyFunction();
+    const modifyShortcuts = ()=> {
+        let newShortcuts = shortcuts;
+        newShortcuts[name] = inputValue.english;
+        changeShortcuts(newShortcuts);
+        localStorage.setItem('shortcuts',JSON.stringify(newShortcuts));
+        setCurrentKey(inputValue.english);
+        setSuccessMessageDisplayed(true);
     };
 
     return (
@@ -130,9 +150,9 @@ export default function ShortcutModifier({name,frenchLabel,englishLabel,defaultK
             <label htmlFor="shortcut-input">{language === "french" ? frenchLabel : englishLabel} :</label>
             <div className="shortcut-input-container">
                 <span className="input-container">  
-                    <input type="text" id="shortcut-input" ref={input} className="shortcut-input-container_input" onKeyDown={(e)=> handleKeyDown(e)} onFocus={()=> setToolTipDisplayed(true)} onBlur={()=> setToolTipDisplayed(false)} />
+                    <input type="text" id="shortcut-input" ref={input} className="shortcut-input-container_input" onKeyDown={(e)=> handleKeyDown(e)} onFocus={()=> handleFocus()} onBlur={()=> setToolTipDisplayed(false)} />
                 </span>
-                <BasicButton frenchText="Modifier" englishText="Modify" disableAbility={true} disabledStatus={inputValue.english === currentKey ? "true" : "false"} onWhiteBackground={true} onClickFunction={onClickFunction}/>
+                <BasicButton frenchText="Modifier" englishText="Modify" disableAbility={true} disabledStatus={inputValue.english === currentKey ? "true" : "false"} onWhiteBackground={true} onClickFunction={modifyShortcuts}/>
                 {successMessageDisplayed && <p className="shortcut-input-container_success-message">Raccourci modifié !</p>}
                 {
                     toolTipDisplayed && 
@@ -145,12 +165,11 @@ export default function ShortcutModifier({name,frenchLabel,englishLabel,defaultK
                         </p>
                 }
             </div>
-            {keyPictureDisplayed && <div className="shortcut-setting-container_key-pictures">
-                <img src="home.png" className="home" alt="" />
-                <img src="end.png" className="end" alt="" />
-                <img src="page-down.png" className="pagedown" alt="" />
-                <img src="page-up.png" className="pageup" alt="" />
-            </div>}
+            {keyPictureDisplayed !== false && 
+                <div className="shortcut-setting-container_key-pictures">
+                    <img src={keyPictures[keyPictureDisplayed]} className="key-picture" alt="" />
+                </div>
+            }
         </div>
     )
 }
