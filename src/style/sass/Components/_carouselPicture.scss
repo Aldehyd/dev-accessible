@@ -12,7 +12,6 @@
 .current-picture {
     z-index: 3;
     opacity: 1;
-    transition: 600ms ease-in-out;
     clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
 }
 .next-picture, .previous-picture {
@@ -21,7 +20,6 @@
     left: 0;
 }
 .next-picture {
-    transition: 600ms ease-in-out;
     clip-path: polygon(100% 0%, 100% 100%, 100% 100%, 100% 0%);
     &.next {
         z-index: 1;
@@ -31,12 +29,23 @@
     }
 }
 .previous-picture {
-    transition: 600ms ease-in-out;
     clip-path: polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%);
     &.next {
         z-index: 2;
     }
     &.previous {
         z-index: 1;
+    }
+}
+
+body.animations {
+    & .current-picture {
+        transition: 600ms ease-in-out;
+    }
+    & .next-picture {
+        transition: 600ms ease-in-out;
+    } 
+    & .previous-picture {
+        transition: 600ms ease-in-out;
     }
 }

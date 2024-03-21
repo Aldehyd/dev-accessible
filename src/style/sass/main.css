@@ -1290,7 +1290,6 @@ body:not(.contrast).purple .main-title {
 .current-picture {
   z-index: 3;
   opacity: 1;
-  transition: 600ms ease-in-out;
   -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
           clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
 }
@@ -1302,7 +1301,6 @@ body:not(.contrast).purple .main-title {
 }
 
 .next-picture {
-  transition: 600ms ease-in-out;
   -webkit-clip-path: polygon(100% 0%, 100% 100%, 100% 100%, 100% 0%);
           clip-path: polygon(100% 0%, 100% 100%, 100% 100%, 100% 0%);
 }
@@ -1314,7 +1312,6 @@ body:not(.contrast).purple .main-title {
 }
 
 .previous-picture {
-  transition: 600ms ease-in-out;
   -webkit-clip-path: polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%);
           clip-path: polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%);
 }
@@ -1325,6 +1322,16 @@ body:not(.contrast).purple .main-title {
   z-index: 1;
 }
 
+body.animations .current-picture {
+  transition: 600ms ease-in-out;
+}
+body.animations .next-picture {
+  transition: 600ms ease-in-out;
+}
+body.animations .previous-picture {
+  transition: 600ms ease-in-out;
+}
+
 .carousel_button {
   position: absolute;
   top: 50%;
@@ -1333,7 +1340,7 @@ body:not(.contrast).purple .main-title {
   transform: translateY(-50%);
 }
 .carousel_button--previous {
-  left: -10rem;
+  left: -12rem;
 }
 .carousel_button--next {
   right: -8rem;
@@ -1420,7 +1427,6 @@ body.animations .radio-group:focus-within::before {
   overflow: hidden;
   box-shadow: 0 0 0.5rem 0.2rem hsl(175, 95%, 55%);
 }
-
 .carousel_pictures-container.transition::after {
   content: "";
   position: absolute;
@@ -1435,11 +1441,10 @@ body.animations .radio-group:focus-within::before {
   opacity: 0;
 }
 
-.carousel_pictures-container.transition.next::after {
+body.animations .carousel_pictures-container.transition.next::after {
   animation: carouselNextTranslate 600ms ease-in-out;
 }
-
-.carousel_pictures-container.transition.previous::after {
+body.animations .carousel_pictures-container.transition.previous::after {
   animation: carouselPreviousTranslate 600ms ease-in-out;
 }
 
