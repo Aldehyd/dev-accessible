@@ -1417,7 +1417,6 @@ body.animations .radio-group:focus-within::before {
   width: 400px;
   height: 400px;
   overflow: hidden;
-  box-shadow: 0 0 0.5rem 0.2rem hsl(175deg, 95%, 55%);
 }
 .carousel_pictures-container.transition::after {
   content: "";
@@ -1438,6 +1437,20 @@ body.animations .carousel_pictures-container.transition.next::after {
 }
 body.animations .carousel_pictures-container.transition.previous::after {
   animation: carouselPreviousTranslate 600ms ease-in-out;
+}
+
+body:not(.contrast) .carousel_pictures-container {
+  box-shadow: 0 0 0.5rem 0.2rem hsl(175deg, 95%, 55%);
+}
+body:not(.contrast).purple .carousel_pictures-container {
+  box-shadow: 0 0 0.5rem 0.2rem hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .carousel_pictures-container.transition::after {
+  box-shadow: 0 0 3rem 1.5rem hsl(295deg, 95%, 55%), inset 0 0 3rem 1.5rem hsl(295deg, 95%, 55%);
+}
+
+body.contrast .carousel_pictures-container {
+  border: solid #f1f1f1 0.4rem;
 }
 
 @keyframes carouselNextTranslate {

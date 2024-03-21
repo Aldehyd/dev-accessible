@@ -10,7 +10,6 @@
     width: 400px;
     height: 400px;
     overflow: hidden;
-    box-shadow: 0 0 0.5rem 0.2rem map-get($colors,blue);
     &.transition::after {
         content: "";
         position: absolute;
@@ -34,6 +33,24 @@ body.animations {
         &.previous::after {
             animation: carouselPreviousTranslate 600ms ease-in-out;
         }
+    }
+}
+body:not(.contrast) {
+    & .carousel_pictures-container {
+        box-shadow: 0 0 0.5rem 0.2rem map-get($colors,blue);
+    }
+    &.purple {
+        & .carousel_pictures-container {
+            box-shadow: 0 0 0.5rem 0.2rem map-get($colors,purple);
+        }
+        & .carousel_pictures-container.transition::after {
+            box-shadow: 0 0 3rem 1.5rem map-get($colors,purple), inset 0 0 3rem 1.5rem map-get($colors,purple);
+        }
+    }
+}
+body.contrast {
+    & .carousel_pictures-container {
+        border: solid map-get($colors,white) 0.4rem;
     }
 }
 
