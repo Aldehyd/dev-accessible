@@ -14,20 +14,17 @@ const keyPictures = {
 }
 
 interface ShortcutModifierPropsInterface {
-    name: string,
-    frenchLabel: string,
-    englishLabel: string,
-    defaultKey: string,
-    modifyFunction: ()=>void
+    shortcut: {id: number, name: string, defaultKey: string, currentKey: string, frenchLabel: string, englishLabel: string}
 }
 
-export default function ShortcutModifier({name,frenchLabel,englishLabel}: ShortcutModifierPropsInterface): React.JSX.Element {
+export default function ShortcutModifier({shortcut}: ShortcutModifierPropsInterface): React.JSX.Element {
     
     const {language} = useContext(LanguageContext);
 
     const {shortcuts,changeShortcuts} = useContext(ShortcutsContext);
 
     const translateFunction: (key: string)=> string = (key)=> {
+        console.log(key)
         let translatedValue ="";
         const keyToTranslate = ["space","escape","delete","capslock","numlock","arrowdown","arrowup","arrowleft","arrowright","pageup","pagedown","home","end","backspace","insert"];
 
@@ -87,9 +84,9 @@ export default function ShortcutModifier({name,frenchLabel,englishLabel}: Shortc
         return translatedValue;
     };
 
-    const [currentKey,setCurrentKey] = useState<string>(shortcuts[name]);
+    const [currentKey,setCurrentKey] = useState<string>(shortcut.currentKey);
 
-    const [inputValue,setInputValue] = useState<{french: string, english : string}>({french: translateFunction(shortcuts[name]),english: shortcuts[name]});
+    const [inputValue,setInputValue] = useState<{french: string, english : string}>({french: translateFunction(shortcut.currentKey),english: shortcut.currentKey});
 
     const input = useRef(null);
 
@@ -123,7 +120,6 @@ export default function ShortcutModifier({name,frenchLabel,englishLabel}: Shortc
     };
 
     useEffect(()=> {
-        console.log(inputValue)
         if(input.current)
             input.current.value = (language === "french" ? inputValue.french : inputValue.english);
 
@@ -138,7 +134,7 @@ export default function ShortcutModifier({name,frenchLabel,englishLabel}: Shortc
 
     const modifyShortcuts = ()=> {
         let newShortcuts = shortcuts;
-        newShortcuts[name] = inputValue.english;
+        newShortcuts[shortcut.id].currentKey = inputValue.english;
         changeShortcuts(newShortcuts);
         localStorage.setItem('shortcuts',JSON.stringify(newShortcuts));
         setCurrentKey(inputValue.english);
@@ -147,7 +143,7 @@ export default function ShortcutModifier({name,frenchLabel,englishLabel}: Shortc
 
     return (
         <div className="shortcut-setting-container animations">
-            <label htmlFor="shortcut-input">{language === "french" ? frenchLabel : englishLabel} :</label>
+            <label htmlFor="shortcut-input">{language === "french" ? shortcut.frenchLabel : shortcut.englishLabel} :</label>
             <div className="shortcut-input-container">
                 <span className="input-container">  
                     <input type="text" id="shortcut-input" ref={input} className="shortcut-input-container_input" onKeyDown={(e)=> handleKeyDown(e)} onFocus={()=> handleFocus()} onBlur={()=> setToolTipDisplayed(false)} />

@@ -4,7 +4,7 @@ import Components from './Components/index.tsx';
 import LanguageContext from './Contexts/language-context.tsx';
 import ShortcutsContext from './Contexts/shortcuts-context.tsx';
 import Layouts from './Layout/index.tsx';
-import {defaultShortcuts} from './Datas/defaultShortcuts.tsx';
+import {localShortcuts} from './Datas/shortcuts.tsx';
 
 export default function App(): React.JSX.Element {
 
@@ -14,9 +14,9 @@ export default function App(): React.JSX.Element {
         setLanguage(language);
     };
 
-    const [shortcuts,setShortcuts] = useState<{exitAccessibilityMode: string}>(localStorage.getItem('shortcuts') !== undefined && localStorage.getItem('shortcuts') !== null ? JSON.parse(localStorage.getItem('shortcuts')) : defaultShortcuts); 
+    const [shortcuts,setShortcuts] = useState<{id: number, name: string, defaultKey: string, currentKey: string, frenchLabel: string, englishLabel: string}[]>(localStorage.getItem('shortcuts') !== undefined && localStorage.getItem('shortcuts') !== null ? JSON.parse(localStorage.getItem('shortcuts')) : localShortcuts); 
 
-    const changeShortcuts : (shortcuts: {exitAccessibilityMode: string}) => void = (shortcuts)=> {
+    const changeShortcuts : (shortcuts: {id: number, name: string, defaultKey: string, currentKey: string, frenchLabel: string, englishLabel: string}[]) => void = (shortcuts)=> {
         setShortcuts(shortcuts);
     };
 
