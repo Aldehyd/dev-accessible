@@ -16,6 +16,7 @@ import {increase} from '../Functions/fontSizeSpinButton/increase.tsx';
 import {decrease} from '../Functions/fontSizeSpinButton/decrease.tsx';
 import {handleKeyDown} from '../Functions/fontSizeSpinButton/handleKeyDown.tsx';
 import {setFontSize} from '../Functions/fontSizeSpinButton/setFontSize.tsx';
+import ShortcutModifier from "./shortcutModifier.tsx";
 
 export default function Layouts(): React.JSX.Element {
 
@@ -60,6 +61,7 @@ export default function Layouts(): React.JSX.Element {
             <RadioButtonGroup name="color" frenchLegend="Couleur" englishLegend="Color" radioButtonsData={colorsRadioButtonsData} handleChoice={handleMainColor} />
             <SpinButton name="fontSize" frenchLabel="Taille de la police" englishLabel="Font size" minValue={100} maxValue={200} defaultValue={100} handleKeyDown={handleKeyDown} increase={increase} decrease={decrease} effectFunction={setFontSize} />
             <Carousel pictures={pictures} />
+            <ShortcutModifier name="exitAccessibilityModeShortcut" frenchLabel="Quitter le mode analyse de l'accessibilité" englishLabel="Exit accessibility analysis mode" defaultKey="Escape" />
         </div>
     )
 }
