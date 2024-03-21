@@ -1,0 +1,44 @@
+.carousel_picture {
+    display: block;
+    position: absolute;
+    object-fit: cover;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    transform-origin: 50% 0;
+    transform: scaleY(1);
+}
+.current-picture {
+    z-index: 2;
+    opacity: 1;
+    clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
+}
+body.animations .current-picture.next {
+    animation: toNextPicture 1s ease-in-out forwards;
+}
+body.animations .current-picture.previous {
+    animation: toPreviousPicture 1s ease-in-out forwards;
+}
+.next-picture, .previous-picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    // clip-path: polygon(100% 100%, 100% 0%, 100% 0%, 100% 100%);
+}
+.next-picture.next, .previous-picture.previous {
+    z-index: 1;
+}
+// .carousel_pictures-container .next-picture {
+//     animation: nextPictureAppear 1s ease-in-out forwards;
+// }
+
+@keyframes toPreviousPicture {
+    to {
+        clip-path: polygon(100% 0%, 100% 100%, 100% 100%, 100% 0%);
+    }
+}
+@keyframes toNextPicture {
+    to {
+        clip-path: polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%);
+    }
+}
