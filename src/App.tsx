@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Components from './Components/index.tsx';
 import LanguageContext from './Contexts/language-context.tsx';
+import ShortcutsContext from './Contexts/shortcuts-context.tsx';
 import Layouts from './Layout/index.tsx';
 
 export default function App(): React.JSX.Element {
@@ -10,16 +11,24 @@ export default function App(): React.JSX.Element {
 
     const changeLanguage : (language: string) => void = (language)=> {
         setLanguage(language);
-      };
+    };
+
+    const [shortcuts,setShortcuts] = useState<{exitAccessibilityMode: string}>(localStorage.getItem('shortcuts') !== undefined && localStorage.getItem('shortcuts') !== null && JSON.parse(localStorage.getItem('shortcuts'))); 
+
+    const changeShortcuts : (shortcuts: {exitAccessibilityMode: string}) => void = (shortcuts)=> {
+        setShortcuts(shortcuts);
+    };
 
     return(
         <LanguageContext.Provider value ={{language,changeLanguage}}>
-            <Router>
-                <Routes>
-                    <Route path="/components" element={<Components />} />
-                    <Route path="/layouts" element={<Layouts />} />
-                </Routes>
-            </Router>
+            <ShortcutsContext.Provider value={{shortcuts,changeShortcuts}}>
+                <Router>
+                    <Routes>
+                        <Route path="/components" element={<Components />} />
+                        <Route path="/layouts" element={<Layouts />} />
+                    </Routes>
+                </Router>
+            </ShortcutsContext.Provider>
         </LanguageContext.Provider>
     )
 }
