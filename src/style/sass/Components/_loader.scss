@@ -1,0 +1,136 @@
+.loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    &_text {
+        font-size: 2.4rem;
+        color: map-get($colors,blue);
+        font-weight: bold;
+    }
+    &_timeline {
+        display: flex;
+        margin-top: 1rem;
+        gap: 1rem;
+        &_unit {
+            display: inline-block;
+            height: 3rem;
+            width: 1.4rem;
+            background-color: map-get($colors,blue);
+            animation: TimeLineUnit 200ms 500ms both;
+        }
+    }
+    &.french .loader_timeline_unit {
+        width: 2.5rem;
+    }
+}
+
+@keyframes TimeLineUnit--1 {
+    5% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes TimeLineUnit--2 {
+    5% {
+        opacity: 0;
+    }
+    30% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes TimeLineUnit--3 {
+    5% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes TimeLineUnit--4 {
+    5% {
+        opacity: 0;
+    }
+    70% {
+        opacity: 0;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes TimeLineUnit--5 {
+    5% {
+        opacity: 0;
+    }
+    90% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+body.animations {
+    & .loader_timeline_unit {
+        &--1 {
+            animation: TimeLineUnit--1 5000ms backwards infinite;
+        }
+        &--2 {
+            animation: TimeLineUnit--2 5000ms backwards infinite;
+        }
+        &--3 {
+            animation: TimeLineUnit--3 5000ms backwards infinite;
+        }
+        &--4 {
+            animation: TimeLineUnit--4 5000ms backwards infinite;
+        }
+        &--5 {
+            animation: TimeLineUnit--5 5000ms backwards infinite;
+        }
+    }
+}
+body:not(.contrast) {
+    & .loader {
+        &_text {
+            text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
+        }
+        &_timeline_unit {
+            box-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
+        }
+    }
+    &.purple {
+        & .loader {
+            &_text {
+                color: map-get($colors,purple);
+                text-shadow: 0 0.2rem 0.4rem map-get($colors,purple);
+            }
+            &_timeline_unit {
+                background-color: map-get($colors,purple);
+                box-shadow: 0 0.2rem 0.4rem map-get($colors,purple);
+            }
+        }
+    }
+}

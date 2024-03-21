@@ -25,6 +25,7 @@ import AccessibilitySettingsButton from "./accessibility-settings-button.tsx";
 import MainLink from "./main-link.tsx";
 import BasicPicture from "./basic-picture.tsx";
 import MainTitle from './main-title.tsx';
+import Loader from './loader.tsx';
 
 export default function Components(): React.JSX.Element {
 
@@ -101,6 +102,9 @@ export default function Components(): React.JSX.Element {
             <div className="components-layout_buttons-container">
                 <MainTitle frenchText="titre principal" englishText="main title" />
                 <MainTitle frenchText="titre accueil" englishText="home title" home={true} />
+            </div>
+            <div className="components-layout_radio-buttons">
+                <Loader />
             </div>
         </div>
     )

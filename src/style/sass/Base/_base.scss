@@ -41,6 +41,9 @@ body {
         & .main-title {
             word-spacing: calc(0.16*2rem);
         }
+        & .loader {
+            word-spacing: calc(0.16*2.4rem);
+        }
     }
     &.letter-spacing {
         letter-spacing: calc(0.12*1.4rem);
@@ -58,6 +61,9 @@ body {
         }
         & .main-title {
             letter-spacing: calc(0.12*2rem);
+        }
+        & .loader {
+            letter-spacing: calc(0.12*2.4rem);
         }
     }
 }

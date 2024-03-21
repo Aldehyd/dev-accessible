@@ -44,6 +44,9 @@ body.word-spacing .main-link {
 body.word-spacing .main-title {
   word-spacing: 0.32rem;
 }
+body.word-spacing .loader {
+  word-spacing: 0.384rem;
+}
 body.letter-spacing {
   letter-spacing: 0.168rem;
 }
@@ -61,6 +64,9 @@ body.letter-spacing .main-link {
 }
 body.letter-spacing .main-title {
   letter-spacing: 0.24rem;
+}
+body.letter-spacing .loader {
+  letter-spacing: 0.288rem;
 }
 
 #root {
@@ -1336,6 +1342,131 @@ body.animations .previous-picture {
 }
 .carousel_button--next {
   right: -8rem;
+}
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}
+.loader_text {
+  font-size: 2.4rem;
+  color: hsl(175deg, 95%, 55%);
+  font-weight: bold;
+}
+.loader_timeline {
+  display: flex;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+.loader_timeline_unit {
+  display: inline-block;
+  height: 3rem;
+  width: 1.4rem;
+  background-color: hsl(175deg, 95%, 55%);
+  animation: TimeLineUnit 200ms 500ms both;
+}
+.loader.french .loader_timeline_unit {
+  width: 2.5rem;
+}
+
+@keyframes TimeLineUnit--1 {
+  5% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes TimeLineUnit--2 {
+  5% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes TimeLineUnit--3 {
+  5% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes TimeLineUnit--4 {
+  5% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes TimeLineUnit--5 {
+  5% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+body.animations .loader_timeline_unit--1 {
+  animation: TimeLineUnit--1 5000ms backwards infinite;
+}
+body.animations .loader_timeline_unit--2 {
+  animation: TimeLineUnit--2 5000ms backwards infinite;
+}
+body.animations .loader_timeline_unit--3 {
+  animation: TimeLineUnit--3 5000ms backwards infinite;
+}
+body.animations .loader_timeline_unit--4 {
+  animation: TimeLineUnit--4 5000ms backwards infinite;
+}
+body.animations .loader_timeline_unit--5 {
+  animation: TimeLineUnit--5 5000ms backwards infinite;
+}
+
+body:not(.contrast) .loader_text {
+  text-shadow: 0 0.2rem 0.4rem hsl(175deg, 95%, 55%);
+}
+body:not(.contrast) .loader_timeline_unit {
+  box-shadow: 0 0.2rem 0.4rem hsl(175deg, 95%, 55%);
+}
+body:not(.contrast).purple .loader_text {
+  color: hsl(295deg, 95%, 55%);
+  text-shadow: 0 0.2rem 0.4rem hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .loader_timeline_unit {
+  background-color: hsl(295deg, 95%, 55%);
+  box-shadow: 0 0.2rem 0.4rem hsl(295deg, 95%, 55%);
 }
 
 .radio-group {
