@@ -4,8 +4,8 @@ import LanguageContext from "../Contexts/language-context.tsx";
 interface BasicButtonPropsInterface {
     disabledStatus?: string,
     roleButton: string,
-    picturesToShow: {previous: boolean | number, current: number, next: boolean | number, amount: number},
-    setPicturesToShow: (state : {previous: boolean | number, current: number, next: boolean | number, amount: number})=> void,
+    picturesToShow: {current: number, amount: number},
+    setPicturesToShow: (state : {current: number, amount: number})=> void,
     setCurrentPictureMovement: (state: string)=>void
 }
 
@@ -22,29 +22,13 @@ export default function CarouselButton({disabledStatus="false",roleButton,pictur
             let newPicturesToShow = picturesToShow;
             
             if(roleButton === "next") {
-                if(typeof newPicturesToShow.previous === "boolean") {
-                    newPicturesToShow.previous = 0;
-                } else {
-                    newPicturesToShow.previous = newPicturesToShow.previous + 1;
-                };
                 newPicturesToShow.current = newPicturesToShow.current + 1;
-                if(typeof newPicturesToShow.next !== "boolean")
-                    newPicturesToShow.next = newPicturesToShow.next + 1;
-
                 setCurrentPictureMovement("next");
             } else {
-                if(typeof newPicturesToShow.next === "boolean") {
-                    newPicturesToShow.next = newPicturesToShow.amount - 1;
-                } else {
-                    newPicturesToShow.next = newPicturesToShow.next - 1;
-                };
                 newPicturesToShow.current = newPicturesToShow.current - 1;
-                if(typeof newPicturesToShow.previous !== "boolean")
-                    newPicturesToShow.previous = newPicturesToShow.previous - 1;
-
                 setCurrentPictureMovement("previous");
             };
-            setPicturesToShow({previous: newPicturesToShow.previous, current: newPicturesToShow.current, next: newPicturesToShow.next, amount: newPicturesToShow.amount});
+            setPicturesToShow({current: newPicturesToShow.current, amount: newPicturesToShow.amount});
         };
     };
 

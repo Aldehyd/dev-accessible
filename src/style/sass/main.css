@@ -1277,6 +1277,7 @@ body:not(.contrast).purple .main-title {
 .carousel_picture {
   display: block;
   position: absolute;
+  z-index: 0;
   -o-object-fit: cover;
      object-fit: cover;
   margin: auto;
@@ -1287,42 +1288,43 @@ body:not(.contrast).purple .main-title {
 }
 
 .current-picture {
-  z-index: 2;
+  z-index: 3;
   opacity: 1;
+  transition: 600ms ease-in-out;
   -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
           clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
 }
 
-body.animations .current-picture.next {
-  animation: toNextPicture 1s ease-in-out forwards;
-}
-
-body.animations .current-picture.previous {
-  animation: toPreviousPicture 1s ease-in-out forwards;
-}
-
 .next-picture, .previous-picture {
-  position: absolute;
+  z-index: 1;
   top: 0;
   left: 0;
 }
 
-.next-picture.next, .previous-picture.previous {
+.next-picture {
+  transition: 600ms ease-in-out;
+  -webkit-clip-path: polygon(100% 0%, 100% 100%, 100% 100%, 100% 0%);
+          clip-path: polygon(100% 0%, 100% 100%, 100% 100%, 100% 0%);
+}
+.next-picture.next {
+  z-index: 1;
+}
+.next-picture.previous {
+  z-index: 2;
+}
+
+.previous-picture {
+  transition: 600ms ease-in-out;
+  -webkit-clip-path: polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%);
+          clip-path: polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%);
+}
+.previous-picture.next {
+  z-index: 2;
+}
+.previous-picture.previous {
   z-index: 1;
 }
 
-@keyframes toPreviousPicture {
-  to {
-    -webkit-clip-path: polygon(100% 0%, 100% 100%, 100% 100%, 100% 0%);
-            clip-path: polygon(100% 0%, 100% 100%, 100% 100%, 100% 0%);
-  }
-}
-@keyframes toNextPicture {
-  to {
-    -webkit-clip-path: polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%);
-            clip-path: polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%);
-  }
-}
 .carousel_button {
   position: absolute;
   top: 50%;
