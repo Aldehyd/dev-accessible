@@ -5,6 +5,12 @@ import thirdImage from './guitare.JPG';
 import fourthImage from './wood.JPG';
 import fifthImage from './stick.JPG';
 import AnimationToggleButton from '../Components/animation-toggle-button.tsx';
+import {handleContrastedThemeSwitch} from '../Functions/handleContrastedThemeSwitch.tsx';
+import Switch from '../Components/switch.tsx';
+import RadioButtonGroup from "./RadioButtonsGroup.tsx";
+import { handleMainColor } from "../Functions/handleMainColor.tsx";
+import { colorsRadioButtonsData } from "../Datas/colorsRadioButtonsData.tsx";
+import LanguageSelect from '../Components/language-select.tsx';
 
 export default function Layouts(): React.JSX.Element {
 
@@ -44,6 +50,9 @@ export default function Layouts(): React.JSX.Element {
     return(
         <div className="components-layout">
             <AnimationToggleButton />
+            <LanguageSelect />
+            <Switch name="contrasted-theme" frenchLabel="Thème contrasté" englishLabel="Contrasted theme" onSwitchFunction={handleContrastedThemeSwitch} />
+            <RadioButtonGroup name="color" frenchLegend="Couleur" englishLegend="Color" radioButtonsData={colorsRadioButtonsData} handleChoice={handleMainColor} />
             <Carousel pictures={pictures} />
         </div>
     )
