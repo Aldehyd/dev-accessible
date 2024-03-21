@@ -28,6 +28,9 @@ body.paragraph-height p {
 body.line-height {
   line-height: 2.1rem;
 }
+body.line-height h2 {
+  line-height: 2.4rem;
+}
 body.word-spacing {
   word-spacing: 0.224rem;
 }
@@ -42,6 +45,9 @@ body.word-spacing .main-title {
 }
 body.word-spacing .loader {
   word-spacing: 0.384rem;
+}
+body.word-spacing h2 {
+  word-spacing: 0.256rem;
 }
 body.letter-spacing {
   letter-spacing: 0.168rem;
@@ -64,9 +70,24 @@ body.letter-spacing .main-title {
 body.letter-spacing .loader {
   letter-spacing: 0.288rem;
 }
+body.letter-spacing h2 {
+  letter-spacing: 0.192rem;
+}
+body:not(.contrast) h2 {
+  text-shadow: 0 0.2rem 0.4rem hsl(175, 95%, 55%);
+}
+body:not(.contrast).purple h2 {
+  color: hsl(295, 95%, 55%);
+  text-shadow: 0 0.2rem 0.4rem hsl(295, 95%, 55%);
+}
 
 #root {
   min-height: 100vh;
+}
+
+h2 {
+  font-size: 1.6rem;
+  color: hsl(175, 95%, 55%);
 }
 
 a, a:visited {

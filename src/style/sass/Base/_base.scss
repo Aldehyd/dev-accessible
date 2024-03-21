@@ -29,6 +29,9 @@ body {
     }
     &.line-height {
         line-height: calc(1.5*1.4rem);
+        & h2 {
+            line-height: calc(1.5*1.6rem);
+        }
     }
     &.word-spacing {
         word-spacing: calc(0.16*1.4rem);
@@ -43,6 +46,9 @@ body {
         }
         & .loader {
             word-spacing: calc(0.16*2.4rem);
+        }
+        & h2 {
+            word-spacing: calc(0.16*1.6rem);
         }
     }
     &.letter-spacing {
@@ -65,10 +71,28 @@ body {
         & .loader {
             letter-spacing: calc(0.12*2.4rem);
         }
+        & h2 {
+            letter-spacing: calc(0.12*1.6rem);
+        }
+    }
+    &:not(.contrast) {
+        & h2 {
+            text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
+        }
+    }
+    &:not(.contrast).purple {
+        & h2 {
+            color: map-get($colors,purple);
+            text-shadow: 0 0.2rem 0.4rem map-get($colors,purple);
+        }
     }
 }
 #root {
     min-height: 100vh;
+}
+h2 {
+    font-size: 1.6rem;
+    color: map-get($colors,blue);
 }
 a, a:visited {
     text-decoration: none;
