@@ -1477,6 +1477,33 @@ body:not(.contrast).purple .loader_timeline_unit {
   box-shadow: 0 0.2rem 0.4rem hsl(295, 95%, 55%);
 }
 
+.available-status-indicator {
+  display: inline-block;
+  position: relative;
+  margin: auto;
+  padding: 1rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  background-color: hsl(0, 6%, 10%);
+  border-radius: 1rem;
+  border: solid 0.2rem #f1f1f1;
+  color: hsl(10, 95%, 55%);
+}
+.available-status-indicator.available {
+  color: hsl(120, 95%, 55%);
+}
+
+body:not(.contrast) .available-status-indicator {
+  text-shadow: 0px 2px 4px hsl(10, 95%, 55%);
+}
+body:not(.contrast) .available-status-indicator.available {
+  text-shadow: 0px 2px 4px hsl(120, 95%, 55%);
+}
+
+body.contrast .available-status-indicator {
+  border-color: hsl(0, 6%, 10%);
+}
+
 .radio-group {
   position: relative;
   margin: auto;

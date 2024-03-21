@@ -26,6 +26,7 @@ import MainLink from "./main-link.tsx";
 import BasicPicture from "./basic-picture.tsx";
 import MainTitle from './main-title.tsx';
 import Loader from './loader.tsx';
+import AvailableStatusIndicator from './availableStatusIndicator.tsx';
 
 export default function Components(): React.JSX.Element {
 
@@ -105,6 +106,9 @@ export default function Components(): React.JSX.Element {
             </div>
             <div className="components-layout_radio-buttons">
                 <Loader />
+            </div>
+            <div className="components-layout_radio-buttons">
+                <AvailableStatusIndicator isAvailable={false} />
             </div>
         </div>
     )
