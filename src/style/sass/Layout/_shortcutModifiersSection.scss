@@ -1,0 +1,14 @@
+.shortcut-modifiers-section {
+    & h2 {
+        margin-bottom: 2rem;
+    }
+    &_shortcut-modifiers-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+    & > .basic-button-container {
+        margin: 2rem auto;
+    }
+}

@@ -21,6 +21,7 @@ export default function ShortcutModifiersSection(): React.JSX.Element {
     const [disabledResetButton,setDisabledResetButton] = useState<string>("true");
 
     useEffect(()=> {
+        console.log('check shortcuts')
         let areShortcutsPersonnalized = false;
         for(let shortcut in shortcuts) {
             if(shortcut.currentKey !== shortcut.defaultKey) {
@@ -41,7 +42,7 @@ export default function ShortcutModifiersSection(): React.JSX.Element {
                         "Modify keyboard shorcuts :"
                 }
             </h2>
-            <div>
+            <div className="shortcut-modifiers-section_shortcut-modifiers-container">
                 {
                     shortcuts.map(shortcut => {
                         return(

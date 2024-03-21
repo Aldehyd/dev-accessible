@@ -24,7 +24,6 @@ export default function ShortcutModifier({shortcut}: ShortcutModifierPropsInterf
     const {shortcuts,changeShortcuts} = useContext(ShortcutsContext);
 
     const translateFunction: (key: string)=> string = (key)=> {
-        console.log(key)
         let translatedValue ="";
         const keyToTranslate = ["space","escape","delete","capslock","numlock","arrowdown","arrowup","arrowleft","arrowright","pageup","pagedown","home","end","backspace","insert"];
 

@@ -1646,7 +1646,6 @@ body.contrast .carousel_pictures-container {
   }
 }
 .shortcut-setting-container {
-  margin: auto;
   position: relative;
   display: flex;
   align-items: center;
@@ -1706,6 +1705,7 @@ body.contrast .carousel_pictures-container {
 }
 .shortcut-input-container_tooltip {
   position: absolute;
+  z-index: 1;
   top: 110%;
   left: 0;
   padding: 0.5rem;
@@ -1717,6 +1717,7 @@ body.contrast .carousel_pictures-container {
 }
 .shortcut-input-container_success-message {
   position: absolute;
+  z-index: 1;
   top: -4rem;
   padding: 0.5rem;
   font-size: 1.6rem;
@@ -1779,6 +1780,19 @@ body:not(.contrast).purple .shortcut-setting-container::before {
 }
 body:not(.contrast).purple .shortcut-setting-container_key-pictures {
   box-shadow: 0 0 1rem hsl(295, 95%, 55%);
+}
+
+.shortcut-modifiers-section h2 {
+  margin-bottom: 2rem;
+}
+.shortcut-modifiers-section_shortcut-modifiers-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+}
+.shortcut-modifiers-section > .basic-button-container {
+  margin: 2rem auto;
 }
 
 .components-layout {
