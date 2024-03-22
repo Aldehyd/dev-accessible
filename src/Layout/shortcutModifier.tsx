@@ -14,10 +14,11 @@ const keyPictures = {
 }
 
 interface ShortcutModifierPropsInterface {
-    shortcut: {id: number, name: string, defaultKey: string, currentKey: string, frenchLabel: string, englishLabel: string}
+    shortcut: {id: number, name: string, defaultKey: string, currentKey: string, frenchLabel: string, englishLabel: string},
+    setShortcutsState: (shortcut: {id: number, name: string, defaultKey: string, currentKey: string, frenchLabel: string, englishLabel: string}[])=>void
 }
 
-export default function ShortcutModifier({shortcut}: ShortcutModifierPropsInterface): React.JSX.Element {
+export default function ShortcutModifier({shortcut,setShortcutsState}: ShortcutModifierPropsInterface): React.JSX.Element {
     
     const {language} = useContext(LanguageContext);
 
@@ -134,7 +135,8 @@ export default function ShortcutModifier({shortcut}: ShortcutModifierPropsInterf
     const modifyShortcuts = ()=> {
         let newShortcuts = shortcuts;
         newShortcuts[shortcut.id].currentKey = inputValue.english;
-        changeShortcuts(newShortcuts);
+        setShortcutsState(...newShortcuts,[]); //to force rerender of shortcut modifiers section
+        changeShortcuts(newShortcuts)
         localStorage.setItem('shortcuts',JSON.stringify(newShortcuts));
         setCurrentKey(inputValue.english);
         setSuccessMessageDisplayed(true);

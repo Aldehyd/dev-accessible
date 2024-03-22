@@ -8,29 +8,18 @@ export default function ShortcutModifiersSection(): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
     const {shortcuts,changeShortcuts} = useContext(ShortcutsContext);
+
+    const [shortcutsState,setShortcutsState] = useState(shortcuts); //to re render after resetting shortcuts
     
     const resetShortcuts = ()=> {
         let newShortcuts = shortcuts;
         for(let shortcut of newShortcuts) {
             shortcut.currentKey = shortcut.defaultKey;
         };
+        setShortcutsState(newShortcuts);
         changeShortcuts(newShortcuts);
         localStorage.setItem('shortcuts',JSON.stringify(newShortcuts));
     };
-
-    const [disabledResetButton,setDisabledResetButton] = useState<string>("true");
-
-    useEffect(()=> {
-        console.log('check shortcuts')
-        let areShortcutsPersonnalized = false;
-        for(let shortcut in shortcuts) {
-            if(shortcut.currentKey !== shortcut.defaultKey) {
-                areShortcutsPersonnalized = true;
-            };
-        };
-        if(areShortcutsPersonnalized)
-            setDisabledResetButton("false");
-    },[shortcuts]);
 
     return(
         <section className="shortcut-modifiers-section">
@@ -46,13 +35,13 @@ export default function ShortcutModifiersSection(): React.JSX.Element {
                 {
                     shortcuts.map(shortcut => {
                         return(
-                            <ShortcutModifier key={shortcut.id} shortcut={shortcut} />
+                            <ShortcutModifier key={shortcut.id} shortcut={shortcut} setShortcutsState={setShortcutsState} />
                         )
                     })
                    
                 }
             </div>
-            <BasicButton frenchText="Réinitialiser les raccourcis" englishText="Reset keyboard shortcuts" disableAbility={true} disabledStatus={disabledResetButton} onClickFunction={()=> resetShortcuts()} />
+            <BasicButton frenchText="Réinitialiser les raccourcis" englishText="Reset keyboard shortcuts" disableAbility={true} disabledStatus={shortcutsState !== shortcuts ? "false" : "true"} onClickFunction={()=> resetShortcuts()} />
         </section>
     )
 }
