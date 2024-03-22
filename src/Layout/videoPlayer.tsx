@@ -1,18 +1,16 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 import TimeSlider from "../Components/time-slider.tsx";
 
 interface VideoPlayerPropsInterface {
-    video: any,
-    frenchTitle: string,
-    englishTitle: string,
-    frenchTranscription: string,
-    englishTranscription: string
+    video: {videoURL: string, pictureURL: string, pictureFrenchAlt: string, englishEnglishAlt: string, frenchTitle: string, englishTitle: string, frenchTranscription: string, englishTranscription: string}
 }
 
-export default function VideoPlayer({video,frenchTitle,englishTitle,frenchTranscription,englishTranscription}: VideoPlayerPropsInterface): React.JSX.Element {
+export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
+
+    const videoElement = useRef(null);
 
     const [currentTime,setCurrentTime] = useState<number>(0);
 
@@ -21,21 +19,27 @@ export default function VideoPlayer({video,frenchTitle,englishTitle,frenchTransc
         let seconds = Math.floor(value % 60);
 
         return {minutes: minutes, seconds: seconds};
-    }
+    };
 
     return(
         <div className="video-container">
             <h2 className="video-title">
-                {language === "french" ? frenchTitle : englishTitle}
+                {language === "french" ? video.frenchTitle : video.englishTitle}
             </h2>
             <div className="video-player">
                 <div className="video-player_transcription">
-                    <p>{language === "french" ? frenchTranscription : englishTranscription}</p>
+                    <p>{language === "french" ? video.frenchTranscription : video.englishTranscription}</p>
                 </div>
-                <div className="video-player_video"></div>
-                <button className="main-play-button" aria-label={language === "french" ? "Lancer la vidéo": "Play"}>
-                    <span className="main-play-button_play-icon">&#9654;</span>
-                </button>
+                <div className="video-player_video">
+                    <video ref={videoElement} tabIndex={0}>
+                        <source src={video.videoURL} type="video/mp4" />
+                    </video>
+                    <img src={video.pictureURL} alt={language === "french" ? video.pictureFrenchAlt : video.pictureEnglishAlt} className="portfolios-video-player_background display" />
+                    <button className="main-play-button" aria-label={language === "french" ? "Lancer la vidéo": "Play"}>
+                        <span className="main-play-button_play-icon">&#9654;</span>
+                    </button>
+                </div>
+                
                 <div className="video-player_control-bar">
                     <div className="video-player_control-bar_timeline">
                         <button className="play-button video-player-button" aria-label={language === "french" ? "Lancer la vidéo": "Play"}>
@@ -63,9 +67,9 @@ export default function VideoPlayer({video,frenchTitle,englishTitle,frenchTransc
                                     <span></span>
                                     <span></span>
                                 </div>
-                                <div className="volume-slider_thumb" tabIndex={0} role="slider" 
+                                {/* <div className="volume-slider_thumb" tabIndex={0} role="slider" 
                                 aria-valuemin="0" aria-valuemax="10" aria-valuenow={}
-                                aria-label="volume" aria-orientation="vertical"></div>
+                                aria-label="volume" aria-orientation="vertical"></div> */}
                             </div>
                         </div>
                     </div>

@@ -64,7 +64,7 @@ export default function Layouts(): React.JSX.Element {
             <SpinButton name="fontSize" frenchLabel="Taille de la police" englishLabel="Font size" minValue={100} maxValue={200} defaultValue={100} handleKeyDown={handleKeyDown} increase={increase} decrease={decrease} effectFunction={setFontSize} />
             <Carousel pictures={pictures} />
             <ShortcutModifiersSection />
-            <VideoPlayer />
+            <VideoPlayer video={video} />
         </div>
     )
 }
