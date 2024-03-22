@@ -98,7 +98,7 @@ export default function Components(): React.JSX.Element {
                 <MainLink frenchText="lien principal" englishText="main link" route="../layouts" />
             </div>
             <div className="components-layout_pictures">
-                <BasicPicture image={image} frenchAlt="très beau site" englishAlt="beautiful website" />
+                <BasicPicture imageName="dyskredy-preview" frenchAlt="très beau site" englishAlt="beautiful website" />
             </div>
             <div className="components-layout_buttons-container">
                 <MainTitle frenchText="titre principal" englishText="main title" />
