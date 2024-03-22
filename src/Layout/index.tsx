@@ -18,6 +18,7 @@ import {handleKeyDown} from '../Functions/fontSizeSpinButton/handleKeyDown.tsx';
 import {setFontSize} from '../Functions/fontSizeSpinButton/setFontSize.tsx';
 import ShortcutModifier from "./shortcutModifier.tsx";
 import ShortcutModifiersSection from "./shortcutModifiersSection.tsx";
+import VideoPlayer from "./videoPlayer.tsx";
 
 export default function Layouts(): React.JSX.Element {
 
@@ -63,7 +64,7 @@ export default function Layouts(): React.JSX.Element {
             <SpinButton name="fontSize" frenchLabel="Taille de la police" englishLabel="Font size" minValue={100} maxValue={200} defaultValue={100} handleKeyDown={handleKeyDown} increase={increase} decrease={decrease} effectFunction={setFontSize} />
             <Carousel pictures={pictures} />
             <ShortcutModifiersSection />
-            {/* <ShortcutModifier name="exitAccessibilityMode" frenchLabel="Quitter le mode analyse de l'accessibilité" englishLabel="Exit accessibility analysis mode" defaultKey="Escape" /> */}
+            <VideoPlayer />
         </div>
     )
 }
