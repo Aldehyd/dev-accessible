@@ -2,7 +2,15 @@ import { useContext } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 import TimeSlider from "../Components/time-slider.tsx";
 
-export default function VideoPlayer({frenchTitle,englishTitle,frenchTranscription,englishTranscription}): React.JSX.Element {
+interface VideoPlayerPropsInterface {
+    video: any,
+    frenchTitle: string,
+    englishTitle: string,
+    frenchTranscription: string,
+    englishTranscription: string
+}
+
+export default function VideoPlayer({video,frenchTitle,englishTitle,frenchTranscription,englishTranscription}: VideoPlayerPropsInterface): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
 
