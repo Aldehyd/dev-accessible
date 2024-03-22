@@ -18,8 +18,8 @@ interface ShortcutModifierPropsInterface {
     setShortcutsState: (shortcut: {id: number, name: string, defaultKey: string, currentKey: string, frenchLabel: string, englishLabel: string}[])=>void
 }
 
-export default function ShortcutModifier({shortcut,setShortcutsState}: ShortcutModifierPropsInterface): React.JSX.Element {
-    
+export default function ShortcutModifier({shortcut,shortcutsState,setShortcutsState}: ShortcutModifierPropsInterface): React.JSX.Element {
+    console.log(shortcutsState)
     const {language} = useContext(LanguageContext);
 
     const {shortcuts,changeShortcuts} = useContext(ShortcutsContext);
@@ -136,11 +136,16 @@ export default function ShortcutModifier({shortcut,setShortcutsState}: ShortcutM
         let newShortcuts = shortcuts;
         newShortcuts[shortcut.id].currentKey = inputValue.english;
         setShortcutsState(...newShortcuts,[]); //to force rerender of shortcut modifiers section
-        changeShortcuts(newShortcuts)
+        changeShortcuts(newShortcuts);
         localStorage.setItem('shortcuts',JSON.stringify(newShortcuts));
         setCurrentKey(inputValue.english);
         setSuccessMessageDisplayed(true);
     };
+
+    useEffect(()=> {
+        // console.log(shortcutsState)
+        setInputValue({french: translateFunction(shortcutsState[shortcut.id].currentKey), english: shortcutsState[shortcut.id].currentKey});
+    },[shortcutsState]);
 
     return (
         <div className="shortcut-setting-container animations">

@@ -35,7 +35,7 @@ export default function ShortcutModifiersSection(): React.JSX.Element {
                 {
                     shortcuts.map(shortcut => {
                         return(
-                            <ShortcutModifier key={shortcut.id} shortcut={shortcut} setShortcutsState={setShortcutsState} />
+                            <ShortcutModifier key={shortcut.id} shortcut={shortcut} shortcutsState={shortcutsState} setShortcutsState={setShortcutsState} />
                         )
                     })
                    
