@@ -1867,6 +1867,11 @@ body:not(.contrast).purple .shortcut-setting-container_key-pictures {
   transform: translateY(0);
 }
 
+.video-player_video video {
+  width: 100%;
+  height: 100%;
+}
+
 .video-player_control-bar {
   position: absolute;
   bottom: 0;
@@ -2098,6 +2103,12 @@ body:not(.contrast).purple .shortcut-setting-container_key-pictures {
 
 .video-container:not(.transcription) .video-transcription-button_video-text {
   display: none;
+}
+
+.video-player_background {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .components-layout {

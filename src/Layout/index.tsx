@@ -19,6 +19,7 @@ import {setFontSize} from '../Functions/fontSizeSpinButton/setFontSize.tsx';
 import ShortcutModifier from "./shortcutModifier.tsx";
 import ShortcutModifiersSection from "./shortcutModifiersSection.tsx";
 import VideoPlayer from "./videoPlayer.tsx";
+import {video} from '../Datas/video.tsx';
 
 export default function Layouts(): React.JSX.Element {
 
