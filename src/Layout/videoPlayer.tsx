@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 import TimeSlider from "../Components/time-slider.tsx";
 
@@ -14,14 +14,14 @@ export default function VideoPlayer({video,frenchTitle,englishTitle,frenchTransc
 
     const {language} = useContext(LanguageContext);
 
-    // computeAriaValueText(value) {
-    //     let minutes = 0;
-    //     let seconds = 0;
-    //     minutes = Math.floor(currentValue / 60);
-    //     seconds = Math.floor(currentValue % 60);
+    const [currentTime,setCurrentTime] = useState<number>(0);
 
-    //     return {minutes: minutes, seconds: seconds};
-    // }
+    const convertInMinutesAndSeconds : (value: number)=> {minutes: number, seconds: number} = (value)=> {
+        let minutes = Math.floor(value / 60);
+        let seconds = Math.floor(value % 60);
+
+        return {minutes: minutes, seconds: seconds};
+    }
 
     return(
         <div className="video-container">
@@ -46,7 +46,7 @@ export default function VideoPlayer({video,frenchTitle,englishTitle,frenchTransc
                                 aria-valuemin="0" aria-valuemax="10" aria-valuenow={}
                                 aria-label="volume"></span>
                         </div> */}
-                        <TimeSlider durationNumber={} durationMinutesAndSeconds={} currentValue={} />
+                        <TimeSlider duration={video.duration} currentValue={currentTime} currentValueMinutesAndSeconds={convertInMinutesAndSeconds(currentTime)} />
                     </div>
                     <div className="time-count">0:00 / 02:49</div>
                     <div className="video-player_control-bar_volume">
