@@ -46,13 +46,30 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
     const showControlBar = ()=> {
         // clearTimeout(controlBar);
         controlBar.current.classList.add('display');
-        const controlBarHide = setTimeout(()=> {
-            controlBar.current.classList.remove('display');
-        },4000);
+        // const controlBarHide = setTimeout(()=> {
+        //     controlBar.current.classList.remove('display');
+        // },4000);
     };
 
     const hideControlBar = ()=> {
         controlBar.current.classList.remove('display');
+    };
+
+    const handleKeyDown = (e)=> {
+        switch(e.key) {
+            case " ":
+                e.preventDefault();
+                if(isPlaying) {
+                    videoElement.current.pause();
+                    setIsPlaying(false);
+                } else {
+                    videoElement.current.play();
+                    setIsPlaying(true);
+                };
+                break;
+            default:
+                break;
+        };
     };
 
     useEffect(()=> {
@@ -71,6 +88,7 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
     },[isPlaying]);
 
     useEffect(()=> {
+        console.log('maj time')
         setCurrentTime(videoElement.current?.currentTime);
     },[videoElement.current?.currentTime]);
 
@@ -93,7 +111,8 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
             <h2 className="video-title">
                 {language === "french" ? video.frenchTitle : video.englishTitle}
             </h2>
-            <div className="video-player" ref={videoPlayerElement}>
+            <div className="video-player" ref={videoPlayerElement} onKeyDown={(e)=> handleKeyDown(e)}
+                tabIndex={0}>
                 {status === "transcription" && 
                     <div className="video-player_transcription">
                         <p>{language === "french" ? video.frenchTranscription : video.englishTranscription}</p>
@@ -101,7 +120,7 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
                 }
                 {status === "video" &&
                     <div className="video-player_video" onClick={onVideoClick}>
-                        <video ref={videoElement} tabIndex={0}>
+                        <video ref={videoElement} tabIndex={0} onTimeUpdate={()=> setCurrentTime(videoElement.current.currentTime)}>
                             <source src={"videos/" + video.videoName + ".mp4"} type="video/mp4" />
                         </video>
                         {/* <img src={"img/" + video.pictureName + ".JPG"} alt={language === "french" ? video.pictureFrenchAlt : video.pictureEnglishAlt} className="video-player_background" /> */}
@@ -129,7 +148,7 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
                                 aria-valuemin="0" aria-valuemax="10" aria-valuenow={}
                                 aria-label="volume"></span>
                         </div> */}
-                        <TimeSlider duration={videoElement.current?.duration} currentValue={currentTime} currentValueMinutesAndSeconds={convertInMinutesAndSeconds(currentTime)} />
+                        <TimeSlider videoElement={videoElement} duration={videoElement.current?.duration} currentValue={currentTime} setCurrentValue={setCurrentTime} currentValueMinutesAndSeconds={convertInMinutesAndSeconds(currentTime)} />
                     </div>
                     {/* <div className="time-count">0:00 / 02:49</div> */}
                     <TimeCount currentTime={currentTimeInMinutesAndSeconds} duration={convertInMinutesAndSeconds(videoElement.current?.duration)} />
