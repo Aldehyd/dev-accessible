@@ -14,9 +14,11 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
 
     const videoPlayerElement = useRef(null);
     const videoElement = useRef(null);
+    const controlBar = useRef(null);
 
     const [status,setStatus] = useState<string>("video");
     const [fullScreenMode,setFullScreenMode] = useState<boolean>(false);
+    const [isPlaying,setIsPlaying] = useState<boolean>(false);
     const [currentTime,setCurrentTime] = useState<number>(0);
     const [currentTimeInMinutesAndSeconds,setCurrentTimeInMinutesAndSeconds] = useState({minutes: 0, seconds: 0});
 
@@ -31,6 +33,28 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
         status === "video" ? setStatus("transcription") : setStatus("video");
     };
 
+    const onPlayButtonClick = ()=> {
+        setIsPlaying(isPlaying => !isPlaying);
+    };
+
+    const onVideoClick = ()=> {
+        if(isPlaying) {
+            setIsPlaying(false);
+        };
+    };
+
+    const showControlBar = ()=> {
+        // clearTimeout(controlBar);
+        controlBar.current.classList.add('display');
+        const controlBarHide = setTimeout(()=> {
+            controlBar.current.classList.remove('display');
+        },4000);
+    };
+
+    const hideControlBar = ()=> {
+        controlBar.current.classList.remove('display');
+    };
+
     useEffect(()=> {
         fullScreenMode ? 
             videoPlayerElement.current?.requestFullscreen() 
@@ -39,12 +63,30 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
     },[fullScreenMode]);
 
     useEffect(()=> {
+        if(isPlaying) {
+            videoElement.current?.play();
+        } else {
+            videoElement.current?.pause()
+        };
+    },[isPlaying]);
+
+    useEffect(()=> {
         setCurrentTime(videoElement.current?.currentTime);
     },[videoElement.current?.currentTime]);
 
     useEffect(()=> {
         setCurrentTimeInMinutesAndSeconds(convertInMinutesAndSeconds(currentTime));
     },[currentTime]);
+
+    useEffect(()=> {
+        if(status === "video") {
+            videoPlayerElement.current?.addEventListener('mouseover',()=> showControlBar());
+            videoPlayerElement.current?.addEventListener('mouseleave',()=> hideControlBar());
+        } else {
+            videoPlayerElement.current?.removeEventListener('mouseover',showControlBar);
+            // clearTimeout(controlBarHide);
+        };
+    },[status]);
 
     return(
         <div className="video-container">
@@ -58,20 +100,28 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
                     </div>
                 }
                 {status === "video" &&
-                    <div className="video-player_video">
+                    <div className="video-player_video" onClick={onVideoClick}>
                         <video ref={videoElement} tabIndex={0}>
                             <source src={"videos/" + video.videoName + ".mp4"} type="video/mp4" />
                         </video>
-                        <img src={"img/" + video.pictureName + ".JPG"} alt={language === "french" ? video.pictureFrenchAlt : video.pictureEnglishAlt} className="video-player_background" />
-                        <button className="main-play-button" aria-label={language === "french" ? "Lancer la vidéo": "Play"}>
-                            <span className="main-play-button_play-icon">&#9654;</span>
-                        </button>
+                        {/* <img src={"img/" + video.pictureName + ".JPG"} alt={language === "french" ? video.pictureFrenchAlt : video.pictureEnglishAlt} className="video-player_background" /> */}
+                        {!isPlaying && 
+                            <button className="main-play-button" onClick={onPlayButtonClick}
+                                aria-label={language === "french" ? "Lancer la vidéo": "Play"}>
+                                <span className="main-play-button_play-icon">&#9654;</span>
+                            </button>
+                        }
                     </div>
                 }
                 
-                <div className="video-player_control-bar">
+                <div className="video-player_control-bar" ref={controlBar}
+                    // onMouseOver={()=> clearTimeout(controlBarHide.current)}
+                    // onFocus={()=> clearTimeout(controlBarHide.current)}
+                    >
                     <div className="video-player_control-bar_timeline">
-                        <button className="play-button video-player-button" aria-label={language === "french" ? "Lancer la vidéo": "Play"}>
+                        <button className="play-button video-player-button" 
+                            onClick={onPlayButtonClick}
+                            aria-label={language === "french" ? "Lancer la vidéo": "Play"}>
                             <span className="play-button_play-icon">&#9654;</span>
                         </button>
                         {/* <div className="time-slider">
