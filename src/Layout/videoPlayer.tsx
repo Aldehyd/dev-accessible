@@ -43,18 +43,22 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
                 {language === "french" ? video.frenchTitle : video.englishTitle}
             </h2>
             <div className="video-player">
-                <div className="video-player_transcription">
-                    <p>{language === "french" ? video.frenchTranscription : video.englishTranscription}</p>
-                </div>
-                <div className="video-player_video">
-                    <video ref={videoElement} tabIndex={0}>
-                        <source src={"videos/" + video.videoName + ".mp4"} type="video/mp4" />
-                    </video>
-                    <img src={"img/" + video.pictureName + ".JPG"} alt={language === "french" ? video.pictureFrenchAlt : video.pictureEnglishAlt} className="video-player_background" />
-                    <button className="main-play-button" aria-label={language === "french" ? "Lancer la vidéo": "Play"}>
-                        <span className="main-play-button_play-icon">&#9654;</span>
-                    </button>
-                </div>
+                {status === "transcription" && 
+                    <div className="video-player_transcription">
+                        <p>{language === "french" ? video.frenchTranscription : video.englishTranscription}</p>
+                    </div>
+                }
+                {status === "video" &&
+                    <div className="video-player_video">
+                        <video ref={videoElement} tabIndex={0}>
+                            <source src={"videos/" + video.videoName + ".mp4"} type="video/mp4" />
+                        </video>
+                        <img src={"img/" + video.pictureName + ".JPG"} alt={language === "french" ? video.pictureFrenchAlt : video.pictureEnglishAlt} className="video-player_background" />
+                        <button className="main-play-button" aria-label={language === "french" ? "Lancer la vidéo": "Play"}>
+                            <span className="main-play-button_play-icon">&#9654;</span>
+                        </button>
+                    </div>
+                }
                 
                 <div className="video-player_control-bar">
                     <div className="video-player_control-bar_timeline">
@@ -91,17 +95,9 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
                         </div>
                     </div>
                     <button className="full-screen-button video-player-button" aria-label={language === "french" ? "Plein écran": "Full Screen"}>&#9167;</button>
-                    <BasicButton frenchtext="Transcription textuelle" englishText="Text transcription" onClickFunction={} />
                 </div>
             </div>
-            <div className="button-container">
-                <div className="button-shadow"></div>
-                <button className="video-transcription-button">
-                    <span className="video-transcription-button_transcription-text">Transcription textuelle</span>
-                    <span className="video-transcription-button_video-text">Vidéo</span>
-                </button>
-            </div>
-        
+            <BasicButton frenchText={status === "video" ? "Transcription textuelle" : "Vidéo"} englishText={status === "video" ? "Text transcription" : "Video"} onClickFunction={onTranscriptionButtonClick} />
         </div>
     )
 }
