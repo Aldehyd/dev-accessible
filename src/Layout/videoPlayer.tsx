@@ -12,9 +12,11 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
 
     const {language} = useContext(LanguageContext);
 
+    const videoPlayerElement = useRef(null);
     const videoElement = useRef(null);
 
     const [status,setStatus] = useState<string>("video");
+    const [fullScreenMode,setFullScreenMode] = useState<boolean>(false);
     const [currentTime,setCurrentTime] = useState<number>(0);
     const [currentTimeInMinutesAndSeconds,setCurrentTimeInMinutesAndSeconds] = useState({minutes: 0, seconds: 0});
 
@@ -30,6 +32,13 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
     };
 
     useEffect(()=> {
+        fullScreenMode ? 
+            videoPlayerElement.current?.requestFullscreen() 
+            : 
+            document.fullscreenElement !== null && document.exitFullscreen();
+    },[fullScreenMode]);
+
+    useEffect(()=> {
         setCurrentTime(videoElement.current?.currentTime);
     },[videoElement.current?.currentTime]);
 
@@ -42,7 +51,7 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
             <h2 className="video-title">
                 {language === "french" ? video.frenchTitle : video.englishTitle}
             </h2>
-            <div className="video-player">
+            <div className="video-player" ref={videoPlayerElement}>
                 {status === "transcription" && 
                     <div className="video-player_transcription">
                         <p>{language === "french" ? video.frenchTranscription : video.englishTranscription}</p>
@@ -94,7 +103,11 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
                             </div>
                         </div>
                     </div>
-                    <button className="full-screen-button video-player-button" aria-label={language === "french" ? "Plein écran": "Full Screen"}>&#9167;</button>
+                    <button className="full-screen-button video-player-button" 
+                        onClick={()=> setFullScreenMode(fullScreenMode => !fullScreenMode)}
+                        aria-label={fullScreenMode ? (language === "french" ? "Quitter le mode plein écran" : "Exit full screen mode") : (language === "french" ? "Passer en mode plein écran": "Go to full screen mode")}>
+                        &#9167;
+                    </button>
                 </div>
             </div>
             <BasicButton frenchText={status === "video" ? "Transcription textuelle" : "Vidéo"} englishText={status === "video" ? "Text transcription" : "Video"} onClickFunction={onTranscriptionButtonClick} />
