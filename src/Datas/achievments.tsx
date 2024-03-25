@@ -2,7 +2,7 @@
 export const achievments = [
     {
         title: "dyskredy-art.com",
-        websiteLink: "https://dykredy-art.com",
+        websiteLink: "https://dyskredy-art.com",
         githubLink: "bla",
         imageName: "dyskredy-preview",
         frenchAlt: "très beau site",
@@ -11,6 +11,7 @@ export const achievments = [
         englishType: "Website",
         frenchNeed: "Site artistique présentant des galeries d'illustrations, de photos et de vidéos.",
         englishNeed: "Website with draws, photos and videos galeries.",
+        year: "2023",
         developmentTools: ["VsCode", "NPM", "Webpack"],
         technologies: {
             frontEnd: ["HTML", "ARIA", "CSS", "TYPESCRIPT"],

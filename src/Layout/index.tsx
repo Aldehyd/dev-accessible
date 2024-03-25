@@ -20,6 +20,8 @@ import ShortcutModifier from "./shortcutModifier.tsx";
 import ShortcutModifiersSection from "./shortcutModifiersSection.tsx";
 import VideoPlayer from "./videoPlayer.tsx";
 import {video} from '../Datas/video.tsx';
+import AchievmentSection from "./achievmentSection.tsx";
+import { achievments } from "../Datas/achievments.tsx";
 
 export default function Layouts(): React.JSX.Element {
 
@@ -66,6 +68,7 @@ export default function Layouts(): React.JSX.Element {
             <Carousel pictures={pictures} />
             <ShortcutModifiersSection />
             <VideoPlayer video={video} />
+            <AchievmentSection achievment={achievments[0]}/>
         </div>
     )
 }

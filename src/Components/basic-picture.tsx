@@ -2,7 +2,7 @@ import { useContext } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 
 interface BasicPictureInterface {
-    image: string,
+    imageName: string,
     frenchAlt?: string,
     englishAlt?: string
 }
