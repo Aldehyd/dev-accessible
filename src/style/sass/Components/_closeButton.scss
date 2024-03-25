@@ -1,0 +1,72 @@
+
+.basic-button-container--close-button {
+    position: absolute;
+    z-index: 0;
+    width: fit-content;
+}
+.basic-button--close {
+    z-index: 1;
+    padding: 0.5rem;
+    & svg {
+        height: 2rem;
+        width: 2rem;
+        fill: none;
+        stroke: map-get($colors,darkBackground);
+        stroke-width: 2rem;
+    }
+}
+
+body.contrast .basic-button {
+    border: solid 0.4rem map-get($colors,white);
+    &-shadow {
+        transform: scale(0);
+    }
+    &::after {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        top: -0.4rem;
+        left: -0.4rem;
+        width: 100%;
+        height: 100%;
+        background-color: map-get($colors,white);
+        border: solid 0.4rem map-get($colors,blue);
+        border-radius: 1rem;
+        opacity: 0;
+    }
+    &:not([aria-disabled]):hover::after {
+        opacity: 1;
+    }
+    &[aria-disabled="false"]:hover::after {
+        opacity: 1;
+    }
+    &:not([aria-disabled]):focus::after {
+        opacity: 1;
+    }
+    &[aria-disabled="false"]:focus::after {
+        opacity: 1;
+    }
+}
+body.contrast .basic-button-container--on-white-background .basic-button {
+    border: solid 0.4rem map-get($colors,darkBackground);
+    &::after {
+        border-color: map-get($colors,darkBackground);
+    }
+}
+
+body.purple .basic-button {
+    background-color: map-get($colors,purple);
+}
+
+body.animations {
+    & .basic-button {
+        transition: 200ms ease-in-out;
+    }
+    & .basic-button-shadow {
+        transition: 100ms ease-in-out;
+    }
+    & .basic-button::after {
+        transition: 200ms ease-in-out;
+    }
+}
+
