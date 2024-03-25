@@ -63,7 +63,7 @@ export const achievments = [
         developmentTools: ["VsCode", "NPM", "Git"],
         technologies: {
             frontEnd: ["HTML", "ARIA", "CSS", "SASS", "ReactJS", "TypeScript"],
-            backEnd: ["NODEJS"],
+            backEnd: ["NodeJS"],
             dataBase: ["MongoDB"]
         },
         accessibility: {
