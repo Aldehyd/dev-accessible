@@ -114,7 +114,7 @@ export const achievments = [
             dataBase: []
         },
         accessibility: {
-            score: 0,
+            score: false,
             frenchNonCompliance: ["Non évaluée"],
             englishNonCompliance: ["No evaluation"]
         },

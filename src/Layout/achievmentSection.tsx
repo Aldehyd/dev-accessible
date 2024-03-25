@@ -14,7 +14,7 @@ export default function AchievmentSection({achievment}: AchievmentSectionPropsIn
     const [toolsList,setToolsList] = useState<string>("");
 
     useEffect(()=> {
-        const technologiesArray = [...achievment.technologies.frontEnd,...achievment.technologies.backEnd];
+        const technologiesArray = [...achievment.technologies.frontEnd,...achievment.technologies.backEnd,...achievment.technologies.dataBase];
         let technologiesList = "";
         for(let techno of technologiesArray) {
             if(technologiesArray.indexOf(techno) !== technologiesArray.length-1) {
@@ -61,7 +61,7 @@ export default function AchievmentSection({achievment}: AchievmentSectionPropsIn
                     <dd>{technologiesList}</dd>
 
                     <dt>{language === "french" ? "Accessibilité" : "Accessibility"} :</dt>
-                    <dd>{language === "french" ? achievment.accessibility.score + " %": achievment.accessibility.score + " %"}</dd>
+                    <dd>{achievment.accessibility.score === false ? (language === "french" ? "Non évaluée" : "Not evaluated") : achievment.accessibility.score + " %"}</dd>
                 </dl>
             </div>
             <MainLink frenchText="Voir détails..." englishText="See details..." />

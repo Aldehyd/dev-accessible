@@ -95,6 +95,10 @@ body:not(.contrast).purple h2 {
   min-height: 100vh;
 }
 
+main {
+  background-color: hsl(0deg, 6%, 10%);
+}
+
 h2 {
   font-size: 1.6rem;
   color: hsl(175deg, 95%, 55%);
@@ -1522,6 +1526,33 @@ body:not(.contrast) .available-status-indicator.available {
 
 body.contrast .available-status-indicator {
   border-color: hsl(0deg, 6%, 10%);
+}
+
+.achievments-separator {
+  margin: 4rem auto;
+  height: 1rem;
+  width: 90%;
+  background-color: hsl(175deg, 95%, 55%);
+  border-radius: 0.5rem;
+  transform-origin: 50% 50%;
+  transform: scaleX(1);
+}
+
+@keyframes separatorAppear {
+  from {
+    transform: scaleX(0);
+  }
+}
+body.animations .achievments-separator {
+  animation: separatorAppear 400ms 1.4s ease-in-out backwards;
+}
+
+body:not(.contrast) .achievments-separator {
+  box-shadow: 0 0 0.5rem 0.1rem hsl(175deg, 95%, 55%);
+}
+body:not(.contrast) .purple {
+  background-color: hsl(295deg, 95%, 55%);
+  box-shadow: 0 0 0.5rem 0.1rem hsl(295deg, 95%, 55%);
 }
 
 .radio-group {

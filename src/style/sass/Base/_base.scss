@@ -96,6 +96,9 @@ body {
 #root {
     min-height: 100vh;
 }
+main {
+    background-color: map-get($colors,darkBackground);
+}
 h2 {
     font-size: 1.6rem;
     color: map-get($colors,blue);
