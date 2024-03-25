@@ -1,0 +1,30 @@
+.achievments-separator {
+    margin: auto;
+    height: 1rem;
+    width: 90%;
+    background-color: map-get($colors,blue);
+    border-radius: 0.5rem;
+    transform-origin: 50% 50%;
+    transform: scaleX(1);
+}
+
+@keyframes separatorAppear {
+    from {
+        transform: scaleX(0);
+    }
+}
+
+body.animations {
+    & .achievments-separator {
+        animation: separatorAppear 400ms 1.4s ease-in-out backwards;
+    }
+}
+body:not(.contrast) {
+    & .achievments-separator {
+        box-shadow: 0 0 0.5rem 0.1rem map-get($colors,blue);
+    }
+    & .purple {
+        background-color: map-get($colors,purple);
+        box-shadow: 0 0 0.5rem 0.1rem map-get($colors,purple);
+    }
+}
