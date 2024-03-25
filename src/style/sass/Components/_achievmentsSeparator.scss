@@ -23,8 +23,10 @@ body:not(.contrast) {
     & .achievments-separator {
         box-shadow: 0 0 0.5rem 0.1rem map-get($colors,blue);
     }
-    & .purple {
-        background-color: map-get($colors,purple);
-        box-shadow: 0 0 0.5rem 0.1rem map-get($colors,purple);
+    &.purple {
+        & .achievments-separator {
+            background-color: map-get($colors,purple);
+            box-shadow: 0 0 0.5rem 0.1rem map-get($colors,purple);
+        }
     }
 }
