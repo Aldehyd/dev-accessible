@@ -7,14 +7,16 @@ import {handleMainColor} from "../Functions/handleMainColor.tsx";
 import {colorsRadioButtonsData} from "../Datas/colorsRadioButtonsData.tsx";
 import AchievmentDetailsMain from "../Layout/achievmentDetailsMain.tsx";
 import { useParams } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
+import { achievments } from "../Datas/achievments.tsx";
 
 export default function AchievmentDetails(): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
 
     const {achievment} = useParams();
+    const currentAchievment = achievments.find(project => project.title === achievment || project.title === `${achievment}.com`);
 
     return (
         <>
@@ -23,7 +25,8 @@ export default function AchievmentDetails(): React.JSX.Element {
             <Switch name="contrasted-theme" frenchLabel="Thème contrasté" englishLabel="Contrasted theme" onSwitchFunction={handleContrastedThemeSwitch} />
             <RadioButtonGroup name="color" frenchLegend="Couleur" englishLegend="Color" radioButtonsData={colorsRadioButtonsData} handleChoice={handleMainColor} />
             <h1>{achievment}</h1>
-            {/* <AchievmentDetailsMain achievments={achievment} /> */}
+            
+            <AchievmentDetailsMain achievment={currentAchievment} />
         </>
         
     )

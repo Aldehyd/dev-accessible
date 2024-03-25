@@ -1,61 +1,25 @@
 
-import { useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 
 export default function AchievmentDetailsMain({achievment}): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
 
-    const [frontTechnologiesList,setFrontTechnologiesList] = useState<string>("");
-    const [backTechnologiesList,setBackTechnologiesList] = useState<string>("");
-    const [dataTechnologiesList,setDataTechnologiesList] = useState<string>("");
-    const [toolsList,setToolsList] = useState<string>("");
-
-    useEffect(()=> {
-        let frontTechnologiesList = "";
-        for(let techno of achievment.technologies.frontEnd) {
-            if(achievment.technologies.frontEnd.indexOf(techno) !== achievment.technologies.frontEnd.length-1) {
-                frontTechnologiesList = frontTechnologiesList + techno + ", ";
+    const translateArrayInStringsList: (array: string[])=> string = (array) => {
+        let stringsList = "";
+        for(let element of array) {
+            if(array.indexOf(element) !== array.length-1) {
+                stringsList = stringsList + element + ", ";
             } else {
-                frontTechnologiesList = frontTechnologiesList + techno;
+                stringsList = stringsList + element;
             };
         };
-        setFrontTechnologiesList(frontTechnologiesList);
-
-        let backTechnologiesList = "";
-        for(let techno of achievment.technologies.backEnd) {
-            if(achievment.technologies.backEnd.indexOf(techno) !== achievment.technologies.backEnd.length-1) {
-                backTechnologiesList = backTechnologiesList + techno + ", ";
-            } else {
-                backTechnologiesList = backTechnologiesList + techno;
-            };
-        };
-        setBackTechnologiesList(backTechnologiesList);
-
-        let dataTechnologiesList = "";
-        for(let techno of achievment.technologies.dataBase) {
-            if(achievment.technologies.dataBase.indexOf(techno) !== achievment.technologies.dataBase.length-1) {
-                dataTechnologiesList = dataTechnologiesList + techno + ", ";
-            } else {
-                dataTechnologiesList = dataTechnologiesList + techno;
-            };
-        };
-        setDataTechnologiesList(dataTechnologiesList);
-
-        let toolsList = "";
-        for(let tool of achievment.developmentTools) {
-            if(achievment.developmentTools.indexOf(tool) !== achievment.developmentTools.length-1) {
-                toolsList = toolsList + tool + ", ";
-            } else {
-                toolsList = toolsList + tool;
-            };
-        };
-        setToolsList(toolsList);
-    },[]);
+        return stringsList;
+    };
 
     return (
         <main>
-            <h1>{achievment.title}</h1>
             <div className="achievment-section_text-content">
                 <dl>
                     <dt>Type :</dt>
@@ -74,21 +38,21 @@ export default function AchievmentDetailsMain({achievment}): React.JSX.Element {
                     <dd>{language === "french" ? achievment.frenchNeed : achievment.englishNeed}</dd>
 
                     <dt>{language === "french" ? "Outils de développement" : "Development tools"} :</dt>
-                    <dd>{toolsList}</dd>
+                    <dd>{translateArrayInStringsList(achievment.developmentTools)}</dd>
 
                     <dt>{language === "french" ? "Technologies front-end" : "Front-end technologies"} :</dt>
-                    <dd>{frontTechnologiesList}</dd>
+                    <dd>{translateArrayInStringsList(achievment.technologies.frontEnd)}</dd>
 
-                    {backTechnologiesList.length > 0 && 
+                    { achievment.technologies.backEnd.length > 0 &&
                         <>
                             <dt>{language === "french" ? "Technologies back-end" : "Back-end technologies"} :</dt>
-                            <dd>{backTechnologiesList}</dd>
+                            <dd>{translateArrayInStringsList(achievment.technologies.backEnd)}</dd>
                         </>}
                     
-                    {dataTechnologiesList.length > 0 && 
+                    { achievment.technologies.dataBase.length > 0 &&
                         <>
                             <dt>{language === "french" ? "Base de données" : "Database"} :</dt>
-                            <dd>{dataTechnologiesList}</dd>
+                            <dd>{translateArrayInStringsList(achievment.technologies.dataBase)}</dd>
                         </>}
                     
                     <dt>{language === "french" ? "Accessibilité" : "Accessibility"} :</dt>
@@ -97,41 +61,51 @@ export default function AchievmentDetailsMain({achievment}): React.JSX.Element {
                         : 
                         <>
                             <dl>
-                                <dd>Score :</dd>
-                                <dt>{achievment.accessibility.score + " %"}</dt>
+                                <dt>Score :</dt>
+                                <dd>{achievment.accessibility.score + " %"}</dd>
 
-                                <dd>{language === "french" ? "Non conformités" : "Non compliances"} :</dd>
-                                <dt>
+                                <dt>{language === "french" ? "Non conformités" : "Non compliances"} :</dt>
+                                <dd>
                                     <ul>
                                         {language === "french" ?
-                                            achievment.accessibility.frenchNonCompliance.map(nonCompliance => {return <li>{nonCompliance}</li>})
+                                            achievment.accessibility.frenchNonCompliance.map(nonCompliance => {return <li key={nonCompliance.index}>{nonCompliance}</li>})
                                             :
-                                            achievment.accessibility.englishNonCompliance.map(nonCompliance => {return <li>{nonCompliance}</li>})
+                                            achievment.accessibility.englishNonCompliance.map(nonCompliance => {return <li key={nonCompliance.index}>{nonCompliance}</li>})
                                         }
                                     </ul>
-                                </dt>
+                                </dd>
                             </dl>
                         </>}
                     </dd>
 
-                    <dd>{language === "french" ? "Fonctionnalités" : "Fonctionnalities"} :</dd>
-                    <dt>
+                    <dt>{language === "french" ? "Fonctionnalités" : "Fonctionnalities"} :</dt>
+                    <dd>
                         <ul>
                             {language === "french" ? 
-                                achievment.frenchFonctionnalities.map(fonctionnality => {return <li>{fonctionnality}</li>})
+                                achievment.frenchFonctionnalities.map(fonctionnality => {return <li key={fonctionnality.index}>{fonctionnality}</li>})
                                 :
-                                achievment.englishFonctionnalities.map(fonctionnality => {return <li>{fonctionnality}</li>})
+                                achievment.englishFonctionnalities.map(fonctionnality => {return <li key={fonctionnality.index}>{fonctionnality}</li>})
                             }
                         </ul> 
-                    </dt>
+                    </dd>
 
                     {/* ajouter design */}
+                    <dt>Design :</dt>
+                    <dd>
+                        <dl>
+                            <dt>{language === "french" ? "Réalisations" : "Realizations"} :</dt>
+                            <dd></dd>
 
-                    <dd>{language === "french" ? "Déploiement" : "Deployment"} :</dd>
-                    <dt>{language === "french" ? achievment.frenchDeployment : achievment.englishDeployment}</dt>
+                            <dt>{language === "french" ? "Outils utilisés" : "Tools"} :</dt>
+                            <dd></dd>
+                        </dl>
+                    </dd>
 
-                    <dd>{language === "french" ? "Commantaires" : "Comments"} :</dd>
-                    <dt>{language === "french" ? achievment.frenchComments: achievment.englishComments}</dt>
+                    <dt>{language === "french" ? "Déploiement" : "Deployment"} :</dt>
+                    <dd>{language === "french" ? achievment.frenchDeployment : achievment.englishDeployment}</dd>
+
+                    <dt>{language === "french" ? "Commantaires" : "Comments"} :</dt>
+                    <dd>{language === "french" ? achievment.frenchComments: achievment.englishComments}</dd>
 
                     {/* ajouter carousel photos */}
                 </dl>
