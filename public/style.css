@@ -1555,6 +1555,77 @@ body:not(.contrast).purple .achievments-separator {
   box-shadow: 0 0 0.5rem 0.1rem hsl(295deg, 95%, 55%);
 }
 
+.basic-button-container--close-button {
+  position: absolute;
+  z-index: 0;
+  width: fit-content;
+}
+
+.basic-button--close {
+  z-index: 1;
+  padding: 0.5rem;
+}
+.basic-button--close svg {
+  height: 2rem;
+  width: 2rem;
+  fill: none;
+  stroke: hsl(0deg, 6%, 10%);
+  stroke-width: 2rem;
+}
+
+body.contrast .basic-button {
+  border: solid 0.4rem #f1f1f1;
+}
+body.contrast .basic-button-shadow {
+  transform: scale(0);
+}
+body.contrast .basic-button::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: -0.4rem;
+  left: -0.4rem;
+  width: 100%;
+  height: 100%;
+  background-color: #f1f1f1;
+  border: solid 0.4rem hsl(175deg, 95%, 55%);
+  border-radius: 1rem;
+  opacity: 0;
+}
+body.contrast .basic-button:not([aria-disabled]):hover::after {
+  opacity: 1;
+}
+body.contrast .basic-button[aria-disabled=false]:hover::after {
+  opacity: 1;
+}
+body.contrast .basic-button:not([aria-disabled]):focus::after {
+  opacity: 1;
+}
+body.contrast .basic-button[aria-disabled=false]:focus::after {
+  opacity: 1;
+}
+
+body.contrast .basic-button-container--on-white-background .basic-button {
+  border: solid 0.4rem hsl(0deg, 6%, 10%);
+}
+body.contrast .basic-button-container--on-white-background .basic-button::after {
+  border-color: hsl(0deg, 6%, 10%);
+}
+
+body.purple .basic-button {
+  background-color: hsl(295deg, 95%, 55%);
+}
+
+body.animations .basic-button {
+  transition: 200ms ease-in-out;
+}
+body.animations .basic-button-shadow {
+  transition: 100ms ease-in-out;
+}
+body.animations .basic-button::after {
+  transition: 200ms ease-in-out;
+}
+
 .radio-group {
   position: relative;
   margin: auto;
@@ -2227,6 +2298,25 @@ body:not(.contrast).purple .achievment-section {
 }
 body:not(.contrast).purple.animations .achievment-section_text-content {
   animation: sectionContentAppearPurple 600ms 800ms ease-in-out backwards;
+}
+
+.carousel-full-screen {
+  position: absolute;
+  z-index: 5;
+  margin: auto;
+  width: 100%;
+}
+
+.full-screen-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  padding: 5rem;
 }
 
 .components-layout {

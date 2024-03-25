@@ -4,10 +4,11 @@ import CarouselPicture from "../Components/carousel-picture.tsx";
 import CarouselButton from "../Components/carousel-button.tsx";
 interface CarouselPropsInterface {
     pictures: {id: number, pictureName: any, frenchAlt?: string, englishAlt?: string}[],
+    setCurrentPicture: (picture: number)=>void,
     labelId: string
 }
 
-export default function Carousel({pictures}: CarouselPropsInterface): React.JSX.Element {
+export default function Carousel({pictures,setCurrentPicture}: CarouselPropsInterface): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
 
@@ -25,7 +26,7 @@ export default function Carousel({pictures}: CarouselPropsInterface): React.JSX.
     return(
         <div className="carousel" role="group" aria-roledescription="carousel" aria-labelledby="achievment-details-carousel-label">
             <CarouselButton roleButton="previous" picturesToShow={picturesToShow} setPicturesToShow={setPicturesToShow} disabledStatus={picturesToShow.current === 0 ? "true" : "false"} setCurrentPictureMovement={setPictureMovement} />
-            <div className={classList} ref={picturesContainer} aria-atomic="false" aria-live="polite">
+            <div className={classList} ref={picturesContainer} aria-atomic="false" aria-live="polite" onClick={()=> setCurrentPicture(picturesToShow.current)}>
                 {
                     pictures.map(picture => {return (
                         <CarouselPicture key={picture.id} language={language} picture={picture} picturesToShow={picturesToShow} pictureMovement={pictureMovement} />
