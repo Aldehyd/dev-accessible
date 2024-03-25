@@ -89,15 +89,14 @@ export default function AchievmentDetailsMain({achievment}): React.JSX.Element {
                         </ul> 
                     </dd>
 
-                    {/* ajouter design */}
                     <dt>Design :</dt>
                     <dd>
                         <dl>
                             <dt>{language === "french" ? "Réalisations" : "Realizations"} :</dt>
-                            <dd></dd>
+                            <dd>{language === "french" ? translateArrayInStringsList(achievment.design.frenchWork) : translateArrayInStringsList(achievment.design.englishWork)}</dd>
 
                             <dt>{language === "french" ? "Outils utilisés" : "Tools"} :</dt>
-                            <dd></dd>
+                            <dd>{translateArrayInStringsList(achievment.design.tools)}</dd>
                         </dl>
                     </dd>
 
