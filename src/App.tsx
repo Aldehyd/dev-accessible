@@ -6,6 +6,7 @@ import ShortcutsContext from './Contexts/shortcuts-context.tsx';
 import Layouts from './Layout/index.tsx';
 import Achievments from './Pages/achievments.tsx';
 import {localShortcuts} from './Datas/shortcuts.tsx';
+import AchievmentDetails from './Pages/achievmentDetails.tsx';
 
 export default function App(): React.JSX.Element {
 
@@ -29,6 +30,7 @@ export default function App(): React.JSX.Element {
                         <Route path="/components" element={<Components />} />
                         <Route path="/layouts" element={<Layouts />} />
                         <Route path="/achievments" element={<Achievments />} />
+                        <Route path="/achievments/:achievment" element={<AchievmentDetails />} />
                     </Routes>
                 </Router>
             </ShortcutsContext.Provider>

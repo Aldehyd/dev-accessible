@@ -64,7 +64,7 @@ export default function AchievmentSection({achievment}: AchievmentSectionPropsIn
                     <dd>{achievment.accessibility.score === false ? (language === "french" ? "Non évaluée" : "Not evaluated") : achievment.accessibility.score + " %"}</dd>
                 </dl>
             </div>
-            <MainLink frenchText="Voir détails..." englishText="See details..." />
+            <MainLink frenchText="Voir détails..." englishText="See details..." route={"/achievments/" + achievment.title.replace(".com","")} />
 
             {/* <div class="separator"></div> */}
 
