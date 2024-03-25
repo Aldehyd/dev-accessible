@@ -106,7 +106,7 @@ h2 {
 a, a:visited {
     text-decoration: none;
 }
-ul {
+ul:not(.achievments_list) {
     list-style: none;
 }
 button, input, textarea {

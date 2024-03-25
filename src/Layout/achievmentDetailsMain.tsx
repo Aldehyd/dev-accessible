@@ -21,7 +21,7 @@ export default function AchievmentDetailsMain({achievment}): React.JSX.Element {
 
     return (
         <main>
-            <div className="achievment-section_text-content">
+            <div className="achievment-section">
                 <dl>
                     <dt>Type :</dt>
                     <dd>{language === "french" ? achievment.frenchType : achievment.englishType}</dd>
@@ -30,7 +30,7 @@ export default function AchievmentDetailsMain({achievment}): React.JSX.Element {
                     <dd>{achievment.year}</dd>
 
                     <dt>{language === "french" ? "Lien" : "Link"} :</dt>
-                    <dd>{achievment.websiteLink}</dd>
+                    <dd><a href={achievment.websiteLink} target="blank">{achievment.websiteLink}</a></dd>
 
                     <dt>{language === "french" ? "Lien GitHub" : "GitHub link"} :</dt>
                     <dd>{achievment.githubLink}</dd>
@@ -67,7 +67,7 @@ export default function AchievmentDetailsMain({achievment}): React.JSX.Element {
 
                                 <dt>{language === "french" ? "Non conformités" : "Non compliances"} :</dt>
                                 <dd>
-                                    <ul>
+                                    <ul className="achievments_list">
                                         {language === "french" ?
                                             achievment.accessibility.frenchNonCompliance.map(nonCompliance => {return <li key={nonCompliance.index}>{nonCompliance}</li>})
                                             :
@@ -81,7 +81,7 @@ export default function AchievmentDetailsMain({achievment}): React.JSX.Element {
 
                     <dt>{language === "french" ? "Fonctionnalités" : "Fonctionnalities"} :</dt>
                     <dd>
-                        <ul>
+                        <ul className="achievments_list">
                             {language === "french" ? 
                                 achievment.frenchFonctionnalities.map(fonctionnality => {return <li key={fonctionnality.index}>{fonctionnality}</li>})
                                 :
@@ -108,6 +108,7 @@ export default function AchievmentDetailsMain({achievment}): React.JSX.Element {
                     <dd>{language === "french" ? achievment.frenchComments: achievment.englishComments}</dd>
 
                 </dl>
+                <h2>Photos :</h2>
                 <Carousel pictures={achievment.pictures} />
             </div>
         </main>
