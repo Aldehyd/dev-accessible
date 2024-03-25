@@ -1550,7 +1550,7 @@ body.animations .achievments-separator {
 body:not(.contrast) .achievments-separator {
   box-shadow: 0 0 0.5rem 0.1rem hsl(175deg, 95%, 55%);
 }
-body:not(.contrast) .purple {
+body:not(.contrast).purple .achievments-separator {
   background-color: hsl(295deg, 95%, 55%);
   box-shadow: 0 0 0.5rem 0.1rem hsl(295deg, 95%, 55%);
 }
