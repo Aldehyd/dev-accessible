@@ -14,7 +14,7 @@ export const achievments = [
         year: "2023",
         developmentTools: ["VsCode", "NPM", "Webpack"],
         technologies: {
-            frontEnd: ["HTML", "ARIA", "CSS", "TypeScript"],
+            frontEnd: ["HTML", "ARIA", "CSS", "SASS", "TypeScript"],
             backEnd: ["NodeJS"],
             dataBase : []
         },
