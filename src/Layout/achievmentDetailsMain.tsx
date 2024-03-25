@@ -1,6 +1,7 @@
 
 import { useContext} from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
+import Carousel from "../Layout/carousel.tsx";
 
 export default function AchievmentDetailsMain({achievment}): React.JSX.Element {
 
@@ -106,8 +107,8 @@ export default function AchievmentDetailsMain({achievment}): React.JSX.Element {
                     <dt>{language === "french" ? "Commantaires" : "Comments"} :</dt>
                     <dd>{language === "french" ? achievment.frenchComments: achievment.englishComments}</dd>
 
-                    {/* ajouter carousel photos */}
                 </dl>
+                <Carousel pictures={achievment.pictures} />
             </div>
         </main>
     )

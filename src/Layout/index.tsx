@@ -28,31 +28,31 @@ export default function Layouts(): React.JSX.Element {
     const pictures = [
         {
             id: 0,
-            element: firstImage,
+            pictureName: 'dyskredy-preview',
             frenchAlt: "très beau site",
             englishAlt: "beautiful website"
         },
         {
             id: 1,
-            element: secondImage,
+            pictureName: 'guitare-color',
             frenchAlt: "guitare couleur",
             englishAlt: "color guitar"
         },
         {
             id: 2,
-            element: thirdImage,
+            pictureName: 'guitare',
             frenchAlt: "guitare",
             englishAlt: "guitar"
         },
         {
             id: 3,
-            element: fourthImage,
+            pictureName: 'wood',
             frenchAlt: "copeaux",
             englishAlt: "wooden pieces"
         },
         {
             id: 4,
-            element: fifthImage,
+            pictureName: 'stick',
             frenchAlt: "manche de guitare",
             englishAlt: "guitar stick"
         }

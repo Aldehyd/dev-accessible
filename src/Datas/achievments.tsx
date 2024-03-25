@@ -36,14 +36,16 @@ export const achievments = [
         englishComents: "All the components have been coded from scratch (no library used) with ES6 classes.",
         pictures: [
             {
+                id: 0,
                 pictureName: "dyskredy-preview",
-                frenchAlt: "",
-                englishAlt: "",
+                frenchAlt: "site",
+                englishAlt: "site",
             },
             {
+                id: 1,
                 pictureName: "guitare",
-                frenchAlt: "",
-                englishAlt: "",
+                frenchAlt: "guitare",
+                englishAlt: "guitare",
             }
         ]
 
@@ -84,11 +86,13 @@ export const achievments = [
         englishComents: "All the components have been coded from scratch (no library used).",
         pictures: [
             {
+                id: 0,
                 pictureName: "dyskredy-preview",
                 frenchAlt: "",
                 englishAlt: "",
             },
             {
+                id: 1,
                 pictureName: "guitare",
                 frenchAlt: "",
                 englishAlt: "",
@@ -131,11 +135,13 @@ export const achievments = [
         englishComents: "",
         pictures: [
             {
+                id: 0,
                 pictureName: "dyskredy-preview",
                 frenchAlt: "",
                 englishAlt: "",
             },
             {
+                id: 1,
                 pictureName: "guitare",
                 frenchAlt: "",
                 englishAlt: "",

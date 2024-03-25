@@ -3,7 +3,7 @@ import LanguageContext from "../Contexts/language-context.tsx";
 import CarouselPicture from "../Components/carousel-picture.tsx";
 import CarouselButton from "../Components/carousel-button.tsx";
 interface CarouselPropsInterface {
-    pictures: {id: number, element: any, frenchAlt: string, englishAlt: string}[],
+    pictures: {id: number, pictureName: any, frenchAlt?: string, englishAlt?: string}[],
     labelId: string
 }
 

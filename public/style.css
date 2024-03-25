@@ -1625,6 +1625,7 @@ body.animations .radio-group:focus-within::before {
 .carousel {
   margin: auto;
   position: relative;
+  width: fit-content;
 }
 
 .carousel_pictures-container {
