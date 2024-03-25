@@ -1,7 +1,8 @@
 .main-link {
-    display: inline-block;
+    display: block;
     position: relative;
     padding: 1rem;
+    width: fit-content;
     text-decoration: none;
     font-size: 1.8rem;
     color: map-get($colors,blue);

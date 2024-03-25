@@ -1156,9 +1156,10 @@ body:not(.contrast).purple .accessibility-settings-button {
 }
 
 .main-link {
-  display: inline-block;
+  display: block;
   position: relative;
   padding: 1rem;
+  width: fit-content;
   text-decoration: none;
   font-size: 1.8rem;
   color: hsl(175deg, 95%, 55%);
