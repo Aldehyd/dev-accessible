@@ -10,7 +10,7 @@ export default function BasicButton({onClickFunction}: BasicButtonPropsInterface
     const {language} = useContext(LanguageContext);
 
     return(
-        <div className="basic-button-container">
+        <div className="basic-button-container basic-button-container--close-button">
 
                 <button className="basic-button basic-button--close" onClick={onClickFunction} 
                     aria-label={language === "french" ? "Fermer" : "Close"}>

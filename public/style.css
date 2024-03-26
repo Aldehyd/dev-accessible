@@ -121,6 +121,7 @@ button, input, textarea {
   position: relative;
   z-index: 0;
   width: fit-content;
+  height: fit-content;
 }
 .basic-button-container.disabled {
   opacity: 0.6;
@@ -1557,6 +1558,8 @@ body:not(.contrast).purple .achievments-separator {
 
 .basic-button-container--close-button {
   position: absolute;
+  top: 0;
+  right: 5rem;
   z-index: 0;
   width: fit-content;
 }
@@ -2301,10 +2304,59 @@ body:not(.contrast).purple.animations .achievment-section_text-content {
 }
 
 .carousel-full-screen {
-  position: absolute;
-  z-index: 5;
   margin: auto;
-  width: 100%;
+  width: 90vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.carousel-full-screen_pictures-container {
+  width: 70vw;
+  height: 85vh;
+}
+.carousel-full-screen .carousel_picture {
+  object-fit: fill;
+}
+.carousel-full-screen .carousel_button--previous {
+  position: relative;
+  left: 0;
+}
+.carousel-full-screen .carousel_button--next {
+  position: relative;
+  right: 0;
+}
+
+@keyframes carouselFullScreenNextTranslate {
+  0% {
+    transform: translateX(70vw);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes carouselFullScreenPreviousTranslate {
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(70vw);
+  }
+}
+body.animations .carousel-full-screen .carousel_pictures-container.transition.next::after {
+  animation: carouselFullScreenNextTranslate 600ms ease-in-out;
+}
+body.animations .carousel-full-screen .carousel_pictures-container.transition.previous::after {
+  animation: carouselFullScreenPreviousTranslate 600ms ease-in-out;
 }
 
 .full-screen-modal {
@@ -2314,9 +2366,9 @@ body:not(.contrast).purple.animations .achievment-section_text-content {
   z-index: 5;
   width: 100vw;
   height: 100vh;
-  background-color: black;
+  background-color: #000;
   display: flex;
-  padding: 5rem;
+  padding: 3rem;
 }
 
 .components-layout {

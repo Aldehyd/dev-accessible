@@ -1,6 +1,60 @@
 .carousel-full-screen {
-    position: absolute;
-    z-index: 5;
     margin: auto;
-    width: 100%;
+    width: 90vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    &_pictures-container {
+        width: 70vw;
+        height: 85vh;
+    }
+    & .carousel_picture {
+        object-fit: fill;
+    }
+    & .carousel_button--previous {
+        position: relative;
+        left: 0;
+    }
+    & .carousel_button--next {
+        position: relative;
+        right: 0;
+    }
+}
+
+@keyframes carouselFullScreenNextTranslate {
+    0% {
+        transform: translateX(70vw);
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes carouselFullScreenPreviousTranslate {
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(70vw);
+    }
+}
+
+body.animations {
+    & .carousel-full-screen .carousel_pictures-container.transition {
+        &.next::after {
+            animation: carouselFullScreenNextTranslate 600ms ease-in-out;
+        }
+        &.previous::after {
+            animation: carouselFullScreenPreviousTranslate 600ms ease-in-out;
+        }
+    }
 }

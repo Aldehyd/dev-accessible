@@ -17,7 +17,7 @@ export default function CarouselFullScreen({pictures,currentPicture}: CarouselFu
     const [picturesToShow,setPicturesToShow] = useState<{current: number, amount: number}>({current: currentPicture, amount: pictures.length});
     const [pictureMovement,setPictureMovement] = useState<string>("");
 
-    const classList = `carousel_pictures-container ${pictureMovement}`;
+    const classList = `carousel_pictures-container carousel-full-screen_pictures-container ${pictureMovement}`;
     const picturesContainer = useRef(null);
 
     useEffect(()=> {
