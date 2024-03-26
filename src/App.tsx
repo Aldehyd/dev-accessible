@@ -29,31 +29,31 @@ export default function App(): React.JSX.Element {
         setDisplayCarousel(displayCarousel);
     };
 
-    const [pictures,setPictures] = useState<{id: number, pictureName: any, frenchAlt?: string, englishAlt?: string}[]>([]);
+    const [picturesFullScreen,setPicturesFullScreen] = useState<{id: number, pictureName: any, frenchAlt?: string, englishAlt?: string}[]>([]);
 
-    const changePictures : (pictures: {id: number, pictureName: any, frenchAlt?: string, englishAlt?: string}[]) => void = (pictures)=> {
-        setPictures(pictures);
+    const changePicturesFullScreen : (pictures: {id: number, pictureName: any, frenchAlt?: string, englishAlt?: string}[]) => void = (pictures)=> {
+        setPicturesFullScreen(pictures);
     };
 
-    const [currentPicture,setCurrentPicture] = useState<number>(0);
+    const [currentPictureFullScreen,setCurrentPictureFullScreen] = useState<number>(0);
 
-    const changeCurrentPicture : (currentPicture: number)=> void = (currentPicture)=> {
-        setCurrentPicture(currentPicture);
+    const changeCurrentPictureFullScreen : (currentPicture: number)=> void = (currentPicture)=> {
+        setCurrentPictureFullScreen(currentPictureFullScreen);
     };
 
     return(
         <LanguageContext.Provider value ={{language,changeLanguage}}>
             <ShortcutsContext.Provider value={{shortcuts,changeShortcuts}}>
-                <Router>
-                    <Routes>
-                        <Route path="/components" element={<Components />} />
-                        <Route path="/layouts" element={<Layouts />} />
-                        <CarouselContext.Provider value={{displayCarousel,pictures,currentPicture,changeDisplayCarousel,changePictures,changeCurrentPicture}}>
+                <CarouselContext.Provider value={{displayCarousel,picturesFullScreen,currentPictureFullScreen,changeDisplayCarousel,changePicturesFullScreen,changeCurrentPictureFullScreen}}>
+                    <Router>
+                        <Routes>
+                            <Route path="/components" element={<Components />} />
+                            <Route path="/layouts" element={<Layouts />} />
                             <Route path="/achievments" element={<Achievments />} />
                             <Route path="/achievments/:achievment" element={<AchievmentDetails />} />
-                        </CarouselContext.Provider>
-                    </Routes>
-                </Router>
+                        </Routes>
+                    </Router>
+                </CarouselContext.Provider>
             </ShortcutsContext.Provider>
         </LanguageContext.Provider>
     )

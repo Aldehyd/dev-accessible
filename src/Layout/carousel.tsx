@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect, useRef } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
+import CarouselContext from "../Contexts/caroussel-context.tsx";
 import CarouselPicture from "../Components/carousel-picture.tsx";
 import CarouselButton from "../Components/carousel-button.tsx";
 interface CarouselPropsInterface {
@@ -12,6 +13,8 @@ export default function Carousel({pictures,setCurrentPicture}: CarouselPropsInte
 
     const {language} = useContext(LanguageContext);
 
+    const {changeDisplayCarousel,changePicturesFullScreen,changeCurrentPictureFullScreen} = useContext(CarouselContext);
+
     const [picturesToShow,setPicturesToShow] = useState<{current: number, amount: number}>({current: 0, amount: pictures.length});
     const [pictureMovement,setPictureMovement] = useState<string>("");
 
@@ -23,13 +26,21 @@ export default function Carousel({pictures,setCurrentPicture}: CarouselPropsInte
         setTimeout(()=> picturesContainer.current?.classList.remove("transition"),600);
     },[picturesToShow]);
 
+    const handleClickOnPicture = ()=> {
+        changeDisplayCarousel(true);
+        changePicturesFullScreen(pictures);
+        changeCurrentPictureFullScreen(picturesToShow.current);
+    };
+
     return(
         <div className="carousel" role="group" aria-roledescription="carousel" aria-labelledby="achievment-details-carousel-label">
             <CarouselButton roleButton="previous" picturesToShow={picturesToShow} setPicturesToShow={setPicturesToShow} disabledStatus={picturesToShow.current === 0 ? "true" : "false"} setCurrentPictureMovement={setPictureMovement} />
             <div className={classList} ref={picturesContainer} aria-atomic="false" aria-live="polite" onClick={()=> setCurrentPicture(picturesToShow.current)}>
                 {
                     pictures.map(picture => {return (
-                        <CarouselPicture key={picture.id} language={language} picture={picture} picturesToShow={picturesToShow} pictureMovement={pictureMovement} />
+                        <CarouselPicture key={picture.id} language={language} picture={picture} 
+                            picturesToShow={picturesToShow} pictureMovement={pictureMovement}
+                            onClickFunction={()=> handleClickOnPicture()} />
                     )})
                 }
             </div>

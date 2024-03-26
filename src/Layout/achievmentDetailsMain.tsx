@@ -1,12 +1,15 @@
 
 import { useContext, useState} from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
+import CarouselContext from "../Contexts/caroussel-context.tsx";
 import Carousel from "../Layout/carousel.tsx";
 import CarouselFullScreen from "./carouselFullScreen.tsx";
 
 export default function AchievmentDetailsMain({achievment}): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
+
+    const {displayCarousel,changeDisplayCarousel,picturesFullScreen,currentPictureFullScreen,changePicturesFullScreen,changeCurrentPictureFullScreen} = useContext(CarouselContext);
 
     const [currentPicture,setCurrentPicture] = useState<boolean | number>(false);
 
@@ -113,7 +116,7 @@ export default function AchievmentDetailsMain({achievment}): React.JSX.Element {
                 </dl>
                 <h2>Photos :</h2>
                 <Carousel pictures={achievment.pictures} setCurrentPicture={setCurrentPicture} />
-                <CarouselFullScreen pictures={achievment.pictures} currentPicture={currentPicture} />
+                {displayCarousel && <CarouselFullScreen />}
             </div>
         </main>
     )

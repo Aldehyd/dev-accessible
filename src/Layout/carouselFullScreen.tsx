@@ -10,9 +10,9 @@ export default function CarouselFullScreen(): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
 
-    const {pictures,currentPicture,setPictures,setCurrentPicture} = useContext(CarouselContext);
+    const {displayCarousel,changeDisplayCarousel,picturesFullScreen,currentPictureFullScreen,changePicturesFullScreen,changeCurrentPictureFullScreen} = useContext(CarouselContext);
 
-    const [picturesToShow,setPicturesToShow] = useState<{current: number, amount: number}>({current: currentPicture, amount: pictures.length});
+    const [picturesToShow,setPicturesToShow] = useState<{current: number, amount: number}>({current: currentPictureFullScreen, amount: picturesFullScreen.length});
     const [pictureMovement,setPictureMovement] = useState<string>("");
 
     const classList = `carousel_pictures-container carousel-full-screen_pictures-container ${pictureMovement}`;
@@ -24,12 +24,12 @@ export default function CarouselFullScreen(): React.JSX.Element {
     },[picturesToShow]);
 
     return(
-        <FullScreenModal>
+        <FullScreenModal closeFunction={()=> changeDisplayCarousel(false)}>
             <div className="carousel-full-screen" role="group" aria-roledescription="carousel" aria-labelledby="achievment-details-carousel-label">
                 <CarouselButton roleButton="previous" picturesToShow={picturesToShow} setPicturesToShow={setPicturesToShow} disabledStatus={picturesToShow.current === 0 ? "true" : "false"} setCurrentPictureMovement={setPictureMovement} />
                 <div className={classList} ref={picturesContainer} aria-atomic="false" aria-live="polite">
                     {
-                        pictures.map(picture => {return (
+                        picturesFullScreen.map(picture => {return (
                             <CarouselPicture key={picture.id} language={language} picture={picture} 
                                 picturesToShow={picturesToShow} pictureMovement={pictureMovement} />
                         )})
