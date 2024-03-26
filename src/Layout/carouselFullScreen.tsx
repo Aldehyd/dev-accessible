@@ -1,18 +1,16 @@
 import { useContext, useState, useEffect, useRef } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
+import CarouselContext from "../Contexts/caroussel-context.tsx";
 import CarouselPicture from "../Components/carousel-picture.tsx";
 import CarouselButton from "../Components/carousel-button.tsx";
 import FullScreenModal from "./fullScreenModal.tsx";
 
-interface CarouselFullScreenPropsInterface {
-    pictures: {id: number, pictureName: any, frenchAlt?: string, englishAlt?: string}[],
-    currentPicture: number,
-    labelId: string
-}
 
-export default function CarouselFullScreen({pictures,currentPicture}: CarouselFullScreenPropsInterface): React.JSX.Element {
+export default function CarouselFullScreen(): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
+
+    const {pictures,currentPicture,setPictures,setCurrentPicture} = useContext(CarouselContext);
 
     const [picturesToShow,setPicturesToShow] = useState<{current: number, amount: number}>({current: currentPicture, amount: pictures.length});
     const [pictureMovement,setPictureMovement] = useState<string>("");
