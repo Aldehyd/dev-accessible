@@ -23,6 +23,12 @@ export default function App(): React.JSX.Element {
         setShortcuts(shortcuts);
     };
 
+    const [displayCarousel,setDisplayCarousel] = useState<boolean>(false);  
+
+    const changeDisplayCarousel : (displayCarousel: boolean)=>void = (displayCarousel)=> {
+        setDisplayCarousel(displayCarousel);
+    };
+
     const [pictures,setPictures] = useState<{id: number, pictureName: any, frenchAlt?: string, englishAlt?: string}[]>([]);
 
     const changePictures : (pictures: {id: number, pictureName: any, frenchAlt?: string, englishAlt?: string}[]) => void = (pictures)=> {
@@ -42,7 +48,7 @@ export default function App(): React.JSX.Element {
                     <Routes>
                         <Route path="/components" element={<Components />} />
                         <Route path="/layouts" element={<Layouts />} />
-                        <CarouselContext.Provider value={{pictures,currentPicture,changePictures,changeCurrentPicture}}>
+                        <CarouselContext.Provider value={{displayCarousel,pictures,currentPicture,changeDisplayCarousel,changePictures,changeCurrentPicture}}>
                             <Route path="/achievments" element={<Achievments />} />
                             <Route path="/achievments/:achievment" element={<AchievmentDetails />} />
                         </CarouselContext.Provider>

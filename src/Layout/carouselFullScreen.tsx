@@ -30,7 +30,8 @@ export default function CarouselFullScreen(): React.JSX.Element {
                 <div className={classList} ref={picturesContainer} aria-atomic="false" aria-live="polite">
                     {
                         pictures.map(picture => {return (
-                            <CarouselPicture key={picture.id} language={language} picture={picture} picturesToShow={picturesToShow} pictureMovement={pictureMovement} />
+                            <CarouselPicture key={picture.id} language={language} picture={picture} 
+                                picturesToShow={picturesToShow} pictureMovement={pictureMovement} />
                         )})
                     }
                 </div>
