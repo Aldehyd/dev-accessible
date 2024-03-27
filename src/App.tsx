@@ -8,6 +8,7 @@ import Layouts from './Layout/index.tsx';
 import Achievments from './Pages/achievments.tsx';
 import {localShortcuts} from './Datas/shortcuts.tsx';
 import AchievmentDetails from './Pages/achievmentDetails.tsx';
+import CV from './Pages/cv.tsx';
 
 export default function App(): React.JSX.Element {
 
@@ -51,6 +52,7 @@ export default function App(): React.JSX.Element {
                             <Route path="/layouts" element={<Layouts />} />
                             <Route path="/achievments" element={<Achievments />} />
                             <Route path="/achievments/:achievment" element={<AchievmentDetails />} />
+                            <Route path="/cv" element={<CV />} />
                         </Routes>
                     </Router>
                 </CarouselContext.Provider>
