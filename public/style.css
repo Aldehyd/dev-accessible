@@ -12,6 +12,7 @@ body {
   min-height: 100vh;
   font-size: 1.4rem;
   font-family: "Oswald", sans-serif;
+  background-color: #000;
 }
 
 @font-face {
@@ -83,6 +84,14 @@ body.letter-spacing h2 {
 body.letter-spacing dl {
   letter-spacing: 0.168rem;
 }
+body:not(.contrast) {
+  background: radial-gradient(ellipse 50% 80%, #000 80%, #1EF9EC);
+  background-size: 100% 100%;
+  background-position: 50% 50%;
+}
+body:not(.contrast).animations {
+  animation: backgroundMovement 15s ease-in-out infinite alternate;
+}
 body:not(.contrast) h2 {
   text-shadow: 0 0.2rem 0.4rem hsl(175deg, 95%, 55%);
 }
@@ -91,6 +100,12 @@ body:not(.contrast).purple h2 {
   text-shadow: 0 0.2rem 0.4rem hsl(295deg, 95%, 55%);
 }
 
+@keyframes backgroundMovement {
+  to {
+    background-size: 150% 150%;
+    background-position: 50% 50%;
+  }
+}
 #root {
   min-height: 100vh;
 }
