@@ -28,7 +28,7 @@ export default function CVSection({type}: CVSectionInterface): React.JSX.Element
     },[]);
 
     return (
-        <div className="cv_section" ref={cvSection}>
+        <div className="cv_section">
             <h2>{sectionTitle}</h2>
             <ul className="list-container">
                 {
