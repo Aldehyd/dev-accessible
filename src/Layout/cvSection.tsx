@@ -27,10 +27,12 @@ export default function CVSection({type}: CVSectionInterface): React.JSX.Element
         };
     },[language,setSectionTitle,type]);
 
+    const classList = `cv_section_list-container ${type === "language" || type === "diploma" ? "col" : ""}`;
+
     return (
         <div className="cv_section">
             <h2>{sectionTitle}</h2>
-            <ul className="list-container">
+            <ul className={classList}>
                 {
                     type === "diploma" && diplomas.map(skill => 
                         <li key={skill.id}>

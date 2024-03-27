@@ -17,7 +17,7 @@ export default function CV(): React.JSX.Element {
                 <RadioButtonGroup name="color" frenchLegend="Couleur" englishLegend="Color" radioButtonsData={colorsRadioButtonsData} handleChoice={handleMainColor} />
             </header>
                 
-            <main>
+            <main className="cv">
                 <CVSection type="diploma" />
             </main>
         </>

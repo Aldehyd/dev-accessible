@@ -18,8 +18,9 @@
         left: 0;
         width: 100%;
         height: 100%;
-        box-shadow: 0 0 0.5rem map-get($colors,dark), inset 0 0 0.5rem map-get($colors,dark);
+        box-shadow: 0 0 1rem map-get($colors,dark), inset 0 0 0.5rem map-get($colors,dark);
         border-radius: 1rem;
+        transition: 200ms ease-in-out;
     }
 }
 .cv_skill:hover, .basic-component:focus, .basic-component:active {
