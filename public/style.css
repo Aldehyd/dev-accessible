@@ -110,6 +110,14 @@ body:not(.contrast).purple h2 {
   min-height: 100vh;
 }
 
+header { /*temporary*/
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 4rem;
+}
+
 main {
   background-color: hsl(0deg, 6%, 10%);
 }
