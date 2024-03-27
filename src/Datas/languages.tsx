@@ -5,8 +5,8 @@ export const languages = [
         englishTitle: 'English (TOEIC level)',
         list: [
            {
-              frenchTitle: 'TOEIC passé en 2012',
-              englishTitle: 'TOEIC passed in 2012',
+              frenchLevel: 'TOEIC passé en 2012',
+              englishLevel: 'TOEIC passed in 2012',
               score: '925/990'
            }
         ]
@@ -17,8 +17,8 @@ export const languages = [
         englishTitle: 'French Sign language',
         list: [
            {
-              frenchTitle: 'Apprentissage autodidacte de la Langue des Signes Française',
-              englishTitle: 'Self-learning of the french signs language',
+              frenchLevel: 'Apprentissage autodidacte de la Langue des Signes Française',
+              englishLevel: 'Self-learning of the french signs language',
            }
         ]
      }
