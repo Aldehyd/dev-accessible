@@ -1660,7 +1660,7 @@ body.animations .basic-button::after {
   position: relative;
   padding: 0.5rem 1rem;
   background-color: hsl(175deg, 50%, 55%);
-  border: none;
+  border: solid 0.2rem hsl(175deg, 50%, 55%);
   border-radius: 1rem;
   font-weight: bold;
   cursor: pointer;
@@ -1680,6 +1680,15 @@ body.animations .basic-button::after {
 
 .cv_skill:hover::before, .basic-component:focus::before, .basic-component:active::before {
   transform: scale(0.5);
+}
+
+body.contrast .cv_skill {
+  border-color: hsl(0deg, 6%, 10%);
+}
+
+body:not(.contrast).purple .cv_skill {
+  border-color: hsl(295deg, 50%, 55%);
+  background-color: hsl(295deg, 50%, 55%);
 }
 
 .radio-group {

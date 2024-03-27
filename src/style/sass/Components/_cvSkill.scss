@@ -5,7 +5,7 @@
     position: relative;
     padding: 0.5rem 1rem;
     background-color: map-get($colors,blueSkill);
-    border: none;
+    border: solid 0.2rem map-get($colors,blueSkill);
     border-radius: 1rem;
     font-weight: bold;
     cursor: pointer;
@@ -25,5 +25,19 @@
 .cv_skill:hover, .basic-component:focus, .basic-component:active {
     &::before {
         transform: scale(0.5);
+    }
+}
+
+body.contrast {
+    & .cv_skill {
+        border-color: map-get($colors,darkBackground);
+    }
+}
+body:not(.contrast) {
+    &.purple {
+        & .cv_skill {
+            border-color: map-get($colors,purpleSkill);
+            background-color: map-get($colors,purpleSkill);
+        }
     }
 }
