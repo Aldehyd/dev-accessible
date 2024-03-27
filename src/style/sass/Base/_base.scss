@@ -84,7 +84,7 @@ body {
         }
     }
     &:not(.contrast) {
-        background: radial-gradient(ellipse 50% 80%, #000 80%,#1EF9EC);
+        background: radial-gradient(ellipse 50% 80%, map-get($colors,dark) 80%,map-get($colors,blue));
         background-size: 100% 100%;
         background-position: 50% 50%;
         &.animations {
@@ -95,6 +95,7 @@ body {
         }
     }
     &:not(.contrast).purple {
+        background: radial-gradient(ellipse 50% 80%, map-get($colors,dark) 80%,map-get($colors,purple));
         & h2 {
             color: map-get($colors,purple);
             text-shadow: 0 0.2rem 0.4rem map-get($colors,purple);
@@ -119,7 +120,7 @@ header { /*temporary*/
     padding: 1rem;
     margin-bottom: 4rem;
 }
-main {
+main:not(.cv) { /*temporary*/
     background-color: map-get($colors,darkBackground);
 }
 h2 {
