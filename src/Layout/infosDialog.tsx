@@ -1,4 +1,4 @@
-import {useContext} from 'react';
+import {useContext, useEffect} from 'react';
 import CloseButton from "../Components/close-button.tsx";
 import LanguageContext from "../Contexts/language-context.tsx";
 
