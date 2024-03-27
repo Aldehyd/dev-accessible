@@ -4,6 +4,8 @@ import LanguageContext from "../Contexts/language-context.tsx";
 
 interface InfosDialogPropsInterface {
     skill: any,
+    type: string,
+    setDisplayInfoDialog: (display: boolean)=>void
 };
 
 export default function InfosDialog({skill,type,setDisplayInfoDialog}: InfosDialogPropsInterface): React.JSX.Element {
