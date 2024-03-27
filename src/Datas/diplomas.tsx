@@ -3,6 +3,7 @@ export const diplomas = [
        id: 'access',
        frenchTitle: 'Certification accessibilité numérique',
        englishTitle: 'Web accessibility certification',
+       type: 'diploma',
        list: [
           {
              frenchTitle: 'Certification \'Développer des sites web accessibles\'',
@@ -19,6 +20,7 @@ export const diplomas = [
        id: 'engineer',
        frenchTitle: 'Ingénieur Génie Civil',
        englishTitle: 'Civil Engineering',
+       type: 'diploma',
        list: [
           {
              frenchTitle: 'Diplôme d\'ingénieur en Génie Civil, option Développement durable',
@@ -34,6 +36,7 @@ export const diplomas = [
        id: 'deug',
        frenchTitle: 'DEUG Mathématiques Informatique',
        englishTitle: 'Maths Computer science',
+       type: 'diploma',
        list: [
           {
              frenchTitle: 'DEUG Mathématiques Informatique',
