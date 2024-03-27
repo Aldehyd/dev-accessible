@@ -23,7 +23,7 @@ export default function InfosDialog({skill,type,setDisplayInfoDialog}: InfosDial
                             <ul className="infos-dialog_list">
                                 {
                                     type === "diploma" && skill.list.map(listItem =>
-                                        <li key={listItem.id} class="projects-list_list-item">
+                                        <li key={listItem.id} className="projects-list_list-item">
                                             <dl>
                                                 <dt>{language === "french" ? "Titre" : "Title"} :</dt>
                                                 <dd>{language === 'french' ? listItem.frenchTitle : listItem.englishTitle}</dd>
@@ -43,10 +43,27 @@ export default function InfosDialog({skill,type,setDisplayInfoDialog}: InfosDial
                                             </dl>
                                         </li>)
                                 }   
+                                {
+                                    type === "language" && skill.list.map(listItem =>
+                                        <li key={listItem.id} className="projects-list_list-item">
+                                            <dl>
+                                                <dt>{language === "french" ? "Niveau" : "Level"} :</dt>
+                                                <dd>{language === 'french' ? listItem.frenchLevel : listItem.englishLevel}</dd>
+                                                
+                                                {listItem.score && 
+                                                    <>
+                                                        <dt>Score :</dt>
+                                                        <dd>{listItem.score}</dd>
+                                                    </>
+                                                }   
+                                            </dl>
+                                        </li>)
+                                } 
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div ref={infoDialogBottom} className="infos-dialog_bottom"></div>
+        </div>
     )
 }
