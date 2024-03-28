@@ -1,16 +1,72 @@
-import {useContext, useEffect} from 'react';
+import {useContext, useRef, useState, useEffect} from 'react';
 import CloseButton from "../Components/close-button.tsx";
 import LanguageContext from "../Contexts/language-context.tsx";
 
 interface InfosDialogPropsInterface {
     skill: any,
     type: string,
-    setDisplayInfoDialog: (display: boolean)=>void
+    setDisplayInfoDialog: (display: boolean)=>void,
+    buttonElement: any
 };
 
-export default function InfosDialog({skill,type,setDisplayInfoDialog}: InfosDialogPropsInterface): React.JSX.Element {
+export default function InfosDialog({skill,type,setDisplayInfoDialog,buttonElement}: InfosDialogPropsInterface): React.JSX.Element {
     
     const {language} = useContext(LanguageContext);
+
+    const centerDialog = useRef(null);
+    const dialogContent = useRef(null);
+    const infoDialog = useRef(null);
+    const infoDialogTop = useRef(null);
+    const infoDialogBottom = useRef(null);
+
+    const [dialogVerticalPosition,setDialogVerticalPosition] = useState(0);
+    const [dialogLeftPosition,setDialogLeftPosition] = useState(0);
+
+    const setCenterDialogHeight = ()=> {
+        const height = dialogContent.current?.offsetHeight;
+        centerDialog.current.style.height = height.toString() + 'px';
+    };
+
+    const setDialogPositionFunc = (button)=> {
+        const viewportHeight = document.documentElement.clientHeight;
+        const dialogHeight = dialogContent.current?.offsetHeight + infoDialogTop.current?.offsetHeight + infoDialogBottom.current?.offsetHeight;
+        const buttonTop = button.getBoundingClientRect().top;
+        const buttonHeight = button.offsetHeight;
+        
+        if(buttonTop+buttonHeight/2 > viewportHeight/2) {
+            setDialogVerticalPosition(-dialogHeight);
+        } else {
+            setDialogVerticalPosition(buttonHeight);
+        };
+    };
+
+    const setDialogLeftPositionFunc = ()=> {
+            let viewportWidth = document.documentElement.clientWidth;
+            let containerLeft = buttonElement.current.getBoundingClientRect().left;
+            let infoDialogRight = infoDialog.current?.getBoundingClientRect().right
+            
+            if(infoDialogRight < viewportWidth) {
+                setDialogLeftPosition(0);
+            } else {
+                setDialogLeftPosition(viewportWidth - infoDialog.current?.offsetWidth - containerLeft);
+            };  
+    };
+
+    useEffect(()=> {
+        dialogContent.current !== null && setCenterDialogHeight();
+    });
+
+    // useEffect(()=> {
+    //     infoDialog.current !== null && setDialogLeftPositionFunc();
+    // },[displayDialog]);
+
+    useEffect(()=> {
+        infoDialog.current !== null && setDialogLeftPositionFunc();
+    });
+
+    useEffect(()=> {
+        infoDialog.current !== null && setDialogPositionFunc(buttonElement.current);
+    });
 
     return (
         <div ref={infoDialog} style={{top:dialogVerticalPosition,left:dialogLeftPosition}} className="infos-dialog" role='dialog' aria-labelledby='dialog-title'>
