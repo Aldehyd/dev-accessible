@@ -32,12 +32,12 @@ export const diplomas = [
     },
     {
        id: 'deug',
-       frenchTitle: 'DEUG Mathématiques Informatique',
+       frenchTitle: 'DEUG Informatique Mathématiques',
        englishTitle: 'Maths Computer science',
        list: [
           {
-             frenchTitle: 'DEUG Mathématiques Informatique',
-             englishTitle : 'Maths & Computer science Degree',
+             frenchTitle: 'DEUG Informatique Mathématiques',
+             englishTitle : 'Computer science & Maths Degree',
              frenchDate: 'Septembre 2010',
              englishDate: 'September 2010',
              frenchInstitute: 'Université de Provence - Marseille',
