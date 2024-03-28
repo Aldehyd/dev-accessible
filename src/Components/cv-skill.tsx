@@ -15,7 +15,10 @@ export default function CVSkill({skill,type}: CVSkillPropsInterface): React.JSX.
 
     return (
         <div className="cv_skill-container">
-            <button className="cv_skill" aria-expanded={displayInfoDialog ? "true" : "false"} aria-haspopup='true'>
+            <button className="cv_skill" aria-expanded={displayInfoDialog ? "true" : "false"} 
+                aria-haspopup='true' onFocus={()=> setDisplayInfoDialog(true)}
+                onBlur={()=> setDisplayInfoDialog(false)} onMouseOver={()=>setDisplayInfoDialog(true)}
+                onMouseLeave={()=>setDisplayInfoDialog(false)}>
                 {language === 'french' ? skill.frenchTitle : skill.englishTitle}
             </button>
             {displayInfoDialog && <InfosDialog skill={skill} type={type} setDisplayInfoDialog={setDisplayInfoDialog} />}
