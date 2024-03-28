@@ -70,6 +70,17 @@ export default function InfosDialog({skill,type,setDisplayInfoDialog,buttonEleme
                             <p>{language === 'french' ? skill.frenchDescription : skill.englishDescription}</p>
                             <ul className="infos-dialog_list">
                                 {
+                                type === "technology" && 
+                                    <div key={skill.id} className="projects-list_list-item">
+                                        <p>{language === "french" ? "Utilisé dans les projets suivants" : "Used in following projects"} :</p>
+                                        <ul>
+                                            {skill.projects.map(project => {
+                                            return <li key={project.index}>{project}</li>
+                                            })}
+                                        </ul>
+                                    </div>
+                                }
+                                {
                                     type === "diploma" && skill.list.map(listItem =>
                                         <li key={listItem.id} className="projects-list_list-item">
                                             <dl>
