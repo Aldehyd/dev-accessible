@@ -54,17 +54,7 @@ export default function InfosDialog({skill,type,setDisplayInfoDialog,buttonEleme
 
     useEffect(()=> {
         dialogContent.current !== null && setCenterDialogHeight();
-    });
-
-    // useEffect(()=> {
-    //     infoDialog.current !== null && setDialogLeftPositionFunc();
-    // },[displayDialog]);
-
-    useEffect(()=> {
         infoDialog.current !== null && setDialogLeftPositionFunc();
-    });
-
-    useEffect(()=> {
         infoDialog.current !== null && setDialogPositionFunc(buttonElement.current);
     });
 
