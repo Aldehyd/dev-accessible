@@ -1690,6 +1690,23 @@ body:not(.contrast).purple .cv_skill {
   background-color: hsl(295deg, 50%, 55%);
 }
 
+.cv_main-line {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  width: 3rem;
+  height: 100%;
+  background-color: #f1f1f1;
+  transform: translateX(-50%) scaleY(0.9);
+}
+
+body:not(.contrast) .cv_main-line {
+  box-shadow: 0 0 1rem hsl(175deg, 95%, 55%);
+}
+body:not(.contrast).purple .cv_main-line {
+  box-shadow: 0 0 1rem hsl(295deg, 95%, 55%);
+}
+
 .radio-group {
   position: relative;
   margin: auto;

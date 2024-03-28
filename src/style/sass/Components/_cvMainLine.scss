@@ -1,0 +1,21 @@
+.cv_main-line {
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    width: 3rem;
+    height: 100%;
+    background-color: map-get($colors,white);
+    
+    transform: translateX(-50%) scaleY(0.9);
+}
+
+body:not(.contrast) {
+    & .cv_main-line {
+        box-shadow: 0 0 1rem map-get($colors,blue);
+    }
+    &.purple {
+        & .cv_main-line {
+            box-shadow: 0 0 1rem map-get($colors,purple);
+        }
+    }
+}

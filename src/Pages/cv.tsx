@@ -6,6 +6,7 @@ import CVSection from "../Layout/cvSection.tsx";
 import { handleContrastedThemeSwitch } from "../Functions/handleContrastedThemeSwitch.tsx";
 import { colorsRadioButtonsData } from "../Datas/colorsRadioButtonsData.tsx";
 import { handleMainColor } from "../Functions/handleMainColor.tsx";
+import CVMainLine from "../Components/cv-main-line.tsx";
 
 export default function CV(): React.JSX.Element {
     return (
@@ -18,6 +19,7 @@ export default function CV(): React.JSX.Element {
             </header>
                 
             <main className="cv">
+                <CVMainLine />
                 <CVSection type="technology" />
                 <CVSection type="devTool" />
                 <CVSection type="design" />
