@@ -8,25 +8,11 @@
     border: solid 0.2rem map-get($colors,blueSkill);
     border-radius: 1rem;
     font-weight: bold;
+    box-shadow: 0 0 1rem map-get($colors,dark);
     cursor: pointer;
-    &::before {
-        content: "";
-        display: block;
-        position: absolute;
-        z-index: -1;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        box-shadow: 0 0 1rem map-get($colors,dark), inset 0 0 0.5rem map-get($colors,dark);
-        border-radius: 1rem;
-        transition: 200ms ease-in-out;
-    }
 }
 .cv_skill:hover, .basic-component:focus, .basic-component:active {
-    &::before {
-        transform: scale(0.5);
-    }
+    box-shadow: none;
 }
 
 body.contrast {
