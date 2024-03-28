@@ -5,10 +5,21 @@
     width: 3rem;
     height: 100%;
     background-color: map-get($colors,white);
-    
+    transform-origin: 50% 0;
     transform: translateX(-50%) scaleY(0.9);
 }
 
+@keyframes CVMainLineAppear {
+    from {
+        transform: translateX(-50%) scaleY(0);
+    }
+}
+
+body.animations {
+    & .cv_main-line {
+        animation: CVMainLineAppear 400ms ease-in-out backwards;
+    }
+}
 body:not(.contrast) {
     & .cv_main-line {
         box-shadow: 0 0 1rem map-get($colors,blue);
