@@ -11,7 +11,7 @@
     cursor: pointer;
 }
 .cv_skill:hover, .basic-component:focus, .basic-component:active {
-    box-shadow: none;
+    
 }
 
 body.contrast {
@@ -22,6 +22,15 @@ body.contrast {
 body:not(.contrast) {
     & .cv_skill {
         box-shadow: 0 0 1rem map-get($colors,dark);
+        &:hover {
+            box-shadow: none;
+        }
+        &:focus {
+            box-shadow: none;
+        }
+        &:active {
+            box-shadow: none;
+        }
     }
     &.purple {
         & .cv_skill {
