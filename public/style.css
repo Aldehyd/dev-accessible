@@ -2463,7 +2463,7 @@ body.animations .carousel-full-screen .carousel_pictures-container.transition.pr
   position: relative;
   width: fit-content;
   height: auto;
-  margin: 2rem auto;
+  margin: 4rem auto;
   padding: 1rem 3rem;
   background-color: #f1f1f1;
   border-radius: 2.5rem;
@@ -2697,6 +2697,10 @@ body:not(.contrast).purple .infos-dialog_bottom {
 }
 body:not(.contrast).purple .infos-dialog_content {
   color: hsl(295deg, 95%, 55%);
+}
+
+.cv {
+  position: relative;
 }
 
 .components-layout {

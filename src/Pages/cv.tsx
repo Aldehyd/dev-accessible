@@ -2,11 +2,10 @@ import AnimationToggleButton from "../Components/animation-toggle-button.tsx";
 import LanguageSelect from "../Components/language-select.tsx";
 import Switch from "../Components/switch.tsx";
 import RadioButtonGroup from "../Layout/RadioButtonsGroup.tsx";
-import CVSection from "../Layout/cvSection.tsx";
 import { handleContrastedThemeSwitch } from "../Functions/handleContrastedThemeSwitch.tsx";
 import { colorsRadioButtonsData } from "../Datas/colorsRadioButtonsData.tsx";
 import { handleMainColor } from "../Functions/handleMainColor.tsx";
-import CVMainLine from "../Components/cv-main-line.tsx";
+import CVComponent from "../Layout/cvComponent.tsx";
 
 export default function CV(): React.JSX.Element {
     return (
@@ -19,12 +18,7 @@ export default function CV(): React.JSX.Element {
             </header>
                 
             <main className="cv">
-                <CVMainLine />
-                <CVSection type="technology" />
-                <CVSection type="devTool" />
-                <CVSection type="design" />
-                <CVSection type="diploma" />
-                <CVSection type="language" />
+                <CVComponent />
             </main>
         </>
     )
