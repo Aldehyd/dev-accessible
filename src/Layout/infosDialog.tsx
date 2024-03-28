@@ -70,7 +70,7 @@ export default function InfosDialog({skill,type,setDisplayInfoDialog,buttonEleme
                             <p className="infos-dialog_subtitle">{language === 'french' ? skill.frenchDescription : skill.englishDescription}</p>
                             <ul>
                                 {
-                                type === "technology" && 
+                                (type === "technology" || type === "devTool" || type === "design") && 
                                     <div key={skill.id} className="projects-list_list-item">
                                         <p>{language === "french" ? "Utilisé dans les projets suivants" : "Used in following projects"} :</p>
                                         <ul className="infos-dialog_list">
