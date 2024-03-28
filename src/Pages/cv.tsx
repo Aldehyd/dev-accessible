@@ -18,7 +18,9 @@ export default function CV(): React.JSX.Element {
             </header>
                 
             <main className="cv">
+                <CVSection type="technology" />
                 <CVSection type="diploma" />
+                <CVSection type="language" />
             </main>
         </>
     )

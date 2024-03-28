@@ -1,6 +1,7 @@
 
 export const achievments = [
     {
+        id: 0,
         title: "dyskredy-art.com",
         websiteLink: "https://dyskredy-art.com",
         githubLink: "bla",
@@ -51,6 +52,7 @@ export const achievments = [
 
     },
     {
+        id: 1,
         title: "dev-accessible.com",
         websiteLink: "https://dev-accessible.com",
         githubLink: "bla",
@@ -100,6 +102,7 @@ export const achievments = [
         ]
     },
     {
+        id: 2,
         title: "shopping",
         websiteLink: "google play store",
         githubLink: "bla",
