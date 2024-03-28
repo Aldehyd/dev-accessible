@@ -16,6 +16,8 @@ export default function CVSection({type}: CVSectionInterface): React.JSX.Element
     const [sectionTitle,setSectionTitle] = useState<string>("");
     const [technologies,setTechnologies] = useState<{id: string, frenchTitle: string, englishTitle: string, projects: string[]}[]>([]);
     const [designTools,setDesignTools] = useState<{id: string, frenchTitle: string, englishTitle: string, projects: string[]}[]>([]);
+    const [devTools,setDevTools] = useState<{id: string, frenchTitle: string, englishTitle: string, projects: string[]}[]>([]);
+
 
     const addTechnoToTechnologies : (technosType: string, technologies: {id: string, frenchTitle: string, englishTitle: string, projects: string[]}[])=>void = (technosType,technologies) => {
         for(let achievment of achievments) {
@@ -35,6 +37,27 @@ export default function CVSection({type}: CVSectionInterface): React.JSX.Element
             };
         };
     };
+
+    const addToolToDevTools : ()=>void = useCallback(() => {
+        let devTools : {id: string, frenchTitle: string, englishTitle: string, projects: string[]}[] = [];
+        for(let achievment of achievments) {
+            for(let tool of achievment.developmentTools) {
+                let isAlreadyInTools = false;
+                for(let devTool of devTools) {
+                    if(devTool.englishTitle === tool) {
+                        isAlreadyInTools = true;
+                    };
+                };
+                if(!isAlreadyInTools) {
+                    devTools.push({id: tool, frenchTitle: tool, englishTitle: tool, projects: [achievment.title]});
+                } else {
+                    let toolToModify = devTools.find(dTool => dTool.id === tool);
+                    toolToModify?.projects.push(achievment.title);
+                };
+            };
+        };
+        setDevTools(devTools);
+    },[designTools]);
 
     const addToolToDesignTools : ()=>void = () => {
         let designTools : {id: string, frenchTitle: string, englishTitle: string, projects: string[]}[] = [];
@@ -72,6 +95,10 @@ export default function CVSection({type}: CVSectionInterface): React.JSX.Element
                 setSectionTitle("Technologies");
                 setTechnologiesForCV();
                 break;
+            case "devTool":
+                language === "french" ? setSectionTitle("Outils de développement") : setSectionTitle("Development tools");
+                addToolToDevTools();
+                break;
             case "design":
                 language === "french" ? setSectionTitle("Outils de design") : setSectionTitle("Design tools");
                 addToolToDesignTools();
@@ -85,7 +112,7 @@ export default function CVSection({type}: CVSectionInterface): React.JSX.Element
             default:
                 break;
         };
-    },[language,setSectionTitle,type,setTechnologiesForCV]);
+    },[language,setSectionTitle,type,setTechnologiesForCV,addToolToDevTools]);
 
     const classList = `cv_section_list-container ${type === "language" || type === "diploma" ? "col" : ""}`;
 
@@ -95,6 +122,13 @@ export default function CVSection({type}: CVSectionInterface): React.JSX.Element
             <ul className={classList}>
                 {
                     type === "technology" && technologies.map(skill => 
+                        <li key={skill.id}>
+                            <CVSkill skill={skill} type={type} />
+                        </li>
+                    )
+                }
+                {
+                    type === "devTool" && devTools.map(skill => 
                         <li key={skill.id}>
                             <CVSkill skill={skill} type={type} />
                         </li>
