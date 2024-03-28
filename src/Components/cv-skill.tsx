@@ -16,11 +16,11 @@ export default function CVSkill({skill,type}: CVSkillPropsInterface): React.JSX.
     const buttonElement = useRef(null);
 
     return (
-        <div className="cv_skill-container">
+        <div className="cv_skill-container" onFocus={()=> setDisplayInfoDialog(true)}
+        onBlur={()=> setDisplayInfoDialog(false)} onMouseOver={()=>setDisplayInfoDialog(true)}
+        onMouseLeave={()=>setDisplayInfoDialog(false)}>
             <button className="cv_skill" aria-expanded={displayInfoDialog ? "true" : "false"} 
-                aria-haspopup='true' onFocus={()=> setDisplayInfoDialog(true)}
-                onBlur={()=> setDisplayInfoDialog(false)} onMouseOver={()=>setDisplayInfoDialog(true)}
-                onMouseLeave={()=>setDisplayInfoDialog(false)} ref={buttonElement}>
+                aria-haspopup='true'  ref={buttonElement}>
                 {language === 'french' ? skill.frenchTitle : skill.englishTitle}
             </button>
             {displayInfoDialog && <InfosDialog skill={skill} type={type} setDisplayInfoDialog={setDisplayInfoDialog} buttonElement={buttonElement} />}
