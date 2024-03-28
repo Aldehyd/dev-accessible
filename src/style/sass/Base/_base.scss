@@ -130,7 +130,7 @@ h2 {
 a, a:visited {
     text-decoration: none;
 }
-ul:not(.achievments_list) {
+ul:not(.achievments_list):not(.infos-dialog_list) {
     list-style: none;
 }
 button, input, textarea {

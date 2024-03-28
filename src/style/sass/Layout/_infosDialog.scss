@@ -68,6 +68,14 @@
             opacity: 0;
         }
     }
+    &_title {
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+    &_list {
+        margin-top: 0.5rem;
+        margin-left: 1.5rem;   
+    }
 }
 
 @keyframes dialogAppear {

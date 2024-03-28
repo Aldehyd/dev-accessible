@@ -59,21 +59,21 @@ export default function InfosDialog({skill,type,setDisplayInfoDialog,buttonEleme
     });
 
     return (
-        <div ref={infoDialog} style={{top:dialogVerticalPosition,left:dialogLeftPosition}} className="infos-dialog" role='dialog' aria-labelledby='dialog-title'>
+        <div ref={infoDialog} style={{top:dialogVerticalPosition,left:dialogLeftPosition}} className="infos-dialog" role='dialog' aria-labelledby='infos-dialog_title'>
                 <CloseButton onClickFunction={()=> setDisplayInfoDialog(false)} />
                 <div ref={infoDialogTop} className="infos-dialog_top">
                 </div>
                 <div ref={centerDialog} className="infos-dialog_center">
                     <div ref={dialogContent} className='infos-dialog_content-container'>
                         <div className="infos-dialog_content">
-                            <h3 id='dialog-title'>{language === 'french' ? skill.frenchTitle : skill.englishTitle}</h3>
-                            <p>{language === 'french' ? skill.frenchDescription : skill.englishDescription}</p>
-                            <ul className="infos-dialog_list">
+                            <p id='infos-dialog_title' className='infos-dialog_title'>{language === 'french' ? skill.frenchTitle : skill.englishTitle}</p>
+                            <p className="infos-dialog_subtitle">{language === 'french' ? skill.frenchDescription : skill.englishDescription}</p>
+                            <ul>
                                 {
                                 type === "technology" && 
                                     <div key={skill.id} className="projects-list_list-item">
                                         <p>{language === "french" ? "Utilisé dans les projets suivants" : "Used in following projects"} :</p>
-                                        <ul>
+                                        <ul className="infos-dialog_list">
                                             {skill.projects.map(project => {
                                             return <li key={project.index}>{project}</li>
                                             })}

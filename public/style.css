@@ -134,7 +134,7 @@ a, a:visited {
   text-decoration: none;
 }
 
-ul:not(.achievments_list) {
+ul:not(.achievments_list):not(.infos-dialog_list) {
   list-style: none;
 }
 
@@ -2570,6 +2570,14 @@ body.animations .cv_section:focus-within::before {
   transform-origin: 50% 100%;
   transform: scaleY(0);
   opacity: 0;
+}
+.infos-dialog_title {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.infos-dialog_list {
+  margin-top: 0.5rem;
+  margin-left: 1.5rem;
 }
 
 @keyframes dialogAppear {
