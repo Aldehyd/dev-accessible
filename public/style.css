@@ -1669,16 +1669,21 @@ body.animations .basic-button::after {
   cursor: pointer;
 }
 
-.cv_skill:hover, .basic-component:focus, .basic-component:active {
-  box-shadow: none;
-}
-
 body.contrast .cv_skill {
   border-color: hsl(0deg, 6%, 10%);
 }
 
 body:not(.contrast) .cv_skill {
   box-shadow: 0 0 1rem #000;
+}
+body:not(.contrast) .cv_skill:hover {
+  box-shadow: none;
+}
+body:not(.contrast) .cv_skill:focus {
+  box-shadow: none;
+}
+body:not(.contrast) .cv_skill:active {
+  box-shadow: none;
 }
 body:not(.contrast).purple .cv_skill {
   border-color: hsl(295deg, 50%, 55%);
