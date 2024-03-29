@@ -6,22 +6,28 @@ import { handleContrastedThemeSwitch } from "../Functions/handleContrastedThemeS
 import { colorsRadioButtonsData } from "../Datas/colorsRadioButtonsData.tsx";
 import { handleMainColor } from "../Functions/handleMainColor.tsx";
 import CVComponent from "../Layout/cvComponent.tsx";
-import useFetch from "../Hooks/useFetch.tsx";
 import { useState, useEffect } from "react";
 import { fetchData } from "../Functions/fetchData.tsx";
 
 export default function CV(): React.JSX.Element {
 
+    const [achievments,setAchievments] = useState(null);
     const [diplomas,setDiplomas] = useState(null);
+    const [languages,setLanguages] = useState(null);
     
-    const [isLoading,setIsLoading] = useState<boolean>(true);
+    const [isAchievmentsLoading,setIsAchievmentsLoading] = useState<boolean>(true);
+    const [isDiplomasLoading,setIsDiplomasLoading] = useState<boolean>(true);
+    const [isLanguagesLoading,setIsLanguagesLoading] = useState<boolean>(true);
     const [error,setError] = useState<boolean>(false);
 
     useEffect(()=> {
-        fetchData('http://localhost:4000/cv',setDiplomas);
+
+        fetchData('http://localhost:4000/cv-achievments',setAchievments,setIsAchievmentsLoading,setError);
+        fetchData('http://localhost:4000/cv-diplomas',setDiplomas,setIsDiplomasLoading,setError);
+        fetchData('http://localhost:4000/cv-languages',setLanguages,setIsLanguagesLoading,setError);
+
     },[]);
     
-
     return (
         <>
             <header>
@@ -32,9 +38,10 @@ export default function CV(): React.JSX.Element {
             </header>
                 
             <main className="cv">
-                {diplomas && <p>{diplomas[0].frenchTitle}</p>}
-
-                {/* <CVComponent achievments={achievments} diplomas={diplomas} languages={languages} /> */}
+                {isAchievmentsLoading || isDiplomasLoading || isLanguagesLoading && <p>Chargement </p>}
+                {error && <p>Erreur !</p>}
+                {!isAchievmentsLoading && !isDiplomasLoading && !isLanguagesLoading && !error &&
+                 <CVComponent achievments={achievments} diplomas={diplomas} languages={languages} />}
             </main>
         </>
     )

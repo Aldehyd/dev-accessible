@@ -2,7 +2,14 @@ import React from "react";
 import CVMainLine from "../Components/cv-main-line.tsx";
 import CVSection from "./cvSection.tsx";
 
-export default function CVComponent(): React.JSX.Element {
+interface CVComponentPropsInterface {
+    achievments: any,
+    diplomas: any,
+    languages: any
+}
+
+export default function CVComponent({achievments,diplomas,languages}: CVComponentPropsInterface): React.JSX.Element {
+
     return (
         <div className="cv">
             <CVMainLine />
