@@ -6,6 +6,7 @@ import ShortcutsContext from './Contexts/shortcuts-context.tsx';
 import CarouselContext from './Contexts/caroussel-context.tsx';
 import Layouts from './Layout/index.tsx';
 import Achievments from './Pages/achievments.tsx';
+import UnderConstruction from './Pages/underConstruction.tsx';
 import {localShortcuts} from './Datas/shortcuts.tsx';
 import AchievmentDetails from './Pages/achievmentDetails.tsx';
 import CV from './Pages/cv.tsx';
@@ -50,6 +51,7 @@ export default function App(): React.JSX.Element {
                         <Routes>
                             <Route path="/components" element={<Components />} />
                             <Route path="/layouts" element={<Layouts />} />
+                            <Route path="*" element={<UnderConstruction />} />
                             <Route path="/achievments" element={<Achievments />} />
                             <Route path="/achievments/:achievment" element={<AchievmentDetails />} />
                             <Route path="/cv" element={<CV />} />

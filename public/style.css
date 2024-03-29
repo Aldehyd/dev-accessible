@@ -2704,6 +2704,25 @@ body:not(.contrast).purple .infos-dialog_content {
   padding: 2rem;
 }
 
+.temporary-menu {
+  position: absolute;
+  top: 50%;
+  left: 150px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.under-construction-page {
+  height: 100vh;
+  display: flex;
+}
+.under-construction-page img {
+  height: 100%;
+  margin: auto;
+}
+
 .components-layout {
   position: relative;
   z-index: 0;
