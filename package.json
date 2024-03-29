@@ -10,6 +10,7 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "mongodb": "^6.5.0",
+    "nodemon": "^3.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.1",
@@ -21,7 +22,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "sass": "sass --watch ./src/style/sass/main.scss ./public/style.css"
+    "sass": "sass --watch ./src/style/sass/main.scss ./public/style.css",
+    "server": "nodemon --exec ./src/app.js"
   },
   "eslintConfig": {
     "extends": [

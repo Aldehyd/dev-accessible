@@ -6,8 +6,22 @@ import { handleContrastedThemeSwitch } from "../Functions/handleContrastedThemeS
 import { colorsRadioButtonsData } from "../Datas/colorsRadioButtonsData.tsx";
 import { handleMainColor } from "../Functions/handleMainColor.tsx";
 import CVComponent from "../Layout/cvComponent.tsx";
+import useFetch from "../Hooks/useFetch.tsx";
+import { useState, useEffect } from "react";
+import { fetchData } from "../Functions/fetchData.tsx";
 
 export default function CV(): React.JSX.Element {
+
+    const [diplomas,setDiplomas] = useState(null);
+    
+    const [isLoading,setIsLoading] = useState<boolean>(true);
+    const [error,setError] = useState<boolean>(false);
+
+    useEffect(()=> {
+        fetchData('http://localhost:4000/cv',setDiplomas);
+    },[]);
+    
+
     return (
         <>
             <header>
@@ -18,7 +32,9 @@ export default function CV(): React.JSX.Element {
             </header>
                 
             <main className="cv">
-                <CVComponent />
+                {diplomas && <p>{diplomas[0].frenchTitle}</p>}
+
+                {/* <CVComponent achievments={achievments} diplomas={diplomas} languages={languages} /> */}
             </main>
         </>
     )
