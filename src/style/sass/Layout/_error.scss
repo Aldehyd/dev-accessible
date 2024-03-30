@@ -1,0 +1,39 @@
+.error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: fit-content;
+    margin: auto;
+    padding: 2rem;
+    background-color: map-get($colors,black);
+    border-radius: 2rem;
+    border: solid map-get($colors,white) 1rem;
+    &_message {
+        margin: auto;
+        width: fit-content;
+        color: map-get($colors,blue);
+        opacity: 1;
+    }
+}
+
+body.animations .error_message {
+    animation: errorMessageAppear 400ms ease-in-out forwards;
+}
+body:not(.contrast) {
+    & .error_message {
+        text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
+    }
+    &.purple {
+        & .error_message {
+            color: map-get($colors,purple);
+        text-shadow: 0 0.2rem 0.4rem map-get($colors,purple);
+        }
+    }
+}
+
+@keyframes errorMessageAppear {
+    from {
+        opacity: 0;
+    }
+}

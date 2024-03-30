@@ -1750,14 +1750,14 @@ body:not(.contrast).purple .cv_main-line {
   position: absolute;
   top: 3.5rem;
   left: 50%;
-  transform: translateX(-50%) rotate(10deg);
+  transform: translateX(-50%) rotate(-5deg);
   height: 0.3rem;
   width: 2rem;
   background-color: hsl(0deg, 6%, 10%);
   border-radius: 0.1rem;
 }
 
-@keyframes noResultSmileyEyes {
+@keyframes errorSmileyEyes {
   45% {
     transform: scaleY(1);
   }
@@ -1768,16 +1768,16 @@ body:not(.contrast).purple .cv_main-line {
     transform: scaleY(1);
   }
 }
-@keyframes noResultSmileyAppear {
+@keyframes errorSmileyAppear {
   from {
     opacity: 0;
   }
 }
 body.animations .error_smiley {
-  animation: noResultSmileyAppear 400ms ease-in-out forwards;
+  animation: errorSmileyAppear 400ms ease-in-out forwards;
 }
 body.animations .error_smiley_eyes {
-  animation: noResultSmileyEyes 3000ms 200ms ease-in-out infinite;
+  animation: errorSmileyEyes 3000ms 200ms ease-in-out infinite;
 }
 
 body:not(.contrast).purple .error_smiley {
@@ -2782,6 +2782,41 @@ body:not(.contrast).purple .infos-dialog_content {
   gap: 20px;
 }
 
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: fit-content;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 2rem;
+  border: solid #f1f1f1 1rem;
+}
+.error_message {
+  margin: auto;
+  width: fit-content;
+  color: hsl(175deg, 95%, 55%);
+  opacity: 1;
+}
+
+body.animations .error_message {
+  animation: errorMessageAppear 400ms ease-in-out forwards;
+}
+
+body:not(.contrast) .error_message {
+  text-shadow: 0 0.2rem 0.4rem hsl(175deg, 95%, 55%);
+}
+body:not(.contrast).purple .error_message {
+  color: hsl(295deg, 95%, 55%);
+  text-shadow: 0 0.2rem 0.4rem hsl(295deg, 95%, 55%);
+}
+
+@keyframes errorMessageAppear {
+  from {
+    opacity: 0;
+  }
+}
 .under-construction-page {
   height: 100vh;
   display: flex;
