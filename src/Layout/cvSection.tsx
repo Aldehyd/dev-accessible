@@ -1,25 +1,28 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 import CVSkill from "../Components/cv-skill.tsx";
-import { diplomas } from "../Datas/diplomas.tsx";
-import { languages } from "../Datas/languages.tsx";
-import { achievments } from "../Datas/achievments.tsx";
+import AchievmentInterface from "../Interfaces/achievmentInterface.tsx";
+import DiplomaInterface from "../Interfaces/diplomaInterface.tsx";
+import LanguageInterface from "../Interfaces/languageInterface.tsx";
 
 interface CVSectionInterface {
-    type: string
+    type: string,
+    achievments: AchievmentInterface[],
+    diplomas: DiplomaInterface[],
+    languages: LanguageInterface[]
 }
 
-export default function CVSection({type}: CVSectionInterface): React.JSX.Element {
+export default function CVSection({type,achievments,diplomas,languages}: CVSectionInterface): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
-
+    console.log(achievments)
     const [sectionTitle,setSectionTitle] = useState<string>("");
     const [technologies,setTechnologies] = useState<{id: string, frenchTitle: string, englishTitle: string, projects: string[]}[]>([]);
     const [designTools,setDesignTools] = useState<{id: string, frenchTitle: string, englishTitle: string, projects: string[]}[]>([]);
     const [devTools,setDevTools] = useState<{id: string, frenchTitle: string, englishTitle: string, projects: string[]}[]>([]);
 
 
-    const addTechnoToTechnologies : (technosType: string, technologies: {id: string, frenchTitle: string, englishTitle: string, projects: string[]}[])=>void = (technosType,technologies) => {
+    const addTechnoToTechnologies : (technosType: string, technologies: {id: string, frenchTitle: string, englishTitle: string, projects: string[]}[],achievments: AchievmentInterface[])=>void = (technosType,technologies,achievments) => {
         for(let achievment of achievments) {
             for(let techno of achievment.technologies[technosType]) {
                 let isAlreadyInTechnologies = false;
@@ -38,7 +41,7 @@ export default function CVSection({type}: CVSectionInterface): React.JSX.Element
         };
     };
 
-    const addToolToDevTools : ()=>void = useCallback(() => {
+    const addToolToDevTools : (achievments: AchievmentInterface[])=>void = useCallback((achievments) => {
         let devTools : {id: string, frenchTitle: string, englishTitle: string, projects: string[]}[] = [];
         for(let achievment of achievments) {
             for(let tool of achievment.developmentTools) {
@@ -57,9 +60,9 @@ export default function CVSection({type}: CVSectionInterface): React.JSX.Element
             };
         };
         setDevTools(devTools);
-    },[designTools]);
+    },[designTools,achievments]);
 
-    const addToolToDesignTools : ()=>void = () => {
+    const addToolToDesignTools : (achievments: AchievmentInterface[])=>void = (achievments) => {
         let designTools : {id: string, frenchTitle: string, englishTitle: string, projects: string[]}[] = [];
         for(let achievment of achievments) {
             for(let tool of achievment.design.tools) {
@@ -82,9 +85,9 @@ export default function CVSection({type}: CVSectionInterface): React.JSX.Element
 
     const setTechnologiesForCV :()=> void = useCallback(()=> {
         let technologies : {id: string, frenchTitle: string, englishTitle: string, projects: string[]}[] = [];
-        addTechnoToTechnologies("frontEnd",technologies);
-        addTechnoToTechnologies("backEnd",technologies);
-        addTechnoToTechnologies("dataBase",technologies);
+        addTechnoToTechnologies("frontEnd",technologies,achievments);
+        addTechnoToTechnologies("backEnd",technologies,achievments);
+        addTechnoToTechnologies("dataBase",technologies,achievments);
 
         setTechnologies(technologies);
     },[]);
@@ -97,11 +100,11 @@ export default function CVSection({type}: CVSectionInterface): React.JSX.Element
                 break;
             case "devTool":
                 language === "french" ? setSectionTitle("Outils de développement") : setSectionTitle("Development tools");
-                addToolToDevTools();
+                addToolToDevTools(achievments);
                 break;
             case "design":
                 language === "french" ? setSectionTitle("Outils de design") : setSectionTitle("Design tools");
-                addToolToDesignTools();
+                addToolToDesignTools(achievments);
                 break;
             case "diploma":
                 language === "french" ? setSectionTitle("Diplômes") : setSectionTitle("Diplomas");
