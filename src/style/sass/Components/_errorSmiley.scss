@@ -38,7 +38,7 @@
     }
 }
 
-@keyframes noResultSmileyEyes {
+@keyframes errorSmileyEyes {
     45% {
         transform: scaleY(1);
     }
@@ -49,16 +49,16 @@
         transform: scaleY(1);
     }
 }
-@keyframes noResultSmileyAppear {
+@keyframes errorSmileyAppear {
     from {
         opacity: 0;
     }
 }
 
 body.animations .error_smiley {
-    animation: noResultSmileyAppear 400ms ease-in-out forwards;
+    animation: errorSmileyAppear 400ms ease-in-out forwards;
     &_eyes {
-        animation: noResultSmileyEyes 3000ms 200ms ease-in-out infinite;
+        animation: errorSmileyEyes 3000ms 200ms ease-in-out infinite;
     }
 }
 body:not(.contrast) {
