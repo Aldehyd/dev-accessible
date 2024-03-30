@@ -1717,6 +1717,74 @@ body:not(.contrast).purple .cv_main-line {
   box-shadow: 0 0 1rem hsl(295deg, 95%, 55%);
 }
 
+.error_smiley {
+  position: relative;
+  height: 5rem;
+  width: 5rem;
+  background-color: hsl(175deg, 95%, 55%);
+  border-radius: 50%;
+  box-shadow: 0 0 0.5rem 0.1rem hsl(175deg, 95%, 55%);
+  opacity: 1;
+}
+.error_smiley_eyes {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  top: 1.2rem;
+  padding: 0 1.2rem;
+  width: 100%;
+}
+.error_smiley_left-eye {
+  height: 0.7rem;
+  width: 0.7rem;
+  background-color: hsl(0deg, 6%, 10%);
+  border-radius: 50%;
+}
+.error_smiley_right-eye {
+  height: 0.7rem;
+  width: 0.7rem;
+  background-color: hsl(0deg, 6%, 10%);
+  border-radius: 50%;
+}
+.error_smiley_mouth {
+  position: absolute;
+  top: 3.5rem;
+  left: 50%;
+  transform: translateX(-50%) rotate(10deg);
+  height: 0.3rem;
+  width: 2rem;
+  background-color: hsl(0deg, 6%, 10%);
+  border-radius: 0.1rem;
+}
+
+@keyframes noResultSmileyEyes {
+  45% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0);
+  }
+  55% {
+    transform: scaleY(1);
+  }
+}
+@keyframes noResultSmileyAppear {
+  from {
+    opacity: 0;
+  }
+}
+body.animations .error_smiley {
+  animation: noResultSmileyAppear 400ms ease-in-out forwards;
+}
+body.animations .error_smiley_eyes {
+  animation: noResultSmileyEyes 3000ms 200ms ease-in-out infinite;
+}
+
+body:not(.contrast).purple .error_smiley {
+  background-color: hsl(295deg, 95%, 55%);
+  box-shadow: 0 0 0.5rem 0.1rem hsl(295deg, 95%, 55%);
+}
+
 .radio-group {
   position: relative;
   margin: auto;

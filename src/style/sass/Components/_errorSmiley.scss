@@ -1,0 +1,71 @@
+.error_smiley {
+    position: relative;
+    height: 5rem;
+    width: 5rem;
+    background-color: map-get($colors,blue);
+    border-radius: 50%;
+    box-shadow: 0 0 0.5rem 0.1rem  map-get($colors,blue);
+    opacity: 1;
+    &_eyes {
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        top: 1.2rem;
+        padding: 0 1.2rem;
+        width: 100%;
+    }
+    &_left-eye {
+        height: 0.7rem;
+        width: 0.7rem;
+        background-color:  map-get($colors,darkBackground);
+        border-radius: 50%;
+    }
+    &_right-eye {
+        height: 0.7rem;
+        width: 0.7rem;
+        background-color:  map-get($colors,darkBackground);
+        border-radius: 50%;
+    }
+    &_mouth {
+        position: absolute;
+        top: 3.5rem;
+        left: 50%;
+        transform: translateX(-50%) rotate(10deg);
+        height: 0.3rem;
+        width: 2rem;
+        background-color:  map-get($colors,darkBackground);
+        border-radius: 0.1rem;
+    }
+}
+
+@keyframes noResultSmileyEyes {
+    45% {
+        transform: scaleY(1);
+    }
+    50% {
+        transform: scaleY(0);
+    }
+    55% {
+        transform: scaleY(1);
+    }
+}
+@keyframes noResultSmileyAppear {
+    from {
+        opacity: 0;
+    }
+}
+
+body.animations .error_smiley {
+    animation: noResultSmileyAppear 400ms ease-in-out forwards;
+    &_eyes {
+        animation: noResultSmileyEyes 3000ms 200ms ease-in-out infinite;
+    }
+}
+body:not(.contrast) {
+    &.purple {
+        & .error_smiley {
+            background-color: map-get($colors,purple);
+            box-shadow: 0 0 0.5rem 0.1rem  map-get($colors,purple);
+        }
+    }
+}
