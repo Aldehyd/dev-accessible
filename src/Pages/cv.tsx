@@ -8,6 +8,7 @@ import { handleMainColor } from "../Functions/handleMainColor.tsx";
 import CVComponent from "../Layout/cvComponent.tsx";
 import { useState, useEffect } from "react";
 import { fetchData } from "../Functions/fetchData.tsx";
+import Loader from "../Components/loader.tsx";
 
 export default function CV(): React.JSX.Element {
 
@@ -21,11 +22,9 @@ export default function CV(): React.JSX.Element {
     const [error,setError] = useState<boolean>(false);
 
     useEffect(()=> {
-
         fetchData('http://localhost:4000/cv-achievments',setAchievments,setIsAchievmentsLoading,setError);
         fetchData('http://localhost:4000/cv-diplomas',setDiplomas,setIsDiplomasLoading,setError);
         fetchData('http://localhost:4000/cv-languages',setLanguages,setIsLanguagesLoading,setError);
-
     },[]);
     
     return (
@@ -38,7 +37,7 @@ export default function CV(): React.JSX.Element {
             </header>
                 
             <main className="cv">
-                {isAchievmentsLoading || isDiplomasLoading || isLanguagesLoading && <p>Chargement </p>}
+                {(isAchievmentsLoading || isDiplomasLoading || isLanguagesLoading) && <Loader />}
                 {error && <p>Erreur !</p>}
                 {!isAchievmentsLoading && !isDiplomasLoading && !isLanguagesLoading && !error &&
                  <CVComponent achievments={achievments} diplomas={diplomas} languages={languages} />}
