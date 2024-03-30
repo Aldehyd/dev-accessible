@@ -30,7 +30,7 @@
         position: absolute;
         top: 3.5rem;
         left: 50%;
-        transform: translateX(-50%) rotate(10deg);
+        transform: translateX(-50%) rotate(-5deg);
         height: 0.3rem;
         width: 2rem;
         background-color:  map-get($colors,darkBackground);
