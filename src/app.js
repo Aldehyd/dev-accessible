@@ -15,8 +15,8 @@ app.listen(port, ()=> {
 app.use(cors());
 app.use(express.json());
 
-app.get('/',(_,res)=>{
-    res.send('hello world');
+app.get('/cv-status',(_,res)=>{
+    GetDatasFromCollection(res,"availableStatus");
 });
 
 app.get('/cv-achievments',(_,res)=>{
