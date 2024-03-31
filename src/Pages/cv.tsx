@@ -47,7 +47,7 @@ export default function CV(): React.JSX.Element {
                 {(isStatusLoading || isAchievmentsLoading || isDiplomasLoading || isLanguagesLoading) && !error && <Loader />}
                 {error && <Error frenchMessage="Une erreur est survenue. Veuillez rafraichir la page svp." englishMessage="An error has occured. Please refresh the current page." />}
                 {!isStatusLoading && !isAchievmentsLoading && !isDiplomasLoading && !isLanguagesLoading && !error &&
-                 <CVComponent availableStatus={status} achievments={achievments} diplomas={diplomas} languages={languages} />}
+                 <CVComponent availableStatus={status[0].status} achievments={achievments} diplomas={diplomas} languages={languages} />}
             </main>
         </>
     )
