@@ -1,0 +1,64 @@
+.checkbox-line {
+    position: relative;
+    z-index: 0;
+    width: fit-content;
+    font-size: 1.6rem;
+    padding: 0.5rem 1rem;
+    color: map-get($colors,blue);
+    text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
+    background-color: map-get($colors,darkBackground);
+    border-radius: 2rem;
+    cursor: pointer;
+    overflow: hidden;
+}
+.checkbox-background {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem 1rem;
+    background-color: map-get($colors,blue);
+    box-shadow: 0 0 1rem 0.4rem map-get($colors,blue);
+    opacity: 0;
+    transform-origin: 0 50%;
+    transform: translateX(-110%);
+    &-text {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        padding: 0.5rem 1rem;
+        color: map-get($colors,darkBackground);
+        opacity: 0;
+    }
+}
+
+.checkbox[aria-checked='true'] {
+    opacity: 0;
+    &+.checkbox-background {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    &~.checkbox-background-text {
+        opacity: 1;
+    }
+}
+
+
+body.animations {
+    & .checkbox {
+        transition: 400ms ease-in-out;
+    }
+    & .checkbox-background {
+        transition: 400ms ease-in-out;
+        &-text {
+            transition: 400ms ease-in-out;
+        }
+    }
+}
