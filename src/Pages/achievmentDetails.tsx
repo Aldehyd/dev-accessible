@@ -9,12 +9,12 @@ import AchievmentDetailsMain from "../Layout/achievmentDetailsMain.tsx";
 import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
-import { achievments } from "../Datas/achievments.tsx";
 import MainTitle from "../Components/main-title.tsx";
+import AchievmentsContext from "../Contexts/achievments-context.tsx";
 
 export default function AchievmentDetails(): React.JSX.Element {
 
-    const {language} = useContext(LanguageContext);
+    const {achievments} = useContext(AchievmentsContext);
 
     const {achievment} = useParams();
     const currentAchievment = achievments.find(project => project.title === achievment || project.title === `${achievment}.com`);

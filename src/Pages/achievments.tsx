@@ -6,11 +6,12 @@ import RadioButtonGroup from "../Components/radio-button.tsx";
 import {handleContrastedThemeSwitch} from "../Functions/handleContrastedThemeSwitch.tsx";
 import {handleMainColor} from "../Functions/handleMainColor.tsx";
 import {colorsRadioButtonsData} from "../Datas/colorsRadioButtonsData.tsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import AchievmentInterface from "../Interfaces/achievmentInterface.tsx";
 import { fetchData } from "../Functions/fetchData.tsx";
 import Error from "../Components/error.tsx";
 import Loader from "../Components/loader.tsx";
+import AchievmentsContext from "../Contexts/achievments-context.tsx";
 
 export default function Achievments(): React.JSX.Element {
 
@@ -19,9 +20,15 @@ export default function Achievments(): React.JSX.Element {
     const [isLoading,setIsLoading] = useState<boolean>(true);
     const [error,setError] = useState<boolean>(false);
 
+    const {changeAchievments} = useContext(AchievmentsContext);
+
     useEffect(()=> {
         fetchData('http://localhost:4000/cv-achievments',setAchievments,setIsLoading,setError);
     },[]);
+
+    useEffect(()=> {
+        !isLoading && !error && changeAchievments(achievments)
+    },[isLoading,error,changeAchievments,achievments]);
 
     return (
         <>
