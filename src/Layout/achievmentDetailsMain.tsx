@@ -4,6 +4,7 @@ import LanguageContext from "../Contexts/language-context.tsx";
 import CarouselContext from "../Contexts/caroussel-context.tsx";
 import Carousel from "../Layout/carousel.tsx";
 import CarouselFullScreen from "./carouselFullScreen.tsx";
+import MainLink from "../Components/main-link.tsx";
 
 export default function AchievmentDetailsMain({achievment}): React.JSX.Element {
 
@@ -117,6 +118,9 @@ export default function AchievmentDetailsMain({achievment}): React.JSX.Element {
                 <h2>Photos :</h2>
                 <Carousel pictures={achievment.pictures} setCurrentPicture={setCurrentPicture} />
                 {displayCarousel && <CarouselFullScreen />}
+                {/* {achievment.englishType === "Mobile Application" &&  */}
+                <MainLink frenchText="Règles de confidentialité" englishText="Privacy policy" route={`/achievments/${achievment.title.replace(".com","")}/privacy-policy`} />
+                {/* } */}
             </div>
         </main>
     )

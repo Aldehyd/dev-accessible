@@ -39,7 +39,7 @@ export default function AchievmentSection({achievment}: AchievmentSectionPropsIn
     return(
         <section className="achievment-section">
             <h2>
-                <a href={achievment.websiteLink}>{achievment.title}</a>
+                <a href={achievment.websiteLink} target="blank">{achievment.title}</a>
             </h2>
             <BasicPicture imageName={achievment.imageName} frenchAlt={achievment.frenchAlt} englishAlt={achievment.englishAlt} />
 
@@ -65,8 +65,6 @@ export default function AchievmentSection({achievment}: AchievmentSectionPropsIn
                 </dl>
             </div>
             <MainLink frenchText="Voir détails..." englishText="See details..." route={"/achievments/" + achievment.title.replace(".com","")} />
-
-            {/* <div class="separator"></div> */}
 
     </section>
     )

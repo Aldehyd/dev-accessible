@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 import { achievments } from "../Datas/achievments.tsx";
+import MainTitle from "../Components/main-title.tsx";
 
 export default function AchievmentDetails(): React.JSX.Element {
 
@@ -24,7 +25,7 @@ export default function AchievmentDetails(): React.JSX.Element {
             <LanguageSelect />
             <Switch name="contrasted-theme" frenchLabel="Thème contrasté" englishLabel="Contrasted theme" onSwitchFunction={handleContrastedThemeSwitch} />
             <RadioButtonGroup name="color" frenchLegend="Couleur" englishLegend="Color" radioButtonsData={colorsRadioButtonsData} handleChoice={handleMainColor} />
-            <h1>{achievment}</h1>
+            <MainTitle frenchText={achievment} englishText={achievment} />
             
             <AchievmentDetailsMain achievment={currentAchievment} />
         </>

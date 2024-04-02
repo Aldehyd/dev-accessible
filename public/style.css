@@ -2389,6 +2389,9 @@ body:not(.contrast).purple .shortcut-setting-container_key-pictures {
 .achievment-section .main-link {
   margin: auto;
 }
+.achievment-section_text-content {
+  margin: 40px 200px; /*temporary*/
+}
 .achievment-section dl {
   padding: 1rem;
   font-size: 1.4rem;
