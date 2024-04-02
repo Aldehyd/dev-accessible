@@ -62,3 +62,8 @@ body.animations {
         }
     }
 }
+body.contrast {
+    & .checkbox {
+        border: solid 0.2rem map-get($colors,darkBackground);
+    }
+}
