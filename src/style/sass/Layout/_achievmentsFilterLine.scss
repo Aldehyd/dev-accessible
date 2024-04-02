@@ -1,0 +1,12 @@
+.filters_line {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    &_label {
+        font-weight: bold;
+    }
+    &_list {
+        display: flex;
+        gap: 1rem;
+    }
+}

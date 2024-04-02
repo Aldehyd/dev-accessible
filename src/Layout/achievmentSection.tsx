@@ -2,9 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import BasicPicture from "../Components/basic-picture.tsx";
 import MainLink from "../Components/main-link.tsx";
 import LanguageContext from "../Contexts/language-context.tsx";
+import AchievmentInterface from "../Interfaces/achievmentInterface.tsx";
 
 interface AchievmentSectionPropsInterface {
-    achievment: any
+    achievment: AchievmentInterface,
 }
 
 export default function AchievmentSection({achievment}: AchievmentSectionPropsInterface): React.JSX.Element {
@@ -66,6 +67,6 @@ export default function AchievmentSection({achievment}: AchievmentSectionPropsIn
             </div>
             <MainLink frenchText="Voir détails..." englishText="See details..." route={"/achievments/" + achievment.title.replace(".com","")} />
 
-    </section>
+        </section>
     )
 }

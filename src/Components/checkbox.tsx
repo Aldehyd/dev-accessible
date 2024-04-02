@@ -1,16 +1,22 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 
 interface CheckboxPropsInterface {
     frenchText: string,
-    englishText: string
+    englishText: string,
+    onCheckedFunction?: ()=>void,
+    onUnCheckedFunction?: ()=>void
 }
 
-export default function CheckBox({frenchText,englishText}: CheckboxPropsInterface): React.JSX.Element {
+export default function CheckBox({frenchText,englishText,onCheckedFunction,onUnCheckedFunction}: CheckboxPropsInterface): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
 
     const [checked,setChecked] = useState<boolean>(false);
+
+    // useEffect(()=> {
+    //     checked ? onCheckedFunction() : onUnCheckedFunction();
+    // },[checked,onCheckedFunction,onUnCheckedFunction]);
 
     return (
         <li className="checkbox-line" onClick={()=> setChecked(checked => !checked)}>

@@ -1852,6 +1852,10 @@ body.animations .checkbox-background-text {
   transition: 400ms ease-in-out;
 }
 
+body.contrast .checkbox {
+  border: solid 0.2rem hsl(0deg, 6%, 10%);
+}
+
 .radio-group {
   position: relative;
   margin: auto;
@@ -2618,7 +2622,7 @@ body.animations .carousel-full-screen .carousel_pictures-container.transition.pr
   background-color: transparent;
   transform: scale(0.97, 0.9);
 }
-.cv_section h2 {
+.cv_section_title {
   width: fit-content;
   height: auto;
   margin: 1rem auto;
@@ -2905,6 +2909,34 @@ body:not(.contrast).purple .error_message {
     opacity: 0;
   }
 }
+.filters_line {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.filters_line_label {
+  font-weight: bold;
+}
+.filters_line_list {
+  display: flex;
+  gap: 1rem;
+}
+
+.achievments-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: fit-content;
+  margin: auto;
+  padding: 2rem;
+  background-color: #f1f1f1;
+  border-radius: 1rem;
+}
+
+body:not(.contrast) .achievments-filter {
+  box-shadow: rgba(0, 0, 0, 0.3) inset 0.5rem 0.5rem 0.5rem;
+}
+
 .under-construction-page {
   height: 100vh;
   display: flex;

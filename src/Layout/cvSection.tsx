@@ -101,7 +101,7 @@ export default function CVSection({type,achievments,diplomas,languages}: CVSecti
 
     return (
         <div className="cv_section">
-            <h2>{sectionTitle}</h2>
+            <h2 className="cv_section_title">{sectionTitle}</h2>
             <ul className={classList}>
                 {
                     type === "technology" && technologies.map(skill => 

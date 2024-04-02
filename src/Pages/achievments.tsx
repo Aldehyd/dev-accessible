@@ -12,6 +12,7 @@ import { fetchData } from "../Functions/fetchData.tsx";
 import Error from "../Components/error.tsx";
 import Loader from "../Components/loader.tsx";
 import AchievmentsContext from "../Contexts/achievments-context.tsx";
+import AchievmentsFitler from "../Layout/achievmentsFilter.tsx";
 
 export default function Achievments(): React.JSX.Element {
 
