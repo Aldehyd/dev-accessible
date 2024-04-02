@@ -35,5 +35,9 @@ export default interface AchievmentInterface {
     englishDeployment: string,
     frenchComments: string,
     englishComents: string,
-    pictures: PictureInterface[]
+    pictures: PictureInterface[],
+    privacyPolicy?: {
+        frenchText: string,
+        englishText: string
+    }
 }

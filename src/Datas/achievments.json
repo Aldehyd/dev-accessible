@@ -147,6 +147,10 @@
                 "frenchAlt": "",
                 "englishAlt": ""
             }
-        ]
+        ],
+        "privacyPolicy": {
+            "frenchText": "Aucune collecte de données",
+            "englishText": "No data collected"
+        }
     }
 ]
