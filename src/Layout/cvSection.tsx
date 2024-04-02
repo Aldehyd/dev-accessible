@@ -4,7 +4,7 @@ import CVSkill from "../Components/cv-skill.tsx";
 import AchievmentInterface from "../Interfaces/achievmentInterface.tsx";
 import DiplomaInterface from "../Interfaces/diplomaInterface.tsx";
 import LanguageInterface from "../Interfaces/languageInterface.tsx";
-
+import { addTechnoToTechnologies } from "../Functions/addTechnoToTechnologies.tsx";
 interface CVSectionInterface {
     type: string,
     achievments: AchievmentInterface[],
@@ -15,31 +15,11 @@ interface CVSectionInterface {
 export default function CVSection({type,achievments,diplomas,languages}: CVSectionInterface): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
-    console.log(achievments)
+  
     const [sectionTitle,setSectionTitle] = useState<string>("");
     const [technologies,setTechnologies] = useState<{id: string, frenchTitle: string, englishTitle: string, projects: string[]}[]>([]);
     const [designTools,setDesignTools] = useState<{id: string, frenchTitle: string, englishTitle: string, projects: string[]}[]>([]);
     const [devTools,setDevTools] = useState<{id: string, frenchTitle: string, englishTitle: string, projects: string[]}[]>([]);
-
-
-    const addTechnoToTechnologies : (technosType: string, technologies: {id: string, frenchTitle: string, englishTitle: string, projects: string[]}[],achievments: AchievmentInterface[])=>void = (technosType,technologies,achievments) => {
-        for(let achievment of achievments) {
-            for(let techno of achievment.technologies[technosType]) {
-                let isAlreadyInTechnologies = false;
-                for(let technology of technologies) {
-                    if(technology.englishTitle === techno) {
-                        isAlreadyInTechnologies = true;
-                    };
-                };
-                if(!isAlreadyInTechnologies) {
-                    technologies.push({id: techno, frenchTitle: techno, englishTitle: techno, projects: [achievment.title]});
-                } else {
-                    let technologyToModify = technologies.find(tech => tech.id === techno);
-                    technologyToModify?.projects.push(achievment.title);
-                };
-            };
-        };
-    };
 
     const addToolToDevTools : (achievments: AchievmentInterface[])=>void = useCallback((achievments) => {
         let devTools : {id: string, frenchTitle: string, englishTitle: string, projects: string[]}[] = [];
