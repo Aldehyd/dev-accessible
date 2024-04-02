@@ -5,6 +5,7 @@ import AchievmentInterface from "../Interfaces/achievmentInterface.tsx";
 import DiplomaInterface from "../Interfaces/diplomaInterface.tsx";
 import LanguageInterface from "../Interfaces/languageInterface.tsx";
 import AvailableStatusIndicator from "../Components/availableStatusIndicator.tsx";
+import CVHeadSection from "./cvHeadSection.tsx";
 interface CVComponentPropsInterface {
     availableStatus: boolean,
     achievments: AchievmentInterface[],
@@ -17,7 +18,7 @@ export default function CVComponent({availableStatus,achievments,diplomas,langua
     return (
         <div className="cv">
             <CVMainLine />
-            <AvailableStatusIndicator isAvailable={availableStatus} />
+            <CVHeadSection availableStatus={availableStatus}/>
             <CVSection type="technology" achievments={achievments} diplomas={diplomas} languages={languages} />
             <CVSection type="devTool" achievments={achievments} diplomas={diplomas} languages={languages} />
             <CVSection type="design" achievments={achievments} diplomas={diplomas} languages={languages} />

@@ -125,6 +125,10 @@ main:not(.cv) { /*temporary*/
   background-color: hsl(0deg, 6%, 10%);
 }
 
+h1 {
+  font-size: 1.8rem;
+}
+
 h2 {
   font-size: 1.6rem;
   color: hsl(175deg, 95%, 55%);
@@ -1531,7 +1535,7 @@ body:not(.contrast).purple .loader_timeline_unit {
 .available-status-indicator {
   display: inline-block;
   position: relative;
-  margin: auto;
+  height: fit-content;
   padding: 1rem;
   font-weight: 600;
   text-transform: capitalize;
@@ -2571,6 +2575,24 @@ body.animations .carousel-full-screen .carousel_pictures-container.transition.pr
 }
 .cv_section_list-container.col {
   flex-direction: column;
+}
+.cv_section--head {
+  display: flex;
+  flex-direction: column;
+  align-items: "center";
+  gap: 2rem;
+  padding: 2rem 3rem;
+}
+.cv_section--head_infos-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.cv_section--head_identity-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
 }
 
 @keyframes onHoverBeforeSection {

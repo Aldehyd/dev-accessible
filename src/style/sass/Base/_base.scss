@@ -123,6 +123,9 @@ header { /*temporary*/
 main:not(.cv) { /*temporary*/
     background-color: map-get($colors,darkBackground);
 }
+h1 {
+    font-size: 1.8rem;
+}
 h2 {
     font-size: 1.6rem;
     color: map-get($colors,blue);
