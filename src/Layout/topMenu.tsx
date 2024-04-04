@@ -4,12 +4,16 @@ import AccessibilityAnalysisIndicator from "../Components/accessibility-analysis
 import SearchBar from "../Components/search-bar.tsx";
 import AccessibilitySettingsButton from "../Components/accessibility-settings-button.tsx";
 
-export default function TopMenu(): React.JSX.Element {
+interface TopMenuPropsInterface {
+    setAccessibilityModalDisplay: (display: boolean)=> void
+}
+
+export default function TopMenu({setAccessibilityModalDisplay}: TopMenuPropsInterface): React.JSX.Element {
 
     return (
         <div className="top-menu">
             <div className="top-menu_buttons-invisible-container">
-                <AccessibilitySettingsButton />
+                <AccessibilitySettingsButton setDisplay={setAccessibilityModalDisplay} />
                 <AnimationToggleButton />
                 <LanguageSelect />
                 <AccessibilityAnalysisIndicator />
