@@ -1,16 +1,19 @@
 import { useContext } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 
-interface BasicButtonPropsInterface {
+interface CloseButtonPropsInterface {
+    onWhiteBackground?: boolean,
     onClickFunction?: ()=> void
 }
 
-export default function BasicButton({onClickFunction}: BasicButtonPropsInterface): React.JSX.Element {
+export default function CloseButton({onWhiteBackground=false,onClickFunction}: CloseButtonPropsInterface): React.JSX.Element {
     
     const {language} = useContext(LanguageContext);
 
+    let closeButtonClassNames = `basic-button-container basic-button-container--close-button ${onWhiteBackground && "basic-button-container--on-white-background"}`;
+
     return(
-        <div className="basic-button-container basic-button-container--close-button">
+        <div className={closeButtonClassNames}>
 
                 <button className="basic-button basic-button--close" onClick={onClickFunction} 
                     aria-label={language === "french" ? "Fermer" : "Close"}>
