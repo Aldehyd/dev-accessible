@@ -15,11 +15,20 @@ export default function ModalLayout({setDisplay,frenchTitle,englishTitle,childre
     const {language} = useContext(LanguageContext);
     const {isModalDisplayed,changeIsModalDisplayed} = useContext(ModalContext);
 
+    const modalTop = useRef(null);
     const modalCenter = useRef(null);
     const modalContent = useRef(null);
+    const modalBottom = useRef(null);
 
     const setCenterDialogHeight = ()=> {
-        const height = modalContent.current?.offsetHeight;
+        let height = modalContent.current?.offsetHeight;
+        const topHeight = modalTop.current?.offsetHeight;
+        const bottomHeight = modalTop.current?.offsetHeight;
+        console.log(height)
+        console.log(window.innerHeight)
+        if(height + topHeight + bottomHeight > 0.8*window.innerHeight) {
+            height = 0.7*window.innerHeight
+        }
         modalCenter.current.style.height = height.toString() + 'px';
     };
 
@@ -31,7 +40,7 @@ export default function ModalLayout({setDisplay,frenchTitle,englishTitle,childre
 
     return (
         <div className="modal-layout">
-            <div className="modal-layout_top">
+            <div className="modal-layout_top" ref={modalTop}>
                 <div className="modal-layout_top-focus-trap"></div>
                 <h1 className="modal-layout_title">
                     {language === "french" ? frenchTitle : englishTitle}
@@ -44,7 +53,7 @@ export default function ModalLayout({setDisplay,frenchTitle,englishTitle,childre
                 </div>
                 <div className="modal-layout_bottom-focus-trap"></div>
             </div>
-            <div className="modal-layout_bottom"></div>
+            <div className="modal-layout_bottom" ref={modalBottom}></div>
         </div>
     )
 }

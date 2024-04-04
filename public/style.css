@@ -378,6 +378,7 @@ body.contrast .animations-toggle-button {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  min-width: 6.5rem;
 }
 .switch_cursor {
   position: absolute;
@@ -3054,6 +3055,7 @@ body.animations .top-menu {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  min-width: 40vw;
   max-height: 90vh;
   max-width: 75vh;
 }
@@ -3097,13 +3099,19 @@ body.animations .top-menu {
   right: 0;
 }
 .modal-layout_center {
+  max-height: 100vh;
   background-color: #f1f1f1;
   border: solid #f1f1f1;
   border-width: 0 1rem 0 1rem;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 .modal-layout_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
   padding: 1rem;
+  height: fit-content;
   background-color: hsl(0deg, 6%, 10%);
   border-radius: 10px;
   overflow-y: auto;
@@ -3152,7 +3160,7 @@ body:not(.contrast) .modal-layout_title {
 body:not(.contrast).purple .modal-layout::before {
   box-shadow: 0 0 1rem 1rem hsl(295deg, 95%, 55%);
 }
-body:not(.contrast).purple .modal-layout::before_title {
+body:not(.contrast).purple .modal-layout_title {
   color: hsl(295deg, 95%, 55%);
   text-shadow: 0 0.2rem 0.4rem hsl(295deg, 95%, 55%);
 }
