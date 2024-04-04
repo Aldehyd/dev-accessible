@@ -1873,6 +1873,10 @@ body.contrast .checkbox {
   background-color: rgba(0, 0, 0, 0.9);
 }
 
+body.contrast .modal-dark-background {
+  background-color: #000;
+}
+
 .radio-group {
   position: relative;
   margin: auto;
@@ -3042,6 +3046,110 @@ body.animations .achievments-filter_content {
 }
 body.animations .top-menu {
   animation: topMenuAppear 800ms ease-in-out forwards;
+}
+
+.modal-layout {
+  position: fixed;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 90vh;
+  max-width: 75vh;
+}
+.modal-layout::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 2rem;
+  background-color: transparent;
+  transform: scale(0.97, 0.9);
+}
+.modal-layout_top {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #f1f1f1;
+  border-radius: 30px 30px 0 0;
+}
+.modal-layout_top-focus-trap {
+  width: 0;
+  height: 0;
+}
+.modal-layout_title {
+  margin: auto;
+  width: fit-content;
+  height: auto;
+  padding: 1rem 2rem;
+  color: hsl(175deg, 95%, 55%);
+  background-color: hsl(0deg, 6%, 10%);
+  border-radius: 25px;
+  box-shadow: 0.4rem 0.4rem 0.4rem 0 rgba(0, 0, 0, 0.3);
+  animation: titleAppear 400ms ease-in-out;
+}
+.modal-layout .basic-button-container--close-button {
+  position: relative;
+  top: 0;
+  right: 0;
+}
+.modal-layout_center {
+  background-color: #f1f1f1;
+  border: solid #f1f1f1;
+  border-width: 0 1rem 0 1rem;
+}
+.modal-layout_content {
+  padding: 1rem;
+  background-color: hsl(0deg, 6%, 10%);
+  border-radius: 10px;
+  overflow-y: auto;
+}
+.modal-layout_bottom-focus-trap {
+  width: 0;
+  height: 0;
+}
+.modal-layout_bottom {
+  height: 40px;
+  background-color: #f1f1f1;
+  border-radius: 0 0 30px 30px;
+}
+
+@keyframes onHoverBeforeModal {
+  0% {
+    transform: scale(0.97, 0.9);
+  }
+  50% {
+    transform: scale(0.98, 0.95);
+  }
+  100% {
+    transform: scale(0.97, 0.9);
+  }
+}
+body:not(.contrast) .modal-layout::before {
+  box-shadow: 0 0 1rem 1rem hsl(175deg, 95%, 55%);
+}
+body:not(.contrast) .modal-layout_top {
+  box-shadow: rgba(0, 0, 0, 0.3) inset 0.5rem 0.5rem 0.5rem;
+}
+body:not(.contrast) .modal-layout_title {
+  text-shadow: 0 0.2rem 0.4rem hsl(175deg, 95%, 55%);
+}
+body:not(.contrast).purple .modal-layout::before {
+  box-shadow: 0 0 1rem 1rem hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .modal-layout::before_title {
+  color: hsl(295deg, 95%, 55%);
+  text-shadow: 0 0.2rem 0.4rem hsl(295deg, 95%, 55%);
+}
+
+body.animations .cv_section:hover::before {
+  animation: onHoverBeforeModal 2000ms ease-in-out infinite;
+}
+body.animations .cv_section:focus-within::before {
+  animation: onHoverBeforeModal 2000ms ease-in-out infinite;
 }
 
 .under-construction-page {

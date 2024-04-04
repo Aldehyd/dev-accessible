@@ -1,10 +1,4 @@
-import AnimationToggleButton from "../Components/animation-toggle-button.tsx";
-import LanguageSelect from "../Components/language-select.tsx";
-import Switch from "../Components/switch.tsx";
-import RadioButtonGroup from "../Layout/RadioButtonsGroup.tsx";
-import { handleContrastedThemeSwitch } from "../Functions/handleContrastedThemeSwitch.tsx";
-import { colorsRadioButtonsData } from "../Datas/colorsRadioButtonsData.tsx";
-import { handleMainColor } from "../Functions/handleMainColor.tsx";
+
 import CVComponent from "../Layout/cvComponent.tsx";
 import { useState, useEffect, useContext } from "react";
 import { fetchData } from "../Functions/fetchData.tsx";
@@ -16,10 +10,12 @@ import LanguageInterface from "../Interfaces/languageInterface.tsx";
 import TopMenu from "../Layout/topMenu.tsx";
 import ModalContext from "../Contexts/modal-context.tsx";
 import ModalDarkBackground from "../Components/modal-dark-background.tsx";
+import AccessibilitySettingsModal from "../Modals/AccessibilitySettingsModal.tsx";
 
 export default function CV(): React.JSX.Element {
 
     const {isModalDisplayed} = useContext(ModalContext);
+    const [isAccessibilitySettingsModalDisplayed,setIsAccessibilitySettingsModalDisplayed] = useState<boolean>(false);
 
     const [status,setStatus] = useState<boolean>(false);
     const [achievments,setAchievments] = useState<AchievmentInterface[]>([]);
@@ -42,8 +38,9 @@ export default function CV(): React.JSX.Element {
     return (
         <>
             {isModalDisplayed && <ModalDarkBackground />}
+            {isAccessibilitySettingsModalDisplayed && <AccessibilitySettingsModal setDisplay={setIsAccessibilitySettingsModalDisplayed} />}
             <header>
-                <TopMenu />
+                <TopMenu setAccessibilityModalDisplay={setIsAccessibilitySettingsModalDisplayed} />
             </header>
                 
             <main className="cv">
