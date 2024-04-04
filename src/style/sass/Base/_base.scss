@@ -10,6 +10,7 @@ body {
     min-height: 100vh;
     font-size: 1.4rem;
     font-family: "Oswald", sans-serif;
+    color: map-get($colors,blue);
     background-color: map-get($colors,dark);
 }
 
@@ -84,6 +85,7 @@ body {
         }
     }
     &:not(.contrast) {
+        text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
         background: radial-gradient(ellipse 50% 80%, map-get($colors,dark) 80%,map-get($colors,blue));
         background-size: 100% 100%;
         background-position: 50% 50%;
@@ -96,6 +98,8 @@ body {
     }
     &:not(.contrast).purple {
         background: radial-gradient(ellipse 50% 80%, map-get($colors,dark) 80%,map-get($colors,purple));
+        color: map-get($colors,purple);
+        text-shadow: 0 0.2rem 0.4rem map-get($colors,purple);
         & h2 {
             color: map-get($colors,purple);
             text-shadow: 0 0.2rem 0.4rem map-get($colors,purple);
@@ -131,6 +135,7 @@ h1 {
     font-size: 1.8rem;
 }
 h2 {
+    margin: 1rem 0;
     font-size: 1.6rem;
     color: map-get($colors,blue);
 }
@@ -143,6 +148,10 @@ ul:not(.achievments_list):not(.infos-dialog_list) {
 button, input, textarea {
     font-size: 1.4rem;
     font-family: "Oswald", sans-serif;
+}
+label {
+    color: map-get($colors,darkBackground);
+    text-shadow: none;
 }
 
 
