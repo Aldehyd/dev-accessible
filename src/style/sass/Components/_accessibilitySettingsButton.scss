@@ -3,13 +3,13 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: map-get($colors,blue);
-    font-size: 1.6rem;
-    text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
-    padding: 1rem;
+    color: map-get($colors,white);
+    font-weight: bold;
+    margin: 0 0.4rem;
+    padding: 0.5rem 1rem;
     background-color: map-get($colors,darkBackground);
     border-radius: 1rem;
-    border: solid 0.2rem map-get($colors,white);
+    border: solid 0.4rem map-get($colors,white);
     cursor: pointer;
     &::before {
         content: "";
@@ -19,19 +19,31 @@
         left: 0;
         height: 100%;
         width: 100%;
-        border-radius: 1rem;
-        box-shadow: 0 0 2rem 1rem map-get($colors,darkBackground);
-        transform: scale(0.95,0.9);
+        background-color: map-get($colors,white);
+        border-radius: 0 1rem 1rem 0;
+        transform: scale(1.3,1.5);
+    }
+    &:hover {
+        color: map-get($colors,darkBackground);
+        background-color: map-get($colors,white);
+        border-color: map-get($colors,darkBackground);
+    }
+    &:focus {
+        color: map-get($colors,darkBackground);
+        background-color: map-get($colors,white);
+        border-color: map-get($colors,darkBackground);
     }
 }
 
-body:not(.contrast) {
-    &.purple {
-        & .accessibility-settings-button {
-            color: map-get($colors,purple);
-            text-shadow: 0 0.2rem 0.4rem map-get($colors,purple);
+body.animations {
+    & .accessibility-settings-button {
+        transition: 200ms ease-in-out;
+        &::after {
+            transition: 200ms ease-in-out;
         }
+        
     }
+
 }
 
 //temporary
