@@ -37,7 +37,19 @@ export default interface AchievmentInterface {
     englishComents: string,
     pictures: PictureInterface[],
     privacyPolicy?: {
-        frenchText: string,
-        englishText: string
+        frenchCollect: string,
+        englishCollect: string,
+        ownerName: string,
+        ownerAdress: string,
+        frenchCourt: string,
+        englishCourt: string,
+        mail: string,
+        frenchLegalAction: string,
+        englishLegalAction: string,
+        frenchPolicyChanges: string,
+        englishPolicyChanges: string,
+        frenchNewConsent: string,
+        englishNewConsent: string,
+        lastChangeDate: string,
     }
 }
