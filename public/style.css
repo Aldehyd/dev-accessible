@@ -1273,6 +1273,7 @@ body:not(.contrast).purple .main-link:focus-within::after {
   display: block;
   margin: auto;
   width: 70%;
+  max-width: 500px;
   height: fit-content;
   overflow: hidden;
 }
@@ -1325,6 +1326,7 @@ body.animations:not(.contrast).purple .basic-picture-mask {
   }
 }
 .main-title {
+  margin: auto;
   padding: 0.8rem 1.8rem;
   width: fit-content;
   font-size: 2rem;
