@@ -3,7 +3,7 @@ import AchievmentsSeparator from "../Components/achievments-separator.tsx";
 import AchievmentsFitler from "./achievmentsFilter.tsx";
 import { useState, useEffect } from "react";
 import AchievmentInterface from "../Interfaces/achievmentInterface.tsx";
-
+import Error from "../Components/error.tsx";
 interface AchievmentsMainPropsInterface {
     achievments : AchievmentInterface[]
 }
@@ -48,14 +48,21 @@ export default function AchievmentsMain({achievments}: AchievmentsMainPropsInter
     return (
         <main>
              <AchievmentsFitler typeFilter={typeFilter} setTypeFilter={setTypeFilter} setYearFilter={setYearFilter} yearFilter={yearFilter} frontEndFilter={frontEndFilter} setFrontEndFilter={setFrontEndFilter} backEndFilter={backEndFilter} setBackEndFilter={setBackEndFilter} databaseFilter={databaseFilter} setDatabaseFilter={setDatabaseFilter} results={achievmentsToShow.length} />
-            {achievmentsToShow.map(achievment => {
-                return (
-                    <>
-                        <AchievmentSection achievment={achievment} />
-                        {!(achievments.indexOf(achievment) === achievments.length -1) && <AchievmentsSeparator />}
-                    </>
-                )
-            })}
+            {
+                achievmentsToShow.length > 0 &&
+                    achievmentsToShow.map(achievment => {
+                        return (
+                            <>
+                                <AchievmentSection achievment={achievment} />
+                                {!(achievments.indexOf(achievment) === achievments.length -1) && <AchievmentsSeparator />}
+                            </>
+                        )
+                    })
+            }
+            {
+                achievmentsToShow.length === 0 && <Error frenchMessage="Aucun résultat." englishMessage="No result." />
+    
+            }
         </main>
     )
 }

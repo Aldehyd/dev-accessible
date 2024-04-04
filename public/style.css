@@ -2927,7 +2927,7 @@ body:not(.contrast).purple .error_message {
   flex-direction: column;
   gap: 2rem;
   width: fit-content;
-  margin: auto;
+  margin: 6rem auto;
   padding: 2rem;
   background-color: #f1f1f1;
   border-radius: 1rem;
