@@ -6,6 +6,7 @@ import Error from "../Components/error.tsx";
 import Loader from "../Components/loader.tsx";
 import AchievmentsContext from "../Contexts/achievments-context.tsx";
 import TopMenu from "../Layout/topMenu.tsx";
+import MainTitle from "../Components/main-title.tsx";
 
 export default function Achievments(): React.JSX.Element {
 
@@ -29,9 +30,12 @@ export default function Achievments(): React.JSX.Element {
             <header>
                 <TopMenu />
             </header>
-            {isLoading && !error && <Loader />}
-            {error && <Error frenchMessage="Une erreur est survenue. Veuillez rafraichir la page svp." englishMessage="An error has occured. Please refresh the current page." />}
-            {!isLoading && !error && <AchievmentsMain achievments={achievments} />}
+            <main>
+                <MainTitle frenchText="Réalisations" englishText="Achievments"/>
+                {isLoading && !error && <Loader />}
+                {error && <Error frenchMessage="Une erreur est survenue. Veuillez rafraichir la page svp." englishMessage="An error has occured. Please refresh the current page." />}
+                {!isLoading && !error && <AchievmentsMain achievments={achievments} />}
+            </main>
         </>
         
     )

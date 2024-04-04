@@ -18,9 +18,10 @@ export default function AchievmentDetails(): React.JSX.Element {
             <header>
                 <TopMenu />
             </header>
-            <MainTitle frenchText={achievment} englishText={achievment} />
-            
-            <AchievmentDetailsMain achievment={currentAchievment} />
+            <main>
+                <MainTitle frenchText={achievment} englishText={achievment} />
+                <AchievmentDetailsMain achievment={currentAchievment} />
+            </main>
         </>
         
     )

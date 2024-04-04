@@ -46,7 +46,7 @@ export default function AchievmentsMain({achievments}: AchievmentsMainPropsInter
     },[typeFilter,yearFilter,frontEndFilter,backEndFilter,databaseFilter,achievments]);
 
     return (
-        <main>
+        <>
              <AchievmentsFitler typeFilter={typeFilter} setTypeFilter={setTypeFilter} setYearFilter={setYearFilter} yearFilter={yearFilter} frontEndFilter={frontEndFilter} setFrontEndFilter={setFrontEndFilter} backEndFilter={backEndFilter} setBackEndFilter={setBackEndFilter} databaseFilter={databaseFilter} setDatabaseFilter={setDatabaseFilter} results={achievmentsToShow.length} />
             {
                 achievmentsToShow.length > 0 &&
@@ -63,6 +63,6 @@ export default function AchievmentsMain({achievments}: AchievmentsMainPropsInter
                 achievmentsToShow.length === 0 && <Error frenchMessage="Aucun résultat." englishMessage="No result." />
     
             }
-        </main>
+        </>
     )
 }

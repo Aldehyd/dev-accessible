@@ -18,8 +18,10 @@ export default function AchievmentPrivacyPolicy(): React.JSX.Element {
             <header>
                 <TopMenu />
             </header>
-            <MainTitle frenchText="Règles de confidentialité" englishText="Privacy policy" />
-            <p>{language === "french" ? currentAchievment?.privacyPolicy?.frenchText : currentAchievment?.privacyPolicy?.englishText}</p>
+            <main>
+                <MainTitle frenchText="Règles de confidentialité" englishText="Privacy policy" />
+                <p>{language === "french" ? currentAchievment?.privacyPolicy?.frenchText : currentAchievment?.privacyPolicy?.englishText}</p>
+            </main> 
         </>
     )
 }
