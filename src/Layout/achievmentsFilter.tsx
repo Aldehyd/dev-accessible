@@ -3,6 +3,7 @@ import AchievmentsContext from "../Contexts/achievments-context.tsx";
 import LanguageContext from "../Contexts/language-context.tsx";
 import AchievmentsFilterLine from "./AchievmentsFilterLine.tsx";
 import BasicButton from "../Components/basic-button.tsx";
+import ExpandButton from "../Components/expand-button.tsx";
 
 interface AchievmentsFilterPropsInterface {
     typeFilter: string[],
@@ -23,6 +24,8 @@ export default function AchievmentsFitler({typeFilter,setTypeFilter,yearFilter,s
     const {language} = useContext(LanguageContext);
 
     const {achievments} = useContext(AchievmentsContext);   
+
+    const [filterExpanded,setFilterExpanded] = useState<boolean>(true);
 
     const [types,setTypes] = useState<string[]>([]);
     const [years,setYears] = useState<string[]>([]);
@@ -65,25 +68,33 @@ export default function AchievmentsFitler({typeFilter,setTypeFilter,yearFilter,s
     };
 
     return (
-        <div className="achievments-filter">
-            <h2 className="cv_section_title">{language === "french" ? "Filtres" : "Filters"}</h2>
-            {
-                (typeFilter.length > 0 || yearFilter.length > 0 || frontEndFilter.length > 0 || backEndFilter.length > 0 || databaseFilter.length > 0) && 
-                <BasicButton frenchText="Effacer tous les filtres X" englishText="Clean filters X" onWhiteBackground={true} onClickFunction={()=> cleanFilters()} />
-            }
-            <AchievmentsFilterLine frenchLabel="Types" englishLabel="Types" array={types} filterArray={typeFilter} setFilterArray={setTypeFilter} />
-            <AchievmentsFilterLine frenchLabel="Années" englishLabel="Years" array={years} filterArray={yearFilter} setFilterArray={setYearFilter} />
-            <AchievmentsFilterLine frenchLabel="Technologies Front-End" englishLabel="Front-End technologies" array={frontEndTechnologies} filterArray={frontEndFilter} setFilterArray={setFrontEndFilter} />
-            <AchievmentsFilterLine frenchLabel="Technologies Back-End" englishLabel="Back-End technologies" array={backEndTechnologies} filterArray={backEndFilter} setFilterArray={setBackEndFilter} />
-            <AchievmentsFilterLine frenchLabel="Bases de données" englishLabel="Databases" array={dataBaseTechnologies} filterArray={databaseFilter} setFilterArray={setDatabaseFilter} />
-            <div className="achievments-filter_results">
-                <span>
-                    {language === "french" ? "Résultats" : "Results"} :
-                </span>
-                <span>
-                    {results}
-                </span>
+        <div className="achievments-filter" aria-expanded={filterExpanded ? "true" : "false"}>
+            <div className="achievments-filter_head">
+                <h2 className="cv_section_title">{language === "french" ? "Filtres" : "Filters"}</h2>
+                <ExpandButton expanded={filterExpanded} setExpanded={setFilterExpanded}/>
             </div>
+            {
+                filterExpanded &&
+                    <div className="achievments-filter_content">
+                        {
+                            (typeFilter.length > 0 || yearFilter.length > 0 || frontEndFilter.length > 0 || backEndFilter.length > 0 || databaseFilter.length > 0) && 
+                            <BasicButton frenchText="Effacer tous les filtres X" englishText="Clean filters X" onWhiteBackground={true} onClickFunction={()=> cleanFilters()} />
+                        }
+                        <AchievmentsFilterLine frenchLabel="Types" englishLabel="Types" array={types} filterArray={typeFilter} setFilterArray={setTypeFilter} />
+                        <AchievmentsFilterLine frenchLabel="Années" englishLabel="Years" array={years} filterArray={yearFilter} setFilterArray={setYearFilter} />
+                        <AchievmentsFilterLine frenchLabel="Technologies Front-End" englishLabel="Front-End technologies" array={frontEndTechnologies} filterArray={frontEndFilter} setFilterArray={setFrontEndFilter} />
+                        <AchievmentsFilterLine frenchLabel="Technologies Back-End" englishLabel="Back-End technologies" array={backEndTechnologies} filterArray={backEndFilter} setFilterArray={setBackEndFilter} />
+                        <AchievmentsFilterLine frenchLabel="Bases de données" englishLabel="Databases" array={dataBaseTechnologies} filterArray={databaseFilter} setFilterArray={setDatabaseFilter} />
+                        <div className="achievments-filter_results">
+                            <span>
+                                {language === "french" ? "Résultats" : "Results"} :
+                            </span>
+                            <span>
+                                {results}
+                            </span>
+                        </div>
+                    </div>
+        }
         </div>
         
     )

@@ -2923,14 +2923,18 @@ body:not(.contrast).purple .error_message {
 }
 
 .achievments-filter {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  width: fit-content;
-  margin: 6rem auto;
+  margin: 6rem 2rem;
   padding: 2rem;
   background-color: #f1f1f1;
   border-radius: 1rem;
+}
+.achievments-filter_head {
+  width: 100%;
+}
+.achievments-filter_content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 .achievments-filter > .basic-button-container {
   margin: auto;
