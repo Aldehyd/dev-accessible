@@ -40,6 +40,7 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
+        min-width: 6.5rem;
     }
     &_cursor {
         position: absolute;
