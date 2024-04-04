@@ -10,32 +10,44 @@ interface AchievmentsMainPropsInterface {
 
 export default function AchievmentsMain({achievments}: AchievmentsMainPropsInterface): React.JSX.Element {
 
+    const [typeFilter,setTypeFilter] = useState<string[]>([]);
+    const [yearFilter,setYearFilter] = useState<string[]>([]);
     const [frontEndFilter,setFrontEndFilter] = useState<string[]>([]);
     const [backEndFilter,setBackEndFilter] = useState<string[]>([]);
     const [databaseFilter,setDatabaseFilter] = useState<string[]>([]);
 
     const [achievmentsToShow,setAchievmentsToShow] = useState(achievments);
 
-    const filter = (techno,filterArray,filteredAchievments)=> {
-        console.log(techno,filterArray,filteredAchievments)
-        for(let filter of filterArray) {
-            filteredAchievments = filteredAchievments.filter(achievment => achievment.technologies[techno].includes(filter));
+    const filter: (techno: string, filterArray: string[],filteredAchievments: AchievmentInterface[],type?:string)=> AchievmentInterface[] = (techno,filterArray,filteredAchievments,type="other")=> {
+        
+        if(type === "techno") {
+            for(let filter of filterArray) {
+                filteredAchievments = filteredAchievments.filter(achievment => achievment.technologies[techno].includes(filter));
+            };
+        } else {
+            for(let filter of filterArray) {
+                filteredAchievments = filteredAchievments.filter(achievment => achievment[techno].includes(filter));
+            };
         };
+        
         return filteredAchievments;
     };
 
     useEffect(()=> {
         let filteredAchievments = achievments; 
-        filteredAchievments = filter('frontEnd',frontEndFilter,filteredAchievments);
-        filteredAchievments = filter('backEnd',backEndFilter,filteredAchievments);
-        filteredAchievments = filter('dataBase',databaseFilter,filteredAchievments);
+
+        filteredAchievments = filter('englishType',typeFilter,filteredAchievments);
+        filteredAchievments = filter('year',yearFilter,filteredAchievments);
+        filteredAchievments = filter('frontEnd',frontEndFilter,filteredAchievments,'techno');
+        filteredAchievments = filter('backEnd',backEndFilter,filteredAchievments,'techno');
+        filteredAchievments = filter('dataBase',databaseFilter,filteredAchievments,'techno');
  
         setAchievmentsToShow(filteredAchievments);
-    },[frontEndFilter,backEndFilter,databaseFilter,achievments]);
+    },[typeFilter,yearFilter,frontEndFilter,backEndFilter,databaseFilter,achievments]);
 
     return (
         <main>
-             <AchievmentsFitler frontEndFilter={frontEndFilter} setFrontEndFilter={setFrontEndFilter} backEndFilter={backEndFilter} setBackEndFilter={setBackEndFilter} databaseFilter={databaseFilter} setDatabaseFilter={setDatabaseFilter} />
+             <AchievmentsFitler typeFilter={typeFilter} setTypeFilter={setTypeFilter} setYearFilter={setYearFilter} yearFilter={yearFilter} frontEndFilter={frontEndFilter} setFrontEndFilter={setFrontEndFilter} backEndFilter={backEndFilter} setBackEndFilter={setBackEndFilter} databaseFilter={databaseFilter} setDatabaseFilter={setDatabaseFilter} />
             {achievmentsToShow.map(achievment => {
                 return (
                     <>
