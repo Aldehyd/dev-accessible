@@ -54,7 +54,7 @@ export default function AchievmentsMain({achievments}: AchievmentsMainPropsInter
                         return (
                             <>
                                 <AchievmentSection achievment={achievment} />
-                                {!(achievments.indexOf(achievment) === achievments.length -1) && <AchievmentsSeparator />}
+                                {!(achievmentsToShow.indexOf(achievment) === achievmentsToShow.length -1) && <AchievmentsSeparator />}
                             </>
                         )
                     })
