@@ -113,11 +113,7 @@ body {
     min-height: 100vh;
 }
 
-header { /*temporary*/
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 1rem;
+header { 
     margin-bottom: 4rem;
 }
 main:not(.cv) { /*temporary*/

@@ -1,0 +1,53 @@
+.top-menu {
+    position: relative;
+    height: 4rem;
+    width: 100rem;
+    max-width: 95%;
+    background-color: map-get($colors,white);
+    border-radius: 0 0 8rem 0;
+    box-shadow: inset -0.5rem -0.5rem 0.8rem 0.3rem map-get($colors,switchBlackBoxShadow);
+    transform: translateY(0);
+    &_buttons-invisible-container {
+        position: absolute;
+        top: 2rem;
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        gap: 3rem;
+        padding-left: 2rem;
+        width: fit-content;
+        max-width: 90%;
+        &.expanded {
+            align-items: start;
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .top-menu {
+        max-width: 100%;
+        border-radius: 0;
+        height: fit-content;
+        padding: 1.5rem;
+    }
+    .top-menu_buttons-invisible-container {
+        position: static;
+        height: fit-content;
+    }
+    /* .top-menu_item {
+        position: static;
+        top: 0;
+    } */
+}
+
+@keyframes topMenuAppear {
+    from {
+        transform: translateY(-200%);
+    }
+}
+
+body.animations {
+    & .top-menu {
+        animation: topMenuAppear 800ms ease-in-out forwards;
+    }
+}

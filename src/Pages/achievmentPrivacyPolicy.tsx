@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import MainTitle from "../Components/main-title.tsx";
 import AchievmentsContext from "../Contexts/achievments-context.tsx";
 import LanguageContext from "../Contexts/language-context.tsx";
+import TopMenu from "../Layout/topMenu.tsx";
 
 export default function AchievmentPrivacyPolicy(): React.JSX.Element {
 
@@ -14,6 +15,9 @@ export default function AchievmentPrivacyPolicy(): React.JSX.Element {
 
     return (
         <>
+            <header>
+                <TopMenu />
+            </header>
             <MainTitle frenchText="Règles de confidentialité" englishText="Privacy policy" />
             <p>{language === "french" ? currentAchievment?.privacyPolicy?.frenchText : currentAchievment?.privacyPolicy?.englishText}</p>
         </>

@@ -13,6 +13,7 @@ import Error from "../Components/error.tsx";
 import AchievmentInterface from "../Interfaces/achievmentInterface.tsx";
 import DiplomaInterface from "../Interfaces/diplomaInterface.tsx";
 import LanguageInterface from "../Interfaces/languageInterface.tsx";
+import TopMenu from "../Layout/topMenu.tsx";
 
 export default function CV(): React.JSX.Element {
 
@@ -37,10 +38,7 @@ export default function CV(): React.JSX.Element {
     return (
         <>
             <header>
-                <AnimationToggleButton />
-                <LanguageSelect />
-                <Switch name="contrasted-theme" frenchLabel="Thème contrasté" englishLabel="Contrasted theme" onSwitchFunction={handleContrastedThemeSwitch} />
-                <RadioButtonGroup name="color" frenchLegend="Couleur" englishLegend="Color" radioButtonsData={colorsRadioButtonsData} handleChoice={handleMainColor} />
+                <TopMenu />
             </header>
                 
             <main className="cv">
