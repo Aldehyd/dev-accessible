@@ -2935,6 +2935,17 @@ body:not(.contrast).purple .error_message {
 .achievments-filter > .basic-button-container {
   margin: auto;
 }
+.achievments-filter_results {
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  font-size: 1.6rem;
+  margin: auto;
+  border: solid 0.2rem hsl(0deg, 6%, 10%);
+  border-radius: 1rem;
+}
+.achievments-filter_results span:first-child {
+  margin-right: 1rem;
+}
 
 body:not(.contrast) .achievments-filter {
   box-shadow: rgba(0, 0, 0, 0.3) inset 0.5rem 0.5rem 0.5rem;

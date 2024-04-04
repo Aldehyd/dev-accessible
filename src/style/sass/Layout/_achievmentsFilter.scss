@@ -10,6 +10,17 @@
     &>.basic-button-container {
         margin: auto;
     }
+    &_results {
+        padding: 0.5rem 1rem;
+        font-weight: bold;
+        font-size: 1.6rem;
+        margin: auto;
+        border: solid 0.2rem map-get($colors,darkBackground);
+        border-radius: 1rem;
+        & span:first-child {
+            margin-right: 1rem;
+        }
+    }
 }
 
 body:not(.contrast) {

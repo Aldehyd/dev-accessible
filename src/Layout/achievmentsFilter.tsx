@@ -15,9 +15,10 @@ interface AchievmentsFilterPropsInterface {
     setBackEndFilter: (filter: string[])=>void,
     databaseFilter: string[],
     setDatabaseFilter: (filter: string[])=>void,
+    results: number
 }
 
-export default function AchievmentsFitler({typeFilter,setTypeFilter,yearFilter,setYearFilter,frontEndFilter,setFrontEndFilter,backEndFilter,setBackEndFilter,databaseFilter,setDatabaseFilter}: AchievmentsFilterPropsInterface): React.JSX.Element {
+export default function AchievmentsFitler({typeFilter,setTypeFilter,yearFilter,setYearFilter,frontEndFilter,setFrontEndFilter,backEndFilter,setBackEndFilter,databaseFilter,setDatabaseFilter,results}: AchievmentsFilterPropsInterface): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
 
@@ -75,6 +76,14 @@ export default function AchievmentsFitler({typeFilter,setTypeFilter,yearFilter,s
             <AchievmentsFilterLine frenchLabel="Technologies Front-End" englishLabel="Front-End technologies" array={frontEndTechnologies} filterArray={frontEndFilter} setFilterArray={setFrontEndFilter} />
             <AchievmentsFilterLine frenchLabel="Technologies Back-End" englishLabel="Back-End technologies" array={backEndTechnologies} filterArray={backEndFilter} setFilterArray={setBackEndFilter} />
             <AchievmentsFilterLine frenchLabel="Bases de données" englishLabel="Databases" array={dataBaseTechnologies} filterArray={databaseFilter} setFilterArray={setDatabaseFilter} />
+            <div className="achievments-filter_results">
+                <span>
+                    {language === "french" ? "Résultats" : "Results"} :
+                </span>
+                <span>
+                    {results}
+                </span>
+            </div>
         </div>
         
     )

@@ -47,7 +47,7 @@ export default function AchievmentsMain({achievments}: AchievmentsMainPropsInter
 
     return (
         <main>
-             <AchievmentsFitler typeFilter={typeFilter} setTypeFilter={setTypeFilter} setYearFilter={setYearFilter} yearFilter={yearFilter} frontEndFilter={frontEndFilter} setFrontEndFilter={setFrontEndFilter} backEndFilter={backEndFilter} setBackEndFilter={setBackEndFilter} databaseFilter={databaseFilter} setDatabaseFilter={setDatabaseFilter} />
+             <AchievmentsFitler typeFilter={typeFilter} setTypeFilter={setTypeFilter} setYearFilter={setYearFilter} yearFilter={yearFilter} frontEndFilter={frontEndFilter} setFrontEndFilter={setFrontEndFilter} backEndFilter={backEndFilter} setBackEndFilter={setBackEndFilter} databaseFilter={databaseFilter} setDatabaseFilter={setDatabaseFilter} results={achievmentsToShow.length} />
             {achievmentsToShow.map(achievment => {
                 return (
                     <>
