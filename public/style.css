@@ -1313,6 +1313,7 @@ body.animations:not(.contrast).purple .basic-picture-mask {
 }
 .main-title {
   padding: 0.8rem 1.8rem;
+  width: fit-content;
   font-size: 2rem;
   font-weight: bold;
   color: hsl(175deg, 95%, 55%);
