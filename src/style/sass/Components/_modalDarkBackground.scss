@@ -6,5 +6,10 @@
     width: 100vw;
     height: 100vh;
     background-color: map-get($colors,modalDarkBackground);
+}
 
+body.contrast {
+    & .modal-dark-background {
+        background-color: map-get($colors,dark);
+    }
 }
