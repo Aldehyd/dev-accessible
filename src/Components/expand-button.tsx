@@ -11,7 +11,7 @@ export default function ExpandButton({expanded,setExpanded}: ExpandButtonPropsIn
     const {language} = useContext(LanguageContext);
 
 
-    let basicButtonClassNames = `basic-button-container ${expanded ? "hide" : "show"}`;
+    let basicButtonClassNames = `basic-button-container--on-white-background ${expanded ? "hide" : "show"}`;
 
     const onClickFunction = ()=> {
         setExpanded(expanded => !expanded);
