@@ -4,22 +4,37 @@ import LanguageContext from "../Contexts/language-context.tsx";
 interface CheckboxPropsInterface {
     frenchText: string,
     englishText: string,
-    onCheckedFunction?: ()=>void,
-    onUnCheckedFunction?: ()=>void
+    filterArray: string[],
+    setFilterArray: (array: string[])=>void
 }
 
-export default function CheckBox({frenchText,englishText,onCheckedFunction,onUnCheckedFunction}: CheckboxPropsInterface): React.JSX.Element {
+export default function CheckBox({frenchText,englishText,filterArray,setFilterArray}: CheckboxPropsInterface): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
 
     const [checked,setChecked] = useState<boolean>(false);
 
-    // useEffect(()=> {
-    //     checked ? onCheckedFunction() : onUnCheckedFunction();
-    // },[checked,onCheckedFunction,onUnCheckedFunction]);
+    useEffect(()=> {
+        if(filterArray.includes(englishText)) {
+            setChecked(true);
+        } else {
+            setChecked(false);
+        }
+    },[filterArray,englishText]);
+
+    const handleClick = ()=> {
+        if(filterArray.includes(englishText)) {
+            let sortedArray = filterArray;
+            const index = filterArray.indexOf(englishText);
+            sortedArray = filterArray.splice(index+1,1);
+            setFilterArray(sortedArray);
+        } else {
+            setFilterArray([...filterArray,englishText]);
+        };
+    };
 
     return (
-        <li className="checkbox-line" onClick={()=> setChecked(checked => !checked)}>
+        <li className="checkbox-line" onClick={()=> handleClick()}>
             <span className="checkbox" role="checkbox" aria-checked={checked ? "true": "false"} tabIndex={0}>
                 {language === "french" ? frenchText : englishText}
             </span>

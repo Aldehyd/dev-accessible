@@ -2,9 +2,13 @@ import AchievmentSection from "./achievmentSection.tsx";
 import AchievmentsSeparator from "../Components/achievments-separator.tsx";
 import AchievmentsFitler from "./achievmentsFilter.tsx";
 import { useState, useEffect } from "react";
+import AchievmentInterface from "../Interfaces/achievmentInterface.tsx";
 
+interface AchievmentsMainPropsInterface {
+    achievments : AchievmentInterface[]
+}
 
-export default function AchievmentsMain({achievments}): React.JSX.Element {
+export default function AchievmentsMain({achievments}: AchievmentsMainPropsInterface): React.JSX.Element {
 
     const [frontEndFilter,setFrontEndFilter] = useState<string[]>([]);
     const [backEndFilter,setBackEndFilter] = useState<string[]>([]);
@@ -12,12 +16,22 @@ export default function AchievmentsMain({achievments}): React.JSX.Element {
 
     const [achievmentsToShow,setAchievmentsToShow] = useState(achievments);
 
+    const filter = (techno,filterArray,filteredAchievments)=> {
+        console.log(techno,filterArray,filteredAchievments)
+        for(let filter of filterArray) {
+            filteredAchievments = filteredAchievments.filter(achievment => achievment.technologies[techno].includes(filter));
+        };
+        return filteredAchievments;
+    };
+
     useEffect(()=> {
-        let temporaryAchievments = achievments;
-        temporaryAchievments.sort(achievment => {return (
-            achievment.technologies.frontEnd.includes(frontEndFilter)
-        )})
-    },[frontEndFilter,backEndFilter,databaseFilter]);
+        let filteredAchievments = achievments; 
+        filteredAchievments = filter('frontEnd',frontEndFilter,filteredAchievments);
+        filteredAchievments = filter('backEnd',backEndFilter,filteredAchievments);
+        filteredAchievments = filter('dataBase',databaseFilter,filteredAchievments);
+ 
+        setAchievmentsToShow(filteredAchievments);
+    },[frontEndFilter,backEndFilter,databaseFilter,achievments]);
 
     return (
         <main>

@@ -7,6 +7,9 @@
     padding: 2rem;
     background-color: map-get($colors,white);
     border-radius: 1rem;
+    &>.basic-button-container {
+        margin: auto;
+    }
 }
 
 body:not(.contrast) {

@@ -2932,6 +2932,9 @@ body:not(.contrast).purple .error_message {
   background-color: #f1f1f1;
   border-radius: 1rem;
 }
+.achievments-filter > .basic-button-container {
+  margin: auto;
+}
 
 body:not(.contrast) .achievments-filter {
   box-shadow: rgba(0, 0, 0, 0.3) inset 0.5rem 0.5rem 0.5rem;
