@@ -149,8 +149,20 @@
             }
         ],
         "privacyPolicy": {
-            "frenchText": "Aucune collecte de données",
-            "englishText": "No data collected"
+            "frenchCollect": "Cette application ne collecte aucune donnée personnelle des utilisateurs.",
+            "englishCollect" : "This Application dosen't collect any Personal Data from its Users.",
+            "ownerName": "LABAT Hugues EI",
+            "ownerAdress": "Bd Vauban, 2 - 66210 Mont-Louis (France)",
+            "frenchCourt": "Chambre de commerce de Perpignan",
+            "englishCourt" : "Perpignan Chamber of Commerce",
+            "mail" : "contact@dev-accessible.com",
+            "frenchLegalAction": "",
+            "englishLegalAction" : "More details concerning the collection or processing of Personal Data may be requested from the Owner at any time. Please see the contact information at the beginning of this document.",
+            "frenchPolicyChanges" : "Le propriétaire se réserve le droit de modifier ces règles de confidentialité à tout moment en le notifiant sur cette page et dans l'application",
+            "englishPolicyChanges" : "The Owner reserves the right to make changes to this privacy policy at any time by notifying its Users on this page and within this Application.",
+            "frenchNewConsent": "Si les changements recquièrent de nouveaux consentements de l'utilisateur, les demandes appropriées lui seront adressées.",
+            "englishNewConsent": "Should the changes affect processing activities performed on the basis of the User’s consent, the Owner shall collect new consent from the User, where required.",
+            "lastChangeDate" : "04-04-24"
         }
     }
 ]

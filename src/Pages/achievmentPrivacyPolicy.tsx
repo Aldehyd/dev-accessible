@@ -28,6 +28,10 @@ export default function AchievmentPrivacyPolicy(): React.JSX.Element {
             </header>
             <main>
                 <MainTitle frenchText="Règles de confidentialité" englishText="Privacy policy" />
+                Owner and Data Controller
+                Owner contact email:
+                Legal action
+                Changes to this privacy policy
                 <p>{language === "french" ? currentAchievment?.privacyPolicy?.frenchText : currentAchievment?.privacyPolicy?.englishText}</p>
             </main> 
         </>
