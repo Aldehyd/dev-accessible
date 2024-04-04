@@ -28,29 +28,43 @@ export default function AchievmentPrivacyPolicy(): React.JSX.Element {
             </header>
             <main>
                 <MainTitle frenchText="Règles de confidentialité" englishText="Privacy policy" />
+                <p>
+                    {language === "french" ? currentAchievment?.privacyPolicy?.frenchCollect : currentAchievment?.privacyPolicy?.englishCollect}
+                </p>
                 <h2>
                     {language === "french" ? "Propriétaire et contrôleur des données" : "Owner and Data Controller"}
                 </h2>
+                <p>{currentAchievment?.privacyPolicy?.ownerName}</p>
+                <p>{currentAchievment?.privacyPolicy?.ownerAdress}</p>
                 <p>
-                    {language === "french" ? currentAchievment?.privacyPolicy?.frenchCollect : currentAchievment?.privacyPolicy?.englishCollect}
+                    {language === "french" ? currentAchievment?.privacyPolicy?.frenchCourt : currentAchievment?.privacyPolicy?.englishCourt}
                 </p>
                 <h2>
                     {language === "french" ? "Email du propriétaire" : "Owner contact email"}
                 </h2>
                 <p>
-                {language === "french" ? currentAchievment?.privacyPolicy?.frenchCollect : currentAchievment?.privacyPolicy?.englishCollect}
+                    {currentAchievment?.privacyPolicy?.mail}
                 </p>
                 <h2>
                     {language === "french" ? "Action légale" : "Legal action"}
                 </h2>
                 <p>
-                {language === "french" ? currentAchievment?.privacyPolicy?.frenchCollect : currentAchievment?.privacyPolicy?.englishCollect}
+                    {language === "french" ? currentAchievment?.privacyPolicy?.frenchLegalAction : currentAchievment?.privacyPolicy?.englishLegalAction}
                 </p>
                 <h2>
                     {language === "french" ? "Modifications de ces régles" : "Changes to this privacy policy"}
                 </h2>
                 <p>
-                    {language === "french" ? currentAchievment?.privacyPolicy?.frenchCollect : currentAchievment?.privacyPolicy?.englishCollect}
+                    {language === "french" ? currentAchievment?.privacyPolicy?.frenchPolicyChanges : currentAchievment?.privacyPolicy?.englishPolicyChanges}
+                </p>
+                <p>
+                    {language === "french" ? currentAchievment?.privacyPolicy?.frenchNewConsent : currentAchievment?.privacyPolicy?.englishNewConsent}
+                </p>
+                <h2>
+                    {language === "french" ? "Date de la dernière mise à jour des règles" : "Last rules update date"}
+                </h2>
+                <p>
+                    {currentAchievment?.privacyPolicy?.lastChangeDate}
                 </p>
             </main> 
         </>
