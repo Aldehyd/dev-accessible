@@ -13,8 +13,14 @@ import AchievmentDetails from './Pages/achievmentDetails.tsx';
 import CV from './Pages/cv.tsx';
 import AchievmentInterface from './Interfaces/achievmentInterface.tsx';
 import AchievmentsContext from './Contexts/achievments-context.tsx';
+import ModalContext from './Contexts/modal-context.tsx';
 
 export default function App(): React.JSX.Element {
+    
+    const [isModalDisplayed,setIsModalDisplayed] = useState<boolean>(false);
+    const changeIsModalDisplayed : (isModalDisplayed: boolean)=> void = (isModalDisplayed)=> {
+        setIsModalDisplayed(isModalDisplayed);
+    };
 
     const [language,setLanguage] = useState(localStorage.getItem('language') !== undefined && localStorage.getItem('language') !== null && localStorage.getItem('language') === "english" ? "english" : "french"); 
     const changeLanguage : (language: string) => void = (language)=> {
@@ -47,24 +53,26 @@ export default function App(): React.JSX.Element {
     };
 
     return(
-        <LanguageContext.Provider value ={{language,changeLanguage}}>
-            <ShortcutsContext.Provider value={{shortcuts,changeShortcuts}}>
-                <AchievmentsContext.Provider value={{achievments,changeAchievments}}>
-                    <CarouselContext.Provider value={{displayCarousel,picturesFullScreen,currentPictureFullScreen,changeDisplayCarousel,changePicturesFullScreen,changeCurrentPictureFullScreen}}>
-                        <Router>
-                            <Routes>
-                                <Route path="/components" element={<Components />} />
-                                <Route path="/layouts" element={<Layouts />} />
-                                <Route path="*" element={<UnderConstruction />} />
-                                <Route path="/achievments" element={<Achievments />} />
-                                <Route path="/achievments/:achievment" element={<AchievmentDetails />} />
-                                <Route path="/achievments/:achievment/privacy-policy" element={<AchievmentPrivacyPolicy />} />
-                                <Route path="/cv" element={<CV />} />
-                            </Routes>
-                        </Router>
-                    </CarouselContext.Provider>
-                </AchievmentsContext.Provider>
-            </ShortcutsContext.Provider>
-        </LanguageContext.Provider>
+        <ModalContext.Provider value ={{isModalDisplayed,changeIsModalDisplayed}}>
+            <LanguageContext.Provider value ={{language,changeLanguage}}>
+                <ShortcutsContext.Provider value={{shortcuts,changeShortcuts}}>
+                    <AchievmentsContext.Provider value={{achievments,changeAchievments}}>
+                        <CarouselContext.Provider value={{displayCarousel,picturesFullScreen,currentPictureFullScreen,changeDisplayCarousel,changePicturesFullScreen,changeCurrentPictureFullScreen}}>
+                            <Router>
+                                <Routes>
+                                    <Route path="/components" element={<Components />} />
+                                    <Route path="/layouts" element={<Layouts />} />
+                                    <Route path="*" element={<UnderConstruction />} />
+                                    <Route path="/achievments" element={<Achievments />} />
+                                    <Route path="/achievments/:achievment" element={<AchievmentDetails />} />
+                                    <Route path="/achievments/:achievment/privacy-policy" element={<AchievmentPrivacyPolicy />} />
+                                    <Route path="/cv" element={<CV />} />
+                                </Routes>
+                            </Router>
+                        </CarouselContext.Provider>
+                    </AchievmentsContext.Provider>
+                </ShortcutsContext.Provider>
+            </LanguageContext.Provider>
+        </ModalContext.Provider>
     )
 }

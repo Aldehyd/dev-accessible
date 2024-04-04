@@ -6,7 +6,7 @@ import { handleContrastedThemeSwitch } from "../Functions/handleContrastedThemeS
 import { colorsRadioButtonsData } from "../Datas/colorsRadioButtonsData.tsx";
 import { handleMainColor } from "../Functions/handleMainColor.tsx";
 import CVComponent from "../Layout/cvComponent.tsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { fetchData } from "../Functions/fetchData.tsx";
 import Loader from "../Components/loader.tsx";
 import Error from "../Components/error.tsx";
@@ -14,8 +14,12 @@ import AchievmentInterface from "../Interfaces/achievmentInterface.tsx";
 import DiplomaInterface from "../Interfaces/diplomaInterface.tsx";
 import LanguageInterface from "../Interfaces/languageInterface.tsx";
 import TopMenu from "../Layout/topMenu.tsx";
+import ModalContext from "../Contexts/modal-context.tsx";
+import ModalDarkBackground from "../Components/modal-dark-background.tsx";
 
 export default function CV(): React.JSX.Element {
+
+    const {isModalDisplayed} = useContext(ModalContext);
 
     const [status,setStatus] = useState<boolean>(false);
     const [achievments,setAchievments] = useState<AchievmentInterface[]>([]);
@@ -37,6 +41,7 @@ export default function CV(): React.JSX.Element {
     
     return (
         <>
+            {isModalDisplayed && <ModalDarkBackground />}
             <header>
                 <TopMenu />
             </header>
