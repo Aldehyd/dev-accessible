@@ -1,19 +1,28 @@
 .achievments-filter {
-    
     margin: 6rem 2rem;
     padding: 2rem;
     background-color: map-get($colors,white);
     border-radius: 1rem;
     &_head {
+        display: flex;
+        justify-content: center;
+        align-items : center;
+        gap: 2rem;
+        margin-bottom: 2rem;
         width: 100%;
+        & .cv_section_title {
+            margin: 0;
+        }
     }
     &_content {
         display: flex;
         flex-direction: column;
         gap: 2rem;
-    }
-    &>.basic-button-container {
-        margin: auto;
+        height: 38rem;
+        opacity: 1;
+        &>.basic-button-container {
+            margin: auto;
+        }
     }
     &_results {
         padding: 0.5rem 1rem;
@@ -28,8 +37,24 @@
     }
 }
 
+@keyframes contentAppear {
+    0% {
+        height: 0;
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
 body:not(.contrast) {
     & .achievments-filter {
         box-shadow: map-get($colors,switchBlackBoxShadow) inset 0.5rem 0.5rem 0.5rem;
     }
 }
+body.animations {
+    & .achievments-filter_content {
+        animation : contentAppear 400ms ease-in-out both;
+    }
+}
+

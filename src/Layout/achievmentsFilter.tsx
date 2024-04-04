@@ -25,7 +25,7 @@ export default function AchievmentsFitler({typeFilter,setTypeFilter,yearFilter,s
 
     const {achievments} = useContext(AchievmentsContext);   
 
-    const [filterExpanded,setFilterExpanded] = useState<boolean>(true);
+    const [filterExpanded,setFilterExpanded] = useState<boolean>(false);
 
     const [types,setTypes] = useState<string[]>([]);
     const [years,setYears] = useState<string[]>([]);
@@ -70,6 +70,7 @@ export default function AchievmentsFitler({typeFilter,setTypeFilter,yearFilter,s
     return (
         <div className="achievments-filter" aria-expanded={filterExpanded ? "true" : "false"}>
             <div className="achievments-filter_head">
+                {typeFilter.length + yearFilter.length + frontEndFilter.length + backEndFilter.length + databaseFilter.length > 0 && !filterExpanded && <BasicButton frenchText={`${typeFilter.length + yearFilter.length + frontEndFilter.length + backEndFilter.length + databaseFilter.length} X`} englishText={`${typeFilter.length + yearFilter.length + frontEndFilter.length + backEndFilter.length + databaseFilter.length} X`} onWhiteBackground={true} onClickFunction={()=> cleanFilters()} />}
                 <h2 className="cv_section_title">{language === "french" ? "Filtres" : "Filters"}</h2>
                 <ExpandButton expanded={filterExpanded} setExpanded={setFilterExpanded}/>
             </div>

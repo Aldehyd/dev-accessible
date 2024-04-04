@@ -2929,14 +2929,24 @@ body:not(.contrast).purple .error_message {
   border-radius: 1rem;
 }
 .achievments-filter_head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
   width: 100%;
+}
+.achievments-filter_head .cv_section_title {
+  margin: 0;
 }
 .achievments-filter_content {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  height: 38rem;
+  opacity: 1;
 }
-.achievments-filter > .basic-button-container {
+.achievments-filter_content > .basic-button-container {
   margin: auto;
 }
 .achievments-filter_results {
@@ -2951,8 +2961,21 @@ body:not(.contrast).purple .error_message {
   margin-right: 1rem;
 }
 
+@keyframes contentAppear {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+}
 body:not(.contrast) .achievments-filter {
   box-shadow: rgba(0, 0, 0, 0.3) inset 0.5rem 0.5rem 0.5rem;
+}
+
+body.animations .achievments-filter_content {
+  animation: contentAppear 400ms ease-in-out both;
 }
 
 .under-construction-page {
