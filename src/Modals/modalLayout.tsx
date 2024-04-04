@@ -1,4 +1,4 @@
-import { useContext,useEffect } from "react";
+import { useContext,useEffect, useRef } from "react";
 import ModalContext from "../Contexts/modal-context.tsx";
 import LanguageContext from "../Contexts/language-context.tsx";
 import CloseButton from "../Components/close-button.tsx";
@@ -15,8 +15,17 @@ export default function ModalLayout({setDisplay,frenchTitle,englishTitle,childre
     const {language} = useContext(LanguageContext);
     const {isModalDisplayed,changeIsModalDisplayed} = useContext(ModalContext);
 
+    const modalCenter = useRef(null);
+    const modalContent = useRef(null);
+
+    const setCenterDialogHeight = ()=> {
+        const height = modalContent.current?.offsetHeight;
+        modalCenter.current.style.height = height.toString() + 'px';
+    };
+
     useEffect(()=> {
         changeIsModalDisplayed(true);
+        modalCenter.current !== null && setCenterDialogHeight();
         return ()=> changeIsModalDisplayed(false)
     },[]);
 
@@ -29,8 +38,8 @@ export default function ModalLayout({setDisplay,frenchTitle,englishTitle,childre
                 </h1>
                 <CloseButton onWhiteBackground={true} onClickFunction={()=> setDisplay(false)}/>
             </div>
-            <div className="modal-layout_center">
-                <div className="modal-layout_content">
+            <div className="modal-layout_center" ref={modalCenter}>
+                <div className="modal-layout_content" ref={modalContent}>
                     {children}
                 </div>
                 <div className="modal-layout_bottom-focus-trap"></div>

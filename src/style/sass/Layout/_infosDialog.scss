@@ -145,18 +145,18 @@ body.animations {
     }
     & .infos-dialog {
         &_center {
-            animation: dialogAppear 300ms 100ms ease-in-out backwards;
+            animation: dialogAppear 300ms  ease-in-out backwards;
         }
         &_content {
-            animation: dialogContentAppear 300ms 300ms ease-in-out backwards;
+            animation: dialogContentAppear 300ms 200ms ease-in-out backwards;
         }
         &_content::after {
-            animation: dialogContentProgress 1s 300ms backwards;
+            animation: dialogContentProgress 1s 200ms backwards;
         }
     }
     &.purple {
         &_content {
-            animation: dialogContentAppearPurple 300ms 300ms ease-in-out backwards;
+            animation: dialogContentAppearPurple 300ms 200ms ease-in-out backwards;
         }
     }
 }

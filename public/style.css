@@ -2852,16 +2852,16 @@ body.animations .basic-button-container--close-button {
   animation: dialogCloseButtonAppear 200ms 600ms ease-in-out backwards;
 }
 body.animations .infos-dialog_center {
-  animation: dialogAppear 300ms 100ms ease-in-out backwards;
+  animation: dialogAppear 300ms ease-in-out backwards;
 }
 body.animations .infos-dialog_content {
-  animation: dialogContentAppear 300ms 300ms ease-in-out backwards;
+  animation: dialogContentAppear 300ms 200ms ease-in-out backwards;
 }
 body.animations .infos-dialog_content::after {
-  animation: dialogContentProgress 1s 300ms backwards;
+  animation: dialogContentProgress 1s 200ms backwards;
 }
 body.animations.purple_content {
-  animation: dialogContentAppearPurple 300ms 300ms ease-in-out backwards;
+  animation: dialogContentAppearPurple 300ms 200ms ease-in-out backwards;
 }
 
 body:not(.contrast) .infos-dialog_top {
@@ -3100,12 +3100,14 @@ body.animations .top-menu {
   background-color: #f1f1f1;
   border: solid #f1f1f1;
   border-width: 0 1rem 0 1rem;
+  overflow-y: hidden;
 }
 .modal-layout_content {
   padding: 1rem;
   background-color: hsl(0deg, 6%, 10%);
   border-radius: 10px;
   overflow-y: auto;
+  opacity: 1;
 }
 .modal-layout_bottom-focus-trap {
   width: 0;
@@ -3117,6 +3119,16 @@ body.animations .top-menu {
   border-radius: 0 0 30px 30px;
 }
 
+@keyframes modalAppear {
+  from {
+    height: 0;
+  }
+}
+@keyframes modalContentAppear {
+  from {
+    opacity: 0;
+  }
+}
 @keyframes onHoverBeforeModal {
   0% {
     transform: scale(0.97, 0.9);
@@ -3145,10 +3157,16 @@ body:not(.contrast).purple .modal-layout::before_title {
   text-shadow: 0 0.2rem 0.4rem hsl(295deg, 95%, 55%);
 }
 
-body.animations .cv_section:hover::before {
+body.animations .modal-layout_center {
+  animation: modalAppear 400ms ease-in-out forwards;
+}
+body.animations .modal-layout_content {
+  animation: modalContentAppear 400ms 400ms ease-in-out forwards;
+}
+body.animations .modal-layout:hover::before {
   animation: onHoverBeforeModal 2000ms ease-in-out infinite;
 }
-body.animations .cv_section:focus-within::before {
+body.animations .modal-layout:focus-within::before {
   animation: onHoverBeforeModal 2000ms ease-in-out infinite;
 }
 
