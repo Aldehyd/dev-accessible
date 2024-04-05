@@ -1952,6 +1952,28 @@ body.contrast .checkbox {
   border: solid 0.2rem hsl(0deg, 6%, 10%);
 }
 
+.expand-arrow-svg {
+  height: 2rem;
+  width: 2rem;
+  fill: hsl(0deg, 6%, 10%);
+}
+
+.achievments-filter .cv_section_title + .basic-button-container--on-white-background .basic-button {
+  padding: 0.2rem 0.5rem;
+  border-radius: 50%;
+}
+.achievments-filter .cv_section_title + .basic-button-container--on-white-background .basic-button svg {
+  transform: translate(-2%, 10%) rotate(90deg);
+}
+
+.achievments-filter .cv_section_title + .basic-button-container--on-white-background.hide .basic-button svg {
+  transform: translate(-2%, 10%) rotate(-90deg);
+}
+
+body.animations .achievments-filter .cv_section_title + .basic-button-container--on-white-background .basic-button svg {
+  transition: 200ms ease-in-out;
+}
+
 .modal-dark-background {
   position: fixed;
   z-index: 4;

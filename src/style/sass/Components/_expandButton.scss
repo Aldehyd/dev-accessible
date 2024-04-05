@@ -1,0 +1,23 @@
+.expand-arrow-svg {
+    height: 2rem;
+    width: 2rem;
+    fill: map-get($colors,darkBackground);
+}
+
+.achievments-filter .cv_section_title+.basic-button-container--on-white-background .basic-button {
+    padding: 0.2rem 0.5rem;
+    border-radius: 50%;
+    & svg {
+        transform:translate(-2%,10%) rotate(90deg);
+    }
+}
+
+.achievments-filter .cv_section_title+.basic-button-container--on-white-background.hide .basic-button svg {
+    transform:translate(-2%,10%) rotate(-90deg);
+}
+
+body.animations {
+    & .achievments-filter .cv_section_title+.basic-button-container--on-white-background .basic-button svg {
+        transition: 200ms ease-in-out;
+    }
+}
