@@ -1496,8 +1496,16 @@ body.animations .previous-picture {
   width: fit-content;
   transform: translateY(-50%);
 }
+.carousel_button_svg {
+  height: 2rem;
+  width: 2rem;
+  fill: hsl(0deg, 6%, 10%);
+}
 .carousel_button--previous {
-  left: -12rem;
+  left: -8rem;
+}
+.carousel_button--previous .carousel_button_svg {
+  transform: rotate(180deg);
 }
 .carousel_button--next {
   right: -8rem;

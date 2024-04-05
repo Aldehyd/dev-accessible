@@ -3,8 +3,16 @@
     top: 50%;
     width: fit-content;
     transform: translateY(-50%);
+    &_svg {
+        height: 2rem;
+        width: 2rem;
+        fill: map-get($colors,darkBackground);
+    }
     &--previous {
-        left: -12rem;
+        left: -8rem;
+        & .carousel_button_svg {
+            transform: rotate(180deg);
+        }
     }
     &--next {
         right: -8rem;
