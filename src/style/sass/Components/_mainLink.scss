@@ -12,6 +12,9 @@
     transition: 200ms ease-in-out;
     overflow: hidden;
     cursor: pointer;
+    &.back-link {
+        margin-bottom: 2rem;
+    }
 }
 
 @keyframes mainMenuLinkHover {

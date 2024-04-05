@@ -11,6 +11,7 @@ import TopMenu from "../Layout/topMenu.tsx";
 import ModalContext from "../Contexts/modal-context.tsx";
 import ModalDarkBackground from "../Components/modal-dark-background.tsx";
 import AccessibilitySettingsModal from "../Modals/AccessibilitySettingsModal.tsx";
+import BackLink from "../Components/back-link.tsx";
 
 export default function CV(): React.JSX.Element {
 
@@ -44,6 +45,7 @@ export default function CV(): React.JSX.Element {
             </header>
                 
             <main className="cv">
+                <BackLink />
                 {(isStatusLoading || isAchievmentsLoading || isDiplomasLoading || isLanguagesLoading) && !error && <Loader />}
                 {error && <Error frenchMessage="Une erreur est survenue. Veuillez rafraichir la page svp." englishMessage="An error has occured. Please refresh the current page." />}
                 {!isStatusLoading && !isAchievmentsLoading && !isDiplomasLoading && !isLanguagesLoading && !error &&

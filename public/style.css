@@ -1238,6 +1238,9 @@ body.animations .accessibility-settings-button::after {
   overflow: hidden;
   cursor: pointer;
 }
+.main-link.back-link {
+  margin-bottom: 2rem;
+}
 
 @keyframes mainMenuLinkHover {
   0% {

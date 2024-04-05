@@ -8,7 +8,7 @@ export default function BackLink(): React.JSX.Element {
     const {language} = useContext(LanguageContext);
 
     return(
-        <button className="main-link" onClick={()=> navigate(-1)}>
+        <button className="main-link back-link" onClick={()=> navigate(-1)}>
             {language === "french" ? "Page précédente" : "Previous page"}
         </button>
     )   
