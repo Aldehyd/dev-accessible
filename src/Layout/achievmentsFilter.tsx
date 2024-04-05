@@ -4,6 +4,7 @@ import LanguageContext from "../Contexts/language-context.tsx";
 import AchievmentsFilterLine from "./AchievmentsFilterLine.tsx";
 import BasicButton from "../Components/basic-button.tsx";
 import ExpandButton from "../Components/expand-button.tsx";
+import Warning from "../Components/warning.tsx";
 
 interface AchievmentsFilterPropsInterface {
     typeFilter: string[],
@@ -70,6 +71,10 @@ export default function AchievmentsFitler({typeFilter,setTypeFilter,yearFilter,s
     return (
         <div className="achievments-filter" aria-expanded={filterExpanded ? "true" : "false"}>
             <div className="achievments-filter_head">
+                {
+                    (typeFilter.length > 1 || yearFilter.length > 1) && !filterExpanded &&
+                    <Warning frenchText="Modifier les filtres !" englishText="Modify filters !" />
+                }
                 {typeFilter.length + yearFilter.length + frontEndFilter.length + backEndFilter.length + databaseFilter.length > 0 && !filterExpanded && <BasicButton frenchText={(typeFilter.length + yearFilter.length + frontEndFilter.length + backEndFilter.length + databaseFilter.length).toString()} englishText={(typeFilter.length + yearFilter.length + frontEndFilter.length + backEndFilter.length + databaseFilter.length).toString()} onWhiteBackground={true} removeButton={true} onClickFunction={()=> cleanFilters()} />}
                 <h2 className="cv_section_title">{language === "french" ? "Filtres" : "Filters"}</h2>
                 <ExpandButton expanded={filterExpanded} setExpanded={setFilterExpanded}/>
