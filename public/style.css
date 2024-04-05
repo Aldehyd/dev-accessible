@@ -180,6 +180,9 @@ label:not(.radio-button_label) {
 
 .basic-button {
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   padding: 1rem;
   font-weight: 600;
   background-color: hsl(175deg, 95%, 55%);
@@ -193,6 +196,12 @@ label:not(.radio-button_label) {
 .basic-button_text {
   position: relative;
   z-index: 1;
+}
+.basic-button_remove-svg {
+  height: 1.5rem;
+  width: 1.5rem;
+  stroke: hsl(0deg, 6%, 10%);
+  stroke-width: 2rem;
 }
 .basic-button[aria-disabled=false]:active {
   transform: translate(0.2rem, 0.2rem);
@@ -2803,6 +2812,9 @@ body.animations .carousel-full-screen .carousel_pictures-container.transition.pr
   gap: 2rem;
   padding: 2rem 3rem;
 }
+.cv_section--head h1 {
+  color: hsl(0deg, 6%, 10%);
+}
 .cv_section--head_infos-wrapper {
   display: flex;
   justify-content: center;
@@ -2813,6 +2825,7 @@ body.animations .carousel-full-screen .carousel_pictures-container.transition.pr
   width: 100px;
   height: 100px;
   border-radius: 10px;
+  transform: scale(1);
 }
 
 @keyframes onHoverBeforeSection {
@@ -2824,6 +2837,11 @@ body.animations .carousel-full-screen .carousel_pictures-container.transition.pr
   }
   100% {
     transform: scale(0.97, 0.9);
+  }
+}
+@keyframes pictureAppear {
+  from {
+    transform: scale(0);
   }
 }
 body:not(.contrast) .cv_section {
@@ -2841,6 +2859,9 @@ body.animations .cv_section:hover::before {
 }
 body.animations .cv_section:focus-within::before {
   animation: onHoverBeforeSection 2000ms ease-in-out infinite;
+}
+body.animations .cv_section--head_identity-picture {
+  animation: pictureAppear 400ms 1s ease-in-out backwards;
 }
 
 .infos-dialog {

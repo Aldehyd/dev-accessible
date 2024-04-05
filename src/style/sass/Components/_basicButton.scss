@@ -10,6 +10,9 @@
 }
 .basic-button {
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     padding: 1rem;
     font-weight: 600;
     background-color: map-get($colors,blue);
@@ -22,6 +25,12 @@
     &_text {
         position: relative;
         z-index: 1;
+    }
+    &_remove-svg {
+        height: 1.5rem;
+        width: 1.5rem;
+        stroke: map-get($colors,darkBackground);
+        stroke-width: 2rem;
     }
     &[aria-disabled='false']:active {
         transform: translate(0.2rem,0.2rem);

@@ -70,7 +70,7 @@ export default function AchievmentsFitler({typeFilter,setTypeFilter,yearFilter,s
     return (
         <div className="achievments-filter" aria-expanded={filterExpanded ? "true" : "false"}>
             <div className="achievments-filter_head">
-                {typeFilter.length + yearFilter.length + frontEndFilter.length + backEndFilter.length + databaseFilter.length > 0 && !filterExpanded && <BasicButton frenchText={`${typeFilter.length + yearFilter.length + frontEndFilter.length + backEndFilter.length + databaseFilter.length} X`} englishText={`${typeFilter.length + yearFilter.length + frontEndFilter.length + backEndFilter.length + databaseFilter.length} X`} onWhiteBackground={true} onClickFunction={()=> cleanFilters()} />}
+                {typeFilter.length + yearFilter.length + frontEndFilter.length + backEndFilter.length + databaseFilter.length > 0 && !filterExpanded && <BasicButton frenchText={(typeFilter.length + yearFilter.length + frontEndFilter.length + backEndFilter.length + databaseFilter.length).toString()} englishText={(typeFilter.length + yearFilter.length + frontEndFilter.length + backEndFilter.length + databaseFilter.length).toString()} onWhiteBackground={true} removeButton={true} onClickFunction={()=> cleanFilters()} />}
                 <h2 className="cv_section_title">{language === "french" ? "Filtres" : "Filters"}</h2>
                 <ExpandButton expanded={filterExpanded} setExpanded={setFilterExpanded}/>
             </div>
@@ -79,7 +79,7 @@ export default function AchievmentsFitler({typeFilter,setTypeFilter,yearFilter,s
                     <div className="achievments-filter_content">
                         {
                             (typeFilter.length > 0 || yearFilter.length > 0 || frontEndFilter.length > 0 || backEndFilter.length > 0 || databaseFilter.length > 0) && 
-                            <BasicButton frenchText="Effacer tous les filtres X" englishText="Clean filters X" onWhiteBackground={true} onClickFunction={()=> cleanFilters()} />
+                            <BasicButton frenchText="Effacer tous les filtres" englishText="Clean filters" onWhiteBackground={true} removeButton={true} onClickFunction={()=> cleanFilters()} />
                         }
                         <AchievmentsFilterLine frenchLabel="Types" englishLabel="Types" array={types} filterArray={typeFilter} setFilterArray={setTypeFilter} />
                         <AchievmentsFilterLine frenchLabel="Années" englishLabel="Years" array={years} filterArray={yearFilter} setFilterArray={setYearFilter} />

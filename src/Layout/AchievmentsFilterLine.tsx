@@ -21,7 +21,7 @@ export default function AchievmentsFilterLine({frenchLabel,englishLabel,array,fi
 
     return (
         <div className="filters_line">
-            {filterArray.length > 0 && <BasicButton frenchText={`${filterArray.length} X`} englishText={`${filterArray.length} X`} onWhiteBackground={true} onClickFunction={()=> cleanFilters()} />}
+            {filterArray.length > 0 && <BasicButton frenchText={filterArray.length.toString()} englishText={filterArray.length.toString()} onWhiteBackground={true} removeButton={true} onClickFunction={()=> cleanFilters()} />}
             <span className="filters_line_label">
                 {language === "french" ? frenchLabel : englishLabel} :
             </span>
