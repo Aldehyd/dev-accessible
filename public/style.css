@@ -89,7 +89,6 @@ body.letter-spacing dl {
   letter-spacing: 0.168rem;
 }
 body:not(.contrast) {
-  text-shadow: 0 0.2rem 0.4rem hsl(175deg, 95%, 55%);
   background: radial-gradient(ellipse 50% 80%, #000 80%, hsl(175deg, 95%, 55%));
   background-size: 100% 100%;
   background-position: 50% 50%;
@@ -108,6 +107,9 @@ body:not(.contrast).purple {
 body:not(.contrast).purple h2 {
   color: hsl(295deg, 95%, 55%);
   text-shadow: 0 0.2rem 0.4rem hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple a:visited {
+  color: hsl(295deg, 95%, 55%);
 }
 
 @keyframes backgroundMovement {
@@ -149,6 +151,7 @@ h2 {
 
 a, a:visited {
   text-decoration: none;
+  color: hsl(175deg, 95%, 55%);
 }
 
 ul:not(.achievments_list):not(.infos-dialog_list) {
