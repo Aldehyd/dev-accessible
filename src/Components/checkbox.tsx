@@ -9,7 +9,7 @@ interface CheckboxPropsInterface {
 }
 
 export default function CheckBox({frenchText,englishText,filterArray,setFilterArray}: CheckboxPropsInterface): React.JSX.Element {
-
+    
     const {language} = useContext(LanguageContext);
 
     const [checked,setChecked] = useState<boolean>(false);
@@ -24,10 +24,9 @@ export default function CheckBox({frenchText,englishText,filterArray,setFilterAr
 
     const handleClick = ()=> {
         if(filterArray.includes(englishText)) {
-            let sortedArray = filterArray;
             const index = filterArray.indexOf(englishText);
-            sortedArray = filterArray.splice(index+1,1);
-            setFilterArray(sortedArray);
+            filterArray.splice(index,1);
+            setFilterArray([...filterArray])
         } else {
             setFilterArray([...filterArray,englishText]);
         };
