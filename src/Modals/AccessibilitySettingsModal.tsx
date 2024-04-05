@@ -24,17 +24,14 @@ export default function AccessibilitySettingsModal({setDisplay}: AccessibilitySe
 
     const [isColorChoicePossible,setIsColorChoicePossible] = useState<boolean>(true);
 
-    useEffect(()=> {
-        if(document.body.classList.contains('contrast')) {
-            setIsColorChoicePossible(false);
-        } else {
-            setIsColorChoicePossible(true);
-        };
-    },[setIsColorChoicePossible]);
+    const onContrastSwitchClick: (status: boolean)=> void = (status)=> {
+        handleContrastedThemeSwitch(status);
+        status ? setIsColorChoicePossible(false) : setIsColorChoicePossible(true); 
+    };
 
     return (
         <ModalLayout setDisplay={setDisplay} frenchTitle="Réglages d'accessibilité" englishTitle="Accessibility settings">
-            <Switch name="contrast" frenchLabel="Mode contrasté" englishLabel="Contrasted mode" onSwitchFunction={handleContrastedThemeSwitch} />
+            <Switch name="contrast" frenchLabel="Mode contrasté" englishLabel="Contrasted mode" onSwitchFunction={onContrastSwitchClick} />
             {isColorChoicePossible && <RadioButtons name="color" frenchLegend="Couleur principale" englishLegend="Main color" radioButtonsData={colorsRadioButtonsData} handleChoice={handleMainColor} />}
             <SpinButton name="fontSize" frenchLabel="Taille de la police" englishLabel="Font size" minValue={100} maxValue={200} defaultValue={100} handleKeyDown={handleKeyDown} increase={increase} decrease={decrease} effectFunction={setFontSize} />
             <RadioButtons name="font" frenchLegend="Police" englishLegend="Font" radioButtonsData={fontsRadioButtonsData} handleChoice={handleFont} />
