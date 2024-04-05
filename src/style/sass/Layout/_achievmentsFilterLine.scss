@@ -4,6 +4,7 @@
     gap: 1rem;
     &_label {
         font-weight: bold;
+        color: map-get($colors,darkBackground);
     }
     &_list {
         display: flex;

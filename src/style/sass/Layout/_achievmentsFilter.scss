@@ -28,6 +28,7 @@
     &_results {
         padding: 0.5rem 1rem;
         font-weight: bold;
+        color: map-get($colors,darkBackground);
         font-size: 1.6rem;
         margin: auto;
         border: solid 0.2rem map-get($colors,darkBackground);

@@ -67,3 +67,15 @@ body.contrast {
         border: solid 0.2rem map-get($colors,darkBackground);
     }
 }
+body:not(.contrast) {
+    &.purple {
+        & .checkbox-line {
+            color: map-get($colors,purple);
+            text-shadow: 0 0.2rem 0.4rem map-get($colors,purple);
+        }
+        & .checkbox-background {
+            background-color: map-get($colors,purple);
+            box-shadow: 0 0 1rem 0.4rem map-get($colors,purple);
+        }
+    }
+}

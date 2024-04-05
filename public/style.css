@@ -1952,6 +1952,15 @@ body.contrast .checkbox {
   border: solid 0.2rem hsl(0deg, 6%, 10%);
 }
 
+body:not(.contrast).purple .checkbox-line {
+  color: hsl(295deg, 95%, 55%);
+  text-shadow: 0 0.2rem 0.4rem hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .checkbox-background {
+  background-color: hsl(295deg, 95%, 55%);
+  box-shadow: 0 0 1rem 0.4rem hsl(295deg, 95%, 55%);
+}
+
 .expand-arrow-svg {
   height: 2rem;
   width: 2rem;
@@ -3048,6 +3057,7 @@ body:not(.contrast).purple .error_message {
 }
 .filters_line_label {
   font-weight: bold;
+  color: hsl(0deg, 6%, 10%);
 }
 .filters_line_list {
   display: flex;
@@ -3085,6 +3095,7 @@ body:not(.contrast).purple .error_message {
 .achievments-filter_results {
   padding: 0.5rem 1rem;
   font-weight: bold;
+  color: hsl(0deg, 6%, 10%);
   font-size: 1.6rem;
   margin: auto;
   border: solid 0.2rem hsl(0deg, 6%, 10%);
