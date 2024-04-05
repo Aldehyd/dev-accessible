@@ -163,7 +163,7 @@ button, input, textarea {
   font-family: "Oswald", sans-serif;
 }
 
-label {
+label:not(.radio-button_label) {
   color: hsl(0deg, 6%, 10%);
   text-shadow: none;
 }
