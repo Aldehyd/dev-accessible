@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import MainTitle from "../Components/main-title.tsx";
 import AchievmentsContext from "../Contexts/achievments-context.tsx";
