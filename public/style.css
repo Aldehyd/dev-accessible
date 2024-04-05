@@ -1201,10 +1201,50 @@ body.animations .main-burger-menu:hover .main-burger-menu_line--3 {
   background-color: #f1f1f1;
   border-color: hsl(0deg, 6%, 10%);
 }
+.accessibility-settings-button:hover .settings-svg {
+  stroke: hsl(0deg, 6%, 10%);
+}
+.accessibility-settings-button:hover .settings-svg path {
+  fill: hsl(0deg, 6%, 10%);
+}
+.accessibility-settings-button:hover .settings-svg circle {
+  fill: none;
+}
+.accessibility-settings-button:hover .settings-svg .st2 {
+  fill: #f1f1f1;
+}
 .accessibility-settings-button:focus {
   color: hsl(0deg, 6%, 10%);
   background-color: #f1f1f1;
   border-color: hsl(0deg, 6%, 10%);
+}
+.accessibility-settings-button:focus .settings-svg .settings-svg {
+  stroke: hsl(0deg, 6%, 10%);
+}
+.accessibility-settings-button:focus .settings-svg .settings-svg path {
+  fill: hsl(0deg, 6%, 10%);
+}
+.accessibility-settings-button:focus .settings-svg .settings-svg circle {
+  fill: none;
+}
+.accessibility-settings-button:focus .settings-svg .settings-svg .st2 {
+  fill: #f1f1f1;
+}
+
+.settings-svg {
+  height: 2rem;
+  width: 2rem;
+  stroke: #f1f1f1;
+}
+.settings-svg path {
+  fill: #f1f1f1;
+}
+.settings-svg circle {
+  stroke-width: 1.5rem;
+  fill: none;
+}
+.settings-svg .st2 {
+  fill: hsl(0deg, 6%, 10%);
 }
 
 body.animations .accessibility-settings-button {
@@ -1213,14 +1253,9 @@ body.animations .accessibility-settings-button {
 body.animations .accessibility-settings-button::after {
   transition: 200ms ease-in-out;
 }
-
-.wheel-symbol {
-  display: inline-block;
-  height: 1.5rem;
-  width: 1.5rem;
-  border: solid 0.2rem hsl(175deg, 95%, 55%);
-  border-radius: 50%;
-  box-shadow: 0 0 0.3rem 0.05rem hsl(175deg, 95%, 55%), inset 0 0 0.3rem 0.05rem hsl(175deg, 95%, 55%);
+body.animations .accessibility-settings-button:hover .settings-svg {
+  transition: 400ms ease-in-out;
+  transform: rotate(360deg);
 }
 
 .main-link {

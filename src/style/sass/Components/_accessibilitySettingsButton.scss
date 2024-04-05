@@ -28,11 +28,53 @@
         color: map-get($colors,darkBackground);
         background-color: map-get($colors,white);
         border-color: map-get($colors,darkBackground);
+        & .settings-svg {
+            stroke: map-get($colors,darkBackground);
+            & path {
+                fill: map-get($colors,darkBackground);
+            }
+            & circle {
+                fill: none;
+            }
+            & .st2 {
+                fill: map-get($colors,white);
+            }
+        }
     }
     &:focus {
         color: map-get($colors,darkBackground);
         background-color: map-get($colors,white);
         border-color: map-get($colors,darkBackground);
+        & .settings-svg {
+            & .settings-svg {
+                stroke: map-get($colors,darkBackground);
+                & path {
+                    fill: map-get($colors,darkBackground);
+                }
+                & circle {
+                    fill: none;
+                }
+                & .st2 {
+                    fill: map-get($colors,white);
+                }
+            }
+        }
+    }
+}
+
+.settings-svg {
+    height: 2rem;
+    width: 2rem;
+    stroke: map-get($colors,white);
+    & path {
+        fill: map-get($colors,white);
+    }
+    & circle {
+        stroke-width: 1.5rem;
+        fill: none;
+    }
+    & .st2 {
+        fill: map-get($colors,darkBackground);
     }
 }
 
@@ -42,17 +84,11 @@ body.animations {
         &::after {
             transition: 200ms ease-in-out;
         }
-        
+        &:hover .settings-svg {
+            transition: 400ms ease-in-out;
+            transform: rotate(360deg);
+        }
     }
-
 }
 
-//temporary
-.wheel-symbol {
-    display: inline-block;
-    height: 1.5rem;
-    width: 1.5rem;
-    border: solid 0.2rem map-get($colors,blue);
-    border-radius: 50%;
-    box-shadow: 0 0 0.3rem 0.05rem map-get($colors,blue), inset 0 0 0.3rem 0.05rem map-get($colors,blue);
-}
+
