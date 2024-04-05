@@ -13,7 +13,17 @@
     overflow: hidden;
     cursor: pointer;
     &.back-link {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
         margin-bottom: 2rem;
+        font-size: 1.4rem;
+        & .back-link-svg {
+            height: 1.5rem;
+            width: 1.5rem;
+            fill: map-get($colors,blue);
+            transform: rotate(180deg);
+        }
     }
 }
 
@@ -69,6 +79,9 @@ body:not(.contrast) {
             &:focus-within::after {
                 box-shadow: 0 0 1rem 0.4rem map-get($colors,purple);
             }
+        }
+        & .back-link-svg {
+            fill: map-get($colors,purple);
         }
     }
 }

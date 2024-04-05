@@ -1281,7 +1281,17 @@ body.animations .accessibility-settings-button:hover .settings-svg {
   cursor: pointer;
 }
 .main-link.back-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   margin-bottom: 2rem;
+  font-size: 1.4rem;
+}
+.main-link.back-link .back-link-svg {
+  height: 1.5rem;
+  width: 1.5rem;
+  fill: hsl(175deg, 95%, 55%);
+  transform: rotate(180deg);
 }
 
 @keyframes mainMenuLinkHover {
@@ -1332,6 +1342,9 @@ body:not(.contrast).purple .main-link:hover::after {
 }
 body:not(.contrast).purple .main-link:focus-within::after {
   box-shadow: 0 0 1rem 0.4rem hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .back-link-svg {
+  fill: hsl(295deg, 95%, 55%);
 }
 
 .basic-picture-container {
