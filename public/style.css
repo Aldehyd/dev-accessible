@@ -40,6 +40,9 @@ body.line-height {
 body.line-height h2 {
   line-height: 2.4rem;
 }
+body.line-height .achievment-section h2 {
+  line-height: 3rem;
+}
 body.word-spacing {
   word-spacing: 0.224rem;
 }
@@ -57,6 +60,9 @@ body.word-spacing .loader {
 }
 body.word-spacing h2 {
   word-spacing: 0.256rem;
+}
+body.word-spacing .achievment-section h2 {
+  word-spacing: 0.32rem;
 }
 body.word-spacing dl {
   word-spacing: 0.224rem;
@@ -84,6 +90,9 @@ body.letter-spacing .loader {
 }
 body.letter-spacing h2 {
   letter-spacing: 0.192rem;
+}
+body.letter-spacing .achievment-section h2 {
+  letter-spacing: 0.24rem;
 }
 body.letter-spacing dl {
   letter-spacing: 0.168rem;
@@ -2611,6 +2620,7 @@ body:not(.contrast).purple .shortcut-setting-container_key-pictures {
 .achievment-section h2 {
   width: fit-content;
   margin: 2rem auto;
+  font-size: 2rem;
 }
 .achievment-section .main-link {
   margin: 2rem auto;

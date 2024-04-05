@@ -38,6 +38,9 @@ body {
         & h2 {
             line-height: calc(1.5*1.6rem);
         }
+        & .achievment-section h2 {
+            line-height: calc(1.5*2rem);
+        }
     }
     &.word-spacing {
         word-spacing: calc(0.16*1.4rem);
@@ -55,6 +58,9 @@ body {
         }
         & h2 {
             word-spacing: calc(0.16*1.6rem);
+        }
+        & .achievment-section h2 {
+            word-spacing: calc(0.16*2rem);
         }
         & dl {
             word-spacing: calc(0.16*1.4rem);
@@ -82,6 +88,9 @@ body {
         }
         & h2 {
             letter-spacing: calc(0.12*1.6rem);
+        }
+        & .achievment-section h2 {
+            letter-spacing: calc(0.12*2rem);
         }
         & dl {
             letter-spacing: calc(0.12*1.4rem);
