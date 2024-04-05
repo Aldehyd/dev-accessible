@@ -15,6 +15,9 @@ body {
 }
 
 body {
+    &.has-modal {
+        overflow: hidden;
+    }
     &.open-dyslexic {
         @font-face {
             font-family: 'openDyslexic';

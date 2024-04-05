@@ -16,6 +16,9 @@ body {
   background-color: #000;
 }
 
+body.has-modal {
+  overflow: hidden;
+}
 @font-face {
   body.open-dyslexic {
     font-family: "openDyslexic";

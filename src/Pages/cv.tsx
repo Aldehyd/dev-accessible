@@ -36,6 +36,14 @@ export default function CV(): React.JSX.Element {
         fetchData('http://localhost:4000/cv-diplomas',setDiplomas,setIsDiplomasLoading,setError);
         fetchData('http://localhost:4000/cv-languages',setLanguages,setIsLanguagesLoading,setError);
     },[]);
+
+    useEffect(()=> {
+        if(isModalDisplayed) {
+            document.body.classList.add('has-modal');
+        } else {
+            document.body.classList.remove('has-modal');
+        };
+    },[isModalDisplayed]);
     
     return (
         <>

@@ -24,6 +24,14 @@ export default function Achievments(): React.JSX.Element {
     const {changeAchievments} = useContext(AchievmentsContext);
 
     useEffect(()=> {
+        if(isModalDisplayed) {
+            document.body.classList.add('has-modal');
+        } else {
+            document.body.classList.remove('has-modal');
+        };
+    },[isModalDisplayed]);
+
+    useEffect(()=> {
         fetchData('http://localhost:4000/cv-achievments',setAchievments,setIsLoading,setError);
     },[]);
 

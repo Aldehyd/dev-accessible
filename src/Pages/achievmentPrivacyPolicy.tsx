@@ -20,6 +20,14 @@ export default function AchievmentPrivacyPolicy(): React.JSX.Element {
     const {achievment} = useParams();
     const currentAchievment = achievments.find(project => project.title === achievment || project.title === `${achievment}.com`);
 
+    useEffect(()=> {
+        if(isModalDisplayed) {
+            document.body.classList.add('has-modal');
+        } else {
+            document.body.classList.remove('has-modal');
+        };
+    },[isModalDisplayed]);
+    
     return (
         <>
             {isModalDisplayed && <ModalDarkBackground />}
