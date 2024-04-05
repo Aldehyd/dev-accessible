@@ -7,6 +7,7 @@ import TopMenu from "../Layout/topMenu.tsx";
 import ModalContext from "../Contexts/modal-context.tsx";
 import ModalDarkBackground from "../Components/modal-dark-background.tsx";
 import AccessibilitySettingsModal from "../Modals/AccessibilitySettingsModal.tsx";
+import BackLink from "../Components/back-link.tsx";
 
 export default function AchievmentPrivacyPolicy(): React.JSX.Element {
 
@@ -27,6 +28,7 @@ export default function AchievmentPrivacyPolicy(): React.JSX.Element {
                 <TopMenu setAccessibilityModalDisplay={setIsAccessibilitySettingsModalDisplayed} />
             </header>
             <main>
+                <BackLink />
                 <MainTitle frenchText="Règles de confidentialité" englishText="Privacy policy" />
                 <p>
                     {language === "french" ? currentAchievment?.privacyPolicy?.frenchCollect : currentAchievment?.privacyPolicy?.englishCollect}

@@ -4,6 +4,7 @@ import AchievmentsFitler from "./achievmentsFilter.tsx";
 import { useState, useEffect } from "react";
 import AchievmentInterface from "../Interfaces/achievmentInterface.tsx";
 import Error from "../Components/error.tsx";
+import BackLink from "../Components/back-link.tsx";
 interface AchievmentsMainPropsInterface {
     achievments : AchievmentInterface[]
 }
@@ -47,6 +48,7 @@ export default function AchievmentsMain({achievments}: AchievmentsMainPropsInter
 
     return (
         <>
+            <BackLink />
              <AchievmentsFitler typeFilter={typeFilter} setTypeFilter={setTypeFilter} setYearFilter={setYearFilter} yearFilter={yearFilter} frontEndFilter={frontEndFilter} setFrontEndFilter={setFrontEndFilter} backEndFilter={backEndFilter} setBackEndFilter={setBackEndFilter} databaseFilter={databaseFilter} setDatabaseFilter={setDatabaseFilter} results={achievmentsToShow.length} />
             {
                 achievmentsToShow.length > 0 &&

@@ -1236,6 +1236,7 @@ body.animations .accessibility-settings-button::after {
   border-radius: 1rem;
   transition: 200ms ease-in-out;
   overflow: hidden;
+  cursor: pointer;
 }
 
 @keyframes mainMenuLinkHover {
