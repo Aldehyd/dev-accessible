@@ -10,6 +10,7 @@ import MainTitle from "../Components/main-title.tsx";
 import ModalContext from "../Contexts/modal-context.tsx";
 import ModalDarkBackground from "../Components/modal-dark-background.tsx";
 import AccessibilitySettingsModal from "../Modals/AccessibilitySettingsModal.tsx";
+import BackLink from "../Components/back-link.tsx";
 
 export default function Achievments(): React.JSX.Element {
 
@@ -48,6 +49,7 @@ export default function Achievments(): React.JSX.Element {
             </header>
             <main>
                 <MainTitle frenchText="Réalisations" englishText="Achievments"/>
+                <BackLink />
                 {isLoading && !error && <Loader />}
                 {error && <Error frenchMessage="Une erreur est survenue. Veuillez rafraichir la page svp." englishMessage="An error has occured. Please refresh the current page." />}
                 {!isLoading && !error && <AchievmentsMain achievments={achievments} />}
