@@ -19,7 +19,7 @@ export default function AchievmentsMain({achievments}: AchievmentsMainPropsInter
 
     const [achievmentsToShow,setAchievmentsToShow] = useState(achievments);
 
-    const filter: (techno: string, filterArray: string[],filteredAchievments: AchievmentInterface[],type?:string)=> AchievmentInterface[] = (techno,filterArray,filteredAchievments,type="other")=> {
+    const filter: (techno: string, filterArray:string[],filteredAchievments: AchievmentInterface[],type?:string)=> AchievmentInterface[] = (techno,filterArray,filteredAchievments,type="other")=> {
         
         if(type === "techno") {
             for(let filter of filterArray) {
@@ -42,7 +42,7 @@ export default function AchievmentsMain({achievments}: AchievmentsMainPropsInter
         filteredAchievments = filter('frontEnd',frontEndFilter,filteredAchievments,'techno');
         filteredAchievments = filter('backEnd',backEndFilter,filteredAchievments,'techno');
         filteredAchievments = filter('dataBase',databaseFilter,filteredAchievments,'techno');
- 
+       
         setAchievmentsToShow(filteredAchievments);
     },[typeFilter,yearFilter,frontEndFilter,backEndFilter,databaseFilter,achievments]);
 

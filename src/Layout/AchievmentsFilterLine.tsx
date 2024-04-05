@@ -7,7 +7,7 @@ import Warning from "../Components/warning.tsx";
 interface AchievmentsFilterLinePropsInterface {
     frenchLabel: string,
     englishLabel: string,
-    array: string[],
+    array: {id:string, french: string, english: string}[],
     filterArray: string[],
     setFilterArray: (array: string[])=>void
 }
@@ -28,7 +28,7 @@ export default function AchievmentsFilterLine({frenchLabel,englishLabel,array,fi
             </span>
             <ul className="filters_line_list" role="group">
                 {array.map(element => {
-                    return <CheckBox key={element} frenchText={element} englishText={element} filterArray={filterArray} setFilterArray={setFilterArray} />
+                    return <CheckBox key={element.id} frenchText={element.french} englishText={element.english} filterArray={filterArray} setFilterArray={setFilterArray} />
                 })}
             </ul>
             {

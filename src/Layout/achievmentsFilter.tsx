@@ -28,37 +28,37 @@ export default function AchievmentsFitler({typeFilter,setTypeFilter,yearFilter,s
 
     const [filterExpanded,setFilterExpanded] = useState<boolean>(false);
 
-    const [types,setTypes] = useState<string[]>([]);
-    const [years,setYears] = useState<string[]>([]);
-    const [frontEndTechnologies,setFrontEndTechnologies] = useState<string[]>([]);
-    const [backEndTechnologies,setBackEndTechnologies] = useState<string[]>([]);
-    const [dataBaseTechnologies,setDataBaseTechnologies] = useState<string[]>([]);
+    const [types,setTypes] = useState<{id: string, french: string, english: string}[]>([]);
+    const [years,setYears] = useState<{id: string, french: string, english: string}[]>([]);
+    const [frontEndTechnologies,setFrontEndTechnologies] = useState<{id: string, french: string, english: string}[]>([]);
+    const [backEndTechnologies,setBackEndTechnologies] = useState<{id: string, french: string, english: string}[]>([]);
+    const [dataBaseTechnologies,setDataBaseTechnologies] = useState<{id: string, french: string, english: string}[]>([]);
 
-    const setOtherFilters:(type:string, array: string[],setArray: (array: string[])=>void)=> void = useCallback((type,array,setArray)=> {
+    const initializeTwoLanguagesFilters:(frenchType:string, englishType:string, array: {id: string, french: string, english: string}[],setArray: (array: {id: string, french: string, english: string}[])=>void)=> void = useCallback((frenchType,englishType,array,setArray)=> {
         for(let achievment of achievments) {
-            if(!array.includes(achievment[type])) {
-                setArray([...array,achievment[type]]);
+            if(!array.some(element => element.english === achievment[englishType])) {
+                setArray([...array,{id: achievment[englishType].toLowerCase().replace(" ","_"), french: achievment[frenchType], english: achievment[englishType]}]);
             };
         };
     },[achievments]);
 
-    const setTechnologiesFilters:(type:string, array: string[],setArray: (array: string[])=>void)=> void = useCallback((type,array,setArray)=> {
+    const initializeOneLanguageFilters:(type:string, array: {id: string, french: string, english: string}[],setArray: (array: {id: string, french: string, english: string}[])=>void)=> void = useCallback((type,array,setArray)=> {
+        for(let achievment of achievments) {
+            if(!array.some(element => element.english === achievment[type])) {
+                setArray([...array,{id: achievment[type].toLowerCase().replace(" ","_"), french: achievment[type], english: achievment[type]}]);
+            };
+        };
+    },[achievments]);
+
+    const initializeTechnologiesFilters:(type:string, array: {id: string, french: string, english: string}[],setArray: (array: {id: string, french: string, english: string}[])=>void)=> void = useCallback((type,array,setArray)=> {
         for(let achievment of achievments) {
             for(let element of achievment.technologies[type]) {
-                if(!array.includes(element)) {
-                    setArray([...array,element]);
+                if(!array.some(e => e.english === element)) {
+                    setArray([...array,{id: element.toLowerCase().replace(" ","_"), french: element, english: element}]);
                 };
             };
         };
     },[achievments]);
-
-    useEffect(()=> {
-        setOtherFilters('englishType',types,setTypes);
-        setOtherFilters('year',years,setYears);
-        setTechnologiesFilters('frontEnd',frontEndTechnologies,setFrontEndTechnologies);
-        setTechnologiesFilters('backEnd',backEndTechnologies,setBackEndTechnologies);
-        setTechnologiesFilters('dataBase',dataBaseTechnologies,setDataBaseTechnologies);
-    },[achievments,setOtherFilters,types,years,setTechnologiesFilters,frontEndTechnologies,backEndTechnologies,dataBaseTechnologies])
 
     const cleanFilters = ()=> {
         setYearFilter([]);
@@ -67,6 +67,14 @@ export default function AchievmentsFitler({typeFilter,setTypeFilter,yearFilter,s
         setBackEndFilter([]);
         setDatabaseFilter([]);
     };
+
+    useEffect(()=> {
+        initializeTwoLanguagesFilters('frenchType','englishType',types,setTypes);
+        initializeOneLanguageFilters('year',years,setYears);
+        initializeTechnologiesFilters('frontEnd',frontEndTechnologies,setFrontEndTechnologies);
+        initializeTechnologiesFilters('backEnd',backEndTechnologies,setBackEndTechnologies);
+        initializeTechnologiesFilters('dataBase',dataBaseTechnologies,setDataBaseTechnologies);
+    },[achievments,initializeTwoLanguagesFilters,initializeOneLanguageFilters,types,years,initializeTechnologiesFilters,frontEndTechnologies,backEndTechnologies,dataBaseTechnologies])
 
     return (
         <div className="achievments-filter" aria-expanded={filterExpanded ? "true" : "false"}>
