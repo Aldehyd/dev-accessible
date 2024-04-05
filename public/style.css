@@ -2024,6 +2024,25 @@ body.contrast .modal-dark-background {
   background-color: #000;
 }
 
+.warning {
+  position: relative;
+  color: hsl(0deg, 95%, 55%);
+  font-weight: bold;
+}
+.warning_message {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 1rem;
+  width: fit-content;
+  min-width: 20rem;
+  max-width: 40rem;
+  padding: 0.5rem;
+  background-color: hsl(0deg, 6%, 10%);
+  border: solid 0.4rem hsl(0deg, 95%, 55%);
+  border-radius: 1rem;
+}
+
 .radio-group {
   position: relative;
   margin: auto;
@@ -3062,7 +3081,7 @@ body:not(.contrast).purple .infos-dialog_content {
   align-items: center;
   gap: 2rem;
   width: fit-content;
-  margin: auto;
+  margin: 2rem auto;
   padding: 2rem;
   border-radius: 2rem;
   border: solid #f1f1f1 1rem;

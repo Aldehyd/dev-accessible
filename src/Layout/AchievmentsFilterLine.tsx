@@ -2,6 +2,7 @@ import { useContext } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 import CheckBox from "../Components/checkbox.tsx";
 import BasicButton from "../Components/basic-button.tsx";
+import Warning from "../Components/warning.tsx";
 
 interface AchievmentsFilterLinePropsInterface {
     frenchLabel: string,
@@ -30,6 +31,10 @@ export default function AchievmentsFilterLine({frenchLabel,englishLabel,array,fi
                     return <CheckBox key={element} frenchText={element} englishText={element} filterArray={filterArray} setFilterArray={setFilterArray} />
                 })}
             </ul>
+            {
+                filterArray.length > 1 && (englishLabel === "Years" || englishLabel === "Types") &&
+                <Warning frenchText="Choisir un seul de ces filtres !" englishText="Chose only one item among these filters !" />
+            }
         </div>
     )
 }

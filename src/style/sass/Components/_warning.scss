@@ -1,0 +1,19 @@
+
+.warning {
+    position: relative;
+    color: map-get($colors,red);
+    font-weight: bold;
+    &_message {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 1rem;
+        width: fit-content;
+        min-width: 20rem;
+        max-width: 40rem;
+        padding: 0.5rem;
+        background-color: map-get($colors,darkBackground);
+        border: solid 0.4rem map-get($colors,red);
+        border-radius: 1rem;
+    }
+}
