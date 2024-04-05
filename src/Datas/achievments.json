@@ -3,10 +3,10 @@
         "id": 0,
         "title": "dyskredy-art.com",
         "websiteLink": "https://dyskredy-art.com",
-        "githubLink": "bla",
+        "githubLink": "https://github.com/Aldehyd/dyskredy-art",
         "imageName": "dyskredy-preview",
-        "frenchAlt": "très beau site",
-        "englishAlt": "beautiful website",
+        "frenchAlt": "page d'accueil du site", 
+        "englishAlt": "website home page",
         "frenchType": "Site internet",
         "englishType": "Website",
         "frenchNeed": "Site artistique présentant des galeries d'illustrations, de photos et de vidéos.",
@@ -15,13 +15,13 @@
         "developmentTools": ["VsCode", "NPM", "Webpack"],
         "technologies": {
             "frontEnd": ["HTML", "ARIA", "CSS", "SASS", "TypeScript"],
-            "backEnd": ["NodeJS"],
+            "backEnd": ["NodeJS","Express"],
             "dataBase" : []
         },
         "accessibility": {
             "score": 97,
-            "frenchNonCompliance": ["Restitution non évaluée avec le lecteur d'écran Jaws","vidéo ne possédant pas d'une audio description"],
-            "englishNonCompliance": ["Reading with Jaws screen readers not tested","vidéo with no audiodescription"]
+            "frenchNonCompliance": ["Restitution non évaluée avec le lecteur d'écran Jaws","Vidéo ne possédant pas d'une audio description"],
+            "englishNonCompliance": ["Reading with Jaws screen readers not tested","Video with no audiodescription"]
         },
         "frenchFonctionnalities": ["responsive","thème alternatif contrasté","activation ou non des animations","réglages de la police, de sa taille et des espacements","multilangues (français/anglais)","lecteur vidéo","caroussel","formulaire de contact"],
         "englishFonctionnalities": ["responsive","alternative contrasted theme","enable or not animations","font, font size and spacings settings","multilanguages (french/english)","video player","carousel","contact form"],
@@ -53,10 +53,10 @@
         "id": 1,
         "title": "dev-accessible.com",
         "websiteLink": "https://dev-accessible.com",
-        "githubLink": "bla",
+        "githubLink": "https://github.com/Aldehyd/dev-accessible",
         "imageName": "guitare",
-        "frenchAlt": "très beau site",
-        "englishAlt": "beautiful website",
+        "frenchAlt": "page d'accueil du site",
+        "englishAlt": "website home page",
         "frenchType": "Site internet",
         "englishType": "Website",
         "frenchNeed": "Site professionnel de développeur web regroupant CV et réalisations.",
@@ -65,13 +65,13 @@
         "developmentTools": ["VsCode", "NPM", "Git"],
         "technologies": {
             "frontEnd": ["HTML", "ARIA", "CSS", "SASS", "ReactJS", "TypeScript"],
-            "backEnd": ["NodeJS"],
+            "backEnd": ["NodeJS","Express"],
             "dataBase": ["MongoDB"]
         },
         "accessibility": {
-            "score": 0,
-            "frenchNonCompliance": ["Restitution non évaluée avec le lecteur d'écran Jaws","vidéo ne possédant pas d'une audio description"],
-            "englishNonCompliance": ["Reading with Jaws screen readers not tested","vidéo with no audiodescription"]
+            "score": false,
+            "frenchNonCompliance": ["Non évaluée"],
+            "englishNonCompliance": ["No evaluation yet"]
         },
         "frenchFonctionnalities": ["responsive","thème alternatif contrasté","moteur de recherche","activation ou non des animations","réglages de la police, de sa taille et des espacements","multilangues (français/anglais)","lecteur vidéo","caroussel","API de requêtes vers base de données","formulaire de contact"],
         "englishFonctionnalities": ["responsive","alternative contrasted theme", "search engine","enable or not animations","font, font size and spacings settings","multilanguages (french/english)","video player","carousel","API calls to database","contact form"],
@@ -82,8 +82,8 @@
         },
         "frenchDeployment": "Serveur mutualisé sur PlanetHoster",
         "englishDeployment": "Common server on PlanetHoster",
-        "frenchComments": "Tous les composants ont été codés intégralement (aucune librairie utilisée).",
-        "englishComents": "All the components have been coded from scratch (no library used).",
+        "frenchComments": "Tous les composants ont été codés intégralement (aucune librairie utilisée) en React.",
+        "englishComents": "All the components have been coded from scratch (no library used) with React.",
         "pictures": [
             {
                 "id": 0,
@@ -101,12 +101,12 @@
     },
     {
         "id": 2,
-        "title": "shopping",
-        "websiteLink": "google play store",
-        "githubLink": "bla",
-        "imageName": "guitare",
-        "frenchAlt": "très belle application",
-        "englishAlt": "beautiful application",
+        "title": "liste de courses",
+        "websiteLink": "en phase de test",
+        "githubLink": "https://github.com/Aldehyd/shopping-app",
+        "imageName": "stick",
+        "frenchAlt": "page d'accueil de l'application",
+        "englishAlt": "app home page",
         "frenchType": "Application mobile",
         "englishType": "Mobile application",
         "frenchNeed": "Création et édition de listes de courses à partir de magasins personnalisés.",
