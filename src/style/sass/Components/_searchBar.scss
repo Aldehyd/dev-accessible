@@ -50,6 +50,15 @@
     cursor: pointer;
 }
 
+.magnifying-glass-svg {
+    height: 2rem;
+    width: 2rem;
+    stroke-width: 1rem;
+    stroke: map-get($colors,blue);
+    & .st2 {
+        stroke-width: 2rem;
+    }
+}
 
 @keyframes onHoverSearchButton {
     0% {
@@ -77,6 +86,14 @@
         transform: translateX(13rem);
     }
 }
+@keyframes onSearchButtonHover {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(0.7);
+    }
+}
 
 body:not(.contrast) {
     & .search-button {
@@ -99,38 +116,28 @@ body:not(.contrast) {
         &.animations .search-bar-container.searching .input-container::after {
             box-shadow: 0 0 1rem 0.4rem map-get($colors,purple);
         }
+        & .magnifying-glass-svg {
+            stroke: map-get($colors,purple);
+        }
     }
 }
 body.contrast .search-bar-container .search-button {
     border-color: map-get($colors,darkBackground);
 }
-body.animations .search-bar-container.searching .input-container::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 1rem;
-    height: 100%;
-    width: 0rem;
-    box-shadow: 0 0 1rem 0.4rem map-get($colors,blue);
-    animation: searchingAnimation 1000ms ease-in-out forwards;
-}
+body.animations {
+    & .search-bar-container.searching .input-container::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 1rem;
+        height: 100%;
+        width: 0rem;
+        box-shadow: 0 0 1rem 0.4rem map-get($colors,blue);
+        animation: searchingAnimation 1000ms ease-in-out forwards;
+    }
+    & .search-button:hover .magnifying-glass-svg {
+        animation: onSearchButtonHover 800ms ease-in-out infinite alternate;
+    }
+} 
 
-//temporary
-.circle {
-    position: absolute;
-    top: 0.5rem;
-    left: 0.5rem;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    border: solid hsl(175,85%,55%) 0.2rem;
-}
-.rectangle {
-    position: absolute;
-    top: 1.2rem;
-    left: 1.5rem;
-    width: 0.3rem;
-    height: 0.8rem;
-    background-color: hsl(175,85%,55%);
-    transform: rotate(-45deg);
-}
+

@@ -1016,6 +1016,16 @@ body.contrast .accessibility-analysis-help-button {
   cursor: pointer;
 }
 
+.magnifying-glass-svg {
+  height: 2rem;
+  width: 2rem;
+  stroke-width: 1rem;
+  stroke: hsl(175deg, 95%, 55%);
+}
+.magnifying-glass-svg .st2 {
+  stroke-width: 2rem;
+}
+
 @keyframes onHoverSearchButton {
   0% {
     transform: scale(1);
@@ -1042,6 +1052,14 @@ body.contrast .accessibility-analysis-help-button {
     transform: translateX(13rem);
   }
 }
+@keyframes onSearchButtonHover {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.7);
+  }
+}
 body:not(.contrast) .search-button {
   box-shadow: 0 0 1rem hsl(0deg, 6%, 10%);
 }
@@ -1061,6 +1079,9 @@ body:not(.contrast).purple .search-button {
 body:not(.contrast).purple.animations .search-bar-container.searching .input-container::after {
   box-shadow: 0 0 1rem 0.4rem hsl(295deg, 95%, 55%);
 }
+body:not(.contrast).purple .magnifying-glass-svg {
+  stroke: hsl(295deg, 95%, 55%);
+}
 
 body.contrast .search-bar-container .search-button {
   border-color: hsl(0deg, 6%, 10%);
@@ -1076,25 +1097,8 @@ body.animations .search-bar-container.searching .input-container::after {
   box-shadow: 0 0 1rem 0.4rem hsl(175deg, 95%, 55%);
   animation: searchingAnimation 1000ms ease-in-out forwards;
 }
-
-.circle {
-  position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
-  border: solid hsl(175deg, 85%, 55%) 0.2rem;
-}
-
-.rectangle {
-  position: absolute;
-  top: 1.2rem;
-  left: 1.5rem;
-  width: 0.3rem;
-  height: 0.8rem;
-  background-color: hsl(175deg, 85%, 55%);
-  transform: rotate(-45deg);
+body.animations .search-button:hover .magnifying-glass-svg {
+  animation: onSearchButtonHover 800ms ease-in-out infinite alternate;
 }
 
 .main-burger-menu {
@@ -3069,7 +3073,7 @@ body.animations .achievments-filter_content {
 .top-menu {
   position: relative;
   height: 4rem;
-  width: 100rem;
+  width: 105rem;
   max-width: 95%;
   background-color: #f1f1f1;
   border-radius: 0 0 8rem 0;
@@ -3080,7 +3084,7 @@ body.animations .achievments-filter_content {
   position: absolute;
   top: 2rem;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 3rem;
   width: fit-content;
