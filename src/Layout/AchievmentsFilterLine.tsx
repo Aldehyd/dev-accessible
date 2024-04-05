@@ -27,7 +27,7 @@ export default function AchievmentsFilterLine({frenchLabel,englishLabel,array,fi
             </span>
             <ul className="filters_line_list" role="group">
                 {array.map(element => {
-                    return <CheckBox key={element.index} frenchText={element} englishText={element} filterArray={filterArray} setFilterArray={setFilterArray} />
+                    return <CheckBox key={element} frenchText={element} englishText={element} filterArray={filterArray} setFilterArray={setFilterArray} />
                 })}
             </ul>
         </div>
