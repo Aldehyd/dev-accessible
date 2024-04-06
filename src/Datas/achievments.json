@@ -90,7 +90,7 @@
         "title": "dev-accessible.com",
         "websiteLink": "https://dev-accessible.com",
         "githubLink": "https://github.com/Aldehyd/dev-accessible",
-        "imageName": "guitare",
+        "imageName": "/dev-accessible/home",
         "frenchAlt": "page d'accueil du site",
         "englishAlt": "website home page",
         "frenchType": "Site internet",
@@ -123,15 +123,39 @@
         "pictures": [
             {
                 "id": 0,
-                "pictureName": "dyskredy-preview",
-                "frenchAlt": "",
-                "englishAlt": ""
+                "pictureName": "/dev-accessible/home",
+                "frenchAlt": "page d'accueil",
+                "englishAlt": "home page"
             },
             {
                 "id": 1,
-                "pictureName": "guitare",
-                "frenchAlt": "",
-                "englishAlt": ""
+                "pictureName": "/dev-accessible/cv",
+                "frenchAlt": "cv",
+                "englishAlt": "cv"
+            },
+            {
+                "id": 2,
+                "pictureName": "/dev-accessible/achievments-filters",
+                "frenchAlt": "réalisations - filtres",
+                "englishAlt": "achievments - filters"
+            },
+            {
+                "id": 3,
+                "pictureName": "/dev-accessible/dyskredy-art-details",
+                "frenchAlt": "réalisation - détails",
+                "englishAlt": "achievment - details"
+            },
+            {
+                "id": 4,
+                "pictureName": "/dev-accessible/dyskredy-art-details-photos",
+                "frenchAlt": "réalisations - caroussel",
+                "englishAlt": "achievments - carousel"
+            },
+            {
+                "id": 5,
+                "pictureName": "/dev-accessible/full-screen-carousel",
+                "frenchAlt": "caroussel plein écran",
+                "englishAlt": "full screen carousel"
             }
         ]
     },
@@ -140,7 +164,7 @@
         "title": "liste de courses",
         "websiteLink": "en phase de test",
         "githubLink": "https://github.com/Aldehyd/shopping-app",
-        "imageName": "stick",
+        "imageName": "/list-de-courses/home",
         "frenchAlt": "page d'accueil de l'application",
         "englishAlt": "app home page",
         "frenchType": "Application mobile",
