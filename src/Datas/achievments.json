@@ -173,15 +173,57 @@
         "pictures": [
             {
                 "id": 0,
-                "pictureName": "dyskredy-preview",
+                "pictureName": "/liste-de-courses/home",
+                "frenchAlt": "page d'accueil",
+                "englishAlt": "home page"
+            },
+            {
+                "id": 1,
+                "pictureName": "/liste-de-courses/new-shop",
+                "frenchAlt": "nouveau magasin",
+                "englishAlt": "new shop"
+            },
+            {
+                "id": 2,
+                "pictureName": "/liste-de-courses/new-article",
+                "frenchAlt": "nouvel article",
+                "englishAlt": "new article"
+            },
+            {
+                "id": 3,
+                "pictureName": "/liste-de-courses/edit-shop",
+                "frenchAlt": "édition de magasin",
+                "englishAlt": "shop edit"
+            },
+            {
+                "id": 4,
+                "pictureName": "/liste-de-courses/edit-list-shops",
+                "frenchAlt": "édition de liste - magasins",
+                "englishAlt": "list edit - shops"
+            },
+            {
+                "id": 5,
+                "pictureName": "/liste-de-courses/new-list-articles",
+                "frenchAlt": "nouvelle liste - articles",
+                "englishAlt": "new list - articles"
+            },
+            {
+                "id": 6,
+                "pictureName": "/liste-de-courses/list-choice",
+                "frenchAlt": "choix des listes",
+                "englishAlt": "lists choice"
+            },
+            {
+                "id": 7,
+                "pictureName": "/liste-de-courses/current-shopping",
                 "frenchAlt": "",
                 "englishAlt": ""
             },
             {
-                "id": 1,
-                "pictureName": "guitare",
-                "frenchAlt": "",
-                "englishAlt": ""
+                "id": 8,
+                "pictureName": "/liste-de-courses/themes",
+                "frenchAlt": "choix du thème",
+                "englishAlt": "theme choice"
             }
         ],
         "privacyPolicy": {
