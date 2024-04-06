@@ -1377,6 +1377,10 @@ body:not(.contrast).purple .back-link-svg {
   height: fit-content;
   overflow: hidden;
 }
+.basic-picture-container.portrait {
+  width: 30%;
+  max-width: 200px;
+}
 
 .basic-picture {
   display: block;

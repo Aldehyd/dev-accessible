@@ -42,7 +42,7 @@ export default function AchievmentSection({achievment}: AchievmentSectionPropsIn
             <h2>
                 <a href={achievment.websiteLink} target="blank">{achievment.title}</a>
             </h2>
-            <BasicPicture imageName={achievment.imageName} frenchAlt={achievment.frenchAlt} englishAlt={achievment.englishAlt} />
+            <BasicPicture imageName={achievment.imageName} frenchAlt={achievment.frenchAlt} englishAlt={achievment.englishAlt} orientation={achievment.englishType === "Mobile application" ? "portrait" : "landscape"} />
 
             <div className="achievment-section_text-content">
                 <dl>
