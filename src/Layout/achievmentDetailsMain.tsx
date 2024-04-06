@@ -119,7 +119,7 @@ export default function AchievmentDetailsMain({achievment}): React.JSX.Element {
                 </dl>
                 <h2>Photos :</h2>
                 <Carousel pictures={achievment.pictures} setCurrentPicture={setCurrentPicture} />
-                {displayCarousel && <CarouselFullScreen />}
+                {displayCarousel && <CarouselFullScreen orientation={achievment.englishType === "Mobile application" ? "portrait" : "landscape"} />}
                 {achievment.englishType === "Mobile application" && <MainLink frenchText="Règles de confidentialité" englishText="Privacy policy" route={`/achievments/${achievment.title.replace(".com","")}/privacy-policy`} />}
             </div>
         </>

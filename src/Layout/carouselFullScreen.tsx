@@ -5,8 +5,11 @@ import CarouselPicture from "../Components/carousel-picture.tsx";
 import CarouselButton from "../Components/carousel-button.tsx";
 import FullScreenModal from "./fullScreenModal.tsx";
 
+interface CarouselFullScreenPropsInterface {
+    orientation: string
+}
 
-export default function CarouselFullScreen(): React.JSX.Element {
+export default function CarouselFullScreen({orientation}: CarouselFullScreenPropsInterface): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
 
@@ -15,7 +18,7 @@ export default function CarouselFullScreen(): React.JSX.Element {
     const [picturesToShow,setPicturesToShow] = useState<{current: number, amount: number}>({current: currentPictureFullScreen, amount: picturesFullScreen.length});
     const [pictureMovement,setPictureMovement] = useState<string>("");
 
-    const classList = `carousel_pictures-container carousel-full-screen_pictures-container ${pictureMovement}`;
+    const classList = `carousel_pictures-container carousel-full-screen_pictures-container ${pictureMovement} ${orientation === "portrait" ? "portrait" : ""}`;
     const picturesContainer = useRef(null);
 
     useEffect(()=> {

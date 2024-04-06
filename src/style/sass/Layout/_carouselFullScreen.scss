@@ -7,6 +7,9 @@
     &_pictures-container {
         width: 70vw;
         height: 85vh;
+        &.portrait {
+            width: 30vw;
+        }
     }
     & .carousel_picture {
         object-fit: fill;
@@ -47,6 +50,32 @@
         transform: translate(70vw);
     }
 }
+@keyframes carouselFullScreenPortraitNextTranslate {
+    0% {
+        transform: translateX(30vw);
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes carouselFullScreenPortraitPreviousTranslate {
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(30vw);
+    }
+}
 
 body.animations {
     & .carousel-full-screen .carousel_pictures-container.transition {
@@ -55,6 +84,14 @@ body.animations {
         }
         &.previous::after {
             animation: carouselFullScreenPreviousTranslate 600ms ease-in-out;
+        }
+    }
+    & .carousel-full-screen .carousel_pictures-container.portrait.transition {
+        &.next::after {
+            animation: carouselFullScreenPortraitNextTranslate 600ms ease-in-out;
+        }
+        &.previous::after {
+            animation: carouselFullScreenPortraitPreviousTranslate 600ms ease-in-out;
         }
     }
 }
