@@ -4,7 +4,7 @@
         "title": "dyskredy-art.com",
         "websiteLink": "https://dyskredy-art.com",
         "githubLink": "https://github.com/Aldehyd/dyskredy-art",
-        "imageName": "dyskredy-preview",
+        "imageName": "/dyskredy-art/dyskredy-preview",
         "frenchAlt": "page d'accueil du site", 
         "englishAlt": "website home page",
         "frenchType": "Site internet",
@@ -37,15 +37,51 @@
         "pictures": [
             {
                 "id": 0,
-                "pictureName": "dyskredy-preview",
-                "frenchAlt": "site",
-                "englishAlt": "site"
+                "pictureName": "/dyskredy-art/dyskredy-preview",
+                "frenchAlt": "page d'accueil",
+                "englishAlt": "home page"
             },
             {
                 "id": 1,
-                "pictureName": "guitare",
-                "frenchAlt": "guitare",
-                "englishAlt": "guitare"
+                "pictureName": "/dyskredy-art/photos-portfolio",
+                "frenchAlt": "portfolio photos",
+                "englishAlt": "photos portfolio"
+            },
+            {
+                "id": 2,
+                "pictureName": "/dyskredy-art/video",
+                "frenchAlt": "lecteur vidéo",
+                "englishAlt": "video player"
+            },
+            {
+                "id": 3,
+                "pictureName": "/dyskredy-art/carousel",
+                "frenchAlt": "caroussel pleine page",
+                "englishAlt": "full screen carousel"
+            },
+            {
+                "id": 4,
+                "pictureName": "/dyskredy-art/form",
+                "frenchAlt": "formulaire de contact",
+                "englishAlt": "contact form"
+            },
+            {
+                "id": 5,
+                "pictureName": "/dyskredy-art/language",
+                "frenchAlt": "choix de la langue",
+                "englishAlt": "language choice"
+            },
+            {
+                "id": 6,
+                "pictureName": "/dyskredy-art/accessibility-modal",
+                "frenchAlt": "réglages d'accessibilité",
+                "englishAlt": "accessibility settings"
+            },
+            {
+                "id": 7,
+                "pictureName": "/dyskredy-art/shortcuts",
+                "frenchAlt": "description des raccourcis clavier",
+                "englishAlt": "keyboard shortcuts description"
             }
         ]
     },
