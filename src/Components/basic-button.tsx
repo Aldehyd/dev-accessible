@@ -6,13 +6,13 @@ interface BasicButtonPropsInterface {
     englishText: string,
     disableAbility?: boolean,
     disabledStatus?: string,
-    tabIndex?: string,
+    tabIndex?: number,
     onWhiteBackground?: boolean,
     removeButton?: boolean,
     onClickFunction?: ()=> void
 }
 
-export default function BasicButton({frenchText,englishText,disableAbility=false,disabledStatus="false",tabIndex="0",onWhiteBackground=false,removeButton=false,onClickFunction}: BasicButtonPropsInterface): React.JSX.Element {
+export default function BasicButton({frenchText,englishText,disableAbility=false,disabledStatus="false",tabIndex=0,onWhiteBackground=false,removeButton=false,onClickFunction}: BasicButtonPropsInterface): React.JSX.Element {
     
     const {language} = useContext(LanguageContext);
 
@@ -29,8 +29,8 @@ export default function BasicButton({frenchText,englishText,disableAbility=false
                         removeButton &&
                         <svg className="basic-button_remove-svg" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                         viewBox="0 0 86.1 82.3">
-                            <line class="st0" x1="15.6" y1="13" x2="72.1" y2="69.5"/>
-                            <line class="st0" x1="72.1" y1="13" x2="15.6" y2="69.5"/>
+                            <line className="st0" x1="15.6" y1="13" x2="72.1" y2="69.5"/>
+                            <line className="st0" x1="72.1" y1="13" x2="15.6" y2="69.5"/>
                         </svg>
                     }   
                 </button>
@@ -41,8 +41,8 @@ export default function BasicButton({frenchText,englishText,disableAbility=false
                         removeButton &&
                         <svg className="basic-button_remove-svg" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                         viewBox="0 0 86.1 82.3">
-                            <line class="st0" x1="15.6" y1="13" x2="72.1" y2="69.5"/>
-                            <line class="st0" x1="72.1" y1="13" x2="15.6" y2="69.5"/>
+                            <line className="st0" x1="15.6" y1="13" x2="72.1" y2="69.5"/>
+                            <line className="st0" x1="72.1" y1="13" x2="15.6" y2="69.5"/>
                         </svg>
                     } 
                 </button>
