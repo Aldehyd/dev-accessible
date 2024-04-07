@@ -40,7 +40,7 @@ export default function CVSection({type,achievments,diplomas,languages}: CVSecti
             };
         };
         setDevTools(devTools);
-    },[designTools,achievments]);
+    },[]);
 
     const addToolToDesignTools : (achievments: AchievmentInterface[])=>void = (achievments) => {
         let designTools : {id: string, frenchTitle: string, englishTitle: string, projects: string[]}[] = [];
@@ -70,7 +70,7 @@ export default function CVSection({type,achievments,diplomas,languages}: CVSecti
         addTechnoToTechnologies("dataBase",technologies,achievments);
 
         setTechnologies(technologies);
-    },[]);
+    },[achievments]);
 
     useEffect(()=> {
         switch(type) {
@@ -95,7 +95,7 @@ export default function CVSection({type,achievments,diplomas,languages}: CVSecti
             default:
                 break;
         };
-    },[language,setSectionTitle,type,setTechnologiesForCV,addToolToDevTools]);
+    },[achievments,language,setSectionTitle,type,setTechnologiesForCV,addToolToDevTools]);
 
     const classList = `cv_section_list-container ${type === "language" || type === "diploma" ? "col" : ""}`;
 
