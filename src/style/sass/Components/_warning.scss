@@ -3,6 +3,17 @@
     position: relative;
     color: map-get($colors,red);
     font-weight: bold;
+    &-svg {
+        height: 3rem;
+        width: 3rem;
+        stroke-width: 1rem;
+        stroke: map-get($colors,red);
+        fill: map-get($colors,dark);
+        & circle {
+            stroke-width: 0;
+            fill: map-get($colors,red);
+        }
+    }
     &_message {
         position: absolute;
         z-index: 1;

@@ -2033,6 +2033,17 @@ body.contrast .modal-dark-background {
   color: hsl(0deg, 95%, 55%);
   font-weight: bold;
 }
+.warning-svg {
+  height: 3rem;
+  width: 3rem;
+  stroke-width: 1rem;
+  stroke: hsl(0deg, 95%, 55%);
+  fill: #000;
+}
+.warning-svg circle {
+  stroke-width: 0;
+  fill: hsl(0deg, 95%, 55%);
+}
 .warning_message {
   position: absolute;
   z-index: 1;
