@@ -14,6 +14,7 @@ import CV from './Pages/cv.tsx';
 import AchievmentInterface from './Interfaces/achievmentInterface.tsx';
 import AchievmentsContext from './Contexts/achievments-context.tsx';
 import ModalContext from './Contexts/modal-context.tsx';
+import WhoAmI from './Pages/who-am-i.tsx';
 
 export default function App(): React.JSX.Element {
     
@@ -63,6 +64,7 @@ export default function App(): React.JSX.Element {
                                     <Route path="/components" element={<Components />} />
                                     <Route path="/layouts" element={<Layouts />} />
                                     <Route path="*" element={<UnderConstruction />} />
+                                    <Route path="/who-am-i" element={<WhoAmI />} />
                                     <Route path="/achievments" element={<Achievments />} />
                                     <Route path="/achievments/:achievment" element={<AchievmentDetails />} />
                                     <Route path="/achievments/:achievment/privacy-policy" element={<AchievmentPrivacyPolicy />} />
