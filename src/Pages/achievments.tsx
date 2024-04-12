@@ -11,6 +11,7 @@ import ModalContext from "../Contexts/modal-context.tsx";
 import ModalDarkBackground from "../Components/modal-dark-background.tsx";
 import AccessibilitySettingsModal from "../Modals/AccessibilitySettingsModal.tsx";
 import BackLink from "../Components/back-link.tsx";
+import BottomMenu from "../Layout/bottomMenu.tsx";
 
 export default function Achievments(): React.JSX.Element {
 
@@ -33,7 +34,7 @@ export default function Achievments(): React.JSX.Element {
     },[isModalDisplayed]);
 
     useEffect(()=> {
-        fetchData('http://localhost:4000/cv-achievments',setAchievments,setIsLoading,setError);
+        fetchData('https://dev-accessible.com/cv-achievments',setAchievments,setIsLoading,setError);
     },[]);
 
     useEffect(()=> {
@@ -54,6 +55,9 @@ export default function Achievments(): React.JSX.Element {
                 {error && <Error frenchMessage="Une erreur est survenue. Veuillez rafraichir la page svp." englishMessage="An error has occured. Please refresh the current page." />}
                 {!isLoading && !error && <AchievmentsMain achievments={achievments} />}
             </main>
+            <footer>
+                <BottomMenu />
+            </footer>
         </>
         
     )

@@ -5,6 +5,7 @@ import AccessibilitySettingsModal from "../Modals/AccessibilitySettingsModal.tsx
 import TopMenu from "../Layout/topMenu.tsx";
 import MainTitle from "../Components/main-title.tsx";
 import BackLink from "../Components/back-link.tsx";
+import BottomMenu from "../Layout/bottomMenu.tsx";
 
 export default function WhoAmI(): React.JSX.Element {
 
@@ -25,6 +26,9 @@ export default function WhoAmI(): React.JSX.Element {
                     <source src="/videos/presentation.mp4" type="video/mp4" />
                 </video>
             </main>
+            <footer>
+                <BottomMenu />
+            </footer>
         </>
     )
 }

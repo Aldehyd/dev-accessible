@@ -13,6 +13,7 @@ import ModalDarkBackground from "../Components/modal-dark-background.tsx";
 import AccessibilitySettingsModal from "../Modals/AccessibilitySettingsModal.tsx";
 import BackLink from "../Components/back-link.tsx";
 import MainTitle from "../Components/main-title.tsx";
+import BottomMenu from "../Layout/bottomMenu.tsx";
 
 export default function CV(): React.JSX.Element {
 
@@ -31,10 +32,10 @@ export default function CV(): React.JSX.Element {
     const [error,setError] = useState<boolean>(false);
 
     useEffect(()=> {
-        fetchData('http://localhost:4000/cv-status',setStatus,setIsStatusLoading,setError);
-        fetchData('http://localhost:4000/cv-achievments',setAchievments,setIsAchievmentsLoading,setError);
-        fetchData('http://localhost:4000/cv-diplomas',setDiplomas,setIsDiplomasLoading,setError);
-        fetchData('http://localhost:4000/cv-languages',setLanguages,setIsLanguagesLoading,setError);
+        fetchData('https://dev-accessible.com/cv-status',setStatus,setIsStatusLoading,setError);
+        fetchData('https://dev-accessible.com/cv-achievments',setAchievments,setIsAchievmentsLoading,setError);
+        fetchData('https://dev-accessible.com/cv-diplomas',setDiplomas,setIsDiplomasLoading,setError);
+        fetchData('https://dev-accessible.com/cv-languages',setLanguages,setIsLanguagesLoading,setError);
     },[]);
 
     useEffect(()=> {
@@ -61,6 +62,9 @@ export default function CV(): React.JSX.Element {
                 {!isStatusLoading && !isAchievmentsLoading && !isDiplomasLoading && !isLanguagesLoading && !error &&
                  <CVComponent availableStatus={status[0].status} achievments={achievments} diplomas={diplomas} languages={languages} />}
             </main>
+            <footer>
+                <BottomMenu />
+            </footer>
         </>
     )
 }

@@ -8,6 +8,7 @@ import ModalContext from "../Contexts/modal-context.tsx";
 import ModalDarkBackground from "../Components/modal-dark-background.tsx";
 import AccessibilitySettingsModal from "../Modals/AccessibilitySettingsModal.tsx";
 import BackLink from "../Components/back-link.tsx";
+import BottomMenu from "../Layout/bottomMenu.tsx";
 
 export default function AchievmentPrivacyPolicy(): React.JSX.Element {
 
@@ -77,6 +78,9 @@ export default function AchievmentPrivacyPolicy(): React.JSX.Element {
                     {currentAchievment?.privacyPolicy?.lastChangeDate}
                 </p>
             </main> 
+            <footer>
+                <BottomMenu />
+            </footer>
         </>
     )
 }

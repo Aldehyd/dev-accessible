@@ -8,6 +8,7 @@ import TopMenu from "../Layout/topMenu.tsx";
 import ModalContext from "../Contexts/modal-context.tsx";
 import ModalDarkBackground from "../Components/modal-dark-background.tsx";
 import AccessibilitySettingsModal from "../Modals/AccessibilitySettingsModal.tsx";
+import BottomMenu from "../Layout/bottomMenu.tsx";
 
 export default function AchievmentDetails(): React.JSX.Element {
 
@@ -38,6 +39,9 @@ export default function AchievmentDetails(): React.JSX.Element {
                 <MainTitle frenchText={achievment} englishText={achievment} />
                 <AchievmentDetailsMain achievment={currentAchievment} />
             </main>
+            <footer>
+                <BottomMenu />
+            </footer>
         </>
         
     )
