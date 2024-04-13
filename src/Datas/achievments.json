@@ -162,7 +162,7 @@
     {
         "id": 2,
         "title": "liste de courses",
-        "websiteLink": "en phase de test",
+        "websiteLink": "https://play.google.com/apps/internaltest/4701201064016052379",
         "githubLink": "https://github.com/Aldehyd/shopping-app",
         "imageName": "/liste-de-courses/home",
         "frenchAlt": "page d'accueil de l'application",
