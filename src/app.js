@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+const path = require("path");
 const express = require("express");
 const cors = require("cors");
 
@@ -14,6 +15,10 @@ app.listen(port, ()=> {
 
 app.use(cors());
 app.use(express.json());
+
+const public_path = path.join(__dirname,'/dist');
+
+app.use('/',express.static(public_path));
 
 app.get('/cv-status',(_,res)=>{
     GetDatasFromCollection(res,"availableStatus");
