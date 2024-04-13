@@ -42,7 +42,7 @@ export default function AchievmentDetailsMain({achievment}): React.JSX.Element {
                     <dd><a href={achievment.websiteLink} target="blank">{achievment.websiteLink}</a></dd>
 
                     <dt>{language === "french" ? "Lien GitHub" : "GitHub link"} :</dt>
-                    <dd>{achievment.githubLink}</dd>
+                    <dd><a href={achievment.githubLink} target="blanck">{achievment.githubLink}</a></dd>
 
                     <dt>{language === "french" ? "Besoins" : "Need"} :</dt>
                     <dd>{language === "french" ? achievment.frenchNeed : achievment.englishNeed}</dd>
