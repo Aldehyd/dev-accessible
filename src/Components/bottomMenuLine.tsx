@@ -8,7 +8,7 @@ export default function BottomMenuLine({home}:BottomMenuLinePropsInterface): Rea
         <>
         {
             home ?
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 748 565">
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 748 565">
                     <g>
                         <path d="M704.5,79.5c-34.3,1.2-68.5,4.4-102.2,10c-33.7,5.6-66.8,13.6-98.9,24.5c-32.1,10.9-63.2,24.4-92.8,40.4
                             c-29.6,16.1-57.7,34.7-84,55.5c-26.3,20.8-50.8,43.9-73.4,68.6c-22.7,24.7-43.5,51.1-62.6,78.8c-38.3,55.3-69.8,115.3-96.3,177.5
