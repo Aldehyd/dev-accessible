@@ -16,6 +16,7 @@ import AchievmentsContext from './Contexts/achievments-context.tsx';
 import ModalContext from './Contexts/modal-context.tsx';
 import WhoAmI from './Pages/who-am-i.tsx';
 import WhyAccessibility from './Pages/whyAccessibility.tsx';
+import Contact from './Pages/contact.tsx';
 
 export default function App(): React.JSX.Element {
     
@@ -71,6 +72,7 @@ export default function App(): React.JSX.Element {
                                     <Route path="/achievments/:achievment/privacy-policy" element={<AchievmentPrivacyPolicy />} />
                                     <Route path="/cv" element={<CV />} />
                                     <Route path="/why-accessibility" element={<WhyAccessibility />} />
+                                    <Route path="/contact" element={<Contact />} />
                                 </Routes>
                             </Router>
                         </CarouselContext.Provider>

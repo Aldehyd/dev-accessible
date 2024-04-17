@@ -13,7 +13,7 @@ export default function BottomMenu({home=false}: BottomMenuPropsInterface): Reac
         <div className={classList}>
             <BottomMenuLine home={home} />
             <MainLink frenchText="Plan du site" englishText="Site map" route="" />
-            <MainLink frenchText="Contact" englishText="Contact" route="" />
+            <MainLink frenchText="Contact" englishText="Contact" route="/contact" />
             <MainLink frenchText="Accessibilité" englishText="Accessibility" route="" />
         </div>
     )
