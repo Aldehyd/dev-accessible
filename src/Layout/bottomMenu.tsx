@@ -6,8 +6,11 @@ interface BottomMenuPropsInterface {
 }
 
 export default function BottomMenu({home=false}: BottomMenuPropsInterface): React.JSX.Element {
+
+    const classList = `bottom-menu ${home ? "home" : ""}`;
+
     return (
-        <div className="bottom-menu">
+        <div className={classList}>
             <BottomMenuLine home={home} />
             <MainLink frenchText="Plan du site" englishText="Site map" route="" />
             <MainLink frenchText="Contact" englishText="Contact" route="" />

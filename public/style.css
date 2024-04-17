@@ -121,6 +121,14 @@ body:not(.contrast).purple a:visited {
   color: hsl(295deg, 95%, 55%);
 }
 
+footer {
+  height: fit-content;
+  width: 100%;
+}
+footer.home {
+  position: absolute;
+}
+
 @keyframes backgroundMovement {
   to {
     background-size: 150% 150%;
@@ -3286,7 +3294,36 @@ body.animations .top-menu {
   position: relative;
   bottom: 0;
   height: fit-content;
+  width: 100%;
   overflow-y: hidden;
+}
+.bottom-menu.home {
+  overflow-y: visible;
+  width: 100%;
+}
+.bottom-menu.home .main-link:nth-child(2) {
+  right: 140px;
+  left: inherit;
+  bottom: 130px;
+}
+.bottom-menu.home .main-link:nth-child(3) {
+  right: 60px;
+  left: inherit;
+  top: inherit;
+  bottom: 190px;
+  transform: translateX(0);
+}
+.bottom-menu.home .main-link:last-child {
+  right: 200px;
+  bottom: 50px;
+}
+.bottom-menu-line--home-page {
+  position: absolute;
+  right: -50px;
+  bottom: -30px;
+  height: 300px;
+  stroke: #f1f1f1;
+  fill: #f1f1f1;
 }
 .bottom-menu-line--other-pages {
   position: relative;

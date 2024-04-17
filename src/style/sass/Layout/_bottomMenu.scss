@@ -2,11 +2,39 @@
     position: relative;
     bottom: 0;
     height: fit-content;
-    // margin-top: 6rem;
+    width: 100%;
     overflow-y: hidden;
+    &.home {
+        overflow-y: visible;
+        // overflow-x: hidden;
+        width: 100%;
+        & .main-link {
+            &:nth-child(2) {
+                right: 140px;
+                left: inherit;
+                bottom: 130px;
+            }
+            &:nth-child(3) {
+                right: 60px;
+                left: inherit;
+                top: inherit;
+                bottom: 190px;
+                transform: translateX(0);
+            }
+            &:last-child {
+                right: 200px;
+                bottom: 50px;
+            }
+        }
+    }
     &-line {
         &--home-page {
-
+            position: absolute;
+            right: -50px;
+            bottom: -30px; 
+            height: 300px;
+            stroke: map-get($colors,white);
+            fill: map-get($colors,white);
         }
         &--other-pages {
             position: relative;
