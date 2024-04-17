@@ -18,6 +18,7 @@ import WhoAmI from './Pages/who-am-i.tsx';
 import WhyAccessibility from './Pages/whyAccessibility.tsx';
 import Contact from './Pages/contact.tsx';
 import SiteMap from './Pages/siteMap.tsx';
+import Accessibility from './Pages/accessibility.tsx';
 
 export default function App(): React.JSX.Element {
     
@@ -75,6 +76,7 @@ export default function App(): React.JSX.Element {
                                     <Route path="/why-accessibility" element={<WhyAccessibility />} />
                                     <Route path="/contact" element={<Contact />} />
                                     <Route path="/site-map" element={<SiteMap />} />
+                                    <Route path="/accessibility" element={<Accessibility />} />
                                 </Routes>
                             </Router>
                         </CarouselContext.Provider>
