@@ -6,6 +6,7 @@ import TopMenu from "../Layout/topMenu.tsx";
 import BackLink from "../Components/back-link.tsx";
 import MainTitle from "../Components/main-title.tsx";
 import BottomMenu from "../Layout/bottomMenu.tsx";
+import ContactForm from "../Layout/contactForm.tsx";
 
 export default function Contact(): React.JSX.Element {
 
@@ -22,7 +23,7 @@ export default function Contact(): React.JSX.Element {
             <main>
                 <BackLink />
                 <MainTitle frenchText="Contact" englishText="Contact" />
-                
+                <ContactForm />
             </main>
             <footer>
                 <BottomMenu />
