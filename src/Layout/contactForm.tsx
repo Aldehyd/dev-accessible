@@ -85,6 +85,7 @@ export default function ContactForm(): React.JSX.Element {
         .then(res => {
             if(res.ok) {
                 setStatus({invalid: {mail:false,subject:false,body:false}, sending: false,error: false,sent: true});
+                setMessage({mail: "", subject: "", body:""});
             } else {
                 setStatus({invalid: {mail:false,subject:false,body:false}, sending: false,error: true,sent: false});
             };
