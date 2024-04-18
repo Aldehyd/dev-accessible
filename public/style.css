@@ -3356,10 +3356,6 @@ body.animations .top-menu {
   align-items: stretch;
   gap: 2rem;
 }
-.contact-form_required-fields-mention {
-  color: hsl(175deg, 95%, 55%);
-  text-shadow: 0 0.2rem 0.4rem hsl(175deg, 95%, 55%);
-}
 .contact-form_line {
   display: flex;
   flex-direction: column;
@@ -3408,6 +3404,8 @@ body.animations .top-menu {
 .invalid-field-alert {
   font-weight: bold;
   color: hsl(0deg, 95%, 40%);
+  box-shadow: none;
+  text-shadow: none;
 }
 
 .main-message {
@@ -3424,6 +3422,20 @@ body.animations .top-menu {
 .main-success {
   color: hsl(120deg, 95%, 55%);
   text-shadow: 0 0.2rem 0.4rem hsl(120deg, 95%, 55%);
+}
+
+body:not(.contrast).purple .contact-form_line {
+  box-shadow: 0 0 1rem 0.2rem hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .contact-form input {
+  color: hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .contact-form textarea {
+  color: hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .main-message:not(.main-alert):not(.main-success) {
+  color: hsl(295deg, 95%, 55%);
+  text-shadow: 0 0.2rem 0.4rem hsl(295deg, 95%, 55%);
 }
 
 .modal-layout {

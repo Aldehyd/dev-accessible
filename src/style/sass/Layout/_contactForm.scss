@@ -5,10 +5,6 @@
     flex-direction: column;
     align-items: stretch;
     gap: 2rem;
-    &_required-fields-mention {
-        color: map-get($colors,blue);
-        text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
-    }
     &_line {
         display: flex;
         flex-direction: column;
@@ -58,6 +54,8 @@
 .invalid-field-alert {
     font-weight: bold;
     color: map-get($colors,contrastRed);
+    box-shadow: none;
+    text-shadow: none;
 }
 .main-message {
     font-weight: bold;
@@ -71,4 +69,22 @@
 .main-success {
     color: map-get($colors,green);
     text-shadow: 0 0.2rem 0.4rem map-get($colors,green);
+}
+
+body:not(.contrast) {
+    &.purple {
+        & .contact-form_line {
+            box-shadow: 0 0 1rem 0.2rem map-get($colors,purple);
+        }
+        & .contact-form input {
+            color: map-get($colors,purple);
+        }
+        & .contact-form textarea {
+            color: map-get($colors,purple);
+        }
+        & .main-message:not(.main-alert):not(.main-success) {
+            color: map-get($colors,purple);
+            text-shadow: 0 0.2rem 0.4rem map-get($colors,purple);
+        }
+    }
 }
