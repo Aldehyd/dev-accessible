@@ -1,13 +1,64 @@
 import { useContext } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 import FormMainMessage from "../Components/formMainMessage.tsx";
+import BasicButton from "../Components/basic-button.tsx";
 
 export default function ContactForm(): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
 
+    const sendMail = ()=> {
+        //display temporary message
+
+        // encode fields values for security
+        const replaceSpecialChars = (text: string | undefined) => {
+            interface mapInterface {
+                [key: string]: string;
+            }
+            const map: mapInterface = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text?.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+        
+        let mailData = {
+            userMail : replaceSpecialChars("adressemail@gmail.com"),
+            subject: replaceSpecialChars("sujet très intéressant"),
+            messageContent: replaceSpecialChars("message très intéressant")
+        };
+
+        const options = {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(mailData)
+        };
+
+        fetch('http://localhost:4000/send_mail',options)
+        .then(res => {
+            console.log("send mail")
+            // this.temporaryMessage?.classList.remove('display');
+            // if(res.ok) {
+            //     this.setSuccessForm();
+            // } else {
+            //     this.setFailForm();
+            // };
+        })
+        .catch(err => {
+            console.log("err : ",err)
+            // this.temporaryMessage?.classList.remove('display');
+            // this.setFailForm();
+        })
+    };
+
     return (
-        <form className="contact-form" action="post">
+        <form className="contact-form" method="post" action="/send_mail" onSubmit={e => e.preventDefault()}>
             <p className="contact-form_required-fields-mention">
                 {
                     language === "french" ?
@@ -65,7 +116,7 @@ export default function ContactForm(): React.JSX.Element {
                             "Message : (maximum 500 characters"
                     }
                 </label>
-                <span class="invalid-field-alert" id="empty-message-invalid-alert">
+                <span className="invalid-field-alert" id="empty-message-invalid-alert">
                     {
                         language === "french" ?
                             "Message : champ vide. Veuillez indiquer un message."
@@ -76,11 +127,9 @@ export default function ContactForm(): React.JSX.Element {
                 <textarea id="messageContent" maxLength={500} name="messageContent" 
                     placeholder={language === "french" ? "Message à envoyer..." : "Message to send..."} required></textarea>
             </p>
-            <div className="basic-button-container">
-                <div className="basic-button_shadow"></div>
-                <input className="contact-form_submit basic-button" type="submit" 
-                    value={language === "french" ? "Envoyer le message" : "Send the message"} />
-            </div>
+            <BasicButton frenchText="Envoyer le message" englishText="Send the message" 
+                onClickFunction={sendMail}/>
+ 
 
             
             <div className="contact-form_status-box">

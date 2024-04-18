@@ -54,4 +54,39 @@ async function GetDatasFromCollection(res,collection) {
     }
 }
 
+//---------------- mails --------------------//
+const nodemailer = require("nodemailer");
 
+app.post("/send_mail",(req,res)=> {
+    let config = {
+        host: 'node45-eu.n0c.com',
+        port : 465,
+        secure: true,
+        auth: {
+            user: process.env.EMAIL,
+            pass: process.env.PASSWORD
+        },
+        tls: {
+            rejectUnauthorized: false,
+        }
+    }
+
+    let transporter = nodemailer.createTransport(config);
+
+    const mailOptions = {
+        from: process.env.EMAIL,
+        to: process.env.EMAIL,
+        subject: `message from ${req.body.userMail} - ${req.body.subject}`,
+        text: req.body.messageContent
+    };
+
+    transporter.sendMail(mailOptions,(error)=> {
+        if(error){
+            // res.status(500).json()
+            res.send(error)
+        } else {
+            res.status(200).json()
+        };
+    });
+
+});
