@@ -182,29 +182,31 @@ export default function ContactForm(): React.JSX.Element {
                 onClickFunction={checkFields}/>
  
 
-            
-            <div className="contact-form_status-box">
-                {
-                    status.error &&
-                        <FormMainMessage role="alert" frenchText="Une erreur s'est produite, veuillez réessayer svp." 
-                        englishText="An error occured, please try again." />
-                }
-                {
-                    (status.invalid.mail || status.invalid.mail || status.invalid.mail) &&
-                        <FormMainMessage role="alert" frenchText="Veuillez corriger les champs invalides svp." 
-                        englishText="Please fix invalid fields." />
-                }
-                {
-                    status.sending &&
-                        <FormMainMessage frenchText="Message en cours d'envoi..." 
-                            englishText="Sending message..." />
-                }
-                {
-                    status.sent && 
-                        <FormMainMessage role="success" frenchText="Votre message a été envoyé avec succès !" 
-                            englishText="Your message has been successfully sent !" />
-                }
-            </div>
+            {
+                (status.error || status.invalid.mail || status.invalid.subject || status.invalid.body || status.sending || status.sent) &&
+                    <div className="contact-form_status-box">
+                        {
+                            status.error &&
+                                <FormMainMessage role="alert" frenchText="Une erreur s'est produite, veuillez réessayer svp." 
+                                englishText="An error occured, please try again." />
+                        }
+                        {
+                            (status.invalid.mail || status.invalid.subject || status.invalid.body) &&
+                                <FormMainMessage role="alert" frenchText="Veuillez corriger les champs invalides svp." 
+                                englishText="Please fix invalid fields." />
+                        }
+                        {
+                            status.sending &&
+                                <FormMainMessage frenchText="Message en cours d'envoi..." 
+                                    englishText="Sending message..." />
+                        }
+                        {
+                            status.sent && 
+                                <FormMainMessage role="success" frenchText="Votre message a été envoyé avec succès !" 
+                                    englishText="Your message has been successfully sent !" />
+                        }
+                    </div>
+            }
         </form>
     )
 }
