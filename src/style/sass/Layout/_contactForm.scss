@@ -1,0 +1,74 @@
+.contact-form {
+    margin: auto;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2rem;
+    &_required-fields-mention {
+        color: map-get($colors,blue);
+        text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
+    }
+    &_line {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem 2rem;
+        background-color: map-get($colors,white);
+        border-radius: 1rem;
+        box-shadow: 0 0 1rem 0.2rem map-get($colors,blue);
+    }
+    & label {
+        font-weight: bold;
+    }
+    & input {
+        width: 40rem;
+        max-width: 100%;
+        padding: 1rem;
+        color: map-get($colors,blue);
+        background-color: map-get($colors,darkBackground);
+        border: none;
+        border-radius: 1rem;
+    }
+    & textarea {
+        resize: none;
+        width: 100%;
+        min-height: 20rem;
+        padding: 1rem;
+        color: map-get($colors,blue);
+        background-color: map-get($colors,darkBackground);
+        border: none;
+        border-radius: 1rem;
+    }
+    & .basic-button-container {
+        margin: auto;
+    }
+    &_status-box {
+        margin: auto;
+        width: fit-content;
+        max-width: 100%;
+        padding: 1rem;
+        background-color: map-get($colors,dark);
+        border: solid 0.4rem map-get($colors,white);
+        border-radius: 1rem;
+    }
+}
+
+.invalid-field-alert {
+    font-weight: bold;
+    color: map-get($colors,contrastRed);
+}
+.main-message {
+    font-weight: bold;
+    color: map-get($colors,blue);
+    text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
+}
+.main-alert {
+    color: map-get($colors,red);
+    text-shadow: 0 0.2rem 0.4rem map-get($colors,red);
+}
+.main-success {
+    color: map-get($colors,green);
+    text-shadow: 0 0.2rem 0.4rem map-get($colors,green);
+}

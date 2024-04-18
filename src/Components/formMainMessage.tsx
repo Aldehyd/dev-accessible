@@ -10,7 +10,7 @@ interface FormMainAlertPropsInterface {
 export default function FormMainMessage({role="message",frenchText,englishText}: FormMainAlertPropsInterface): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
-    const classList = `main-message ${role === "success" ? "main-success" : "main-alert"}`;
+    const classList = `main-message ${role === "success" ? "main-success" : ""} ${role === "alert" ? "main-alert" : ""}`;
 
     return (
         <p className={classList} role={role === "alert" ? "alert" : "status"}>

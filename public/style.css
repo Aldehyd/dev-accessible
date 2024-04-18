@@ -3348,6 +3348,84 @@ body.animations .top-menu {
   right: 200px;
 }
 
+.contact-form {
+  margin: auto;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2rem;
+}
+.contact-form_required-fields-mention {
+  color: hsl(175deg, 95%, 55%);
+  text-shadow: 0 0.2rem 0.4rem hsl(175deg, 95%, 55%);
+}
+.contact-form_line {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background-color: #f1f1f1;
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem 0.2rem hsl(175deg, 95%, 55%);
+}
+.contact-form label {
+  font-weight: bold;
+}
+.contact-form input {
+  width: 40rem;
+  max-width: 100%;
+  padding: 1rem;
+  color: hsl(175deg, 95%, 55%);
+  background-color: hsl(0deg, 6%, 10%);
+  border: none;
+  border-radius: 1rem;
+}
+.contact-form textarea {
+  resize: none;
+  width: 100%;
+  min-height: 20rem;
+  padding: 1rem;
+  color: hsl(175deg, 95%, 55%);
+  background-color: hsl(0deg, 6%, 10%);
+  border: none;
+  border-radius: 1rem;
+}
+.contact-form .basic-button-container {
+  margin: auto;
+}
+.contact-form_status-box {
+  margin: auto;
+  width: fit-content;
+  max-width: 100%;
+  padding: 1rem;
+  background-color: #000;
+  border: solid 0.4rem #f1f1f1;
+  border-radius: 1rem;
+}
+
+.invalid-field-alert {
+  font-weight: bold;
+  color: hsl(0deg, 95%, 40%);
+}
+
+.main-message {
+  font-weight: bold;
+  color: hsl(175deg, 95%, 55%);
+  text-shadow: 0 0.2rem 0.4rem hsl(175deg, 95%, 55%);
+}
+
+.main-alert {
+  color: hsl(0deg, 95%, 55%);
+  text-shadow: 0 0.2rem 0.4rem hsl(0deg, 95%, 55%);
+}
+
+.main-success {
+  color: hsl(120deg, 95%, 55%);
+  text-shadow: 0 0.2rem 0.4rem hsl(120deg, 95%, 55%);
+}
+
 .modal-layout {
   position: fixed;
   z-index: 5;
