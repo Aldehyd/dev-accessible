@@ -3356,6 +3356,9 @@ body.animations .top-menu {
   align-items: stretch;
   gap: 2rem;
 }
+.contact-form_mention {
+  font-weight: bold;
+}
 .contact-form_line {
   display: flex;
   flex-direction: column;
@@ -3378,6 +3381,9 @@ body.animations .top-menu {
   border: none;
   border-radius: 1rem;
 }
+.contact-form input.invalid {
+  border: solid 0.2rem hsl(0deg, 95%, 40%);
+}
 .contact-form textarea {
   resize: none;
   width: 100%;
@@ -3387,6 +3393,9 @@ body.animations .top-menu {
   background-color: hsl(0deg, 6%, 10%);
   border: none;
   border-radius: 1rem;
+}
+.contact-form textarea.invalid {
+  border: solid 0.2rem hsl(0deg, 95%, 40%);
 }
 .contact-form .basic-button-container {
   margin: auto;
