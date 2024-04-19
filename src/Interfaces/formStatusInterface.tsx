@@ -5,6 +5,7 @@ export default interface FormStatusInterface {
         subject: boolean,
         body: boolean,
     },
+    link: boolean,
     sending: boolean,
     sent: boolean,
     error: boolean

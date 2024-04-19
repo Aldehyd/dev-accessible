@@ -12,7 +12,7 @@ export default function ContactForm(): React.JSX.Element {
     const mailInput = useRef(null);
 
     const [message,setMessage] = useState<MessageInterface>({mail: "",subject: "",body: ""});
-    const [status,setStatus] = useState<FormStatusInterface>({invalid: {mail:false,subject:false,body:false}, sending: false,error: false,sent: false})
+    const [status,setStatus] = useState<FormStatusInterface>({invalid: {mail:false,subject:false,body:false}, link: false,sending: false,error: false,sent: false})
 
     const handleChange = (property,e) => {
         setMessage({...message, [property]: e.target.value})
@@ -42,15 +42,25 @@ export default function ContactForm(): React.JSX.Element {
             } else {
                 temporaryInvalid.body = false;
             };
-            setStatus({sending: false, error: false, sent: false, invalid: temporaryInvalid});
+            setStatus({sending: false, error: false, sent: false, link: false, invalid: temporaryInvalid});
         } else {
-            setStatus({sending: false, error: false, sent: false, invalid: {mail: false, subject: false,body: false}});
+            checkLinks();
+        };
+    };
+
+    const checkLinks = ()=> {
+        const regex1 = /(?<!lien-autorise:|allowed-link:)https?:\/\/\w+-?\w+\.\w+/ig;
+        const regex2 = /(?<!lien-autorise:(?:https?:\/\/)?|allowed-link:(?:https?:\/\/)?)www\.\w+-?\w+\.\w+/ig;
+
+        if(message.subject.match(regex1) !== null || message.subject.match(regex2) !== null || message.body.match(regex1) !== null || message.body.match(regex2) !== null) {
+            setStatus({sending: false, error: false, sent: false, link: true, invalid: {mail: false, subject: false,body: false}});
+        } else {
+            setStatus({sending: true, error: false, sent: false, link: false, invalid: {mail: false, subject: false,body: false}});
             sendMail();
         };
     };
 
     const sendMail = ()=> {
-        setStatus({invalid: {mail:false,subject:false,body:false}, sending: true,error: false,sent: false});
         // encode fields values for security
         const replaceSpecialChars = (text: string | undefined) => {
             interface mapInterface {
@@ -65,11 +75,17 @@ export default function ContactForm(): React.JSX.Element {
             };
             return text?.replace(/[&<>"']/g, function(m) { return map[m]; });
         };
+
+        const removeAllowedLinksMentions = (text: string | undefined) => {
+            const englishRemoved = text?.replace("allowed-link:","");
+            const frenchRemoved = englishRemoved?.replace("lien-autorise:","");
+            return frenchRemoved
+        };
         
         let mailData = {
-            userMail : replaceSpecialChars(message.mail),
-            subject: replaceSpecialChars(message.subject),
-            messageContent: replaceSpecialChars(message.body)
+            userMail : removeAllowedLinksMentions(replaceSpecialChars(message.mail)),
+            subject: removeAllowedLinksMentions(replaceSpecialChars(message.subject)),
+            messageContent: removeAllowedLinksMentions(replaceSpecialChars(message.body))
         };
 
         const options = {
@@ -81,28 +97,36 @@ export default function ContactForm(): React.JSX.Element {
             body: JSON.stringify(mailData)
         };
 
-        fetch('/send_mail',options)
+        fetch('http://localhost:4000/send_mail',options)
         .then(res => {
             if(res.ok) {
-                setStatus({invalid: {mail:false,subject:false,body:false}, sending: false,error: false,sent: true});
+                setStatus({invalid: {mail:false,subject:false,body:false}, link: false, sending: false,error: false,sent: true});
                 setMessage({mail: "", subject: "", body:""});
             } else {
-                setStatus({invalid: {mail:false,subject:false,body:false}, sending: false,error: true,sent: false});
+                setStatus({invalid: {mail:false,subject:false,body:false}, link: false, sending: false,error: true,sent: false});
             };
         })
         .catch(err => {
-            setStatus({invalid: {mail:false,subject:false,body:false}, sending: false,error: true,sent: false});
+            setStatus({invalid: {mail:false,subject:false,body:false}, link : false, sending: false,error: true,sent: false});
         })
     };
 
     return (
         <form className="contact-form" method="post" action="/send_mail" onSubmit={e => e.preventDefault()}>
-            <p className="contact-form_required-fields-mention">
+            <p className="contact-form_mention">
                 {
                     language === "french" ?
                         "Tous les champs sont obligatoires."
                         :
                         "All the fields must be completed."
+                }
+            </p>
+            <p className="contact-form_mention">
+                {
+                    language === "french" ?
+                        "Les liens ne sont pas autorisés."
+                        :
+                        "Links are forbidden."
                 }
             </p>
             <p className="contact-form_line contact-form_line--mail">
@@ -127,7 +151,7 @@ export default function ContactForm(): React.JSX.Element {
                 }
                 <input ref={mailInput} type="email" id="mail" placeholder={language === "french" ? "Exemple : nom.prénom@gmail.com" : "Example : first-name.last-name@gmail.com"}
                     name="email" autoComplete="email" onChange={e => handleChange("mail",e)} value={message.mail} 
-                    onInvalid={e => e.preventDefault()} required />
+                    onInvalid={e => e.preventDefault()} className={status.invalid.mail ? "invalid" : ""} required />
             </p>
             <p className="contact-form_line contact-form_line--mail">
                 <label htmlFor="subject">
@@ -151,7 +175,7 @@ export default function ContactForm(): React.JSX.Element {
                 }
                 <input type="text" id="subject" maxLength={50} name="subject" placeholder={language === "french" ? "Sujet du message" : "Subject of the message"}
                     onChange={e => handleChange("subject",e)} value={message.subject} 
-                    onInvalid={e => e.preventDefault()} required />
+                    onInvalid={e => e.preventDefault()} className={status.invalid.subject ? "invalid" : ""} required />
             </p>
             <p className="contact-form_line">
                 <label htmlFor="messageContent">
@@ -176,15 +200,20 @@ export default function ContactForm(): React.JSX.Element {
                 <textarea id="messageContent" maxLength={500} name="messageContent" 
                     placeholder={language === "french" ? "Message à envoyer..." : "Message to send..."} 
                     onChange={e => handleChange("body",e)} value={message.body}
-                    onInvalid={e => e.preventDefault()} required></textarea>
+                    onInvalid={e => e.preventDefault()} className={status.invalid.body ? "invalid" : ""} required></textarea>
             </p>
             <BasicButton frenchText="Envoyer le message" englishText="Send the message" 
                 onClickFunction={checkFields}/>
  
 
             {
-                (status.error || status.invalid.mail || status.invalid.subject || status.invalid.body || status.sending || status.sent) &&
+                (status.link || status.error || status.invalid.mail || status.invalid.subject || status.invalid.body || status.sending || status.sent) &&
                     <div className="contact-form_status-box">
+                        {
+                            status.link &&
+                                <FormMainMessage role="alert" frenchText="Veuillez supprimer les liens svp." 
+                                englishText="Please remove links." />
+                        }
                         {
                             status.error &&
                                 <FormMainMessage role="alert" frenchText="Une erreur s'est produite, veuillez réessayer svp." 
