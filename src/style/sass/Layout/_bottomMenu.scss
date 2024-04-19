@@ -10,20 +10,27 @@
         width: 100%;
         & .main-link {
             &:nth-child(2) {
-                right: 140px;
+                right: 190px;
                 left: inherit;
-                bottom: 130px;
+                bottom: 90px;
             }
             &:nth-child(3) {
-                right: 60px;
+                right: 30px;
                 left: inherit;
                 top: inherit;
-                bottom: 190px;
+                bottom: 210px;
+                transform: translateX(0);
+            }
+            &:nth-child(4) {
+                right: 90px;
+                left: inherit;
+                top: inherit;
+                bottom: 150px;
                 transform: translateX(0);
             }
             &:last-child {
-                right: 200px;
-                bottom: 50px;
+                right: 230px;
+                bottom: 30px;
             }
         }
     }
@@ -51,9 +58,14 @@
             left: 210px;
         }
         &:nth-child(3) {
-            left: 50%;
+            left: 40%;
             transform: translateX(-50%);
-            top: 180px;
+            top: 190px;
+        }
+        &:nth-child(4) {
+            right: 40%;
+            transform: translateX(50%);
+            top: 190px;
         }
         &:last-child {
             right: 200px;
