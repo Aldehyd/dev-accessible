@@ -163,7 +163,16 @@ h1 {
 h2 {
   margin: 1rem 0;
   font-size: 1.6rem;
-  color: hsl(175deg, 95%, 55%);
+}
+
+h3 {
+  margin: 1rem 0;
+  font-size: 1.6rem;
+}
+
+h4 {
+  margin: 1rem 0;
+  font-size: 1.4rem;
 }
 
 a, a:visited {
@@ -171,8 +180,22 @@ a, a:visited {
   color: hsl(175deg, 95%, 55%);
 }
 
-ul:not(.achievments_list):not(.infos-dialog_list) {
+p {
+  margin-bottom: 0.6rem;
+}
+
+ul {
+  margin-bottom: 2rem;
+}
+ul:not(.achievments_list):not(.infos-dialog_list):not(.styled-list) {
   list-style: none;
+}
+ul.styled-list {
+  margin-left: 3rem;
+}
+
+dl {
+  margin-bottom: 2rem;
 }
 
 button, input, textarea {
