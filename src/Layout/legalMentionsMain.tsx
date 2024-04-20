@@ -98,7 +98,7 @@ export default function LegalMentionsMain(): React.JSX.Element {
             <p>En souscrivant à cette prestation, le Client reconnaît être informé de ses obligations 
                 légales concernant la déclaration d'accessibilité figurant sur son site internet, 
                 lesquelles sont :</p>
-            <ul>
+            <ul className="styled-list">
                 <li>réalisation d'une nouvelle évaluation d'accessibilité donnant lieu à une mise à 
                     jour de la  déclaration d'accessibilité 18 (dix-huit) mois après la date de 
                     publication d'une nouvelle version du Référentiel Général d'Amélioration de 
@@ -174,7 +174,7 @@ export default function LegalMentionsMain(): React.JSX.Element {
                 la « Date du Diagnostic »).</p>
             <p>S’il s’avère que l’Anomalie a pour origine le site internet, la Société s’engage 
                 à mobiliser les moyens nécessaires pour la corriger dans les délais suivants :</p>
-            <ul>
+            <ul className="styled-list">
                 <li>Anomalie Majeure : dans les 48 heures suivant la Date du Diagnostic ;</li>
                 <li>Anomalie Moyenne : dans les 10 jours suivant la Date du Diagnostic ;</li>
                 <li>Anomalie Mineure : dans les 30 jours suivant la Date du Diagnostic.</li>
@@ -191,7 +191,7 @@ export default function LegalMentionsMain(): React.JSX.Element {
                  à la Société.</p>
             <p>Il appartient ainsi au Client de mettre en œuvre toutes les mesures nécessaires pour 
                 assurer la sauvegarde et l’intégrité de ses propres données.</p>
-            <h5>3.6. Autres Services</h5>
+            <h4>3.6. Autres Services</h4>
             <p>Selon les termes du Devis, la Société peut également assurer d’autres prestations de 
                 type communication visuelle (logo, maquettes, photos, vidéos, motion design).</p>
             <h3>4. Durée des Services</h3>
@@ -245,73 +245,69 @@ export default function LegalMentionsMain(): React.JSX.Element {
             <h3>7. Obligations et responsabilité du Client</h3>
             <p>Sans préjudice des autres obligations prévues au Contrat, le Client s’engage à respecter 
                 les obligations qui suivent :</p>
-            <ul>
-                <li>Le Client s’engage à collaborer activement et étroitement avec la Société, 
+            <p>Le Client s’engage à collaborer activement et étroitement avec la Société, 
                     notamment dans le cadre de la réalisation d’un site internet et dans la définition 
                     de ses besoins. A ce titre, il lui appartient d’exprimer ses besoins par tous 
                     moyens afin de les porter effectivement à la connaissance de la Société lors de 
-                    la conclusion des présentes.</li>
-                <li>Le Client s’engage à fournir à la Société tous les documents, éléments, données et
+                    la conclusion des présentes.</p>
+            <p>Le Client s’engage à fournir à la Société tous les documents, éléments, données et
             informations nécessaires à la réalisation des Services. Plus généralement le Client 
-            s’engage à coopérer activement avec la Société en vue de la bonne exécution du Contrat.</li>
-                <li>Le Client est seul responsable des documents, éléments, données, informations, 
+            s’engage à coopérer activement avec la Société en vue de la bonne exécution du Contrat.</p>
+            <p>Le Client est seul responsable des documents, éléments, données, informations, 
             images et contenus divers qu’il fournit à la Société. Il garantit à la Société qu’il est 
             habilité à lui fournir ces documents, éléments, données, informations et qu’il
             dispose de tous les droits et autorisations nécessaires à leur exploitation dans le cadre 
             des Services. Il est également seul responsable de leur exactitude, de leur sincérité et 
-            de leur exhaustivité.</li>
-                <li>A ce titre et si applicable, le Client doit fournir un libre accès aux locaux qui 
+            de leur exhaustivité.</p>
+            <p>A ce titre et si applicable, le Client doit fournir un libre accès aux locaux qui 
                     feront l’objet des Services et à tenir immédiatement informée la Société de tout 
                     évènement de nature à affecter la bonne exécution des Services. En conséquence, le 
                     Client s’engage à mettre à la disposition de la Société les locaux concernés dans 
                     un état tel que la Société ou son personnel puisse exécuter les Services dans des 
-                    conditions normales.</li>
-                <li>Le Client est seul responsable du respect des lois et règlements applicables à son 
+                    conditions normales.</p>
+            <p>Le Client est seul responsable du respect des lois et règlements applicables à son 
                     activité et notamment du respect des mentions légales éventuellement imposées par 
                     ceux-ci. En conséquence, le Client ne pourra en aucun cas rechercher la 
-                    responsabilité ou la garantie de la Société à ce titre.</li>
-                <li>Le Client est seul responsable de l’usage qu’il fait des produits ou Services 
+                    responsabilité ou la garantie de la Société à ce titre.</p>
+            <p>Le Client est seul responsable de l’usage qu’il fait des produits ou Services 
                     éventuellement commandés. Il lui appartient de vérifier l’adéquation des produits 
                     à ses besoins spécifiques préalablement à l’achat desdits produits.En conséquence, 
                     le Client reste seul responsable de ses décisions, relations, de son image de
-                    marque et de ses communications à l’égard des tiers.</li>
-                <li>Il appartient au Client de mettre à jour régulièrement son site internet afin qu’il
+                    marque et de ses communications à l’égard des tiers.</p>
+            <p>Il appartient au Client de mettre à jour régulièrement son site internet afin qu’il
                      soit en conformité avec la réglementation applicable (mention légale, 
                      politique de confidentialité, etc.). La responsabilité de la Société ne pourra en 
                      aucun cas être recherchée à ce titre. Il garantit en conséquence à la Société 
-                     qu’il dispose de tous les droits et autorisations nécessaires.</li>
-                <li>Le client autorise expressément la Société à citer le nom du service web développé 
+                     qu’il dispose de tous les droits et autorisations nécessaires.</p>
+            <p>Le client autorise expressément la Société à citer le nom du service web développé 
                     ou hébergé, et ce dans le cadre de sa propre politique de communication. Il accepte
                      également que le nom de la Société ainsi qu'un lien vers son site internet soient 
                      présents sur le site livré et s'engage à les conserver jusqu'à la prochaine
-                    refonte du site.</li>
-                <li>Le Client déclare avoir reçu de la Société, préalablement à la signature des 
+                    refonte du site.</p>
+            <p>Le Client déclare avoir reçu de la Société, préalablement à la signature des 
                     présentes, tous conseils, instructions et précisions qui lui sont nécessaires 
                     pour souscrire au présent Contrat en toute connaissance de cause, et qu’il a, 
                     préalablement aux présentes, suffisamment échangé avec la Société pour s’assurer 
-                    que le site internet correspond à ses attentes, besoins et contraintes.</li>
-                <li>Plus généralement, le Client s’engage à coopérer activement avec la Société et 
-                    à l’informer de toutes difficultés liées à ce qui précède.</li>
-            </ul>
+                    que le site internet correspond à ses attentes, besoins et contraintes.</p>
+            <p>Plus généralement, le Client s’engage à coopérer activement avec la Société et 
+                    à l’informer de toutes difficultés liées à ce qui précède.</p>
             <h3>8. Obligations et responsabilité de la Société</h3>
             <p>Sans préjudice des autres obligations prévues au Contrat, la Société s’engage à 
                 respecter les obligations qui suivent :</p>
-            <ul>
-                <li>La Société s’engage à fournir les Services avec diligence et selon les règles de 
-                    l’art.</li>
-                <li>La Société ne pourra être tenue pour responsable de l'inexécuton ou du retard dans
+                <p>La Société s’engage à fournir les Services avec diligence et selon les règles de 
+                    l’art.</p>
+                <p>La Société ne pourra être tenue pour responsable de l'inexécuton ou du retard dans
             l’exécuton des Services du fait de circonstances qui lui sont extérieures ou d'un cas de force
-            majeure.</li>
-                <li>La Société ne pourra en aucun cas voir sa responsabilité engagée au titre des 
+            majeure.</p>
+                <p>La Société ne pourra en aucun cas voir sa responsabilité engagée au titre des 
                     sauvegardes de sites internet, notamment en cas d’évènement ou anomalie hors de 
-                    son contrôle et ayant donné lieu à une remise en ligne dudit site internet.</li>
-                <li>La Société s’engage, dans l’accomplissement des Services, à respecter les lois et
-                     règlements en vigueur et à ne pas porter atteinte à l’ordre public.</li>
-                <li>La responsabilité suscepible d’être encourue par la Société au titre des
+                    son contrôle et ayant donné lieu à une remise en ligne dudit site internet.</p>
+                <p>La Société s’engage, dans l’accomplissement des Services, à respecter les lois et
+                     règlements en vigueur et à ne pas porter atteinte à l’ordre public.</p>
+                <p>La responsabilité suscepible d’être encourue par la Société au titre des
             présentes est expressément limitée aux seuls dommages directs subis par le Client et ne
             pourra excéder le montant total du prix payé par celui-ci au titre des Services concernés
-             et tel qu’indiqué dans le Devis.</li>
-            </ul>
+             et tel qu’indiqué dans le Devis.</p>
             <h3>9. Propriété intellectuelle relative aux Services</h3>
             <p>Les droits de propriété intellectuelle afférents aux développements réalisés par la 
                 Société en exécution des Services, sont cédés au Client de façon pleine et entière, 
