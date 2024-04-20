@@ -12,10 +12,24 @@ export default function BottomMenu({home=false}: BottomMenuPropsInterface): Reac
     return (
         <div className={classList}>
             <BottomMenuLine home={home} />
-            <MainLink frenchText="Plan du site" englishText="Site map" route="/site-map" />
-            <MainLink frenchText="Contact" englishText="Contact" route="/contact" />
-            <MainLink frenchText="Mentions légales" englishText="Legal mentions" route="/legal-mentions" />
-            <MainLink frenchText="Accessibilité" englishText="Accessibility" route="/accessibility" />
+            {
+                home ?
+                    <>
+                        <MainLink frenchText="Contact" englishText="Contact" route="/contact" />
+                        <MainLink frenchText="Plan du site" englishText="Site map" route="/site-map" />
+                        <MainLink frenchText="Mentions légales" englishText="Legal mentions" route="/legal-mentions" />
+                        <MainLink frenchText="Confidentialité" englishText="Privacy" route="/privacy-policy" />
+                        <MainLink frenchText="Accessibilité" englishText="Accessibility" route="/accessibility" />
+                    </>
+                    :
+                    <>
+                        <MainLink frenchText="Mentions légales" englishText="Legal mentions" route="/legal-mentions" />
+                        <MainLink frenchText="Plan du site" englishText="Site map" route="/site-map" />
+                        <MainLink frenchText="Contact" englishText="Contact" route="/contact" />
+                        <MainLink frenchText="Confidentialité" englishText="Privacy" route="/privacy-policy" />
+                        <MainLink frenchText="Accessibilité" englishText="Accessibility" route="/accessibility" />
+                    </>
+            }
         </div>
     )
 }

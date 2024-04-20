@@ -10,27 +10,36 @@
         width: 100%;
         & .main-link {
             &:nth-child(2) {
-                right: 190px;
-                left: inherit;
-                bottom: 90px;
-            }
-            &:nth-child(3) {
                 right: 30px;
                 left: inherit;
                 top: inherit;
-                bottom: 210px;
-                transform: translateX(0);
+                bottom: 270px;
+                transform: inherit
+            }
+            &:nth-child(3) {
+                right: 140px;
+                top: inherit;
+                left: inherit;
+                bottom: 220px;
+                transform: inherit;
             }
             &:nth-child(4) {
-                right: 90px;
+                right: 200px;
                 left: inherit;
                 top: inherit;
-                bottom: 150px;
-                transform: translateX(0);
+                bottom: 160px;
+                transform: inherit
+            }
+            &:nth-child(5) {
+                right: 280px;
+                left: inherit;
+                top: inherit;
+                bottom: 100px;
+                transform: inherit
             }
             &:last-child {
-                right: 230px;
-                bottom: 30px;
+                right: 340px;
+                bottom: 40px;
             }
         }
     }
@@ -39,7 +48,7 @@
             position: absolute;
             right: -50px;
             bottom: -30px; 
-            height: 300px;
+            height: 380px;
             stroke: map-get($colors,white);
             fill: map-get($colors,white);
         }
@@ -58,14 +67,19 @@
             left: 210px;
         }
         &:nth-child(3) {
-            left: 40%;
+            left: 35%;
             transform: translateX(-50%);
-            top: 190px;
+            top: 210px;
         }
         &:nth-child(4) {
-            right: 40%;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 180px;
+        }
+        &:nth-child(5) {
+            right: 35%;
             transform: translateX(50%);
-            top: 190px;
+            top: 210px;
         }
         &:last-child {
             right: 200px;
