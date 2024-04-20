@@ -19,6 +19,8 @@ import WhyAccessibility from './Pages/whyAccessibility.tsx';
 import Contact from './Pages/contact.tsx';
 import SiteMap from './Pages/siteMap.tsx';
 import Accessibility from './Pages/accessibility.tsx';
+import LegalMentions from './Pages/legalMentions.tsx';
+import PrivacyPolicy from './Pages/privacyPolicy.tsx';
 
 export default function App(): React.JSX.Element {
     
@@ -75,7 +77,9 @@ export default function App(): React.JSX.Element {
                                     <Route path="/cv" element={<CV />} />
                                     <Route path="/why-accessibility" element={<WhyAccessibility />} />
                                     <Route path="/contact" element={<Contact />} />
+                                    <Route path="/legal-mentions" element={<LegalMentions />} />
                                     <Route path="/site-map" element={<SiteMap />} />
+                                    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                                     <Route path="/accessibility" element={<Accessibility />} />
                                 </Routes>
                             </Router>
