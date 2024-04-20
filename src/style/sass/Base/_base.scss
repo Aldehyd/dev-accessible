@@ -7,8 +7,6 @@ html {
     font-size: 62.5%;
 }
 body {
-    // display: flex;
-    // flex-grow: 1;
     min-height: 100vh;
     font-size: 1.4rem;
     font-family: "Oswald", sans-serif;
@@ -99,7 +97,6 @@ body {
         }
     }
     &:not(.contrast) {
-        // text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
         background: radial-gradient(ellipse 50% 80%, map-get($colors,dark) 80%,map-get($colors,blue));
         background-size: 100% 100%;
         background-position: 50% 50%;
@@ -109,17 +106,40 @@ body {
         & h2 {
             text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
         }
+        & q {
+            border-color: map-get($colors,blue);
+            &::after {
+                text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
+            }
+            &::before {
+                text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
+            }
+        }
+        & .note span:first-child {
+            border-color: map-get($colors,blue);
+        }
     }
     &:not(.contrast).purple {
         background: radial-gradient(ellipse 50% 80%, map-get($colors,dark) 80%,map-get($colors,purple));
         color: map-get($colors,purple);
-        text-shadow: 0 0.2rem 0.4rem map-get($colors,purple);
         & h2 {
             color: map-get($colors,purple);
             text-shadow: 0 0.2rem 0.4rem map-get($colors,purple);
         }
         & a:visited {
             color: map-get($colors,purple);
+        }
+        & q {
+            border-color: map-get($colors,purple);
+            &::after {
+                text-shadow: 0 0.2rem 0.4rem map-get($colors,purple);
+            }
+            &::before {
+                text-shadow: 0 0.2rem 0.4rem map-get($colors,purple);
+            }
+        }
+        & .note span:first-child {
+            border-color: map-get($colors,purple);
         }
     }
 }
@@ -198,5 +218,41 @@ label:not(.radio-button_label) {
     color: map-get($colors,darkBackground);
     text-shadow: none;
 }
-
-
+q {
+    display: inline-block;
+    padding-right: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+    font-style: italic;
+    border: solid;
+    border-width: 0 0.2rem 0.2rem 0;
+    &::before {
+        content: '"';
+        position: relative;
+        top: 1rem;
+        margin-right: 0.8rem;
+        font-size: 5rem;
+    }
+    &::after {
+        content: '"';
+        position: relative;
+        top: 1rem;
+        margin-left: 0.4rem;
+        font-size: 5rem;
+    }
+}
+.note {
+    display: flex;
+    gap: 1rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    & span:first-child {
+        display: inline-block;
+        width: min-content;
+        padding: 0 0.5rem 0.5rem 0;
+        font-size: 1.6rem;
+        border: solid;
+        border-width: 0 0.2rem 0.2rem 0;
+    }
+}

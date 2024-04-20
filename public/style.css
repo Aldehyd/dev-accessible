@@ -108,10 +108,21 @@ body:not(.contrast).animations {
 body:not(.contrast) h2 {
   text-shadow: 0 0.2rem 0.4rem hsl(175deg, 95%, 55%);
 }
+body:not(.contrast) q {
+  border-color: hsl(175deg, 95%, 55%);
+}
+body:not(.contrast) q::after {
+  text-shadow: 0 0.2rem 0.4rem hsl(175deg, 95%, 55%);
+}
+body:not(.contrast) q::before {
+  text-shadow: 0 0.2rem 0.4rem hsl(175deg, 95%, 55%);
+}
+body:not(.contrast) .note span:first-child {
+  border-color: hsl(175deg, 95%, 55%);
+}
 body:not(.contrast).purple {
   background: radial-gradient(ellipse 50% 80%, #000 80%, hsl(295deg, 95%, 55%));
   color: hsl(295deg, 95%, 55%);
-  text-shadow: 0 0.2rem 0.4rem hsl(295deg, 95%, 55%);
 }
 body:not(.contrast).purple h2 {
   color: hsl(295deg, 95%, 55%);
@@ -119,6 +130,18 @@ body:not(.contrast).purple h2 {
 }
 body:not(.contrast).purple a:visited {
   color: hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple q {
+  border-color: hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple q::after {
+  text-shadow: 0 0.2rem 0.4rem hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple q::before {
+  text-shadow: 0 0.2rem 0.4rem hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .note span:first-child {
+  border-color: hsl(295deg, 95%, 55%);
 }
 
 footer {
@@ -206,6 +229,46 @@ button, input, textarea {
 label:not(.radio-button_label) {
   color: hsl(0deg, 6%, 10%);
   text-shadow: none;
+}
+
+q {
+  display: inline-block;
+  padding-right: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  font-style: italic;
+  border: solid;
+  border-width: 0 0.2rem 0.2rem 0;
+}
+q::before {
+  content: '"';
+  position: relative;
+  top: 1rem;
+  margin-right: 0.8rem;
+  font-size: 5rem;
+}
+q::after {
+  content: '"';
+  position: relative;
+  top: 1rem;
+  margin-left: 0.4rem;
+  font-size: 5rem;
+}
+
+.note {
+  display: flex;
+  gap: 1rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+.note span:first-child {
+  display: inline-block;
+  width: min-content;
+  padding: 0 0.5rem 0.5rem 0;
+  font-size: 1.6rem;
+  border: solid;
+  border-width: 0 0.2rem 0.2rem 0;
 }
 
 .basic-button-container {
