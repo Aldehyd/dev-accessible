@@ -162,14 +162,33 @@ h1 {
 h2 {
     margin: 1rem 0;
     font-size: 1.6rem;
-    color: map-get($colors,blue);
+}
+h3 {
+    margin: 1rem 0;
+    font-size: 1.6rem;
+}
+h4 {
+    margin: 1rem 0;
+    font-size: 1.4rem;
 }
 a, a:visited {
     text-decoration: none;
     color: map-get($colors,blue);
 }
-ul:not(.achievments_list):not(.infos-dialog_list) {
-    list-style: none;
+p {
+    margin-bottom: 0.6rem;
+}
+ul {
+    margin-bottom: 2rem;
+    &:not(.achievments_list):not(.infos-dialog_list):not(.styled-list) {
+        list-style: none;
+    }
+    &.styled-list {
+        margin-left: 3rem;
+    }
+}
+dl {
+    margin-bottom: 2rem;
 }
 button, input, textarea {
     font-size: 1.4rem;
