@@ -216,7 +216,12 @@ export default function LegalMentionsMain(): React.JSX.Element {
                 sera seule juge, de proposer des offres promotionnelles, des réductions de prix ou 
                 des forfaits.</p>
             <h4>5.2.Modalités de paiement des Services</h4>
-            <p>Sauf mention contraire dans le Devis, les Services sont payables à leurs dates de 
+            <p>Sauf mention contraire dans le Devis, le Service de création d'un site internet est 
+                payable comme suit :</p>
+            <p>- 30% d'acompte au moment de la signature du devis</p>
+            <p>- 70% restants à la date de livraison du site</p>
+            <p>Pour rappel, la mise en ligne du site constitue une prestation distincte facturée à part.</p>
+            <p>Sauf mention contraire dans le Devis, les autres Services sont payables à leurs dates de 
                 livraison.</p>
             <p>Les services d’hébergement sont facturés au prix indiqué sur le Devis et font 
                 l’objet d’un règlement en amont de la prestation souhaitée.</p>
@@ -343,10 +348,17 @@ export default function LegalMentionsMain(): React.JSX.Element {
             <h3>11. Prise d’effet du contrat</h3>
             <p>Le contrat est réputé conclu à la date de réception par la Société du devis daté, signé, lu et 
                 approuvé par le client.</p>
+            <p>Sauf mention contraire dans le Devis, les prestations démarrent à l'issue du délai 
+                légal de rétractation de 14 (quatorze) jours suite à la signature du Devis.
+            </p>
+            <p>Sauf mention contraire dans le Devis, dans le cas d'une création de site internet, la 
+                prestation démarre à la date de réception par la Société de l'acompte de 30% du montant 
+                de ce Service.
+            </p>
             <h3>12. Compétence juridique</h3>
             <p>Le présent contrat est régi par la Loi Française.</p>
-            <p>Tout litige relatif à l’interprétation ou à l’exécution des présentes conditions générales sera 
-                de la compétence exclusive du Tribunal de Commerce de Perpignan (66).</p>
+            <p>Tout litige relatif à l’interprétation ou à l’exécution des présentes conditions générales 
+                relève de la compétence exclusive du Tribunal de Commerce de Perpignan (66).</p>
         </>
     )
 }
