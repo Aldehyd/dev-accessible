@@ -16,6 +16,9 @@ export default function TemporaryMenu(): React.JSX.Element {
                 <li>
                     <MainLink frenchText="Pourquoi l'accessibilité ?" englishText="Why accessibility ?" route="/why-accessibility" />
                 </li>
+                <li>
+                    <MainLink frenchText="Tarifs" englishText="Prices" route="/prices" />
+                </li>
             </ul>
         </nav>
     )

@@ -21,6 +21,7 @@ import SiteMap from './Pages/siteMap.tsx';
 import Accessibility from './Pages/accessibility.tsx';
 import LegalMentions from './Pages/legalMentions.tsx';
 import PrivacyPolicy from './Pages/privacyPolicy.tsx';
+import Prices from './Pages/prices.tsx';
 
 export default function App(): React.JSX.Element {
     
@@ -76,6 +77,7 @@ export default function App(): React.JSX.Element {
                                     <Route path="/achievments/:achievment/privacy-policy" element={<AchievmentPrivacyPolicy />} />
                                     <Route path="/cv" element={<CV />} />
                                     <Route path="/why-accessibility" element={<WhyAccessibility />} />
+                                    <Route path="/prices" element={<Prices />} />
                                     <Route path="/contact" element={<Contact />} />
                                     <Route path="/legal-mentions" element={<LegalMentions />} />
                                     <Route path="/site-map" element={<SiteMap />} />
