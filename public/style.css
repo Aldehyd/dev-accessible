@@ -3559,6 +3559,47 @@ body:not(.contrast).purple .main-message:not(.main-alert):not(.main-success) {
   text-shadow: 0 0.2rem 0.4rem hsl(295deg, 95%, 55%);
 }
 
+.prices-simulator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 50%;
+  margin: 2rem auto;
+  padding: 2rem;
+  color: #000;
+  font-weight: bold;
+  background: #f1f1f1;
+  border-radius: 1rem;
+}
+.prices-simulator_page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.prices-simulator_page_title {
+  padding: 0.5rem 1em;
+  color: hsl(175deg, 95%, 55%);
+  background-color: hsl(0deg, 6%, 10%);
+  text-shadow: none;
+  border-radius: 1rem;
+}
+.prices-simulator_page_radio-group {
+  color: hsl(175deg, 95%, 55%);
+  border: none;
+}
+.prices-simulator_page_buttons-container {
+  display: flex;
+  gap: 2rem;
+}
+.prices-simulator_evaluation {
+  padding: 1rem;
+  color: hsl(175deg, 95%, 55%);
+  background-color: hsl(0deg, 6%, 10%);
+  border-radius: 0.5rem;
+}
+
 .modal-layout {
   position: fixed;
   z-index: 5;

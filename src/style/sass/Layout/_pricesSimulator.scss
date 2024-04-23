@@ -1,0 +1,40 @@
+.prices-simulator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 50%;
+    margin: 2rem auto;
+    padding: 2rem;
+    color: map-get($colors,dark);
+    font-weight: bold;
+    background: map-get($colors,white);
+    border-radius: 1rem;
+    &_page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        &_title {
+            padding: 0.5rem 1em;
+            color: map-get($colors,blue);
+            background-color: map-get($colors,darkBackground);
+            text-shadow: none;
+            border-radius: 1rem;
+        }
+        &_radio-group {
+            color: map-get($colors,blue);
+            border: none;
+        }
+        &_buttons-container {
+            display: flex;
+            gap: 2rem;
+        }
+    }
+    &_evaluation {
+        padding: 1rem;
+        color: map-get($colors,blue);
+        background-color: map-get($colors,darkBackground);
+        border-radius: 0.5rem;
+    }
+}

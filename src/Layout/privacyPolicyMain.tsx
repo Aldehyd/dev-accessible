@@ -1,5 +1,5 @@
 
-export default function PrivacyPolicy(): React.JSX.Element {
+export default function PrivacyPolicyMain(): React.JSX.Element {
     return (
         <div>
             <p>Ce site n'utilise pas de cookies.</p>

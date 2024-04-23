@@ -15,7 +15,7 @@ export default function RadioButtonGroup({name,frenchLegend,englishLegend,radioB
 
     const {language} = useContext(LanguageContext);
     
-    const options: string[] = radioButtonsData.map(radio => {return(radio.name)});
+    const options: string[] | undefined = radioButtonsData.map(radio => {return(radio.name)});
 
     const [checkedButton,setCheckedButton] = useState<string>(options[0]);
 
@@ -25,7 +25,7 @@ export default function RadioButtonGroup({name,frenchLegend,englishLegend,radioB
         let index = options.indexOf(checkedButton);
         switch(e.key) {
             case "ArrowDown": 
-                if(index === options.length-1) {
+                if(index === options?.length-1) {
                     index = 0;
                 } else {
                     index++;
