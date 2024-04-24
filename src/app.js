@@ -89,3 +89,37 @@ app.post("/send_mail",(req,res)=> {
     });
 
 });
+
+//----------- send simulation ----------------//
+app.post("/send_simulation",(req,res)=> {
+    let config = {
+        host: 'node45-eu.n0c.com',
+        port : 465,
+        secure: true,
+        auth: {
+            user: process.env.EMAIL,
+            pass: process.env.PASSWORD
+        },
+        tls: {
+            rejectUnauthorized: false,
+        }
+    }
+
+    let transporter = nodemailer.createTransport(config);
+
+    const mailOptions = {
+        from: process.env.EMAIL,
+        to: process.env.EMAIL,
+        subject: `simulation from ${req.body.userMail}`,
+        html: `<h2>Simulation :</h2>${req.body.simulation}<h2>Commentaires :</h2><p>${req.body.messageContent}</p>`
+    };
+
+    transporter.sendMail(mailOptions,(error)=> {
+        if(error){
+            res.status(500).json()
+        } else {
+            res.status(200).json()
+        };
+    });
+
+});

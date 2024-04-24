@@ -6,6 +6,7 @@ import PricesSimulatorProgressBar from "../Components/pricesSimulatorProgressBar
 import PricesSimulatorWarning from "./pricesSimulatorWarning.tsx";
 import { initialEstimation } from "../Datas/initialEstimation.tsx";
 import { initialSimulation } from "../Datas/initialSimulation.tsx";
+import SendSimulationForm from './sendSimulationForm.tsx';
 
 export default function PricesSimulator(): React.JSX.Element {
 
@@ -48,8 +49,11 @@ export default function PricesSimulator(): React.JSX.Element {
             }
             {
                 simulation.currentPage === 15 &&
-                <BasicButton frenchText="Relancer une simulation" englishText="Start a new simulation" 
-                    onWhiteBackground={true} onClickFunction={startSimulationAgain} />
+                <>
+                    <BasicButton frenchText="Relancer une simulation" englishText="Start a new simulation" 
+                        onWhiteBackground={true} onClickFunction={startSimulationAgain} />
+                    <SendSimulationForm simulation={simulation} />
+                </>
             }
         </div>
     )
