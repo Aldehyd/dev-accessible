@@ -64,13 +64,7 @@ export default function PricesSimulatorRadioButtonsGroup({simulation,setSimulati
     //     setButtonFocused(options[index]);
     // };
 
-    
-
-    const updateEstimation = (price,time)=> {
-        setCurrentEstimation({...currentEstimation, price: Math.round(price), time: Math.round(time)});
-    };
-
-    const computePrice = useCallback((designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation,deploymen)=> {
+    const computePrice = useCallback((designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation)=> {
         const designPrice = designNeed.price * designIdea.price * designIdeaComplexity.price * simulation.referencePrices.design;
         
         const basicPrice = size.price * animations.price * simulation.referencePrices.basicCode;
@@ -112,12 +106,16 @@ export default function PricesSimulatorRadioButtonsGroup({simulation,setSimulati
             totalPrice = designPrice + basicPrice + blogPrice + autonomyPrice + functionnalitiesPrice + accessibilityPrice + accessibilityEvaluationPrice + contentPrice + translationPrice;
         };
 
-        return totalPrice;
-        // setCurrentEstimation({...currentEstimation, price: Math.round(totalPrice)});
+        return {
+            total: Math.round(totalPrice),
+            design: Math.round(designPrice),
+            code: Math.round(basicPrice + blogPrice + autonomyPrice + functionnalitiesPrice + accessibilityPrice + accessibilityEvaluationPrice),
+            content: Math.round(contentPrice + translationPrice),
+            deployment: (simulation.pages[13].current === 0 ? Math.round(deploymentPrice) : 0)
+        }
     },[setCurrentEstimation,currentPage.pageNumber]);
 
-    const computeTime = useCallback((designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation,deployment) => {
-        console.log('compute time')
+    const computeTime = useCallback((designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation) => {
         const designTime = designNeed.time * designIdea.time * designIdeaComplexity.time * simulation.referenceTimes.design;
         
         const basicTime = size.time * animations.time * simulation.referenceTimes.basicCode;
@@ -159,9 +157,53 @@ export default function PricesSimulatorRadioButtonsGroup({simulation,setSimulati
             totalTime = designTime + basicTime + blogTime + autonomyTime + functionnalitiesTime + accessibilityTime + accessibilityEvaluationTime + contentTime + translationTime;
         };
 
-        return totalTime;
-        // setCurrentEstimation({...currentEstimation, time: Math.round(totalTime)});
-    },[setCurrentEstimation,currentPage.number]);
+        return {
+            total: Math.round(totalTime),
+            design: Math.round(designTime),
+            code: Math.round(basicTime + blogTime + autonomyTime + functionnalitiesTime + accessibilityTime + accessibilityEvaluationTime),
+            content: Math.round(contentTime + translationTime),
+            deployment: (simulation.pages[13].current === 0 ? Math.round(deploymentTime) : 0)
+        }
+
+    },[setCurrentEstimation,currentPage.pageNumber]);
+
+    const computeAccurency = useCallback((designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation) => {
+        
+        const deploymentTime = Math.min(Math.max(specificFunctionnalities.time * specificFunctionnalitiesComplexity.time + blog.time/2,1) * simulation.referenceTimes.deployment,5);
+
+        let totalAccurency = 1;
+        if(currentPage.pageNumber === 1) {
+            totalAccurency = 1;
+        } else if(currentPage.pageNumber === 2) {
+            totalAccurency = designNeed.accurency * designIdea.accurency;
+        } else if(currentPage.pageNumber === 3) {
+            totalAccurency = designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency;
+        } else if(currentPage.pageNumber <= 4) {
+            totalAccurency = designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency;
+        } else if(currentPage.pageNumber === 5) {
+            totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency) * simulation.coeffs.code)/ (simulation.coeffs.design + simulation.coeffs.code);
+        } else if(currentPage.pageNumber === 6) {
+            totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency * blog.accurency) * simulation.coeffs.code)/ (simulation.coeffs.design + simulation.coeffs.code);
+        } else if(currentPage.pageNumber === 7) {
+            totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency) * simulation.coeffs.code)/ (simulation.coeffs.design + simulation.coeffs.code);
+        } else if(currentPage.pageNumber <= 9) {
+            totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexity.accurency) * simulation.coeffs.code)/ (simulation.coeffs.design + simulation.coeffs.code);
+        } else if(currentPage.pageNumber === 10) {
+            totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexity.accurency * accessibility.accurency) * simulation.coeffs.code)/ (simulation.coeffs.design + simulation.coeffs.code);
+        } else if(currentPage.pageNumber === 11) {
+            totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexity.accurency * accessibility.accurency * accessibilityEvaluation.accurency) * simulation.coeffs.code)/ (simulation.coeffs.design + simulation.coeffs.code);
+        } else if(currentPage.pageNumber === 12) {
+            totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexity.accurency * accessibility.accurency * accessibilityEvaluation.accurency) * simulation.coeffs.code + (content.accurency) * simulation.coeffs.content)/ (simulation.coeffs.design + simulation.coeffs.code + simulation.coeffs.content);
+        } else if(currentPage.pageNumber === 13) {
+            totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexity.accurency * accessibility.accurency * accessibilityEvaluation.accurency) * simulation.coeffs.code + (content.accurency * translation.accurency) * simulation.coeffs.content)/ (simulation.coeffs.design + simulation.coeffs.code + simulation.coeffs.content);
+        } else if(simulation.pages[13].current === 0) {
+            totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexity.accurency * accessibility.accurency * accessibilityEvaluation.accurency) * simulation.coeffs.code + (content.accurency * translation.accurency) * simulation.coeffs.content + (1-deploymentTime/10) * simulation.coeffs.deployment)/ (simulation.coeffs.design + simulation.coeffs.code + simulation.coeffs.content + simulation.coeffs.deployment);
+        } else {
+            totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexity.accurency * accessibility.accurency * accessibilityEvaluation.accurency) * simulation.coeffs.code + (content.accurency * translation.accurency) * simulation.coeffs.content)/ (simulation.coeffs.design + simulation.coeffs.code + simulation.coeffs.content);
+        };
+        
+        return totalAccurency;
+    },[setCurrentEstimation,currentPage.pageNumber]);
 
     const updateChoices = useCallback(()=> {
         const designNeed = simulation.pages[0].options.find(option => option.id === simulation.pages[0].current);
@@ -179,12 +221,35 @@ export default function PricesSimulatorRadioButtonsGroup({simulation,setSimulati
         const translation = simulation.pages[12].options.find(option => option.id === simulation.pages[12].current);
         const deployment = simulation.pages[13].options.find(option => option.id === simulation.pages[13].current);
     
-        const price = computePrice(designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation,deployment);
-        const time = computeTime(designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation,deployment);
-        // computeAccurency(simulation,designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation,deployment);
-    
-        setCurrentEstimation({...currentEstimation, price: Math.round(price), time: Math.round(time)});
-    },[computePrice,computeTime,simulation.pages]);
+        const price = computePrice(designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation);
+        const time = computeTime(designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation);
+        const accurency = computeAccurency(designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation);
+        
+        let accurencyCategory = {};
+        if(accurency >= 0.8) {
+            accurencyCategory = {
+                french: "Elevée",
+                english: "High"
+            };
+        } else if(accurency >=0.5) {
+            accurencyCategory = {
+                french: "Moyenne",
+                english: "Midle"
+            };
+        } else if(accurency >= 0.3) {
+            accurencyCategory = {
+                french: "Basse",
+                english: "Low"
+            };
+        } else {
+            accurencyCategory = {
+                french: "Très basse",
+                english: "Very low"
+            };
+        };
+
+        setCurrentEstimation({...currentEstimation, price: price, time: time, accurency: accurency, accurencyCategory: accurencyCategory});
+    },[computePrice,computeTime,computeAccurency,simulation.pages]);
 
     useEffect(()=> {
         const newSimulation = simulation;

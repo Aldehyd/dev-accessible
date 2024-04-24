@@ -3,4 +3,21 @@
     color: map-get($colors,blue);
     background-color: map-get($colors,darkBackground);
     border-radius: 1rem;
+    &_accurency {
+        &.high {
+            color: map-get($colors,green);
+        }
+        &.midle {
+            color: map-get($colors,orange);
+        }
+        &.low {
+            color: map-get($colors,red);
+        }
+        &.very-low {
+            color: map-get($colors,red);
+        }
+    }
+    & h3 {
+        text-decoration: underline;
+    }
 }

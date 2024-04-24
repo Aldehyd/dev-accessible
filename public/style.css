@@ -3624,6 +3624,21 @@ body:not(.contrast).purple .main-message:not(.main-alert):not(.main-success) {
   background-color: hsl(0deg, 6%, 10%);
   border-radius: 1rem;
 }
+.prices-simulator_evaluation_accurency.high {
+  color: hsl(120deg, 95%, 55%);
+}
+.prices-simulator_evaluation_accurency.midle {
+  color: hsl(10deg, 95%, 55%);
+}
+.prices-simulator_evaluation_accurency.low {
+  color: hsl(0deg, 95%, 55%);
+}
+.prices-simulator_evaluation_accurency.very-low {
+  color: hsl(0deg, 95%, 55%);
+}
+.prices-simulator_evaluation h3 {
+  text-decoration: underline;
+}
 
 .prices-simulator_page--warning {
   display: flex;
