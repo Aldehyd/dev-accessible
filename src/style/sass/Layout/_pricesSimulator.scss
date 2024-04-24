@@ -9,6 +9,7 @@
     color: map-get($colors,dark);
     font-weight: bold;
     background: map-get($colors,white);
+    box-shadow: inset map-get($colors,switchBlackBoxShadow) 0.5rem 0.5rem 0.5rem;
     border-radius: 1rem;
     &_page {
         display: flex;

@@ -2,15 +2,13 @@ import { useContext, useEffect, useRef } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 
 interface PricesSimulatorRadioButtonPropsInterface {
-    simulation: any,
-    setSimulation: any,
     option: any,
     checkedButton: string,
     setCheckedButton: (checkedButton:string)=>void,
     buttonFocused: number
 }
 
-export default function PricesSimulatorRadioButton({simulation,setSimulation,option,checkedButton,setCheckedButton,buttonFocused}: PricesSimulatorRadioButtonPropsInterface): React.JSX.Element {
+export default function PricesSimulatorRadioButton({option,checkedButton,setCheckedButton,buttonFocused}: PricesSimulatorRadioButtonPropsInterface): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
     const buttonElement = useRef(null);

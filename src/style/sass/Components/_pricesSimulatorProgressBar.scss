@@ -1,0 +1,16 @@
+.progress-bar {
+    position: relative;
+    width: 90%;
+    height: 2rem;
+    background-color: map-get($colors,darkBackground);
+    border-radius: 1rem;
+    overflow: hidden;
+    &_bar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 0;
+        background-color: map-get($colors,blue);
+    }
+}

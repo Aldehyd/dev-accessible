@@ -2153,6 +2153,23 @@ body.contrast .modal-dark-background {
   border-radius: 1rem;
 }
 
+.progress-bar {
+  position: relative;
+  width: 90%;
+  height: 2rem;
+  background-color: hsl(0deg, 6%, 10%);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.progress-bar_bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background-color: hsl(175deg, 95%, 55%);
+}
+
 .radio-group {
   position: relative;
   margin: auto;
@@ -3570,6 +3587,7 @@ body:not(.contrast).purple .main-message:not(.main-alert):not(.main-success) {
   color: #000;
   font-weight: bold;
   background: #f1f1f1;
+  box-shadow: inset rgba(0, 0, 0, 0.3) 0.5rem 0.5rem 0.5rem;
   border-radius: 1rem;
 }
 .prices-simulator_page {
@@ -3598,6 +3616,32 @@ body:not(.contrast).purple .main-message:not(.main-alert):not(.main-success) {
   color: hsl(175deg, 95%, 55%);
   background-color: hsl(0deg, 6%, 10%);
   border-radius: 0.5rem;
+}
+
+.prices-simulator_evaluation {
+  padding: 1rem 2rem;
+  color: hsl(175deg, 95%, 55%);
+  background-color: hsl(0deg, 6%, 10%);
+  border-radius: 1rem;
+}
+
+.prices-simulator_page--warning {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.prices-simulator_page--warning .title {
+  width: fit-content;
+  margin: 0 auto 1rem auto;
+  color: hsl(0deg, 95%, 40%);
+  text-shadow: none;
+}
+.prices-simulator_page--warning p {
+  color: hsl(0deg, 95%, 40%);
+}
+.prices-simulator_page--warning .basic-button-container {
+  display: block;
+  margin: auto;
 }
 
 .modal-layout {

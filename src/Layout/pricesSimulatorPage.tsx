@@ -5,22 +5,83 @@ import PricesSimulatorRadioButtonsGroup from "./pricesSimulatorRadioButtonsGroup
 
 interface PricesSimulatorPagePropsInterface {
     simulation: any,
-    setSimulation: (simulation: any)=> void
+    setSimulation: (simulation: any)=> void,
+    currentEstimation: any,
+    setCurrentEstimation: (currentEstimation: any)=> void
 }
 
-export default function PricesSimulatorPage({simulation,setSimulation}: PricesSimulatorPagePropsInterface): React.JSX.Element {
+export default function PricesSimulatorPage({simulation,setSimulation,currentEstimation,setCurrentEstimation}: PricesSimulatorPagePropsInterface): React.JSX.Element {
     
     const {language} = useContext(LanguageContext);
 
     const [page,setPage] = useState(simulation.pages.find(page => page.pageNumber === simulation.currentPage));
-
+    
     useEffect(()=> {
         setPage(simulation.pages.find(page => page.pageNumber === simulation.currentPage));
     },[simulation.pages,simulation.currentPage]);
 
     const previousFunction = ()=> {
-        //calculer previous page regarding to simulation 
-        setSimulation({...simulation,currentPage: simulation.previousPage});
+        let previousPage = 1;
+        switch(simulation.currentPage) {
+            case 2:
+                previousPage = 1;
+                break;
+            case 3:
+                previousPage = 2;
+                break;
+            case 4:
+                if(simulation.pages[0].current === 1) {
+                    previousPage = 1;
+                } else {
+                    previousPage = 3;
+                };
+                break;
+            case 5:
+                previousPage = 4;
+                break;
+            case 6:
+                previousPage = 5;
+                break;
+            case 7:
+                if(simulation.pages[4].current === 0) {
+                    previousPage = 5;
+                } else {
+                    previousPage = 6;
+                };
+                break;
+            case 8:
+                previousPage = 7;
+                break;
+            case 9:
+                previousPage = 8;
+                break;
+            case 10:
+                if(simulation.pages[7].current === 1) {
+                    previousPage = 8;
+                } else {
+                    previousPage = 9;
+                };
+                break;
+            case 11:
+                previousPage = 10;
+                break;
+            case 12:
+                if(simulation.pages[9].current === 1) {
+                    previousPage = 10;
+                } else {
+                    previousPage = 11;
+                };
+                break;
+            case 13:
+                previousPage = 12;
+                break;
+            case 14:
+                previousPage = 13;
+                break;
+            default:
+                break;
+        };
+        setSimulation({...simulation,currentPage: previousPage});
     };
 
     const nextFunction = ()=> {
@@ -40,8 +101,9 @@ export default function PricesSimulatorPage({simulation,setSimulation}: PricesSi
                 }
             </p>
             <div className="prices-simulator_page_radio-buttons-container">
-                <PricesSimulatorRadioButtonsGroup currentPage={page}
-                    simulation={simulation} setSimulation={setSimulation} />
+                <PricesSimulatorRadioButtonsGroup currentPage={page} 
+                    simulation={simulation} setSimulation={setSimulation}
+                    currentEstimation={currentEstimation} setCurrentEstimation={setCurrentEstimation} />
             </div>
             <div className="prices-simulator_page_buttons-container">
                 {
@@ -51,7 +113,7 @@ export default function PricesSimulatorPage({simulation,setSimulation}: PricesSi
                 }
                 {
                     simulation.currentPage !== simulation.numberOfPages &&
-                        <BasicButton frenchText="Suivant" englishText="Next" onWhiteBackground={true}
+                        <BasicButton frenchText={simulation.currentPage === simulation.totalPages ? "Terminé" : "Suivant"} englishText={simulation.currentPage === simulation.totalPages ? "Finished" : "Next"} onWhiteBackground={true}
                             onClickFunction={nextFunction} />
                 }
             </div>

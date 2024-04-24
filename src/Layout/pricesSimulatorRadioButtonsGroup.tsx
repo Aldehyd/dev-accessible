@@ -6,15 +6,22 @@ interface PricesSimulatorRadioButtonGroupProps {
     simulation: any,
     setSimulation: (simulation: any)=> void,
     currentPage: any,
+    currentEstimation: any,
+    setCurrentEstimation: (currentEstimation: any)=> void
 }
 
-export default function PricesSimulatorRadioButtonsGroup({simulation,setSimulation,currentPage} : PricesSimulatorRadioButtonGroupProps): React.JSX.Element {
+export default function PricesSimulatorRadioButtonsGroup({simulation,setSimulation,currentPage,currentEstimation,setCurrentEstimation} : PricesSimulatorRadioButtonGroupProps): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
 
-    const [checkedButton,setCheckedButton] = useState(currentPage.current);
+    const [checkedButton,setCheckedButton] = useState(0);
 
-    const [buttonFocused,setButtonFocused] = useState(currentPage.options.find(option=> option.englishLabel === currentPage.current));
+    const [buttonFocused,setButtonFocused] = useState(currentPage.options.find(option=> option.id === currentPage.current));
+
+    useEffect(()=> {
+        // setCheckedButton(currentPage.options.indexOf(currentPage.options.find(option => option.id === currentPage.current)));
+        setCheckedButton(currentPage.current);
+    },[currentPage]);
 
     // const handleKeyDown: (e:KeyboardEvent)=>void = (e)=> {
     //     let index = options?.indexOf(checkedButton);
@@ -59,57 +66,136 @@ export default function PricesSimulatorRadioButtonsGroup({simulation,setSimulati
 
     
 
-    // const updateSimulation = ()=> {
-    //     const currentOption = currentPage.options.find(option => option.id === checkedButton);
-    //         break;
-    //     }
-        
-    // };
-
-    const updateChoices = useCallback((simulation)=> {
-        const designNeed = simulation.pages[0].options.find(option => option.englishLabel === simulation.pages[0].current);
-        const designIdea= simulation.pages[1].options.find(option => option.englishLabel === simulation.pages[1].current);
-        const designIdeaComplexity = simulation.pages[2].options.find(option => option.englishLabel === simulation.pages[2].current);
-        const animations = simulation.pages[3].options.find(option => option.englishLabel === simulation.pages[3].current);
-        const size = simulation.pages[4].options.find(option => option.englishLabel === simulation.pages[4].current);
-        const blog = simulation.pages[5].options.find(option => option.englishLabel === simulation.pages[5].current);
-        const autonomy = simulation.pages[6].options.find(option => option.englishLabel === simulation.pages[6].current);
-        const specificFunctionnalities = simulation.pages[7].options.find(option => option.englishLabel === simulation.pages[7].current);
-        const specificFunctionnalitiesComplexity = simulation.pages[8].options.find(option => option.englishLabel === simulation.pages[8].current);
-        const accessibility = simulation.pages[9].options.find(option => option.englishLabel === simulation.pages[9].current);
-        const accessibilityEvaluation = simulation.pages[10].options.find(option => option.englishLabel === simulation.pages[10].current);
-        const content = simulation.pages[11].options.find(option => option.englishLabel === simulation.pages[11].current);
-        const translation = simulation.pages[12].options.find(option => option.englishLabel === simulation.pages[12].current);
-        const deployment = simulation.pages[13].options.find(option => option.englishLabel === simulation.pages[13].current);
-    
-        computePrice(simulation,designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation,deployment);
-        // computeTime(simulation,designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation,deployment);
-        // computeAccurency(simulation,designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation,deployment);
-    },[]);
-
-    const computePrice = (simulation,designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation,deploymen)=> {
-        const designPrice = designNeed.price * designIdea.price * designIdeaComplexity.price * simulation.referencePrices.design;
-        
-        const basicPrice = size.price * animations.price * simulation.referencePrices.basic;
-        const functionnalitiesPrice = specificFunctionnalities * specificFunctionnalitiesComplexity * simulation.referencePrices.specificFunctionnalities;
-        const blogPrice = blog.price * simulation.referencePrices.blog;
-        const autonomyPrice = size.price * autonomy.price * simulation.referencePrices.autonomy;
-        const accessibilityPrice = (size.price * accessibility.price + specificFunctionnalities.price * specificFunctionnalitiesComplexity.prices/2 ) * simulation.referencePrices.accessibility;
-        const accessibilityEvaluationPrice = (size.price * accessibilityEvaluation.price + specificFunctionnalities.price * specificFunctionnalitiesComplexity.prices/2 ) * simulation.referencePrices.accessibilityEvaluation;
-        const codePrice = basicPrice + functionnalitiesPrice + blogPrice + autonomyPrice + accessibilityPrice + accessibilityEvaluationPrice;
-        
-        const contentPrice = content.price * size.price * simulation.referencePrices.content + translation.price * size.price * simulation.referencePrices.translation;
-
-        const deploymentPrice = Math.max(specificFunctionnalities.price * specificFunctionnalitiesComplexity.price + blog.price/2) * simulation.referencePrices.deployment;
-    
-        return designPrice + codePrice + contentPrice + deploymentPrice;
+    const updateEstimation = (price,time)=> {
+        setCurrentEstimation({...currentEstimation, price: Math.round(price), time: Math.round(time)});
     };
 
+    const computePrice = useCallback((designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation,deploymen)=> {
+        const designPrice = designNeed.price * designIdea.price * designIdeaComplexity.price * simulation.referencePrices.design;
+        
+        const basicPrice = size.price * animations.price * simulation.referencePrices.basicCode;
+        const functionnalitiesPrice = specificFunctionnalities.price * specificFunctionnalitiesComplexity.price * simulation.referencePrices.specificFunctionnalities;
+        const blogPrice = blog.price * simulation.referencePrices.blog;
+        const autonomyPrice = size.price * autonomy.price * simulation.referencePrices.autonomy;
+        const accessibilityPrice = (size.price * accessibility.price + specificFunctionnalities.price * specificFunctionnalitiesComplexity.price/2 ) * simulation.referencePrices.accessibility;
+        const accessibilityEvaluationPrice = (size.price * accessibilityEvaluation.price + specificFunctionnalities.price * specificFunctionnalitiesComplexity.price/2 ) * simulation.referencePrices.accessibilityEvaluation;
+        
+        const contentPrice = content.price * size.price * simulation.referencePrices.content;
+        const translationPrice =  translation.price * size.price * simulation.referencePrices.translation;
+
+        const deploymentPrice = Math.max(specificFunctionnalities.price * specificFunctionnalitiesComplexity.price + blog.price/2,1) * simulation.referencePrices.deployment;
+       
+        let totalPrice = 0;
+        if(currentPage.pageNumber < 3) {
+            totalPrice = 0;
+        } else if(currentPage.pageNumber <= 4) {
+            totalPrice = designPrice;
+        } else if(currentPage.pageNumber === 5) {
+            totalPrice = designPrice + basicPrice;
+        } else if(currentPage.pageNumber === 6) {
+            totalPrice = designPrice + basicPrice + blogPrice;
+        } else if(currentPage.pageNumber === 7) {
+            totalPrice = designPrice + basicPrice + blogPrice + autonomyPrice;
+        } else if(currentPage.pageNumber <= 9) {
+            totalPrice = designPrice + basicPrice + blogPrice + autonomyPrice + functionnalitiesPrice;
+        } else if(currentPage.pageNumber === 10) {
+            totalPrice = designPrice + basicPrice + blogPrice + autonomyPrice + functionnalitiesPrice + accessibilityPrice;
+        } else if(currentPage.pageNumber === 11) {
+            totalPrice = designPrice + basicPrice + blogPrice + autonomyPrice + functionnalitiesPrice + accessibilityPrice + accessibilityEvaluationPrice;
+        } else if(currentPage.pageNumber === 12) {
+            totalPrice = designPrice + basicPrice + blogPrice + autonomyPrice + functionnalitiesPrice + accessibilityPrice + accessibilityEvaluationPrice + contentPrice;
+        } else if(currentPage.pageNumber === 13) {
+            totalPrice = designPrice + basicPrice + blogPrice + autonomyPrice + functionnalitiesPrice + accessibilityPrice + accessibilityEvaluationPrice + contentPrice + translationPrice;
+        } else if(simulation.pages[13].current === 0) {
+            totalPrice = designPrice + basicPrice + blogPrice + autonomyPrice + functionnalitiesPrice + accessibilityPrice + accessibilityEvaluationPrice + contentPrice + translationPrice + deploymentPrice;
+        } else {
+            totalPrice = designPrice + basicPrice + blogPrice + autonomyPrice + functionnalitiesPrice + accessibilityPrice + accessibilityEvaluationPrice + contentPrice + translationPrice;
+        };
+
+        return totalPrice;
+        // setCurrentEstimation({...currentEstimation, price: Math.round(totalPrice)});
+    },[setCurrentEstimation,currentPage.pageNumber]);
+
+    const computeTime = useCallback((designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation,deployment) => {
+        console.log('compute time')
+        const designTime = designNeed.time * designIdea.time * designIdeaComplexity.time * simulation.referenceTimes.design;
+        
+        const basicTime = size.time * animations.time * simulation.referenceTimes.basicCode;
+        const functionnalitiesTime = specificFunctionnalities.time * specificFunctionnalitiesComplexity.time * simulation.referenceTimes.specificFunctionnalities;
+        const blogTime = blog.time * simulation.referenceTimes.blog;
+        const autonomyTime = size.time * autonomy.time * simulation.referenceTimes.autonomy;
+        const accessibilityTime = (size.time * accessibility.time + specificFunctionnalities.time * specificFunctionnalitiesComplexity.time/2 ) * simulation.referenceTimes.accessibility;
+        const accessibilityEvaluationTime = (size.time * accessibilityEvaluation.time + specificFunctionnalities.time * specificFunctionnalitiesComplexity.time/2 ) * simulation.referenceTimes.accessibilityEvaluation;
+        
+        const contentTime = content.time * size.time * simulation.referenceTimes.content;
+        const translationTime =  translation.time * size.time * simulation.referenceTimes.translation;
+
+        const deploymentTime = Math.min(Math.max(specificFunctionnalities.time * specificFunctionnalitiesComplexity.time + blog.time/2,1) * simulation.referenceTimes.deployment,5);
+    
+        let totalTime = 0;
+        if(currentPage.pageNumber < 3) {
+            totalTime = 0;
+        } else if(currentPage.pageNumber <= 4) {
+            totalTime = designTime;
+        } else if(currentPage.pageNumber === 5) {
+            totalTime = designTime + basicTime;
+        } else if(currentPage.pageNumber === 6) {
+            totalTime = designTime + basicTime + blogTime;
+        } else if(currentPage.pageNumber === 7) {
+            totalTime = designTime + basicTime + blogTime + autonomyTime;
+        } else if(currentPage.pageNumber <= 9) {
+            totalTime = designTime + basicTime + blogTime + autonomyTime + functionnalitiesTime;
+        } else if(currentPage.pageNumber === 10) {
+            totalTime = designTime + basicTime + blogTime + autonomyTime + functionnalitiesTime + accessibilityTime;
+        } else if(currentPage.pageNumber === 11) {
+            totalTime = designTime + basicTime + blogTime + autonomyTime + functionnalitiesTime + accessibilityTime + accessibilityEvaluationTime;
+        } else if(currentPage.pageNumber === 12) {
+            totalTime = designTime + basicTime + blogTime + autonomyTime + functionnalitiesTime + accessibilityTime + accessibilityEvaluationTime + contentTime;
+        } else if(currentPage.pageNumber === 13) {
+            totalTime = designTime + basicTime + blogTime + autonomyTime + functionnalitiesTime + accessibilityTime + accessibilityEvaluationTime + contentTime + translationTime;
+        } else if(simulation.pages[13].current === 0) {
+            totalTime = designTime + basicTime + blogTime + autonomyTime + functionnalitiesTime + accessibilityTime + accessibilityEvaluationTime + contentTime + translationTime + deploymentTime;
+        } else {
+            totalTime = designTime + basicTime + blogTime + autonomyTime + functionnalitiesTime + accessibilityTime + accessibilityEvaluationTime + contentTime + translationTime;
+        };
+
+        return totalTime;
+        // setCurrentEstimation({...currentEstimation, time: Math.round(totalTime)});
+    },[setCurrentEstimation,currentPage.number]);
+
+    const updateChoices = useCallback(()=> {
+        const designNeed = simulation.pages[0].options.find(option => option.id === simulation.pages[0].current);
+        const designIdea= simulation.pages[1].options.find(option => option.id === simulation.pages[1].current);
+        const designIdeaComplexity = simulation.pages[2].options.find(option => option.id === simulation.pages[2].current);
+        const animations = simulation.pages[3].options.find(option => option.id === simulation.pages[3].current);
+        const size = simulation.pages[4].options.find(option => option.id === simulation.pages[4].current);
+        const blog = simulation.pages[5].options.find(option => option.id === simulation.pages[5].current);
+        const autonomy = simulation.pages[6].options.find(option => option.id === simulation.pages[6].current);
+        const specificFunctionnalities = simulation.pages[7].options.find(option => option.id === simulation.pages[7].current);
+        const specificFunctionnalitiesComplexity = simulation.pages[8].options.find(option => option.id === simulation.pages[8].current);
+        const accessibility = simulation.pages[9].options.find(option => option.id === simulation.pages[9].current);
+        const accessibilityEvaluation = simulation.pages[10].options.find(option => option.id === simulation.pages[10].current);
+        const content = simulation.pages[11].options.find(option => option.id === simulation.pages[11].current);
+        const translation = simulation.pages[12].options.find(option => option.id === simulation.pages[12].current);
+        const deployment = simulation.pages[13].options.find(option => option.id === simulation.pages[13].current);
+    
+        const price = computePrice(designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation,deployment);
+        const time = computeTime(designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation,deployment);
+        // computeAccurency(simulation,designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation,deployment);
+    
+        setCurrentEstimation({...currentEstimation, price: Math.round(price), time: Math.round(time)});
+    },[computePrice,computeTime,simulation.pages]);
+
     useEffect(()=> {
-        // updateSimulation(checkedButton);
-        updateChoices(simulation);
-        setSimulation({...simulation, nextPage: simulation.pages[currentPage.pageNumber-1].options.find(option=> option.englishLabel === simulation.pages[currentPage.pageNumber-1].current).nextPage})
-    },[simulation,updateChoices]);
+        const newSimulation = simulation;
+        newSimulation.pages[currentPage.pageNumber-1].current = checkedButton;
+        newSimulation.nextPage = newSimulation.pages[currentPage.pageNumber-1].options.find(option => option.id === checkedButton).nextPage;
+        setSimulation({...simulation,newSimulation}) ;
+    },[checkedButton,currentPage.pageNumber]);
+
+    useEffect(()=> {
+        updateChoices();
+    },[simulation,updateChoices])
 
     return(
         <fieldset className="prices-simulator_page_radio-group" 
@@ -118,8 +204,8 @@ export default function PricesSimulatorRadioButtonsGroup({simulation,setSimulati
             <ul>
                 {
                     currentPage.options.map(option => {
-                        return (<PricesSimulatorRadioButton key={option.id} simulation={simulation} 
-                            setSimulation={setSimulation} option={option} 
+                        return (<PricesSimulatorRadioButton key={option.id}  
+                             option={option} 
                             checkedButton={checkedButton} setCheckedButton={setCheckedButton} 
                             buttonFocused={buttonFocused} />)
                     })

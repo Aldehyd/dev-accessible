@@ -1,7 +1,9 @@
 import { useState } from "react";
 import BasicButton from "../Components/basic-button.tsx";
 import PricesSimulatorPage from "./pricesSimulatorPage.tsx";
-import PricesSimulatorEvaluation from "./pricesSimulatorEvaluation.tsx";
+import PricesSimulatorEstimation from "./pricesSimulatorEstimation.tsx";
+import PricesSimulatorProgressBar from "../Components/pricesSimulatorProgressBar.tsx";
+import PricesSimulatorWarning from "./pricesSimulatorWarning.tsx";
 
 export default function PricesSimulator(): React.JSX.Element {
 
@@ -48,7 +50,7 @@ export default function PricesSimulator(): React.JSX.Element {
                 englishTitle: "Design",
                 frenchQuestion: "Souhaitez-vous une prestation de web design ?",
                 englishQuestion: "Do you need a web design service ?",
-                current: "No",
+                current: 1,
                 options: [
                     {
                         id: 0,
@@ -77,7 +79,7 @@ export default function PricesSimulator(): React.JSX.Element {
                 englishTitle: "Design",
                 frenchQuestion: "Avez-une idée du design souhaité ?",
                 englishQuestion: "Do you have any idea of the wished design ?",
-                current: "I don't know",
+                current: 2,
                 options: [
                     {
                         id: 0,
@@ -115,7 +117,7 @@ export default function PricesSimulator(): React.JSX.Element {
                 englishTitle: "Design",
                 frenchQuestion: "De quel niveau de complexité est le design souhaité ?",
                 englishQuestion: "How complicate is the wished design ?",
-                current: "I don't know",
+                current: 3,
                 options: [ 
                     {
                         id: 0,
@@ -162,16 +164,16 @@ export default function PricesSimulator(): React.JSX.Element {
                 englishTitle: "Animations",
                 frenchQuestion: "Quel niveau d'animations souhaitez-vous ?",
                 englishQuestion: "Which level of animations do you want ?",
-                current: "I don't know",
+                current: 3,
                 options: [ 
                     {
                         id: 0,
-                        frenchLabel: "Bas",
-                        englishLabel: "Low",
+                        frenchLabel: "Elevé",
+                        englishLabel: "High",
                         nextPage: 5,
-                        price: 1,
-                        time: 1,
-                        accurency: 1
+                        price: 1.3,
+                        time: 1.3,
+                        accurency: 0.85
                     },
                     {
                         id: 1,
@@ -184,12 +186,12 @@ export default function PricesSimulator(): React.JSX.Element {
                     },
                     {
                         id: 2,
-                        frenchLabel: "Elevé",
-                        englishLabel: "High",
+                        frenchLabel: "Bas",
+                        englishLabel: "Low",
                         nextPage: 5,
-                        price: 1.3,
-                        time: 1.3,
-                        accurency: 0.85
+                        price: 1,
+                        time: 1,
+                        accurency: 1
                     },
                     {
                         id: 3,
@@ -209,7 +211,7 @@ export default function PricesSimulator(): React.JSX.Element {
                 englishTitle: "Size",
                 frenchQuestion: "Combien de pages comptera le site ?",
                 englishQuestion: "How many pages will have the site ?",
-                current: "One",
+                current: 0,
                 options: [
                     {
                         id: 0,
@@ -256,7 +258,7 @@ export default function PricesSimulator(): React.JSX.Element {
                 englishTitle: "Blog",
                 frenchQuestion: "Le site doit-il avoir un blog ?",
                 englishQestion: "May the site have a blog ?",
-                current: "No",
+                current: 1,
                 options: [
                     {
                         id: 0,
@@ -285,7 +287,7 @@ export default function PricesSimulator(): React.JSX.Element {
                 englishTitle: "Autonomy",
                 frenchQuestion: "Quelle quantité de contenus l'administrateur du site doit-il pouvoir modifier de façon autonome ?",
                 englishQestion: "How much content must the admin be able to modify by himself ?",
-                current: "None",
+                current: 3,
                 options: [
                     {
                         id: 0,
@@ -333,7 +335,7 @@ export default function PricesSimulator(): React.JSX.Element {
                 englishTitle: "Specific funtionnalities",
                 frenchQuestion: "Le site doit-il proposer des fonctionnalités spécifiques (autres que les fonctionnalités courantes : menus de navigation, moteur de recherche, formulaire de contact) ?",
                 englishQestion: "Does the site have some specific funtionnalities (other than the classic ones : navigation menus, search bar, contact form) ?",
-                current: "I don't know",
+                current: 1,
                 options: [
                     {
                         id: 0,
@@ -352,15 +354,6 @@ export default function PricesSimulator(): React.JSX.Element {
                         price: 0,
                         time: 0,
                         accurency: 1 
-                    },
-                    {
-                        id: 2,
-                        frenchLabel: "Je ne sais pas",
-                        englishLabel: "I don't know",
-                        nextPage: 10,
-                        price: 0,
-                        time: 0,
-                        accurency: 1 
                     }
                 ]
             },
@@ -371,7 +364,7 @@ export default function PricesSimulator(): React.JSX.Element {
                 englishTitle: "Specific funtionnalities",
                 frenchQuestion: "Comment jugeriez-vous les fonctionnalités spécifiques requises ?",
                 englishQestion: "How would you evaluate the requested specific functionnalities ?",
-                current: "I don't know",
+                current: 3,
                 options: [
                     {
                         id: 0,
@@ -418,7 +411,7 @@ export default function PricesSimulator(): React.JSX.Element {
                 englishTitle: "Accessibility",
                 frenchQuestion: "Le site doit-il être accessible ?",
                 englishQestion: "Must the site be accessible ?",
-                current: "No",
+                current: 1,
                 options: [
                     {
                         id: 0,
@@ -447,7 +440,7 @@ export default function PricesSimulator(): React.JSX.Element {
                 englishTitle: "Accessibility",
                 frenchQuestion: "Avez-vous besoin d'une évaluation de l'accessibilité ?",
                 englishQestion: "Do you need an accessibility evaluation ?",
-                current: "No",
+                current: 1,
                 options: [
                     {
                         id: 0,
@@ -476,7 +469,7 @@ export default function PricesSimulator(): React.JSX.Element {
                 englishTitle: "Content",
                 frenchQuestion: "Avez-vous besoin d'une rédaction des contenus ?",
                 englishQestion: "Do you need a content writing ?",
-                current: "No",
+                current: 1,
                 options: [
                     {
                         id: 0,
@@ -505,7 +498,7 @@ export default function PricesSimulator(): React.JSX.Element {
                 englishTitle: "Translation",
                 frenchQuestion: "Avez-vous besoin d'une traduction en anglais des contenus ?",
                 englishQestion: "Do you need an english translation of the content ?",
-                current: "No",
+                current: 1,
                 options: [
                     {
                         id: 0,
@@ -534,7 +527,7 @@ export default function PricesSimulator(): React.JSX.Element {
                 englishTitle: "Deployment",
                 frenchQuestion: "Avez-vous besoin d'une mise en ligne du site ?",
                 englishQestion: "Do you need a deployment of the site ?",
-                current: "No",
+                current: 1,
                 options: [
                     {
                         id: 0,
@@ -557,23 +550,20 @@ export default function PricesSimulator(): React.JSX.Element {
                 ]
             }
         ],
-        currentEvaluation: {
-            price: 0,
-            time: 0,
-            accurency: 1,
-            accurencyCategory: {
-                french: "Bonne",
-                english: "Good"
-            }
+    });
+
+    const [currentEstimation,setCurrentEstimation] = useState({
+        price: 0,
+        time: 0,
+        accurency: 1,
+        accurencyCategory: {
+            french: "Bonne",
+            english: "Good"
         }
     });
 
     const startSimulation = ()=> {
         setSimulation({...simulation, startSimulation: true});
-    };
-
-    const understand = ()=> {
-        setSimulation({...simulation, understood: true});
     };
 
     return (
@@ -586,24 +576,21 @@ export default function PricesSimulator(): React.JSX.Element {
             }
             {
                 simulation.startSimulation && !simulation.understood &&
-                    <div className="prices-simulator_page">
-                       <p>Attention ! Les montant calculés via ce simulateur ne constituent en aucun
-                        cas un devis ou une offre de contrat. Ils ne sont donnés qu'à titre
-                        purement informatif. Pour toute demande de prestation, contactez-moi via le
-                        formulaire, afin que nous puissions échanger plus en détails sur vos besoins. 
-                        </p>
-                        <BasicButton frenchText="J'ai compris" englishText="I understand" 
-                            onWhiteBackground={true} onClickFunction={understand} /> 
-                    </div>
+                    <PricesSimulatorWarning simulation={simulation} setSimulation={setSimulation} />
+            }
+            {
+                simulation.understood && 
+                    <PricesSimulatorProgressBar simulation={simulation} />
             }
             {
                 simulation.understood && simulation.currentPage <= simulation.totalPages &&
                     <PricesSimulatorPage 
-                        simulation={simulation} setSimulation={setSimulation} />
+                        simulation={simulation} setSimulation={setSimulation}
+                        currentEstimation={currentEstimation} setCurrentEstimation={setCurrentEstimation} />
             }
             {
                 simulation.understood &&
-                    <PricesSimulatorEvaluation simulation={simulation} />
+                    <PricesSimulatorEstimation simulation={simulation} currentEstimation={currentEstimation} />
             }
         </div>
     )
