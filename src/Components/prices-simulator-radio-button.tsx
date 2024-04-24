@@ -1,10 +1,11 @@
 import { useContext, useEffect, useRef } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
+import SimulationPageOptionInterface from "../Interfaces/simulationPageOptionInterface.tsx";
 
 interface PricesSimulatorRadioButtonPropsInterface {
-    option: any,
-    checkedButton: string,
-    setCheckedButton: (checkedButton:string)=>void,
+    option: SimulationPageOptionInterface,
+    checkedButton: number,
+    setCheckedButton: (checkedButton: number)=>void,
     buttonFocused: number
 }
 

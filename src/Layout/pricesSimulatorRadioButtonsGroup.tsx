@@ -1,13 +1,15 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 import PricesSimulatorRadioButton from "../Components/prices-simulator-radio-button.tsx";
-
+import SimulationInterface from "../Interfaces/simulationInterface.tsx";
+import SimulationPageInterface from "../Interfaces/simulationPageInterface.tsx";
+import EstimationInterface from "../Interfaces/estimationInterface.tsx";
 interface PricesSimulatorRadioButtonGroupProps {
-    simulation: any,
-    setSimulation: (simulation: any)=> void,
-    currentPage: any,
-    currentEstimation: any,
-    setCurrentEstimation: (currentEstimation: any)=> void
+    simulation: SimulationInterface,
+    setSimulation: (simulation: SimulationInterface)=> void,
+    currentPage: SimulationPageInterface,
+    currentEstimation: EstimationInterface,
+    setCurrentEstimation: (currentEstimation: EstimationInterface)=> void
 }
 
 export default function PricesSimulatorRadioButtonsGroup({simulation,setSimulation,currentPage,currentEstimation,setCurrentEstimation} : PricesSimulatorRadioButtonGroupProps): React.JSX.Element {

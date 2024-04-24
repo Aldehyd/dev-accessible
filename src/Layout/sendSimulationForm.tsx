@@ -2,22 +2,23 @@ import { useContext, useRef, useState } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 import FormMainMessage from "../Components/formMainMessage.tsx";
 import BasicButton from "../Components/basic-button.tsx";
-import MessageInterface from "../Interfaces/messageInterface.tsx";
 import PricesSimulatorStatusFormStatusInterface from "../Interfaces/pricesSimulatorFormStatusInterface.tsx";
 
 interface SendSimulationFormPropsInterface {
     simulation: any,
+    currentEstimation: any
 }
 
-export default function SendSimulationForm({simulation}: SendSimulationFormPropsInterface): React.JSX.Element {
+export default function SendSimulationForm({simulation,currentEstimation}: SendSimulationFormPropsInterface): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
 
     const mailInput = useRef(null);
 
-    const resumeSimulation = (simulation)=> {
+    const resumeSimulation = (simulation,currentEstimation)=> {
         let resumedSimulation: string[] = [];
-        let htmlResumedSimulation: string = "<ul>";
+        let htmlResumedSimulation: string = "<h3>Questions/Réponses :</h3><ul>";
+
         for(let page of simulation.pages) {
             const question = page.frenchQuestion + " " + page.options.find(option => option.id === page.current).frenchLabel;
             resumedSimulation = [...resumedSimulation,question];
@@ -25,11 +26,21 @@ export default function SendSimulationForm({simulation}: SendSimulationFormProps
         for(let line of resumedSimulation) {
             htmlResumedSimulation = htmlResumedSimulation + `<li>${line}</li>`;
         };
-        htmlResumedSimulation = htmlResumedSimulation + "</ul>"
+        htmlResumedSimulation = htmlResumedSimulation + "</ul>";
+
+        let htmlResumedCurrentEstimation: string = "<h3>Résultats</h3><ul>"
+        const resumedCurrentEstimation = [`prix total : ${currentEstimation.price.total}`,`durée totale : ${currentEstimation.time.total}`,`précision: ${currentEstimation.accurency}`,`prix design : ${currentEstimation.price.design}`,`durée design : ${currentEstimation.time.design}`,`prix code : ${currentEstimation.price.code}`,`durée code : ${currentEstimation.time.code}`,`prix contenu : ${currentEstimation.price.content}`,`durée contenu : ${currentEstimation.time.content}`,`prix déploiement : ${currentEstimation.price.deployment}`,`durée déploiement : ${currentEstimation.time.deployment}`];
+        for(let element of resumedCurrentEstimation) {
+            htmlResumedCurrentEstimation = htmlResumedCurrentEstimation + `<li>${element}</li>`;
+        };
+        htmlResumedCurrentEstimation = htmlResumedCurrentEstimation + "</ul>";
+
+        htmlResumedSimulation = htmlResumedSimulation + htmlResumedCurrentEstimation;
+
         return htmlResumedSimulation;
     }
 
-    const [message,setMessage] = useState({mail: "",simulation: resumeSimulation(simulation),body: ""});
+    const [message,setMessage] = useState({mail: "",simulation: resumeSimulation(simulation,currentEstimation),body: ""});
     const [status,setStatus] = useState<PricesSimulatorStatusFormStatusInterface>({invalid: false, link: false,sending: false,error: false,sent: false})
 
     const handleChange = (property,e) => {

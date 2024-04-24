@@ -21,3 +21,11 @@
         text-decoration: underline;
     }
 }
+
+body:not(.contrast) {
+    &.purple {
+        & .prices-simulator_evaluation {
+            color: map-get($colors,purple);
+        }
+    }
+}

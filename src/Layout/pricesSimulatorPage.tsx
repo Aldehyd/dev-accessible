@@ -2,12 +2,14 @@ import { useContext, useEffect, useState } from "react";
 import BasicButton from "../Components/basic-button.tsx";
 import LanguageContext from "../Contexts/language-context.tsx";
 import PricesSimulatorRadioButtonsGroup from "./pricesSimulatorRadioButtonsGroup.tsx";
+import SimulationInterface from "../Interfaces/simulationInterface.tsx";
+import EstimationInterface from "../Interfaces/estimationInterface.tsx";
 
 interface PricesSimulatorPagePropsInterface {
-    simulation: any,
-    setSimulation: (simulation: any)=> void,
-    currentEstimation: any,
-    setCurrentEstimation: (currentEstimation: any)=> void
+    simulation: SimulationInterface,
+    setSimulation: (simulation: SimulationInterface)=> void,
+    currentEstimation: EstimationInterface,
+    setCurrentEstimation: (currentEstimation: EstimationInterface)=> void
 }
 
 export default function PricesSimulatorPage({simulation,setSimulation,currentEstimation,setCurrentEstimation}: PricesSimulatorPagePropsInterface): React.JSX.Element {
@@ -92,12 +94,12 @@ export default function PricesSimulatorPage({simulation,setSimulation,currentEst
         <div className="prices-simulator_page">
             <h2 className="prices-simulator_page_title">
                 {
-                    language === "french" ? page.frenchTitle : page.englishTitle
+                    language === "french" ? page?.frenchTitle : page?.englishTitle
                 }
             </h2>
             <p>
             {
-                    language === "french" ? page.frenchQuestion : page.englishQuestion
+                    language === "french" ? page?.frenchQuestion : page?.englishQuestion
                 }
             </p>
             <div className="prices-simulator_page_radio-buttons-container">
@@ -112,9 +114,8 @@ export default function PricesSimulatorPage({simulation,setSimulation,currentEst
                             onWhiteBackground={true} onClickFunction={previousFunction} />
                 }
                 {
-                    simulation.currentPage !== simulation.numberOfPages &&
-                        <BasicButton frenchText={simulation.currentPage === simulation.totalPages ? "Terminé" : "Suivant"} englishText={simulation.currentPage === simulation.totalPages ? "Finished" : "Next"} onWhiteBackground={true}
-                            onClickFunction={nextFunction} />
+                    <BasicButton frenchText={simulation.currentPage === simulation.totalPages ? "Terminé" : "Suivant"} englishText={simulation.currentPage === simulation.totalPages ? "Finished" : "Next"} onWhiteBackground={true}
+                        onClickFunction={nextFunction} />
                 }
             </div>
         </div>

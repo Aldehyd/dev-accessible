@@ -1,4 +1,6 @@
-export const initialSimulation = {
+import SimulationInterface from '../Interfaces/simulationInterface.tsx';
+
+export const initialSimulation: SimulationInterface = {
     startSimulation: false,
     understood: false,
     currentPage: 1,
@@ -13,7 +15,7 @@ export const initialSimulation = {
         accessibilityEvaluation: 500,
         content: 800,
         translation: 400,
-        deployment: 300
+        deployment: 200
     },
     referenceTimes: {
         design: 20,
@@ -248,7 +250,7 @@ export const initialSimulation = {
             frenchTitle: "Blog",
             englishTitle: "Blog",
             frenchQuestion: "Le site doit-il avoir un blog ?",
-            englishQestion: "May the site have a blog ?",
+            englishQuestion: "May the site have a blog ?",
             current: 1,
             options: [
                 {
@@ -277,7 +279,7 @@ export const initialSimulation = {
             frenchTitle: "Autonomie",
             englishTitle: "Autonomy",
             frenchQuestion: "Quelle quantité de contenus l'administrateur du site doit-il pouvoir modifier de façon autonome ?",
-            englishQestion: "How much content must the admin be able to modify by himself ?",
+            englishQuestion: "How much content must the admin be able to modify by himself ?",
             current: 3,
             options: [
                 {
@@ -325,7 +327,7 @@ export const initialSimulation = {
             frenchTitle: "Fonctionnalités spécifiques",
             englishTitle: "Specific funtionnalities",
             frenchQuestion: "Le site doit-il proposer des fonctionnalités spécifiques (autres que les fonctionnalités courantes : menus de navigation, moteur de recherche, formulaire de contact) ?",
-            englishQestion: "Does the site have some specific funtionnalities (other than the classic ones : navigation menus, search bar, contact form) ?",
+            englishQuestion: "Does the site have some specific funtionnalities (other than the classic ones : navigation menus, search bar, contact form) ?",
             current: 1,
             options: [
                 {
@@ -354,7 +356,7 @@ export const initialSimulation = {
             frenchTitle: "Fonctionnalités spécifiques",
             englishTitle: "Specific funtionnalities",
             frenchQuestion: "Comment jugeriez-vous les fonctionnalités spécifiques requises ?",
-            englishQestion: "How would you evaluate the requested specific functionnalities ?",
+            englishQuestion: "How would you evaluate the requested specific functionnalities ?",
             current: 3,
             options: [
                 {
@@ -401,7 +403,7 @@ export const initialSimulation = {
             frenchTitle: "Accessibilité",
             englishTitle: "Accessibility",
             frenchQuestion: "Le site doit-il être accessible ?",
-            englishQestion: "Must the site be accessible ?",
+            englishQuestion: "Must the site be accessible ?",
             current: 1,
             options: [
                 {
@@ -430,7 +432,7 @@ export const initialSimulation = {
             frenchTitle: "Accessibilité",
             englishTitle: "Accessibility",
             frenchQuestion: "Avez-vous besoin d'une évaluation de l'accessibilité ?",
-            englishQestion: "Do you need an accessibility evaluation ?",
+            englishQuestion: "Do you need an accessibility evaluation ?",
             current: 1,
             options: [
                 {
@@ -459,7 +461,7 @@ export const initialSimulation = {
             frenchTitle: "Contenu",
             englishTitle: "Content",
             frenchQuestion: "Avez-vous besoin d'une rédaction des contenus ?",
-            englishQestion: "Do you need a content writing ?",
+            englishQuestion: "Do you need a content writing ?",
             current: 1,
             options: [
                 {
@@ -488,7 +490,7 @@ export const initialSimulation = {
             frenchTitle: "Traduction",
             englishTitle: "Translation",
             frenchQuestion: "Avez-vous besoin d'une traduction en anglais des contenus ?",
-            englishQestion: "Do you need an english translation of the content ?",
+            englishQuestion: "Do you need an english translation of the content ?",
             current: 1,
             options: [
                 {
@@ -517,7 +519,7 @@ export const initialSimulation = {
             frenchTitle: "Déploiement",
             englishTitle: "Deployment",
             frenchQuestion: "Avez-vous besoin d'une mise en ligne du site ?",
-            englishQestion: "Do you need a deployment of the site ?",
+            englishQuestion: "Do you need a deployment of the site ?",
             current: 1,
             options: [
                 {

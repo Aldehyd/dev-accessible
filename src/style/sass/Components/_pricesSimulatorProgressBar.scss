@@ -14,3 +14,11 @@
         background-color: map-get($colors,blue);
     }
 }
+
+body:not(.contrast) {
+    &.purple {
+        & .progress-bar_bar {
+            background-color: map-get($colors,purple);
+        }
+    }
+}

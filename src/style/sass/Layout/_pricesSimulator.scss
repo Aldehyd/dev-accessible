@@ -32,10 +32,17 @@
             gap: 2rem;
         }
     }
-    &_evaluation {
-        padding: 1rem;
-        color: map-get($colors,blue);
-        background-color: map-get($colors,darkBackground);
-        border-radius: 0.5rem;
+}
+
+body:not(.contrast) {
+    &.purple {
+        & .prices-simulator_page {
+            &_title {
+                color: map-get($colors,purple);
+            }
+            &_radio-group {
+                color: map-get($colors,purple);
+            }
+        }
     }
 }

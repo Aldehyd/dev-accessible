@@ -1,6 +1,11 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef } from "react";
+import SimulationInterface from "../Interfaces/simulationInterface.tsx";
 
-export default function PricesSimulatorProgressBar({simulation}): React.JSX.Element {
+interface PricesSimulatorProgressBarPropsInterface {
+    simulation: SimulationInterface
+}
+
+export default function PricesSimulatorProgressBar({simulation}: PricesSimulatorProgressBarPropsInterface): React.JSX.Element {
 
     const [progression,setProgression] = useState<number>(0);
     const [barWidth,setBarWidth] = useState<number>(0);

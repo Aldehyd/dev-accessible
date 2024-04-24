@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
+import SimulationInterface from "../Interfaces/simulationInterface.tsx";
+import EstimationInterface from "../Interfaces/estimationInterface.tsx";
 
 interface PricesSimulatorEvaluationPropsInterface {
-    simulation: any,
-    currentEstimation: any
+    simulation: SimulationInterface,
+    currentEstimation: EstimationInterface
 }
 
 export default function PricesSimulatorEstimation({simulation,currentEstimation}: PricesSimulatorEvaluationPropsInterface): React.JSX.Element {

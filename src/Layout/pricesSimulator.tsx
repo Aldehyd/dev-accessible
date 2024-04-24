@@ -7,11 +7,13 @@ import PricesSimulatorWarning from "./pricesSimulatorWarning.tsx";
 import { initialEstimation } from "../Datas/initialEstimation.tsx";
 import { initialSimulation } from "../Datas/initialSimulation.tsx";
 import SendSimulationForm from './sendSimulationForm.tsx';
+import EstimationInterface from "../Interfaces/estimationInterface.tsx";
+import SimulationInterface from "../Interfaces/simulationInterface.tsx";
 
 export default function PricesSimulator(): React.JSX.Element {
 
-    const [simulation,setSimulation] = useState(initialSimulation);
-    const [currentEstimation,setCurrentEstimation] = useState(initialEstimation);
+    const [simulation,setSimulation] = useState<SimulationInterface>(initialSimulation);
+    const [currentEstimation,setCurrentEstimation] = useState<EstimationInterface>(initialEstimation);
 
     const startSimulation = ()=> {
         setSimulation({...simulation, startSimulation: true});
@@ -52,7 +54,7 @@ export default function PricesSimulator(): React.JSX.Element {
                 <>
                     <BasicButton frenchText="Relancer une simulation" englishText="Start a new simulation" 
                         onWhiteBackground={true} onClickFunction={startSimulationAgain} />
-                    <SendSimulationForm simulation={simulation} />
+                    <SendSimulationForm simulation={simulation} currentEstimation={currentEstimation} />
                 </>
             }
         </div>

@@ -2170,6 +2170,10 @@ body.contrast .modal-dark-background {
   background-color: hsl(175deg, 95%, 55%);
 }
 
+body:not(.contrast).purple .progress-bar_bar {
+  background-color: hsl(295deg, 95%, 55%);
+}
+
 .radio-group {
   position: relative;
   margin: auto;
@@ -3487,6 +3491,7 @@ body.animations .top-menu {
 }
 .contact-form_mention {
   font-weight: bold;
+  color: hsl(0deg, 95%, 40%);
 }
 .contact-form_line {
   display: flex;
@@ -3611,11 +3616,12 @@ body:not(.contrast).purple .main-message:not(.main-alert):not(.main-success) {
   display: flex;
   gap: 2rem;
 }
-.prices-simulator_evaluation {
-  padding: 1rem;
-  color: hsl(175deg, 95%, 55%);
-  background-color: hsl(0deg, 6%, 10%);
-  border-radius: 0.5rem;
+
+body:not(.contrast).purple .prices-simulator_page_title {
+  color: hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .prices-simulator_page_radio-group {
+  color: hsl(295deg, 95%, 55%);
 }
 
 .prices-simulator_evaluation {
@@ -3638,6 +3644,10 @@ body:not(.contrast).purple .main-message:not(.main-alert):not(.main-success) {
 }
 .prices-simulator_evaluation h3 {
   text-decoration: underline;
+}
+
+body:not(.contrast).purple .prices-simulator_evaluation {
+  color: hsl(295deg, 95%, 55%);
 }
 
 .prices-simulator_page--warning {

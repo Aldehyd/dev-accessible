@@ -1,4 +1,6 @@
-export const initialEstimation = {
+import EstimationInterface from "../Interfaces/estimationInterface.tsx";
+
+export const initialEstimation: EstimationInterface = {
     price: {
         total: 0,
         design: 0,
