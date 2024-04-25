@@ -203,27 +203,109 @@ export default function PricesSimulatorRadioButtonsGroup({simulation,setSimulati
         } else if(currentPage.pageNumber === 3) {
             totalAccurency = designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency;
         } else if(currentPage.pageNumber <= 4) {
-            totalAccurency = designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency;
+            if(simulation.pages[0].current === 0) {
+                totalAccurency = designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency;
+            } else {
+                totalAccurency = 1;
+            };
         } else if(currentPage.pageNumber === 5) {
-            totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency) * simulation.coeffs.code)/ (simulation.coeffs.design + simulation.coeffs.code);
+            if(simulation.pages[0].current === 0) {
+                totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency) * simulation.coeffs.code)/ (simulation.coeffs.design + simulation.coeffs.code);
+            } else {
+                totalAccurency = size.accurency * animations.accurency;
+            };
         } else if(currentPage.pageNumber === 6) {
-            totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency * blog.accurency) * simulation.coeffs.code)/ (simulation.coeffs.design + simulation.coeffs.code);
-        } else if(currentPage.pageNumber === 7) {
-            totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency) * simulation.coeffs.code)/ (simulation.coeffs.design + simulation.coeffs.code);
-        } else if(currentPage.pageNumber <= 9) {
-            totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexity.accurency) * simulation.coeffs.code)/ (simulation.coeffs.design + simulation.coeffs.code);
+            if(simulation.pages[0].current === 0) {
+                totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency * blog.accurency) * simulation.coeffs.code)/ (simulation.coeffs.design + simulation.coeffs.code);
+            } else {
+                totalAccurency = size.accurency * animations.accurency * blog.accurency;
+            };
+        } else if(currentPage.pageNumber <= 8) {
+            if(simulation.pages[0].current === 0) {
+                totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency) * simulation.coeffs.code)/ (simulation.coeffs.design + simulation.coeffs.code);
+            } else {
+                totalAccurency = size.accurency * animations.accurency *  blog.accurency * autonomy.accurency;
+            };
+        } else if(currentPage.pageNumber === 9) {
+            if(simulation.pages[0].current === 0) {
+                totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexity.accurency) * simulation.coeffs.code)/ (simulation.coeffs.design + simulation.coeffs.code);
+            } else {
+                totalAccurency = size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexity.accurency;
+            };
         } else if(currentPage.pageNumber === 10) {
-            totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexity.accurency * accessibility.accurency) * simulation.coeffs.code)/ (simulation.coeffs.design + simulation.coeffs.code);
+            let specificFunctionnalitiesComplexityAccurency = 1;
+            if(simulation.pages[7].current === 0) {
+                specificFunctionnalitiesComplexityAccurency = specificFunctionnalitiesComplexity.accurency;
+            };
+            if(simulation.pages[0].current === 0) {
+                totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexityAccurency * accessibility.accurency) * simulation.coeffs.code)/ (simulation.coeffs.design + simulation.coeffs.code);
+            } else {
+                totalAccurency = size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexityAccurency * accessibility.accurency;
+            };
         } else if(currentPage.pageNumber === 11) {
-            totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexity.accurency * accessibility.accurency * accessibilityEvaluation.accurency) * simulation.coeffs.code)/ (simulation.coeffs.design + simulation.coeffs.code);
+            let specificFunctionnalitiesComplexityAccurency = 1;
+            if(simulation.pages[7].current === 0) {
+                specificFunctionnalitiesComplexityAccurency = specificFunctionnalitiesComplexity.accurency;
+            };
+            if(simulation.pages[0].current === 0) {
+                totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexityAccurency * accessibility.accurency * accessibilityEvaluation.accurency) * simulation.coeffs.code)/ (simulation.coeffs.design + simulation.coeffs.code);
+            } else {
+                totalAccurency = size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexityAccurency * accessibility.accurency * accessibilityEvaluation.accurency;
+            };
         } else if(currentPage.pageNumber === 12) {
-            totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexity.accurency * accessibility.accurency * accessibilityEvaluation.accurency) * simulation.coeffs.code + (content.accurency) * simulation.coeffs.content)/ (simulation.coeffs.design + simulation.coeffs.code + simulation.coeffs.content);
+            let designAccurency = 0;
+            let specificFunctionnalitiesComplexityAccurency = 1;
+            let designCoeff = 0;
+            let contentCoeff = 0;
+            if(simulation.pages[7].current === 0) {
+                specificFunctionnalitiesComplexityAccurency = specificFunctionnalitiesComplexity.accurency;
+            };
+            if(simulation.pages[11].current === 0 || simulation.pages[12].current === 0){
+                contentCoeff = simulation.coeffs.content;
+            };  
+            if(simulation.pages[0].current === 0 ){
+                designAccurency = designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency;
+                designCoeff = simulation.coeffs.design;
+            };
+            totalAccurency = (designAccurency * designCoeff + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexityAccurency* accessibility.accurency * accessibilityEvaluation.accurency) * simulation.coeffs.code + content.accurency * contentCoeff)/ (designCoeff + simulation.coeffs.code + contentCoeff);
         } else if(currentPage.pageNumber === 13) {
-            totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexity.accurency * accessibility.accurency * accessibilityEvaluation.accurency) * simulation.coeffs.code + (content.accurency * translation.accurency) * simulation.coeffs.content)/ (simulation.coeffs.design + simulation.coeffs.code + simulation.coeffs.content);
-        } else if(simulation.pages[13].current === 0) {
-            totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexity.accurency * accessibility.accurency * accessibilityEvaluation.accurency) * simulation.coeffs.code + (content.accurency * translation.accurency) * simulation.coeffs.content + (1-deploymentTime/10) * simulation.coeffs.deployment)/ (simulation.coeffs.design + simulation.coeffs.code + simulation.coeffs.content + simulation.coeffs.deployment);
-        } else {
-            totalAccurency = ((designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency) * simulation.coeffs.design + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexity.accurency * accessibility.accurency * accessibilityEvaluation.accurency) * simulation.coeffs.code + (content.accurency * translation.accurency) * simulation.coeffs.content)/ (simulation.coeffs.design + simulation.coeffs.code + simulation.coeffs.content);
+            let designAccurency = 0;
+            let specificFunctionnalitiesComplexityAccurency = 1;
+            let designCoeff = 0;
+            let contentCoeff = 0;
+            if(simulation.pages[7].current === 0) {
+                specificFunctionnalitiesComplexityAccurency = specificFunctionnalitiesComplexity.accurency;
+            };
+            if(simulation.pages[11].current === 0 || simulation.pages[12].current === 0){
+                contentCoeff = simulation.coeffs.content;
+            };  
+            if(simulation.pages[0].current === 0 ){
+                designAccurency = designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency;
+                designCoeff = simulation.coeffs.design;
+            };
+            totalAccurency = (designAccurency * designCoeff + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexityAccurency * accessibility.accurency * accessibilityEvaluation.accurency) * simulation.coeffs.code + (content.accurency * translation.accurency) * contentCoeff)/ (designCoeff + simulation.coeffs.code + contentCoeff);
+        } else if(currentPage.pageNumber === 14) {
+            let designAccurency = 0;
+            let specificFunctionnalitiesComplexityAccurency = 1;
+            let designCoeff = 0;
+            let contentCoeff = 0;
+            let deploymentAccurency = 0;
+            let deploymentCoeff = 0;
+            if(simulation.pages[0].current === 0 ){
+                designAccurency = designNeed.accurency * designIdea.accurency * designIdeaComplexity.accurency;
+                designCoeff = simulation.coeffs.design;
+            };
+            if(simulation.pages[7].current === 0) {
+                specificFunctionnalitiesComplexityAccurency = specificFunctionnalitiesComplexity.accurency;
+            };
+            if(simulation.pages[11].current === 0 || simulation.pages[12].current === 0){
+                contentCoeff = simulation.coeffs.content;
+            };  
+            if(simulation.pages[13].current === 0) {
+                deploymentCoeff = simulation.coeffs.deployment;
+                deploymentAccurency = (1-deploymentTime/10);
+            };
+            totalAccurency = (designAccurency * designCoeff + (size.accurency * animations.accurency *  blog.accurency * autonomy.accurency * specificFunctionnalitiesComplexityAccurency * accessibility.accurency * accessibilityEvaluation.accurency) * simulation.coeffs.code + (content.accurency * translation.accurency) * contentCoeff + deploymentAccurency * deploymentCoeff)/ (designCoeff + simulation.coeffs.code + contentCoeff + deploymentCoeff);
         };
         
         return totalAccurency;

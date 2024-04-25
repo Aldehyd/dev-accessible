@@ -138,7 +138,7 @@ export const initialSimulation: SimulationInterface = {
                     nextPage: 4,
                     price: 0.2,
                     time: 0.2,
-                    accurency: 0.8
+                    accurency: 1
                 },
                 {
                     id: 3,
@@ -374,7 +374,7 @@ export const initialSimulation: SimulationInterface = {
                     frenchLabel: "Moyennement complexes",
                     englishLabel: "Relatively complex",
                     nextPage: 10,
-                    price: 3,
+                    price: 2,
                     time: 3,
                     accurency: 0.8 
                 },
@@ -383,7 +383,7 @@ export const initialSimulation: SimulationInterface = {
                     frenchLabel: "Simples",
                     englishLabel: "Simple",
                     nextPage: 10,
-                    price: 2,
+                    price: 1,
                     time: 2,
                     accurency: 0.9 
                 },
