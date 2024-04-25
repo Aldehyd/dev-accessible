@@ -103,7 +103,7 @@ export default function PricesSimulatorPage({simulation,setSimulation,currentEst
                 }
             </p>
             <div className="prices-simulator_page_radio-buttons-container">
-                <PricesSimulatorRadioButtonsGroup currentPage={page} 
+                <PricesSimulatorRadioButtonsGroup 
                     simulation={simulation} setSimulation={setSimulation}
                     currentEstimation={currentEstimation} setCurrentEstimation={setCurrentEstimation} />
             </div>

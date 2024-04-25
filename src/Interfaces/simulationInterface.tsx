@@ -4,6 +4,7 @@ export default interface SimulationInterface {
     startSimulation: boolean,
     understood: boolean,
     currentPage: number,
+    nextPage: number,
     totalPages: number,
     referencePrices: {
         design: number,

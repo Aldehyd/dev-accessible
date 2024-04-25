@@ -4,24 +4,29 @@ import PricesSimulatorRadioButton from "../Components/prices-simulator-radio-but
 import SimulationInterface from "../Interfaces/simulationInterface.tsx";
 import SimulationPageInterface from "../Interfaces/simulationPageInterface.tsx";
 import EstimationInterface from "../Interfaces/estimationInterface.tsx";
+import SimulationPageOptionInterface from "../Interfaces/simulationPageOptionInterface.tsx";
 interface PricesSimulatorRadioButtonGroupProps {
     simulation: SimulationInterface,
     setSimulation: (simulation: SimulationInterface)=> void,
-    currentPage: SimulationPageInterface,
     currentEstimation: EstimationInterface,
     setCurrentEstimation: (currentEstimation: EstimationInterface)=> void
 }
 
-export default function PricesSimulatorRadioButtonsGroup({simulation,setSimulation,currentPage,currentEstimation,setCurrentEstimation} : PricesSimulatorRadioButtonGroupProps): React.JSX.Element {
+export default function PricesSimulatorRadioButtonsGroup({simulation,setSimulation,currentEstimation,setCurrentEstimation} : PricesSimulatorRadioButtonGroupProps): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
 
-    const [checkedButton,setCheckedButton] = useState(0);
+    const [currentPage,setCurrentPage] = useState(simulation.pages.find(page => page.pageNumber === simulation.currentPage));
+    
+    const [checkedButton,setCheckedButton] = useState(currentPage.current);
 
     const [buttonFocused,setButtonFocused] = useState(currentPage.options.find(option=> option.id === currentPage.current));
 
     useEffect(()=> {
-        // setCheckedButton(currentPage.options.indexOf(currentPage.options.find(option => option.id === currentPage.current)));
+        setCurrentPage(simulation.pages.find(page => page.pageNumber === simulation.currentPage));
+    },[simulation.pages,simulation.currentPage]);
+
+    useEffect(()=> {
         setCheckedButton(currentPage.current);
     },[currentPage]);
 
@@ -169,6 +174,22 @@ export default function PricesSimulatorRadioButtonsGroup({simulation,setSimulati
 
     },[setCurrentEstimation,currentPage.pageNumber]);
 
+    interface computeFunctionsParametersInterface {
+        designNeed: SimulationPageOptionInterface,
+        designIdea: SimulationPageOptionInterface,
+        designIdeaComplexity: SimulationPageOptionInterface,
+        animations: SimulationPageOptionInterface,
+        size: SimulationPageOptionInterface,
+        blog: SimulationPageOptionInterface,
+        autonomy: SimulationPageOptionInterface,
+        specificFunctionnalities: SimulationPageOptionInterface,
+        specificFunctionnalitiesComplexity: SimulationPageOptionInterface,
+        accessibility: SimulationPageOptionInterface,
+        accessibilityEvaluation: SimulationPageOptionInterface,
+        content: SimulationPageOptionInterface,
+        translation: SimulationPageOptionInterface
+    }
+
     const computeAccurency = useCallback((designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation) => {
         
         const deploymentTime = Math.min(Math.max(specificFunctionnalities.time * specificFunctionnalitiesComplexity.time + blog.time/2,1) * simulation.referenceTimes.deployment,5);
@@ -226,8 +247,11 @@ export default function PricesSimulatorRadioButtonsGroup({simulation,setSimulati
         const price = computePrice(designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation);
         const time = computeTime(designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation);
         const accurency = computeAccurency(designNeed,designIdea,designIdeaComplexity,animations,size,blog,autonomy,specificFunctionnalities,specificFunctionnalitiesComplexity,accessibility,accessibilityEvaluation,content,translation);
-        
-        let accurencyCategory = {};
+    
+        let accurencyCategory = {
+            french: "Elevée",
+            english: "High"
+        };
         if(accurency >= 0.8) {
             accurencyCategory = {
                 french: "Elevée",
@@ -254,13 +278,19 @@ export default function PricesSimulatorRadioButtonsGroup({simulation,setSimulati
     },[computePrice,computeTime,computeAccurency,simulation.pages]);
 
     useEffect(()=> {
-        const newSimulation = simulation;
-        newSimulation.pages[currentPage.pageNumber-1].current = checkedButton;
-        newSimulation.nextPage = newSimulation.pages[currentPage.pageNumber-1].options.find(option => option.id === checkedButton).nextPage;
-        setSimulation({...simulation,newSimulation}) ;
-    },[checkedButton,currentPage.pageNumber]);
+        let newSimulation = simulation;
+        if(currentPage) {
+            newSimulation.pages[currentPage.pageNumber-1].current = checkedButton;
+            console.log(checkedButton)
+            newSimulation.nextPage = currentPage.options.find(option => option.id === checkedButton)?.nextPage;
+        } 
+        
+        // setSimulation({...simulation,newSimulation});
+        setSimulation({...simulation, nextPage: newSimulation.nextPage, pages: newSimulation.pages});
+    },[checkedButton]);
 
     useEffect(()=> {
+        console.log("update choices")
         updateChoices();
     },[simulation,updateChoices])
 
