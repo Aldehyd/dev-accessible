@@ -28,6 +28,7 @@ export default function PricesSimulatorRadioButtonsGroup({simulation,setSimulati
 
     useEffect(()=> {
         setCheckedButton(currentPage.current);
+        setSimulation({...simulation, nextPage: currentPage.options.find(option => option.id === currentPage.current).nextPage })
     },[currentPage]);
 
     // const handleKeyDown: (e:KeyboardEvent)=>void = (e)=> {
@@ -283,14 +284,12 @@ export default function PricesSimulatorRadioButtonsGroup({simulation,setSimulati
             newSimulation.pages[currentPage.pageNumber-1].current = checkedButton;
             console.log(checkedButton)
             newSimulation.nextPage = currentPage.options.find(option => option.id === checkedButton)?.nextPage;
-        } 
+        };
         
-        // setSimulation({...simulation,newSimulation});
         setSimulation({...simulation, nextPage: newSimulation.nextPage, pages: newSimulation.pages});
     },[checkedButton]);
 
     useEffect(()=> {
-        console.log("update choices")
         updateChoices();
     },[simulation,updateChoices])
 
