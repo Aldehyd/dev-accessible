@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import ModalContext from "../Contexts/modal-context.tsx";
 import ModalDarkBackground from "../Components/modal-dark-background.tsx";
 import AccessibilitySettingsModal from "../Modals/AccessibilitySettingsModal.tsx";
@@ -11,7 +11,7 @@ import EnvironnementContext from "../Contexts/environnement-context.tsx";
 export default function LandingPage(): React.JSX.Element {
 
     const {isModalDisplayed} = useContext(ModalContext);
-    const {environnement} = useContext(EnvironnementContext);
+    const {environnement,changeEnvironnement} = useContext(EnvironnementContext);
 
     const [isAccessibilitySettingsModalDisplayed,setIsAccessibilitySettingsModalDisplayed] = useState<boolean>(false);
 
@@ -21,6 +21,15 @@ export default function LandingPage(): React.JSX.Element {
     const clientClassList = `landing-page_choice-container ${choice === "recruiter" ? "broken" : ""}`;
 
     const mainClassList = `landing-page_main ${environnement !== "" ? "disappear" : ""}`;
+
+    useEffect(()=> {
+        const environnementSavedStatus = localStorage.getItem('environnement');
+
+        if(environnementSavedStatus !== undefined && environnementSavedStatus !== null) {
+            changeEnvironnement(environnementSavedStatus);
+            window.location = window.location + "home";
+        };
+    },[]);
 
     return (
         <>

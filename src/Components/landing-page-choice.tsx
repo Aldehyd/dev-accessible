@@ -16,9 +16,11 @@ export default function LandingPageChoice({frenchText,englishText,setChoice}: La
 
     const onClickFunction = ()=> {
         if(englishText.includes("client")) {
+            localStorage.setItem("environnement","client");
             setChoice("client");
             setTimeout(()=>changeEnvironnement("client"),4000);
         } else {
+            localStorage.setItem("environnement","recruiter");
             setChoice("recruiter");
             setTimeout(()=>changeEnvironnement("recruiter"),4000);
         };
