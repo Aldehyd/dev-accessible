@@ -3858,6 +3858,53 @@ body:not(.contrast).purple .prices-simulator_evaluation {
   gap: 6rem;
 }
 
+.main-menu {
+  position: relative;
+  height: 75vh;
+  width: 80vw;
+  padding-top: 40px;
+}
+.main-menu_line_svg {
+  height: 100%;
+  width: 100%;
+  fill: #f1f1f1;
+}
+.main-menu_menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+.main-menu_menu-item {
+  position: absolute;
+}
+.main-menu_menu-item--home {
+  left: 30%;
+  top: 13%;
+  transform: translate(-50%, -50%);
+}
+.main-menu_menu-item--who-am-i {
+  left: 40%;
+  top: 34%;
+  transform: translate(-50%, -50%);
+}
+.main-menu_menu-item--cv {
+  right: 40%;
+  top: 26%;
+  transform: translate(50%, -50%);
+}
+.main-menu_menu-item--achievments {
+  right: 28%;
+  bottom: 40%;
+  transform: translate(50%, 50%);
+}
+.main-menu_menu-item--why-accessibility {
+  right: 40%;
+  bottom: 3%;
+  transform: translate(50%, 50%);
+}
+
 .main-menu-modal {
   position: fixed;
   z-index: 5;

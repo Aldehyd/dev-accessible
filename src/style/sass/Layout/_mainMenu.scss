@@ -1,0 +1,46 @@
+.main-menu {
+    position: relative;
+    height: 75vh;
+    width: 80vw;
+    padding-top: 40px;
+    &_line_svg {
+        height: 100%;
+        width: 100%;
+        fill: map-get($colors,white);
+    }
+    &_menu {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+    }
+    &_menu-item {
+        position: absolute;
+        &--home {
+            left: 30%;
+            top: 13%;
+            transform: translate(-50%,-50%);
+        }
+        &--who-am-i {
+            left: 40%;
+            top: 34%;
+            transform: translate(-50%,-50%);
+        }
+        &--cv {
+            right: 40%;
+            top: 26%;
+            transform: translate(50%,-50%);
+        }
+        &--achievments {
+            right: 28%;
+            bottom: 40%;
+            transform: translate(50%,50%);
+        }
+        &--why-accessibility {
+            right: 40%;
+            bottom: 3%;
+            transform: translate(50%,50%);
+        }
+    }
+}

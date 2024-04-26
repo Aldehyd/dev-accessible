@@ -6,7 +6,6 @@ import ShortcutsContext from './Contexts/shortcuts-context.tsx';
 import CarouselContext from './Contexts/caroussel-context.tsx';
 import Layouts from './Layout/index.tsx';
 import Achievments from './Pages/achievments.tsx';
-import UnderConstruction from './Pages/underConstruction.tsx';
 import AchievmentPrivacyPolicy from './Pages/achievmentPrivacyPolicy.tsx';
 import {localShortcuts} from './Datas/shortcuts.tsx';
 import AchievmentDetails from './Pages/achievmentDetails.tsx';
@@ -24,6 +23,7 @@ import PrivacyPolicy from './Pages/privacyPolicy.tsx';
 import Prices from './Pages/prices.tsx';
 import LandingPage from './Pages/landingPage.tsx';
 import EnvironnementContext from './Contexts/environnement-context.tsx';
+import Home from './Pages/home.tsx';
 
 export default function App(): React.JSX.Element {
 
@@ -79,7 +79,7 @@ export default function App(): React.JSX.Element {
                                         <Route path="/components" element={<Components />} />
                                         <Route path="/layouts" element={<Layouts />} />
                                         <Route path="/" element={<LandingPage />} />
-                                        <Route path="/home" element={<UnderConstruction />} />
+                                        <Route path="/home" element={<Home />} />
                                         <Route path="/who-am-i" element={<WhoAmI />} />
                                         <Route path="/achievments" element={<Achievments />} />
                                         <Route path="/achievments/:achievment" element={<AchievmentDetails />} />
