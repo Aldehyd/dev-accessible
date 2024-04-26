@@ -7,6 +7,7 @@ import MainTitle from "../Components/main-title.tsx";
 import LandingPageChoice from "../Components/landing-page-choice.tsx";
 import FlyingSaucer from "../Components/flying-saucer.tsx";
 import EnvironnementContext from "../Contexts/environnement-context.tsx";
+import LanguageModal from "../Modals/LanguageModal.tsx";
 
 export default function LandingPage(): React.JSX.Element {
 
@@ -14,7 +15,7 @@ export default function LandingPage(): React.JSX.Element {
     const {environnement,changeEnvironnement} = useContext(EnvironnementContext);
 
     const [isAccessibilitySettingsModalDisplayed,setIsAccessibilitySettingsModalDisplayed] = useState<boolean>(false);
-
+    const [isLanguageModalDisplayed,setIsLanguageModalDisplayed] = useState<boolean>(false);
     const [choice,setChoice] = useState("");
 
     const recruiterClassList = `landing-page_choice-container ${choice === "client" ? "broken" : ""}`;
@@ -34,9 +35,11 @@ export default function LandingPage(): React.JSX.Element {
     return (
         <>
             {isModalDisplayed && <ModalDarkBackground />}
+            {isLanguageModalDisplayed && <LanguageModal setDisplay={setIsLanguageModalDisplayed} />}
             {isAccessibilitySettingsModalDisplayed && <AccessibilitySettingsModal setDisplay={setIsAccessibilitySettingsModalDisplayed} />}
             <header>
-                <TopMenu landingPage={true} setAccessibilityModalDisplay={setIsAccessibilitySettingsModalDisplayed} />
+                <TopMenu setAccessibilityModalDisplay={setIsAccessibilitySettingsModalDisplayed}
+                    setLanguageModalDisplay={setIsLanguageModalDisplayed}  />
             </header>
             <main className={mainClassList}>
                 <MainTitle home={true} frenchText="Bienvenue !" englishText="Welcome !" />

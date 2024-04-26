@@ -1,10 +1,13 @@
-
 import { useContext, useEffect, useState, useRef } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 
-export default function LanguageSelect(): React.JSX.Element {
+interface LanguageSelectPropsInterface {
+    setDisplay: (display: boolean)=> void
+}
+
+export default function LanguageSelect({setDisplay}:LanguageSelectPropsInterface): React.JSX.Element {
     
-    const {language,changeLanguage} = useContext(LanguageContext);
+    const {language} = useContext(LanguageContext);
 
     const [selectClassList,setSelectClassList] = useState("language-select");
     const [topClassList,setTopClassList] = useState("language-select_top");
@@ -22,7 +25,8 @@ export default function LanguageSelect(): React.JSX.Element {
 
     const handleClickOnOption = (choice)=> {
         if(choice !== language) {
-            changeLanguage(choice);
+            // changeLanguage(choice);
+            setDisplay(true);
             setExpanded("false");
         };
     };

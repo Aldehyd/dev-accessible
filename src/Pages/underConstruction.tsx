@@ -6,11 +6,13 @@ import ModalDarkBackground from "../Components/modal-dark-background.tsx";
 import AccessibilitySettingsModal from "../Modals/AccessibilitySettingsModal.tsx";
 import ModalContext from "../Contexts/modal-context.tsx";
 import EnvironnementModal from "../Modals/EnvironnementModal.tsx";
+import LanguageModal from "../Modals/LanguageModal.tsx";
 
 export default function UnderConstruction(): React.JSX.Element {
 
     const {isModalDisplayed} = useContext(ModalContext);
     const [isAccessibilitySettingsModalDisplayed,setIsAccessibilitySettingsModalDisplayed] = useState<boolean>(false);
+    const [isLanguageModalDisplayed,setIsLanguageModalDisplayed] = useState<boolean>(false);
     const [isEnvironnementModalDisplayed,setIsEnvironnementModalDisplayed] = useState<boolean>(false);
 
     useEffect(()=> {
@@ -24,10 +26,12 @@ export default function UnderConstruction(): React.JSX.Element {
     return (
         <>
             {isModalDisplayed && <ModalDarkBackground />}
+            {isLanguageModalDisplayed && <LanguageModal setDisplay={setIsLanguageModalDisplayed} />}
             {isEnvironnementModalDisplayed && <EnvironnementModal setDisplay={setIsEnvironnementModalDisplayed} />}
             {isAccessibilitySettingsModalDisplayed && <AccessibilitySettingsModal setDisplay={setIsAccessibilitySettingsModalDisplayed} />}
             <header>
                 <TopMenu setAccessibilityModalDisplay={setIsAccessibilitySettingsModalDisplayed}
+                    setLanguageModalDisplay={setIsLanguageModalDisplayed}
                     setEnvironnementModalDisplay={setIsEnvironnementModalDisplayed} 
                     home={true} />
             </header>
