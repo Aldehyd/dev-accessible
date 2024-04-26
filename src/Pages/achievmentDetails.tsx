@@ -10,12 +10,14 @@ import ModalDarkBackground from "../Components/modal-dark-background.tsx";
 import AccessibilitySettingsModal from "../Modals/AccessibilitySettingsModal.tsx";
 import BottomMenu from "../Layout/bottomMenu.tsx";
 import LanguageModal from "../Modals/LanguageModal.tsx";
+import MainMenuModal from "../Layout/mainMenuModal.tsx";
 
 export default function AchievmentDetails(): React.JSX.Element {
 
     const {isModalDisplayed} = useContext(ModalContext);
     const [isAccessibilitySettingsModalDisplayed,setIsAccessibilitySettingsModalDisplayed] = useState<boolean>(false);
     const [isLanguageModalDisplayed,setIsLanguageModalDisplayed] = useState<boolean>(false);
+    const [isMainMenuExpanded,setIsMainMenuExpanded] = useState<boolean>(false);
 
     const {achievments} = useContext(AchievmentsContext);
 
@@ -39,6 +41,7 @@ export default function AchievmentDetails(): React.JSX.Element {
                 <TopMenu setAccessibilityModalDisplay={setIsAccessibilitySettingsModalDisplayed}
                     setLanguageModalDisplay={setIsLanguageModalDisplayed} />
             </header>
+            <MainMenuModal isExpanded={isMainMenuExpanded} setIsExpanded={setIsMainMenuExpanded} />
             <main>
                 <MainTitle frenchText={achievment} englishText={achievment} />
                 <AchievmentDetailsMain achievment={currentAchievment} />

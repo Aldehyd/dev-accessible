@@ -8,12 +8,14 @@ import BackLink from "../Components/back-link.tsx";
 import BottomMenu from "../Layout/bottomMenu.tsx";
 import PricesMain from "../Layout/pricesMain.tsx";
 import LanguageModal from "../Modals/LanguageModal.tsx";
+import MainMenuModal from "../Layout/mainMenuModal.tsx";
 
 export default function Prices(): React.JSX.Element {
 
     const {isModalDisplayed} = useContext(ModalContext);
     const [isAccessibilitySettingsModalDisplayed,setIsAccessibilitySettingsModalDisplayed] = useState<boolean>(false);
     const [isLanguageModalDisplayed,setIsLanguageModalDisplayed] = useState<boolean>(false);
+    const [isMainMenuExpanded,setIsMainMenuExpanded] = useState<boolean>(false);
 
     return (
         <>
@@ -24,6 +26,7 @@ export default function Prices(): React.JSX.Element {
                 <TopMenu setAccessibilityModalDisplay={setIsAccessibilitySettingsModalDisplayed}
                     setLanguageModalDisplay={setIsLanguageModalDisplayed} />
             </header>
+            <MainMenuModal isExpanded={isMainMenuExpanded} setIsExpanded={setIsMainMenuExpanded} />
             <main>
                 <BackLink />
                 <MainTitle frenchText="Tarifs" englishText="Prices" />

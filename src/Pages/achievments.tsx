@@ -13,6 +13,7 @@ import AccessibilitySettingsModal from "../Modals/AccessibilitySettingsModal.tsx
 import BackLink from "../Components/back-link.tsx";
 import BottomMenu from "../Layout/bottomMenu.tsx";
 import LanguageModal from "../Modals/LanguageModal.tsx";
+import MainMenuModal from "../Layout/mainMenuModal.tsx";
 
 export default function Achievments(): React.JSX.Element {
 
@@ -20,7 +21,8 @@ export default function Achievments(): React.JSX.Element {
     const [isAccessibilitySettingsModalDisplayed,setIsAccessibilitySettingsModalDisplayed] = useState<boolean>(false);
     const [isLanguageModalDisplayed,setIsLanguageModalDisplayed] = useState<boolean>(false);
     const [achievments,setAchievments] = useState<AchievmentInterface[]>([]);
-    
+    const [isMainMenuExpanded,setIsMainMenuExpanded] = useState<boolean>(false);
+
     const [isLoading,setIsLoading] = useState<boolean>(true);
     const [error,setError] = useState<boolean>(false);
 
@@ -51,6 +53,7 @@ export default function Achievments(): React.JSX.Element {
                 <TopMenu setAccessibilityModalDisplay={setIsAccessibilitySettingsModalDisplayed}
                     setLanguageModalDisplay={setIsLanguageModalDisplayed} />
             </header>
+            <MainMenuModal isExpanded={isMainMenuExpanded} setIsExpanded={setIsMainMenuExpanded} />
             <main>
                 <MainTitle frenchText="Réalisations" englishText="Achievments"/>
                 <BackLink />
