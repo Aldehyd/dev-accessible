@@ -86,7 +86,7 @@ export default function App(): React.JSX.Element {
                                         <Route path="/achievments/:achievment/privacy-policy" element={<AchievmentPrivacyPolicy />} />
                                         <Route path="/cv" element={<CV />} />
                                         <Route path="/why-accessibility" element={<WhyAccessibility />} />
-                                        <Route path="/prices" element={<Prices />} />
+                                        {/* <Route path="/prices" element={<Prices />} /> */}
                                         <Route path="/contact" element={<Contact />} />
                                         <Route path="/legal-mentions" element={<LegalMentions />} />
                                         <Route path="/site-map" element={<SiteMap />} />
