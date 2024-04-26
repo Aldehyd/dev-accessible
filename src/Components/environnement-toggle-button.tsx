@@ -2,12 +2,16 @@ import { useContext, useEffect, useState } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 import EnvironnementContext from "../Contexts/environnement-context.tsx";
 
-export default function EnvironnementToggleButton(): React.JSX.Element {
+export default function EnvironnementToggleButton({setDisplay}): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
     const [environnement,setEnvironnement] = useState(useContext(EnvironnementContext).environnement);
 
     const [classNames,setClassNames] = useState<string>(`environnement-toggle-button`);
+
+    const onClickFunction = ()=> {
+        setDisplay(true);
+    };
 
     useEffect(()=> {
         console.log(environnement)
@@ -15,7 +19,7 @@ export default function EnvironnementToggleButton(): React.JSX.Element {
     },[environnement]);
 
     return(
-        <button className={classNames}>
+        <button className={classNames} onClick={()=> onClickFunction()}>
             <span aria-hidden="true" className="environnement-toggle-button_invisible-text">Recruiter</span>
             <span className="environnement-toggle-button_overflow-container">
                 <span aria-hidden="true" className="environnement-toggle-button_invisible-text">Recruiter</span>

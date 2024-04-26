@@ -6,11 +6,12 @@ import AccessibilitySettingsButton from "../Components/accessibility-settings-bu
 import EnvironnementToggleButton from "../Components/environnement-toggle-button.tsx";
 
 interface TopMenuPropsInterface {
-    landingPage?: boolean,
-    setAccessibilityModalDisplay: (display: boolean)=> void
+    home: boolean,
+    setAccessibilityModalDisplay: (display: boolean)=> void,
+    setEnvironnementModalDisplay: (display: boolean)=> void
 }
 
-export default function TopMenu({landingPage=false,setAccessibilityModalDisplay}: TopMenuPropsInterface): React.JSX.Element {
+export default function TopMenu({home=false,setAccessibilityModalDisplay,setEnvironnementModalDisplay}: TopMenuPropsInterface): React.JSX.Element {
 
     return (
         <div className="top-menu">
@@ -20,7 +21,7 @@ export default function TopMenu({landingPage=false,setAccessibilityModalDisplay}
                 <LanguageSelect />
                 <AccessibilityAnalysisIndicator />
                 <SearchBar />
-                {!landingPage && <EnvironnementToggleButton />}
+                {home && <EnvironnementToggleButton setDisplay={setEnvironnementModalDisplay} />}
             </div>
     </div>
     )

@@ -5,11 +5,13 @@ import TopMenu from "../Layout/topMenu.tsx";
 import ModalDarkBackground from "../Components/modal-dark-background.tsx";
 import AccessibilitySettingsModal from "../Modals/AccessibilitySettingsModal.tsx";
 import ModalContext from "../Contexts/modal-context.tsx";
+import EnvironnementModal from "../Modals/EnvironnementModal.tsx";
 
 export default function UnderConstruction(): React.JSX.Element {
 
     const {isModalDisplayed} = useContext(ModalContext);
     const [isAccessibilitySettingsModalDisplayed,setIsAccessibilitySettingsModalDisplayed] = useState<boolean>(false);
+    const [isEnvironnementModalDisplayed,setIsEnvironnementModalDisplayed] = useState<boolean>(false);
 
     useEffect(()=> {
         if(isModalDisplayed) {
@@ -22,9 +24,12 @@ export default function UnderConstruction(): React.JSX.Element {
     return (
         <>
             {isModalDisplayed && <ModalDarkBackground />}
+            {isEnvironnementModalDisplayed && <EnvironnementModal setDisplay={setIsEnvironnementModalDisplayed} />}
             {isAccessibilitySettingsModalDisplayed && <AccessibilitySettingsModal setDisplay={setIsAccessibilitySettingsModalDisplayed} />}
             <header>
-                <TopMenu setAccessibilityModalDisplay={setIsAccessibilitySettingsModalDisplayed} />
+                <TopMenu setAccessibilityModalDisplay={setIsAccessibilitySettingsModalDisplayed}
+                    setEnvironnementModalDisplay={setIsEnvironnementModalDisplayed} 
+                    home={true} />
             </header>
             <div className="under-construction-page">
                 <TemporaryMenu />
