@@ -1,0 +1,99 @@
+.flying-saucer {
+    position: absolute;
+    top: 20px;
+    height: 30px;
+    width: 100px;
+    &.left {
+        transform: translateX(-50%);
+        left: -100px;
+    }
+    &.right {
+        transform: translateX(50%);
+        right: -100px;
+    }
+    &_head {
+        position: absolute;
+        z-index: 2;
+        left: 50%;
+        bottom: 15px;
+        transform: translateX(-50%);
+        height: 20px;
+        width: 35px;
+        background-color: map-get($colors,blue);
+        border-radius: 50%;
+    }
+    &_body {
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        background-color: map-get($colors,darkBackground);
+        border-radius: 50%;
+        box-shadow: 1px 1px 5px 2px map-get($colors,blue);
+    }
+    &::after {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        transform: translateX(-50%);
+        opacity: 0;
+        top: 0;
+        left: 50%;
+        width: 1rem;
+        height: 1rem;
+        box-shadow: 0 0 1rem 0.5rem map-get($colors,blue), inset 0 0 0.5rem 0.2rem map-get($colors,blue);
+        border-color: transparent;
+        border-radius: 50%;
+    }
+}
+.landing-page_choice-container.broken {
+    & .flying-saucer {
+        &.left {
+            animation: leftMove 2.5s ease-in-out forwards;
+        }
+        &.right {
+            animation: rightMove 2.5s ease-in-out forwards;
+        }
+        &::after {
+            animation: shoot 1s 1s forwards;
+        }
+    }
+}
+
+@keyframes leftMove {
+    45% {
+        left: 50%;
+    }
+    75% {
+        left: 50%;
+    }
+    100% {
+        left: -100px;
+    }
+}
+
+@keyframes rightMove {
+    45% {
+        right: 50%;
+    }
+    75% {
+        right: 50%;
+    }
+    100% {
+        right: -100px;
+    }
+}
+
+@keyframes shoot {
+    1% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%,300px) scale(1);
+    }
+    80% {
+        opacity: 0;
+        transform: translate(-50%,300px) scale(20);
+    }
+}

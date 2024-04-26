@@ -149,9 +149,9 @@ export default function SendSimulationForm({simulation,currentEstimation}: SendS
                     <label htmlFor="mail">
                         {
                             language === "french" ?
-                                "Adresse mail* : (Format attendu : adresse@domaine.extension)"
+                                "Votre adresse mail* : (Format attendu : adresse@domaine.extension)"
                                 :
-                                "Mail* : (Expected format : adress@domain.extension)"
+                                "Your Mail* : (Expected format : adress@domain.extension)"
                         }
                     </label>
                     {

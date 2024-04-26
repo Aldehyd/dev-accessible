@@ -22,9 +22,11 @@ import Accessibility from './Pages/accessibility.tsx';
 import LegalMentions from './Pages/legalMentions.tsx';
 import PrivacyPolicy from './Pages/privacyPolicy.tsx';
 import Prices from './Pages/prices.tsx';
+import LandingPage from './Pages/landingPage.tsx';
+import EnvironnementContext from './Contexts/environnement-context.tsx';
 
 export default function App(): React.JSX.Element {
-    
+
     const [isModalDisplayed,setIsModalDisplayed] = useState<boolean>(false);
     const changeIsModalDisplayed : (isModalDisplayed: boolean)=> void = (isModalDisplayed)=> {
         setIsModalDisplayed(isModalDisplayed);
@@ -33,6 +35,11 @@ export default function App(): React.JSX.Element {
     const [language,setLanguage] = useState(localStorage.getItem('language') !== undefined && localStorage.getItem('language') !== null && localStorage.getItem('language') === "english" ? "english" : "french"); 
     const changeLanguage : (language: string) => void = (language)=> {
         setLanguage(language);
+    };
+
+    const [environnement,setEnvironnement] = useState<string>("");
+    const changeEnvironnement : (environnement: string)=> void = (environnement)=> {
+        setEnvironnement(environnement);
     };
 
     const [shortcuts,setShortcuts] = useState<{id: number, name: string, defaultKey: string, currentKey: string, frenchLabel: string, englishLabel: string}[]>(localStorage.getItem('shortcuts') !== undefined && localStorage.getItem('shortcuts') !== null ? JSON.parse(localStorage.getItem('shortcuts')) : localShortcuts); 
@@ -63,31 +70,34 @@ export default function App(): React.JSX.Element {
     return(
         <ModalContext.Provider value ={{isModalDisplayed,changeIsModalDisplayed}}>
             <LanguageContext.Provider value ={{language,changeLanguage}}>
-                <ShortcutsContext.Provider value={{shortcuts,changeShortcuts}}>
-                    <AchievmentsContext.Provider value={{achievments,changeAchievments}}>
-                        <CarouselContext.Provider value={{displayCarousel,picturesFullScreen,currentPictureFullScreen,changeDisplayCarousel,changePicturesFullScreen,changeCurrentPictureFullScreen}}>
-                            <Router>
-                                <Routes>
-                                    <Route path="/components" element={<Components />} />
-                                    <Route path="/layouts" element={<Layouts />} />
-                                    <Route path="/" element={<UnderConstruction />} />
-                                    <Route path="/who-am-i" element={<WhoAmI />} />
-                                    <Route path="/achievments" element={<Achievments />} />
-                                    <Route path="/achievments/:achievment" element={<AchievmentDetails />} />
-                                    <Route path="/achievments/:achievment/privacy-policy" element={<AchievmentPrivacyPolicy />} />
-                                    <Route path="/cv" element={<CV />} />
-                                    <Route path="/why-accessibility" element={<WhyAccessibility />} />
-                                    <Route path="/prices" element={<Prices />} />
-                                    <Route path="/contact" element={<Contact />} />
-                                    <Route path="/legal-mentions" element={<LegalMentions />} />
-                                    <Route path="/site-map" element={<SiteMap />} />
-                                    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                                    <Route path="/accessibility" element={<Accessibility />} />
-                                </Routes>
-                            </Router>
-                        </CarouselContext.Provider>
-                    </AchievmentsContext.Provider>
-                </ShortcutsContext.Provider>
+                <EnvironnementContext.Provider value={{environnement,changeEnvironnement}}>
+                    <ShortcutsContext.Provider value={{shortcuts,changeShortcuts}}>
+                        <AchievmentsContext.Provider value={{achievments,changeAchievments}}>
+                            <CarouselContext.Provider value={{displayCarousel,picturesFullScreen,currentPictureFullScreen,changeDisplayCarousel,changePicturesFullScreen,changeCurrentPictureFullScreen}}>
+                                <Router>
+                                    <Routes>
+                                        <Route path="/components" element={<Components />} />
+                                        <Route path="/layouts" element={<Layouts />} />
+                                        <Route path="/" element={<LandingPage />} />
+                                        <Route path="/home" element={<UnderConstruction />} />
+                                        <Route path="/who-am-i" element={<WhoAmI />} />
+                                        <Route path="/achievments" element={<Achievments />} />
+                                        <Route path="/achievments/:achievment" element={<AchievmentDetails />} />
+                                        <Route path="/achievments/:achievment/privacy-policy" element={<AchievmentPrivacyPolicy />} />
+                                        <Route path="/cv" element={<CV />} />
+                                        <Route path="/why-accessibility" element={<WhyAccessibility />} />
+                                        <Route path="/prices" element={<Prices />} />
+                                        <Route path="/contact" element={<Contact />} />
+                                        <Route path="/legal-mentions" element={<LegalMentions />} />
+                                        <Route path="/site-map" element={<SiteMap />} />
+                                        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                                        <Route path="/accessibility" element={<Accessibility />} />
+                                    </Routes>
+                                </Router>
+                            </CarouselContext.Provider>
+                        </AchievmentsContext.Provider>
+                    </ShortcutsContext.Provider>
+                </EnvironnementContext.Provider>
             </LanguageContext.Provider>
         </ModalContext.Provider>
     )
