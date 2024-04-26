@@ -34,7 +34,7 @@ export default function CV(): React.JSX.Element {
     const [error,setError] = useState<boolean>(false);
 
     useEffect(()=> {
-        fetchData('https://dev-accessible.com/cv-status',setStatus,setIsStatusLoading,setError);
+        fetchData('https://dev-accessible.com/cv-statu',setStatus,setIsStatusLoading,setError);
         fetchData('https://dev-accessible.com/cv-achievments',setAchievments,setIsAchievmentsLoading,setError);
         fetchData('https://dev-accessible.com/cv-diplomas',setDiplomas,setIsDiplomasLoading,setError);
         fetchData('https://dev-accessible.com/cv-languages',setLanguages,setIsLanguagesLoading,setError);

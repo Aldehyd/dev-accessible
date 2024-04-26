@@ -1942,7 +1942,7 @@ body:not(.contrast).purple .cv_main-line {
 
 .error_smiley {
   position: relative;
-  height: 5rem;
+  height: 8rem;
   width: 5rem;
   background-color: hsl(175deg, 95%, 55%);
   border-radius: 50%;
@@ -1953,29 +1953,31 @@ body:not(.contrast).purple .cv_main-line {
   position: absolute;
   display: flex;
   justify-content: space-between;
-  top: 1.2rem;
+  top: 2.2rem;
   padding: 0 1.2rem;
   width: 100%;
 }
 .error_smiley_left-eye {
-  height: 0.7rem;
-  width: 0.7rem;
+  height: 2.5rem;
+  width: 0.9rem;
   background-color: hsl(0deg, 6%, 10%);
   border-radius: 50%;
+  transform: rotate(-5deg);
 }
 .error_smiley_right-eye {
-  height: 0.7rem;
-  width: 0.7rem;
+  height: 2.5rem;
+  width: 0.9rem;
   background-color: hsl(0deg, 6%, 10%);
   border-radius: 50%;
+  transform: rotate(5deg);
 }
 .error_smiley_mouth {
   position: absolute;
-  top: 3.5rem;
+  bottom: 1rem;
   left: 50%;
   transform: translateX(-50%) rotate(-5deg);
   height: 0.3rem;
-  width: 2rem;
+  width: 1.5rem;
   background-color: hsl(0deg, 6%, 10%);
   border-radius: 0.1rem;
 }
