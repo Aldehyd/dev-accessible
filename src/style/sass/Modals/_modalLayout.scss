@@ -142,3 +142,14 @@ body.animations {
         }
     }
 }
+
+//temporary
+body:not(.contrast) .warning-modal-container .modal-layout {
+    color: map-get($colors,red);
+    font-size: 1.6rem;
+    font-weight: bold;
+    &_title {
+        color: map-get($colors,red);
+        text-shadow: 0 0.2rem 0.4rem map-get($colors,red);
+    }
+}

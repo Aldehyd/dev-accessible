@@ -4025,6 +4025,16 @@ body.animations .modal-layout:focus-within::before {
   animation: onHoverBeforeModal 2000ms ease-in-out infinite;
 }
 
+body:not(.contrast) .warning-modal-container .modal-layout {
+  color: hsl(0deg, 95%, 55%);
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+body:not(.contrast) .warning-modal-container .modal-layout_title {
+  color: hsl(0deg, 95%, 55%);
+  text-shadow: 0 0.2rem 0.4rem hsl(0deg, 95%, 55%);
+}
+
 .under-construction-page {
   height: 100vh;
   display: flex;

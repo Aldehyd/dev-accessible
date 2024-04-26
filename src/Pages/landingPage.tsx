@@ -8,6 +8,7 @@ import LandingPageChoice from "../Components/landing-page-choice.tsx";
 import FlyingSaucer from "../Components/flying-saucer.tsx";
 import EnvironnementContext from "../Contexts/environnement-context.tsx";
 import LanguageModal from "../Modals/LanguageModal.tsx";
+import ConstructionWarningModal from "../Modals/constructionWarningModal.tsx";
 
 export default function LandingPage(): React.JSX.Element {
 
@@ -16,6 +17,7 @@ export default function LandingPage(): React.JSX.Element {
 
     const [isAccessibilitySettingsModalDisplayed,setIsAccessibilitySettingsModalDisplayed] = useState<boolean>(false);
     const [isLanguageModalDisplayed,setIsLanguageModalDisplayed] = useState<boolean>(false);
+    const [isWarningModalDisplayed,setIsWarningModalDisplayed] = useState<boolean>(true);
     const [choice,setChoice] = useState("");
 
     const recruiterClassList = `landing-page_choice-container ${choice === "client" ? "broken" : ""}`;
@@ -35,6 +37,7 @@ export default function LandingPage(): React.JSX.Element {
     return (
         <>
             {isModalDisplayed && <ModalDarkBackground />}
+            {isWarningModalDisplayed && <ConstructionWarningModal setDisplay={setIsWarningModalDisplayed} />}
             {isLanguageModalDisplayed && <LanguageModal setDisplay={setIsLanguageModalDisplayed} />}
             {isAccessibilitySettingsModalDisplayed && <AccessibilitySettingsModal setDisplay={setIsAccessibilitySettingsModalDisplayed} />}
             <header>
