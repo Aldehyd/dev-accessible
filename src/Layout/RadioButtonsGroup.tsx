@@ -17,7 +17,7 @@ export default function RadioButtonGroup({name,frenchLegend,englishLegend,radioB
     
     const options: string[] | undefined = radioButtonsData.map(radio => {return(radio.name)});
 
-    const [checkedButton,setCheckedButton] = useState<string>(options[0]);
+    const [checkedButton,setCheckedButton] = useState<string>(options.find(option => option === localStorage.getItem(name)) !== undefined ? options.find(option => option === localStorage.getItem(name)) : options[0]);
 
     const [buttonFocused,setButtonFocused] = useState<string>(options[0]);
 

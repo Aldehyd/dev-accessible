@@ -12,7 +12,7 @@ export default function Switch({name,frenchLabel,englishLabel,onSwitchFunction}:
 
     const {language} = useContext(LanguageContext);
 
-    const [switchStatus,setSwitchStatus] = useState<boolean>(false);
+    const [switchStatus,setSwitchStatus] = useState<boolean>(localStorage.getItem(name) === "true" ? true : false);
 
     const handleKeyDown : (e: KeyboardEvent) => void = (e)=> {
         switch(e.key) {
@@ -25,8 +25,8 @@ export default function Switch({name,frenchLabel,englishLabel,onSwitchFunction}:
                 break;
             default:
                 break;
-        }
-    }
+        };
+    };
 
     useEffect(()=> {
         const savedStatus = localStorage.getItem(name);
@@ -36,7 +36,7 @@ export default function Switch({name,frenchLabel,englishLabel,onSwitchFunction}:
         } else {
             setSwitchStatus(false);
         };
-    },[]);
+    },[name]);
 
     useEffect(()=> {
         if(switchStatus) {
@@ -45,7 +45,7 @@ export default function Switch({name,frenchLabel,englishLabel,onSwitchFunction}:
             onSwitchFunction(false);
         };
         localStorage.setItem(name,switchStatus.toString());
-    },[switchStatus,name]);
+    },[switchStatus,name,onSwitchFunction]);
     
     return (
         <div className="switch-container" onClick={()=> setSwitchStatus(switchStatus => !switchStatus)}>
