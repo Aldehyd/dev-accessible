@@ -7,6 +7,7 @@ import ModalContext from "../Contexts/modal-context.tsx";
 import EnvironnementModal from "../Modals/EnvironnementModal.tsx";
 import LanguageModal from "../Modals/LanguageModal.tsx";
 import MainMenu from "../Layout/mainMenu.tsx";
+import Accessibot from "../Components/accessibot.tsx";
 
 export default function Home(): React.JSX.Element {
 
@@ -41,6 +42,7 @@ export default function Home(): React.JSX.Element {
             <footer className="home">
                 <BottomMenu home={true} />
             </footer>
+            <Accessibot />
         </>
     )
 }
