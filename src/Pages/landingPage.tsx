@@ -36,7 +36,7 @@ export default function LandingPage(): React.JSX.Element {
             {isModalDisplayed && <ModalDarkBackground />}
             {isAccessibilitySettingsModalDisplayed && <AccessibilitySettingsModal setDisplay={setIsAccessibilitySettingsModalDisplayed} />}
             <header>
-                <TopMenu setAccessibilityModalDisplay={setIsAccessibilitySettingsModalDisplayed} />
+                <TopMenu landingPage={true} setAccessibilityModalDisplay={setIsAccessibilitySettingsModalDisplayed} />
             </header>
             <main className={mainClassList}>
                 <MainTitle home={true} frenchText="Bienvenue !" englishText="Welcome !" />

@@ -46,7 +46,8 @@
         border-radius: 50%;
     }
 }
-.landing-page_choice-container.broken {
+
+body.animations .landing-page_choice-container.broken {
     & .flying-saucer {
         &.left {
             animation: leftMove 2.5s ease-in-out forwards;
@@ -95,5 +96,19 @@
     80% {
         opacity: 0;
         transform: translate(-50%,300px) scale(20);
+    }
+}
+
+body:not(.contrast) {
+    &.purple {
+        & .flying-saucer_head {
+            background-color: map-get($colors,purple);
+        }
+        & .flying-saucer_body {
+            box-shadow: 1px 1px 5px 2px map-get($colors,purple);
+        }
+        & .flying-saucer::after {
+            box-shadow: 0 0 1rem 0.5rem map-get($colors,purple), inset 0 0 0.5rem 0.2rem map-get($colors,purple);
+        }
     }
 }

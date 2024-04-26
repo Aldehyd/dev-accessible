@@ -5,9 +5,14 @@ import EnvironnementContext from "../Contexts/environnement-context.tsx";
 export default function EnvironnementToggleButton(): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
-    const {environnement} = useContext(EnvironnementContext);
+    const [environnement,setEnvironnement] = useState(useContext(EnvironnementContext).environnement);
 
-    const classNames = useState<string>(`environnement-toggle-button ${environnement === "recruiter" ? "recruiter" : "client"}`);
+    const [classNames,setClassNames] = useState<string>(`environnement-toggle-button`);
+
+    useEffect(()=> {
+        console.log(environnement)
+        setClassNames(`environnement-toggle-button ${environnement === "recruiter" ? "recruiter" : "client"}`);
+    },[environnement]);
 
     return(
         <button className={classNames}>

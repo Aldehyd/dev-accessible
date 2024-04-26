@@ -8,9 +8,6 @@
     border-radius: 1rem;
     border: solid 0.2rem map-get($colors,white);
     cursor: pointer;
-    &:hover {
-        animation: onHoverButton 1400ms ease-in-out infinite;
-    }
     &_overflow-container {
         position: absolute;
         top: 0;
@@ -43,10 +40,6 @@
         box-shadow: 0 0 2rem 1rem map-get($colors,darkBackground);
         transform: scale(0.9);
     }
-    &:hover::before { 
-        transform: scale(1);
-        animation: onHoverBeforeButton 1400ms ease-in-out infinite;
-    }
 }
 
 .environnement-toggle-button.recruiter .environnement-toggle-button_text-container {
@@ -68,9 +61,23 @@
     }
 }
 
-body:not(.contrast) .environnement-toggle-button {
-    text-shadow: 0px 2px 4px map-get($colors,blue);
+body:not(.contrast) {
+    & .environnement-toggle-button {
+        text-shadow: 0px 2px 4px map-get($colors,blue);
+    }
+    &.purple {
+        & .environnement-toggle-button {
+            color: map-get($colors,purple);
+            text-shadow: 0px 2px 4px map-get($colors,purple);
+        }
+    }
 }
 body.contrast .environnement-toggle-button {
     border-color: map-get($colors,darkBackground);
+}
+
+body.animations {
+    & .environnement-toggle-button:hover::before {
+        animation: onHoverBeforeButton 1400ms ease-in-out infinite;
+    }
 }

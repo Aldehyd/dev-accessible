@@ -396,9 +396,6 @@ body.animations .basic-button::after {
   border: solid 0.2rem #f1f1f1;
   cursor: pointer;
 }
-.animations-toggle-button:hover {
-  animation: onHoverButton 1400ms ease-in-out infinite;
-}
 .animations-toggle-button_overflow-container {
   position: absolute;
   top: 0;
@@ -437,10 +434,6 @@ body.animations .basic-button::after {
   box-shadow: 0 0 2rem 1rem hsl(0deg, 6%, 10%);
   transform: scale(0.9);
 }
-.animations-toggle-button:hover::before {
-  transform: scale(1);
-  animation: onHoverBeforeButton 1400ms ease-in-out infinite;
-}
 
 .animations-toggle-button.on .animations-toggle-button_text-container {
   transform: translateX(0);
@@ -470,6 +463,10 @@ body:not(.contrast) .animations-toggle-button_off {
 
 body.contrast .animations-toggle-button {
   border-color: hsl(0deg, 6%, 10%);
+}
+
+body.animations .animations-toggle-button:hover::before {
+  animation: onHoverBeforeButton 1400ms ease-in-out infinite;
 }
 
 .switch-container {
@@ -2223,13 +2220,13 @@ body:not(.contrast).purple .progress-bar_bar {
   border-radius: 50%;
 }
 
-.landing-page_choice-container.broken .flying-saucer.left {
+body.animations .landing-page_choice-container.broken .flying-saucer.left {
   animation: leftMove 2.5s ease-in-out forwards;
 }
-.landing-page_choice-container.broken .flying-saucer.right {
+body.animations .landing-page_choice-container.broken .flying-saucer.right {
   animation: rightMove 2.5s ease-in-out forwards;
 }
-.landing-page_choice-container.broken .flying-saucer::after {
+body.animations .landing-page_choice-container.broken .flying-saucer::after {
   animation: shoot 1s 1s forwards;
 }
 
@@ -2268,6 +2265,16 @@ body:not(.contrast).purple .progress-bar_bar {
     transform: translate(-50%, 300px) scale(20);
   }
 }
+body:not(.contrast).purple .flying-saucer_head {
+  background-color: hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .flying-saucer_body {
+  box-shadow: 1px 1px 5px 2px hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .flying-saucer::after {
+  box-shadow: 0 0 1rem 0.5rem hsl(295deg, 95%, 55%), inset 0 0 0.5rem 0.2rem hsl(295deg, 95%, 55%);
+}
+
 .environnement-toggle-button {
   position: relative;
   padding: 1rem;
@@ -2278,9 +2285,6 @@ body:not(.contrast).purple .progress-bar_bar {
   border-radius: 1rem;
   border: solid 0.2rem #f1f1f1;
   cursor: pointer;
-}
-.environnement-toggle-button:hover {
-  animation: onHoverButton 1400ms ease-in-out infinite;
 }
 .environnement-toggle-button_overflow-container {
   position: absolute;
@@ -2314,10 +2318,6 @@ body:not(.contrast).purple .progress-bar_bar {
   box-shadow: 0 0 2rem 1rem hsl(0deg, 6%, 10%);
   transform: scale(0.9);
 }
-.environnement-toggle-button:hover::before {
-  transform: scale(1);
-  animation: onHoverBeforeButton 1400ms ease-in-out infinite;
-}
 
 .environnement-toggle-button.recruiter .environnement-toggle-button_text-container {
   transform: translateX(0);
@@ -2341,9 +2341,17 @@ body:not(.contrast).purple .progress-bar_bar {
 body:not(.contrast) .environnement-toggle-button {
   text-shadow: 0px 2px 4px hsl(175deg, 95%, 55%);
 }
+body:not(.contrast).purple .environnement-toggle-button {
+  color: hsl(295deg, 95%, 55%);
+  text-shadow: 0px 2px 4px hsl(295deg, 95%, 55%);
+}
 
 body.contrast .environnement-toggle-button {
   border-color: hsl(0deg, 6%, 10%);
+}
+
+body.animations .environnement-toggle-button:hover::before {
+  animation: onHoverBeforeButton 1400ms ease-in-out infinite;
 }
 
 .radio-group {
@@ -3523,7 +3531,7 @@ body.animations .achievments-filter_content {
 .top-menu {
   position: relative;
   height: 4rem;
-  width: 105rem;
+  width: 115rem;
   max-width: 95%;
   background-color: #f1f1f1;
   border-radius: 0 0 8rem 0;
@@ -3983,10 +3991,6 @@ body.animations .modal-layout:focus-within::before {
   transform: translateY(0);
   animation: choicesContainerAppear 0.8s 0.4s ease-in-out backwards;
 }
-.landing-page_main.disappear {
-  transform-origin: 50% 0;
-  animation: choicesContainerDisappear 0.8s ease-in-out forwards;
-}
 .landing-page_choices-container {
   height: 100%;
   width: 100%;
@@ -3997,13 +4001,6 @@ body.animations .modal-layout:focus-within::before {
   position: relative;
   flex-grow: 1;
   display: flex;
-}
-.landing-page_choice-container.broken .landing-page_choice {
-  animation: broken 2.5s 1.7s forwards;
-}
-.landing-page_choice-container:hover .landing-page_choice {
-  transform: scale(1.2);
-  transition: 400ms ease-in-out;
 }
 .landing-page_choice {
   position: relative;
@@ -4078,6 +4075,23 @@ main.landing-page_main {
 main.landing-page_main .main-title {
   top: 2rem;
   transform: translate(-50%, 0);
+}
+
+body:not(.contrast).purple .landing-page_choice {
+  color: hsl(295deg, 95%, 55%);
+  border: solid 0.5rem hsl(295deg, 95%, 55%);
+}
+
+body.animations .landing-page_main.disappear {
+  transform-origin: 50% 0;
+  animation: choicesContainerDisappear 0.8s ease-in-out forwards;
+}
+body.animations .landing-page_choice-container.broken .landing-page_choice {
+  animation: broken 2.5s 1.7s forwards;
+}
+body.animations .landing-page_choice-container:hover .landing-page_choice {
+  transform: scale(1.2);
+  transition: 400ms ease-in-out;
 }
 
 .components-layout {
