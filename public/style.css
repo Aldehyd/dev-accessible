@@ -2375,12 +2375,6 @@ body:not(.contrast).purple .flying-saucer::after {
   opacity: 0;
 }
 
-@media screen and (max-width: 1200px) {
-  .accessibility-bot {
-    left: 900px;
-    top: 70px;
-  }
-}
 body.animations .accessibility-bot {
   transition: ease-in-out 500ms;
 }
