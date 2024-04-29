@@ -7,7 +7,7 @@
     background-color: map-get($colors,white);
     border-radius: 0 2rem 2rem 0;
     box-shadow: inset map-get($colors,switchBlackBoxShadow) 0.5rem 0.5rem 0.5rem;
-    transform: translateX(-25rem);
+    transform: translateX(-80%);
     transition: transform 300ms ease-in-out;
     &[aria-expanded="true"] {
         transform: translateX(0);

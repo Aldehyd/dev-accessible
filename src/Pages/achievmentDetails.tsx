@@ -10,7 +10,7 @@ import ModalDarkBackground from "../Components/modal-dark-background.tsx";
 import AccessibilitySettingsModal from "../Modals/AccessibilitySettingsModal.tsx";
 import BottomMenu from "../Layout/bottomMenu.tsx";
 import LanguageModal from "../Modals/LanguageModal.tsx";
-import MainMenuModal from "../Layout/mainMenuModal.tsx";
+import MainMenuModal from '../Modals/mainMenuModal.tsx';
 
 export default function AchievmentDetails(): React.JSX.Element {
 

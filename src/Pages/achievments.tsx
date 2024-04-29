@@ -13,7 +13,7 @@ import AccessibilitySettingsModal from "../Modals/AccessibilitySettingsModal.tsx
 import BackLink from "../Components/back-link.tsx";
 import BottomMenu from "../Layout/bottomMenu.tsx";
 import LanguageModal from "../Modals/LanguageModal.tsx";
-import MainMenuModal from "../Layout/mainMenuModal.tsx";
+import MainMenuModal from '../Modals/mainMenuModal.tsx';
 
 export default function Achievments(): React.JSX.Element {
 

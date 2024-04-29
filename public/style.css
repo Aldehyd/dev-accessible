@@ -4143,7 +4143,7 @@ body.animations .main-menu_line_svg {
   background-color: #f1f1f1;
   border-radius: 0 2rem 2rem 0;
   box-shadow: inset rgba(0, 0, 0, 0.3) 0.5rem 0.5rem 0.5rem;
-  transform: translateX(-25rem);
+  transform: translateX(-80%);
   transition: transform 300ms ease-in-out;
 }
 .main-menu-modal[aria-expanded=true] {

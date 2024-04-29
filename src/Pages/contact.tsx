@@ -8,7 +8,7 @@ import MainTitle from "../Components/main-title.tsx";
 import BottomMenu from "../Layout/bottomMenu.tsx";
 import ContactForm from "../Layout/contactForm.tsx";
 import LanguageModal from "../Modals/LanguageModal.tsx";
-import MainMenuModal from "../Layout/mainMenuModal.tsx";
+import MainMenuModal from '../Modals/mainMenuModal.tsx';
 
 export default function Contact(): React.JSX.Element {
 

@@ -41,7 +41,7 @@ export default function MainMenuModal({isExpanded,setIsExpanded}: MainMenuPropsI
                 <div className="basic-button-shadow"></div>
             </div>
             <nav role="navigation">
-                <ul className="main-menu" role="menu"
+                <ul role="menu"
                     aria-labelledby="main-menu-modal_toggle-button">
                     <li>
                         <MainLink frenchText="Accueil" englishText="Home" route="/home" />
