@@ -2424,7 +2424,7 @@ body.animations .accessibility-bot_hover .accessibility-bot_right-eye {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-40px);
+    transform: translateY(-30px);
   }
   100% {
     transform: translateY(0);
