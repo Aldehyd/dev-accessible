@@ -14,6 +14,7 @@ import BackLink from "../Components/back-link.tsx";
 import BottomMenu from "../Layout/bottomMenu.tsx";
 import LanguageModal from "../Modals/LanguageModal.tsx";
 import MainMenuModal from '../Modals/mainMenuModal.tsx';
+import AccessibilityAnalysisInfosModal from "../Modals/accessibilityAnalysisInfosModal.tsx";
 
 export default function Achievments(): React.JSX.Element {
 
@@ -22,6 +23,7 @@ export default function Achievments(): React.JSX.Element {
     const [isLanguageModalDisplayed,setIsLanguageModalDisplayed] = useState<boolean>(false);
     const [achievments,setAchievments] = useState<AchievmentInterface[]>([]);
     const [isMainMenuExpanded,setIsMainMenuExpanded] = useState<boolean>(false);
+    const [isAccessibilityAnalysisInfosModalDisplayed,setIsAccessibilityAnalysisInfosModalDisplayed] = useState<boolean>(false);
 
     const [isLoading,setIsLoading] = useState<boolean>(true);
     const [error,setError] = useState<boolean>(false);
@@ -49,9 +51,11 @@ export default function Achievments(): React.JSX.Element {
             {isModalDisplayed && <ModalDarkBackground />}
             {isLanguageModalDisplayed && <LanguageModal setDisplay={setIsLanguageModalDisplayed} />}
             {isAccessibilitySettingsModalDisplayed && <AccessibilitySettingsModal setDisplay={setIsAccessibilitySettingsModalDisplayed} />}
+            {isAccessibilityAnalysisInfosModalDisplayed && <AccessibilityAnalysisInfosModal setDisplay={setIsAccessibilityAnalysisInfosModalDisplayed} />}
             <header>
                 <TopMenu setAccessibilityModalDisplay={setIsAccessibilitySettingsModalDisplayed}
-                    setLanguageModalDisplay={setIsLanguageModalDisplayed} />
+                    setLanguageModalDisplay={setIsLanguageModalDisplayed}
+                    setAccessibilityAnalysisModalDisplay={setIsAccessibilityAnalysisInfosModalDisplayed} />
             </header>
             <MainMenuModal isExpanded={isMainMenuExpanded} setIsExpanded={setIsMainMenuExpanded} />
             <main>

@@ -9,10 +9,11 @@ interface TopMenuPropsInterface {
     home?: boolean,
     setAccessibilityModalDisplay: (display: boolean)=> void,
     setLanguageModalDisplay: (display: boolean)=> void,
-    setEnvironnementModalDisplay?: (display: boolean)=> void
+    setEnvironnementModalDisplay?: (display: boolean)=> void,
+    setAccessibilityAnalysisModalDisplay: (display: boolean)=> void
 }
 
-export default function TopMenu({home=false,setAccessibilityModalDisplay,setLanguageModalDisplay,setEnvironnementModalDisplay}: TopMenuPropsInterface): React.JSX.Element {
+export default function TopMenu({home=false,setAccessibilityModalDisplay,setLanguageModalDisplay,setEnvironnementModalDisplay,setAccessibilityAnalysisModalDisplay}: TopMenuPropsInterface): React.JSX.Element {
 
     return (
         <div className="top-menu">
@@ -20,7 +21,7 @@ export default function TopMenu({home=false,setAccessibilityModalDisplay,setLang
                 <AccessibilitySettingsButton setDisplay={setAccessibilityModalDisplay} />
                 <AnimationToggleButton />
                 <LanguageSelect setDisplay={setLanguageModalDisplay} />
-                <AccessibilityAnalysisIndicator />
+                <AccessibilityAnalysisIndicator setDisplay={setAccessibilityAnalysisModalDisplay} />
                 <SearchBar />
                 {home && <EnvironnementToggleButton setDisplay={setEnvironnementModalDisplay} />}
             </div>

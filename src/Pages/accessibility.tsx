@@ -9,6 +9,7 @@ import BottomMenu from "../Layout/bottomMenu.tsx";
 import LanguageContext from "../Contexts/language-context.tsx";
 import LanguageModal from "../Modals/LanguageModal.tsx";
 import MainMenuModal from '../Modals/mainMenuModal.tsx';
+import AccessibilityAnalysisInfosModal from "../Modals/accessibilityAnalysisInfosModal.tsx";
 
 export default function Accessibility(): React.JSX.Element {
 
@@ -17,15 +18,18 @@ export default function Accessibility(): React.JSX.Element {
     const [isAccessibilitySettingsModalDisplayed,setIsAccessibilitySettingsModalDisplayed] = useState<boolean>(false);
     const [isLanguageModalDisplayed,setIsLanguageModalDisplayed] = useState<boolean>(false);
     const [isMainMenuExpanded,setIsMainMenuExpanded] = useState<boolean>(false);
+    const [isAccessibilityAnalysisInfosModalDisplayed,setIsAccessibilityAnalysisInfosModalDisplayed] = useState<boolean>(false);
 
     return (
         <>
             {isModalDisplayed && <ModalDarkBackground />}
             {isLanguageModalDisplayed && <LanguageModal setDisplay={setIsLanguageModalDisplayed} />}
             {isAccessibilitySettingsModalDisplayed && <AccessibilitySettingsModal setDisplay={setIsAccessibilitySettingsModalDisplayed} />}
+            {isAccessibilityAnalysisInfosModalDisplayed && <AccessibilityAnalysisInfosModal setDisplay={setIsAccessibilityAnalysisInfosModalDisplayed} />}
             <header>
                 <TopMenu setAccessibilityModalDisplay={setIsAccessibilitySettingsModalDisplayed}
-                    setLanguageModalDisplay={setIsLanguageModalDisplayed}  />
+                    setLanguageModalDisplay={setIsLanguageModalDisplayed}
+                    setAccessibilityAnalysisModalDisplay={setIsAccessibilityAnalysisInfosModalDisplayed}  />
             </header>
             <MainMenuModal isExpanded={isMainMenuExpanded} setIsExpanded={setIsMainMenuExpanded} />
             <main>

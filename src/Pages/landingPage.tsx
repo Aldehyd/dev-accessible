@@ -9,6 +9,7 @@ import FlyingSaucer from "../Components/flying-saucer.tsx";
 import EnvironnementContext from "../Contexts/environnement-context.tsx";
 import LanguageModal from "../Modals/LanguageModal.tsx";
 import ConstructionWarningModal from "../Modals/constructionWarningModal.tsx";
+import AccessibilityAnalysisInfosModal from "../Modals/accessibilityAnalysisInfosModal.tsx";
 
 export default function LandingPage(): React.JSX.Element {
 
@@ -18,6 +19,8 @@ export default function LandingPage(): React.JSX.Element {
     const [isAccessibilitySettingsModalDisplayed,setIsAccessibilitySettingsModalDisplayed] = useState<boolean>(false);
     const [isLanguageModalDisplayed,setIsLanguageModalDisplayed] = useState<boolean>(false);
     const [isWarningModalDisplayed,setIsWarningModalDisplayed] = useState<boolean>(true);
+    const [isAccessibilityAnalysisInfosModalDisplayed,setIsAccessibilityAnalysisInfosModalDisplayed] = useState<boolean>(false);
+
     const [choice,setChoice] = useState("");
 
     const recruiterClassList = `landing-page_choice-container ${choice === "client" ? "broken" : ""}`;
@@ -40,9 +43,11 @@ export default function LandingPage(): React.JSX.Element {
             {isWarningModalDisplayed && <ConstructionWarningModal setDisplay={setIsWarningModalDisplayed} />}
             {isLanguageModalDisplayed && <LanguageModal setDisplay={setIsLanguageModalDisplayed} />}
             {isAccessibilitySettingsModalDisplayed && <AccessibilitySettingsModal setDisplay={setIsAccessibilitySettingsModalDisplayed} />}
+            {isAccessibilityAnalysisInfosModalDisplayed && <AccessibilityAnalysisInfosModal setDisplay={setIsAccessibilityAnalysisInfosModalDisplayed} />}
             <header>
                 <TopMenu setAccessibilityModalDisplay={setIsAccessibilitySettingsModalDisplayed}
-                    setLanguageModalDisplay={setIsLanguageModalDisplayed}  />
+                    setLanguageModalDisplay={setIsLanguageModalDisplayed}
+                    setAccessibilityAnalysisModalDisplay={setIsAccessibilityAnalysisInfosModalDisplayed}  />
             </header>
             <main className={mainClassList}>
                 <MainTitle home={true} frenchText="Bienvenue !" englishText="Welcome !" />

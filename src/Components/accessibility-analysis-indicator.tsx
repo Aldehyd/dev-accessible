@@ -1,7 +1,11 @@
 import { useContext, useState } from "react"
 import LanguageContext from "../Contexts/language-context.tsx";
 
-export default function AccessibilityAnalysisIndicator(): React.JSX.Element {
+interface AccessibilityAnalysisIndicatorPropsInterface {
+    setDisplay: (display: boolean)=> void
+}
+
+export default function AccessibilityAnalysisIndicator({setDisplay}: AccessibilityAnalysisIndicatorPropsInterface): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
 
@@ -33,7 +37,7 @@ export default function AccessibilityAnalysisIndicator(): React.JSX.Element {
                 }
             </button>
             <button type="button" aria-label={language === "french" ? "Aide" : "Help"} 
-                className="accessibility-analysis-help-button">
+                className="accessibility-analysis-help-button" onClick={()=> setDisplay(true)}>
                 <span>?</span>
             </button>
         </div>
