@@ -93,10 +93,10 @@ body.animations {
         transition: ease-in-out 500ms;
         &_waiting {
             animation: AccessibilityBotWaiting ease-in-out 4000ms infinite;
-            &_left-eye {
+            & .accessibility-bot_left-eye {
                 animation: AccessibilityBotWaitingEyes 5000ms infinite;
             }
-            &_right-eye {
+            & .accessibility-bot_right-eye {
                 animation: AccessibilityBotWaitingEyes 5000ms infinite;
             }
         }

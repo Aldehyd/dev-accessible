@@ -2372,10 +2372,10 @@ body.animations .accessibility-bot {
 body.animations .accessibility-bot_waiting {
   animation: AccessibilityBotWaiting ease-in-out 4000ms infinite;
 }
-body.animations .accessibility-bot_waiting_left-eye {
+body.animations .accessibility-bot_waiting .accessibility-bot_left-eye {
   animation: AccessibilityBotWaitingEyes 5000ms infinite;
 }
-body.animations .accessibility-bot_waiting_right-eye {
+body.animations .accessibility-bot_waiting .accessibility-bot_right-eye {
   animation: AccessibilityBotWaitingEyes 5000ms infinite;
 }
 body.animations .accessibility-bot_hover {
