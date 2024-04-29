@@ -20,6 +20,9 @@ export default function Home(): React.JSX.Element {
 
     useEffect(()=> {
         changeIsModalDisplayed(false);
+        document.body.classList.add("home");
+        
+        return ()=> document.body.classList.remove("home");
     },[]);
 
     useEffect(()=> {

@@ -16,6 +16,10 @@ body {
   background-color: #000;
 }
 
+body.home {
+  height: 100vh;
+  overflow: hidden;
+}
 body.has-modal {
   overflow: hidden;
 }
@@ -3790,6 +3794,7 @@ body.animations .top-menu {
   overflow-y: hidden;
 }
 .bottom-menu.home {
+  bottom: 60px;
   overflow-y: visible;
   width: 100%;
 }
@@ -4069,7 +4074,6 @@ body:not(.contrast).purple .prices-simulator_evaluation {
 .main-menu_line_svg {
   height: 100%;
   width: 100%;
-  stroke-dasharray: 1;
   fill: #f1f1f1;
 }
 .main-menu_menu {
@@ -4084,17 +4088,17 @@ body:not(.contrast).purple .prices-simulator_evaluation {
 }
 .main-menu_menu-item--home {
   left: 30%;
-  top: 13%;
+  top: 10%;
   transform: translate(-50%, -50%);
 }
 .main-menu_menu-item--who-am-i {
   left: 40%;
-  top: 34%;
+  top: 32%;
   transform: translate(-50%, -50%);
 }
 .main-menu_menu-item--cv {
   right: 40%;
-  top: 26%;
+  top: 24%;
   transform: translate(50%, -50%);
 }
 .main-menu_menu-item--achievments {
@@ -4108,18 +4112,6 @@ body:not(.contrast).purple .prices-simulator_evaluation {
   transform: translate(50%, 50%);
 }
 
-body.animations .main-menu_line_svg {
-  animation: mainMenuLineAppear 1s 1.2s ease-in-out both;
-}
-
-@keyframes mainMenuLineAppear {
-  from {
-    stroke-dashoffset: -1;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
 .main-menu-modal {
   position: fixed;
   z-index: 5;
