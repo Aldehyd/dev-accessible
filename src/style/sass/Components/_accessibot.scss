@@ -6,9 +6,79 @@
     height: 80px;
     width: 80px;
     overflow: visible;
-}
-.accessibility-bot.animations {
-    transition: ease-in-out 500ms;
+    &_body {
+        position: absolute;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        background-color: #fff;
+        border-radius: 62% 38% 62% 38% / 40% 30% 70% 60% ;
+        box-shadow: rgba(0,0,0,0.2) inset 5px 5px 5px, 0 0 5px rgba(0,0,0,0.3);
+        cursor: pointer;
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: hsl(175,95%,55%);
+            border-radius: 62% 38% 62% 38% / 40% 30% 70% 60% ;
+            opacity: 0;
+        }
+    }
+    &_eyes {
+        position: absolute;
+        z-index: 1;
+        height: 10px;
+        width: 10px;
+        background-color: hsl(175,95%,55%);
+        border-radius: 50%;
+        box-shadow: hsl(175,95%,55%) 0 0 2px 1px;
+    }
+    &_left-eye {
+        top: 20px;
+        left: 28px;
+    }
+    &_right-eye {
+        top: 20px;
+        left: 60px;
+    }
+    &_mouth {
+        display: none;
+        position: absolute;
+        left: 50px;
+        width: 20px;
+        height: 30px;
+        border-radius: 50%;
+        &--happy {
+            bottom: 40px;
+            border-bottom: solid 6px hsl(175,95%,55%);
+        }
+        &--sad {
+            bottom: 25px;
+            border-top: solid 6px hsl(175,95%,55%);
+        }
+    }
+    &_shadow {
+        position: absolute;
+        top: 40%;
+        left: 40%;
+        height: 20px;
+        width: 20px;
+        background-color: transparent;
+        border-radius: 50%;
+        transform: translate(-50%,-50%);
+        &--red {
+            box-shadow: red 0 0 5px, red inset 0 0 5px;
+        }
+        &--green {
+            box-shadow: green 0 0 5px, green inset 0 0 5px;
+        }
+        &--blue {
+            box-shadow: hsl(175,95%,55%) 0 0 5px, hsl(175,95%,55%) inset 0 0 5px;
+        }
+    }
 }
 
 @media screen and (max-width: 1200px) {
@@ -18,102 +88,34 @@
     }
 }
 
-.accessibility-bot_body {
-    position: absolute;
-    z-index: 1;
-    height: 100%;
-    width: 100%;
-    background-color: #fff;
-    border-radius: 62% 38% 62% 38% / 40% 30% 70% 60% ;
-    box-shadow: rgba(0,0,0,0.2) inset 5px 5px 5px, 0 0 5px rgba(0,0,0,0.3);
-    cursor: pointer;
-}
-
-.accessibility-bot_body::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: hsl(175,95%,55%);
-    border-radius: 62% 38% 62% 38% / 40% 30% 70% 60% ;
-    opacity: 0;
-}
-.accessibility-bot_shadow {
-    /* display: none; */
-    position: absolute;
-    top: 40%;
-    left: 40%;
-    height: 20px;
-    width: 20px;
-    background-color: transparent;
-    border-radius: 50%;
-    transform: translate(-50%,-50%);
-}
-.accessibility-bot_shadow--red {
-    box-shadow: red 0 0 5px, red inset 0 0 5px;
-}
-.accessibility-bot_shadow--green {
-    box-shadow: green 0 0 5px, green inset 0 0 5px;
-}
-.accessibility-bot_shadow--blue {
-    box-shadow: hsl(175,95%,55%) 0 0 5px, hsl(175,95%,55%) inset 0 0 5px;
-}
-.accessibility-bot_eyes {
-    position: absolute;
-    z-index: 1;
-    height: 10px;
-    width: 10px;
-    background-color: hsl(175,95%,55%);
-    border-radius: 50%;
-    box-shadow: hsl(175,95%,55%) 0 0 2px 1px;
-}
-.accessibility-bot_left-eye {
-    top: 20px;
-    left: 28px;
-}
-.accessibility-bot_right-eye {
-    top: 20px;
-    left: 60px;
-}
-.accessibility-bot_mouth {
-    display: none;
-    position: absolute;
-    left: 50px;
-    width: 20px;
-    height: 30px;
-    border-radius: 50%;
-}
-.accessibility-bot_mouth--happy {
-    bottom: 40px;
-    border-bottom: solid 6px hsl(175,95%,55%);
-}
-.accessibility-bot_mouth--sad {
-    bottom: 25px;
-    border-top: solid 6px hsl(175,95%,55%);
-}
-
-.accessibility-bot.accessibility-bot_waiting {
-    animation: AccessibilityBotWaiting ease-in-out 4000ms infinite;
-}
-.accessibility-bot_waiting .accessibility-bot_left-eye, .accessibility-bot_waiting .accessibility-bot_right-eye {
-    animation: AccessibilityBotWaitingEyes 5000ms infinite;
-}
-.accessibility-bot_shadow--red.display, .accessibility-bot_shadow--green.display, .accessibility-bot_shadow--blue.display {
-    animation: AccessibilityBotShadow ease-out 1000ms infinite;
-}
-.accessibility-bot_hover {
-    animation: AccessibilityBotHover ease 1000ms infinite;
-}
-.accessibility-bot_hover .accessibility-bot_body {
-    animation: AccessibilityBotHoverBody ease 1000ms infinite;
-}
-.accessibility-bot_hover .accessibility-bot_left-eye {
-    animation: AccessibilityBotHoverLeftEye ease 1000ms infinite;
-}
-.accessibility-bot_hover .accessibility-bot_right-eye {
-    animation: AccessibilityBotHoverRightEye ease 1000ms infinite;
+body.animations {
+    & .accessibility-bot {
+        transition: ease-in-out 500ms;
+        &_waiting {
+            animation: AccessibilityBotWaiting ease-in-out 4000ms infinite;
+            &_left-eye {
+                animation: AccessibilityBotWaitingEyes 5000ms infinite;
+            }
+            &_right-eye {
+                animation: AccessibilityBotWaitingEyes 5000ms infinite;
+            }
+        }
+        &_hover {
+            animation: AccessibilityBotHover ease 1000ms infinite;
+            & .accessibility-bot_shadow {
+                animation: AccessibilityBotShadow ease-out 1000ms infinite;
+            }
+        }
+        &_hover .accessibility-bot_body {
+            animation: AccessibilityBotHoverBody ease 1000ms infinite;
+        }
+        &_hover .accessibility-bot_left-eye {
+            animation: AccessibilityBotHoverLeftEye ease 1000ms infinite;
+        }
+        &_hover .accessibility-bot_right-eye {
+            animation: AccessibilityBotHoverRightEye ease 1000ms infinite;
+        }
+    }
 }
 
 @keyframes AccessibilityBotWaiting {

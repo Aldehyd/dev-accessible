@@ -2286,17 +2286,6 @@ body:not(.contrast).purple .flying-saucer::after {
   width: 80px;
   overflow: visible;
 }
-
-.accessibility-bot.animations {
-  transition: ease-in-out 500ms;
-}
-
-@media screen and (max-width: 1200px) {
-  .accessibility-bot {
-    left: 900px;
-    top: 70px;
-  }
-}
 .accessibility-bot_body {
   position: absolute;
   z-index: 1;
@@ -2307,7 +2296,6 @@ body:not(.contrast).purple .flying-saucer::after {
   box-shadow: rgba(0, 0, 0, 0.2) inset 5px 5px 5px, 0 0 5px rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
-
 .accessibility-bot_body::after {
   content: "";
   position: absolute;
@@ -2319,31 +2307,6 @@ body:not(.contrast).purple .flying-saucer::after {
   border-radius: 62% 38% 62% 38%/40% 30% 70% 60%;
   opacity: 0;
 }
-
-.accessibility-bot_shadow {
-  /* display: none; */
-  position: absolute;
-  top: 40%;
-  left: 40%;
-  height: 20px;
-  width: 20px;
-  background-color: transparent;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.accessibility-bot_shadow--red {
-  box-shadow: red 0 0 5px, red inset 0 0 5px;
-}
-
-.accessibility-bot_shadow--green {
-  box-shadow: green 0 0 5px, green inset 0 0 5px;
-}
-
-.accessibility-bot_shadow--blue {
-  box-shadow: hsl(175deg, 95%, 55%) 0 0 5px, hsl(175deg, 95%, 55%) inset 0 0 5px;
-}
-
 .accessibility-bot_eyes {
   position: absolute;
   z-index: 1;
@@ -2353,17 +2316,14 @@ body:not(.contrast).purple .flying-saucer::after {
   border-radius: 50%;
   box-shadow: hsl(175deg, 95%, 55%) 0 0 2px 1px;
 }
-
 .accessibility-bot_left-eye {
   top: 20px;
   left: 28px;
 }
-
 .accessibility-bot_right-eye {
   top: 20px;
   left: 60px;
 }
-
 .accessibility-bot_mouth {
   display: none;
   position: absolute;
@@ -2372,42 +2332,65 @@ body:not(.contrast).purple .flying-saucer::after {
   height: 30px;
   border-radius: 50%;
 }
-
 .accessibility-bot_mouth--happy {
   bottom: 40px;
   border-bottom: solid 6px hsl(175deg, 95%, 55%);
 }
-
 .accessibility-bot_mouth--sad {
   bottom: 25px;
   border-top: solid 6px hsl(175deg, 95%, 55%);
 }
+.accessibility-bot_shadow {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  height: 20px;
+  width: 20px;
+  background-color: transparent;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.accessibility-bot_shadow--red {
+  box-shadow: red 0 0 5px, red inset 0 0 5px;
+}
+.accessibility-bot_shadow--green {
+  box-shadow: green 0 0 5px, green inset 0 0 5px;
+}
+.accessibility-bot_shadow--blue {
+  box-shadow: hsl(175deg, 95%, 55%) 0 0 5px, hsl(175deg, 95%, 55%) inset 0 0 5px;
+}
 
-.accessibility-bot.accessibility-bot_waiting {
+@media screen and (max-width: 1200px) {
+  .accessibility-bot {
+    left: 900px;
+    top: 70px;
+  }
+}
+body.animations .accessibility-bot {
+  transition: ease-in-out 500ms;
+}
+body.animations .accessibility-bot_waiting {
   animation: AccessibilityBotWaiting ease-in-out 4000ms infinite;
 }
-
-.accessibility-bot_waiting .accessibility-bot_left-eye, .accessibility-bot_waiting .accessibility-bot_right-eye {
+body.animations .accessibility-bot_waiting_left-eye {
   animation: AccessibilityBotWaitingEyes 5000ms infinite;
 }
-
-.accessibility-bot_shadow--red.display, .accessibility-bot_shadow--green.display, .accessibility-bot_shadow--blue.display {
-  animation: AccessibilityBotShadow ease-out 1000ms infinite;
+body.animations .accessibility-bot_waiting_right-eye {
+  animation: AccessibilityBotWaitingEyes 5000ms infinite;
 }
-
-.accessibility-bot_hover {
+body.animations .accessibility-bot_hover {
   animation: AccessibilityBotHover ease 1000ms infinite;
 }
-
-.accessibility-bot_hover .accessibility-bot_body {
+body.animations .accessibility-bot_hover .accessibility-bot_shadow {
+  animation: AccessibilityBotShadow ease-out 1000ms infinite;
+}
+body.animations .accessibility-bot_hover .accessibility-bot_body {
   animation: AccessibilityBotHoverBody ease 1000ms infinite;
 }
-
-.accessibility-bot_hover .accessibility-bot_left-eye {
+body.animations .accessibility-bot_hover .accessibility-bot_left-eye {
   animation: AccessibilityBotHoverLeftEye ease 1000ms infinite;
 }
-
-.accessibility-bot_hover .accessibility-bot_right-eye {
+body.animations .accessibility-bot_hover .accessibility-bot_right-eye {
   animation: AccessibilityBotHoverRightEye ease 1000ms infinite;
 }
 
