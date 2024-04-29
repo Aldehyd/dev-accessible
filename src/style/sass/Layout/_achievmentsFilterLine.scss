@@ -10,4 +10,7 @@
         display: flex;
         gap: 1rem;
     }
+    & ul {
+        margin-bottom: inherit;
+    }
 }

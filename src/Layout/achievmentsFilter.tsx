@@ -5,6 +5,7 @@ import AchievmentsFilterLine from "./AchievmentsFilterLine.tsx";
 import BasicButton from "../Components/basic-button.tsx";
 import ExpandButton from "../Components/expand-button.tsx";
 import Warning from "../Components/warning.tsx";
+import EnvironnementContext from "../Contexts/environnement-context.tsx";
 
 interface AchievmentsFilterPropsInterface {
     typeFilter: string[],
@@ -23,6 +24,7 @@ interface AchievmentsFilterPropsInterface {
 export default function AchievmentsFitler({typeFilter,setTypeFilter,yearFilter,setYearFilter,frontEndFilter,setFrontEndFilter,backEndFilter,setBackEndFilter,databaseFilter,setDatabaseFilter,results}: AchievmentsFilterPropsInterface): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
+    const {environnement} = useContext(EnvironnementContext);
 
     const {achievments} = useContext(AchievmentsContext);   
 
@@ -96,9 +98,14 @@ export default function AchievmentsFitler({typeFilter,setTypeFilter,yearFilter,s
                         }
                         <AchievmentsFilterLine frenchLabel="Types" englishLabel="Types" array={types} filterArray={typeFilter} setFilterArray={setTypeFilter} />
                         <AchievmentsFilterLine frenchLabel="Années" englishLabel="Years" array={years} filterArray={yearFilter} setFilterArray={setYearFilter} />
-                        <AchievmentsFilterLine frenchLabel="Technologies Front-End" englishLabel="Front-End technologies" array={frontEndTechnologies} filterArray={frontEndFilter} setFilterArray={setFrontEndFilter} />
-                        <AchievmentsFilterLine frenchLabel="Technologies Back-End" englishLabel="Back-End technologies" array={backEndTechnologies} filterArray={backEndFilter} setFilterArray={setBackEndFilter} />
-                        <AchievmentsFilterLine frenchLabel="Bases de données" englishLabel="Databases" array={dataBaseTechnologies} filterArray={databaseFilter} setFilterArray={setDatabaseFilter} />
+                        {
+                            environnement === "recruiter" &&
+                                <>
+                                    <AchievmentsFilterLine frenchLabel="Technologies Front-End" englishLabel="Front-End technologies" array={frontEndTechnologies} filterArray={frontEndFilter} setFilterArray={setFrontEndFilter} />
+                                    <AchievmentsFilterLine frenchLabel="Technologies Back-End" englishLabel="Back-End technologies" array={backEndTechnologies} filterArray={backEndFilter} setFilterArray={setBackEndFilter} />
+                                    <AchievmentsFilterLine frenchLabel="Bases de données" englishLabel="Databases" array={dataBaseTechnologies} filterArray={databaseFilter} setFilterArray={setDatabaseFilter} />
+                                </>
+                        }
                         <div className="achievments-filter_results">
                             <span>
                                 {language === "french" ? "Résultats" : "Results"} :
