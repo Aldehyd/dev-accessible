@@ -9,11 +9,9 @@ interface ConstructionWarningModalPropsInterface {
 
 export default function ConstructionWarningModal({setDisplay}: ConstructionWarningModalPropsInterface): React.JSX.Element {
 
-    const {language,changeLanguage} = useContext(LanguageContext);
+    const {language} = useContext(LanguageContext);
 
     const onClickFunction = ()=> {
-        changeLanguage(language === "french" ? "english" : "french");
-        localStorage.setItem("language",language === "french" ? "english" : "french");
         setDisplay(false);
     };
 

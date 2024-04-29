@@ -50,8 +50,6 @@ export default function LanguageSelect({setDisplay}:LanguageSelectPropsInterface
         setSelectClassList(`language-select ${language === "french" ? "fr" : "en"}`);
         setTopClassList(`language-select_top ${language === "french" ? "fr" : "en"}`);
         setCenterClassList(`language-select_center ${language === "french" ? "en" : "fr"}`);
-
-        localStorage.setItem('language',language);
     },[language]);
     
     useEffect(()=> {
@@ -63,7 +61,7 @@ export default function LanguageSelect({setDisplay}:LanguageSelectPropsInterface
     return(
         <div className={selectClassList} ref={languageSelect} aria-expanded={expanded} 
             role="listbox" aria-label={language === "french" ? "choix de la langue" : "language choice"} 
-            onKeyDown={(e)=> handleKeyDown(e)} tabIndex="0">
+            onKeyDown={(e)=> handleKeyDown(e)} tabIndex={0}>
             <div ref={languageSelectTop} className={topClassList} onClick={()=> handleClickOnSelect()}>
                 <span className="language-select_top_fr" role="option">FR</span>
                 <span className="language-select_top_en" role="option">EN</span>
