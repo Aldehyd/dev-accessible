@@ -2289,6 +2289,7 @@ body:not(.contrast).purple .flying-saucer::after {
   height: 80px;
   width: 80px;
   overflow: visible;
+  opacity: 1;
 }
 .accessibility-bot_body {
   position: absolute;
@@ -2363,6 +2364,16 @@ body:not(.contrast).purple .flying-saucer::after {
 .accessibility-bot_shadow--blue {
   box-shadow: hsl(175deg, 95%, 55%) 0 0 5px, hsl(175deg, 95%, 55%) inset 0 0 5px;
 }
+.accessibility-bot_shadow-appear-effect {
+  position: absolute;
+  z-index: 1;
+  height: 0;
+  width: 100%;
+  background-color: hsl(175deg, 85%, 55%);
+  box-shadow: 0 0 4rem 2rem hsl(175deg, 85%, 55%);
+  transform-origin: 50% 0;
+  opacity: 0;
+}
 
 @media screen and (max-width: 1200px) {
   .accessibility-bot {
@@ -2372,6 +2383,9 @@ body:not(.contrast).purple .flying-saucer::after {
 }
 body.animations .accessibility-bot {
   transition: ease-in-out 500ms;
+}
+body.animations .accessibility-bot:not(.accessibility-bot_waiting) {
+  animation: AccessibilityBotAppear 2s 600ms ease-in-out backwards;
 }
 body.animations .accessibility-bot_waiting {
   animation: AccessibilityBotWaiting ease-in-out 4000ms infinite;
@@ -2397,7 +2411,35 @@ body.animations .accessibility-bot_hover .accessibility-bot_left-eye {
 body.animations .accessibility-bot_hover .accessibility-bot_right-eye {
   animation: AccessibilityBotHoverRightEye ease 1000ms infinite;
 }
+body.animations .accessibility-bot_shadow-appear-effect {
+  animation: AccessibilityBotShadowAppearEffect 2s 600ms ease-in-out forwards;
+}
 
+@keyframes AccessibilityBotAppear {
+  0% {
+    opacity: 0;
+  }
+  85% {
+    filter: blur(2rem);
+  }
+  100% {
+    filter: blur(0);
+  }
+}
+@keyframes AccessibilityBotShadowAppearEffect {
+  0% {
+    opacity: 1;
+  }
+  85% {
+    transform: translateY(100px);
+  }
+  96% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
 @keyframes AccessibilityBotWaiting {
   0% {
     transform: translateY(0);

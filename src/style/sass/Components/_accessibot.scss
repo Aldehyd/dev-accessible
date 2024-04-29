@@ -6,6 +6,7 @@
     height: 80px;
     width: 80px;
     overflow: visible;
+    opacity: 1;
     &_body {
         position: absolute;
         z-index: 1;
@@ -79,6 +80,16 @@
             box-shadow: hsl(175,95%,55%) 0 0 5px, hsl(175,95%,55%) inset 0 0 5px;
         }
     }
+    &_shadow-appear-effect {
+        position: absolute;
+        z-index: 1;
+        height: 0;
+        width: 100%;
+        background-color: hsl(175,85%,55%);
+        box-shadow: 0 0 4rem 2rem hsl(175,85%,55%);
+        transform-origin: 50% 0;
+        opacity: 0;
+    }
 }
 
 @media screen and (max-width: 1200px) {
@@ -91,6 +102,9 @@
 body.animations {
     & .accessibility-bot {
         transition: ease-in-out 500ms;
+        &:not(.accessibility-bot_waiting) {
+            animation: AccessibilityBotAppear 2s 600ms ease-in-out backwards;
+        }
         &_waiting {
             animation: AccessibilityBotWaiting ease-in-out 4000ms infinite;
             & .accessibility-bot_left-eye {
@@ -115,6 +129,36 @@ body.animations {
         &_hover .accessibility-bot_right-eye {
             animation: AccessibilityBotHoverRightEye ease 1000ms infinite;
         }
+        &_shadow-appear-effect {
+            animation: AccessibilityBotShadowAppearEffect 2s 600ms ease-in-out forwards;
+        }
+    }
+    
+}
+
+@keyframes AccessibilityBotAppear {
+    0% {
+        opacity: 0;
+    }
+    85% {
+        filter: blur(2rem);
+    }
+    100% {
+        filter: blur(0);
+    }
+}
+@keyframes AccessibilityBotShadowAppearEffect {
+    0% {
+        opacity: 1;
+    }
+    85% {
+        transform: translateY(100px);
+    }
+    96% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-10px);
     }
 }
 
