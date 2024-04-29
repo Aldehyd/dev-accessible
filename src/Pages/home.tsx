@@ -11,10 +11,14 @@ import Accessibot from "../Components/accessibot.tsx";
 
 export default function Home(): React.JSX.Element {
 
-    const {isModalDisplayed} = useContext(ModalContext);
+    const {isModalDisplayed,changeIsModalDisplayed} = useContext(ModalContext);
     const [isAccessibilitySettingsModalDisplayed,setIsAccessibilitySettingsModalDisplayed] = useState<boolean>(false);
     const [isLanguageModalDisplayed,setIsLanguageModalDisplayed] = useState<boolean>(false);
     const [isEnvironnementModalDisplayed,setIsEnvironnementModalDisplayed] = useState<boolean>(false);
+
+    useEffect(()=> {
+        changeIsModalDisplayed(false);
+    },[]);
 
     useEffect(()=> {
         if(isModalDisplayed) {
