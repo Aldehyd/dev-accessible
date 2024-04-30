@@ -25,11 +25,12 @@ export default function SearchBar(): React.JSX.Element {
 
     const launchSearch = ()=> {
         if(input.current?.value.length > 0) {
-            setIsSearching(true);
 
             const query = {
                 query: input.current?.value
             };
+            
+            window.location = 'http://localhost:3000/search-results';
 
             const options = {
                 method: "POST",
@@ -42,7 +43,7 @@ export default function SearchBar(): React.JSX.Element {
     
             fetch('http://localhost:4000/search',options)
             .then(res => {
-                window.location = 'http://localhost:4000/search-results';
+                
                 console.log(res)
             })
             .catch(err => {

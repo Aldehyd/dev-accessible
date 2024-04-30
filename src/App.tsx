@@ -24,6 +24,7 @@ import Prices from './Pages/prices.tsx';
 import LandingPage from './Pages/landingPage.tsx';
 import EnvironnementContext from './Contexts/environnement-context.tsx';
 import Home from './Pages/home.tsx';
+import SearchResults from './Pages/searchResults.tsx';
 
 export default function App(): React.JSX.Element {
 
@@ -92,6 +93,7 @@ export default function App(): React.JSX.Element {
                                         <Route path="/site-map" element={<SiteMap />} />
                                         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                                         <Route path="/accessibility" element={<Accessibility />} />
+                                        <Route path="/search-results" element={<SearchResults />} />
                                     </Routes>
                                 </Router>
                             </CarouselContext.Provider>
