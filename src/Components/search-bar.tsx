@@ -26,8 +26,30 @@ export default function SearchBar(): React.JSX.Element {
     const launchSearch = ()=> {
         if(input.current?.value.length > 0) {
             setIsSearching(true);
-            setTimeout(()=> setIsSearching(false),1000);
-            // this.analyseSearchWords(this.input.value);
+
+            const query = {
+                query: input.current?.value
+            };
+
+            const options = {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body : JSON.stringify(query)
+            };
+    
+            fetch('http://localhost:4000/search',options)
+            .then(res => {
+                window.location = 'http://localhost:4000/search-results';
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+            // setTimeout(()=> setIsSearching(false),1000);
         };
     };
 

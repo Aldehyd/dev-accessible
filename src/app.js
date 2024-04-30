@@ -123,3 +123,56 @@ app.post("/send_simulation",(req,res)=> {
     });
 
 });
+
+//--------------- search engine ------------------//
+
+app.post("/search",(req,res)=> {
+    const playwright = require("playwright");
+
+    (async () => {
+      // Launch a new instance of a Chromium browser
+      const browser = await playwright.chromium.launch({
+        // Set headless to false so you can see how Playwright is
+        // interacting with the browser
+        headless: false,
+      });
+      // Create a new Playwright context
+      const context = await browser.newContext();
+      // Create a new page/tab in the context.
+      const page = await context.newPage();
+    
+      // Navigate to the home page.
+      await page.goto("https://dev-accessible.com/");
+      const links = await page.locator(".main-link").allInnerTexts();
+    
+      let results = [];
+      console.log(req.body)
+      const searchQuery = req.body.query;
+      console.log(searchQuery)
+      for(let link of links) {
+        if(link !== "Accueil" && link !=="Home" && !link.includes("Accessibilité") && !link.includes("accessibilité")) {
+            await page.getByRole('link',{name: link}).click();
+            const title = await page.locator("h1").innerText();
+            const lines = await page.locator(`li:has-text("${searchQuery}")`).allInnerTexts();
+            const paragraphs = await page.locator(`p:has-text("${searchQuery}")`).allInnerTexts();
+    
+            const newResult = {
+                title: title,
+                lines: lines,
+                paragraphs: paragraphs
+            };
+            results = [...results,newResult];
+    
+            await page.locator(".back-link").click();
+        };
+      };
+      console.log(results)
+      res.send(JSON.stringify(results));
+      // Wait 10 seconds (or 10,000 milliseconds)
+      await page.waitForTimeout(10000);
+    
+      // Close the browser
+      await browser.close();
+    })();
+});
+
