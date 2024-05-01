@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import ModalContext from "../Contexts/modal-context.tsx";
 import ModalDarkBackground from "../Components/modal-dark-background.tsx";
 import AccessibilitySettingsModal from "../Modals/AccessibilitySettingsModal.tsx";
@@ -26,11 +27,17 @@ export default function SearchResults(): React.JSX.Element {
     const [isError,setIsError] = useState<boolean>(false);
     const [results,setResults] = useState<any>([]);
 
+    const {state} = useLocation();
+
     useEffect(()=> {
-        let params = new URLSearchParams(document.location.search);
-        let query = params.get("query");
-        let language = params.get("language");
-        let environnement = params.get("environnement");
+        // let params = new URLSearchParams(document.location.search);
+        // let query = params.get("query");
+        // let language = params.get("language");
+        // let environnement = params.get("environnement");
+
+        const {query} = state;
+        const {language} = state;
+        const {environnement} = state;
         setQuery(query);
 
         const queryObject = {

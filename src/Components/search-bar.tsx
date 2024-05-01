@@ -1,4 +1,5 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef} from "react";
+import { useNavigate } from "react-router-dom";
 import LanguageContext from "../Contexts/language-context.tsx";
 import EnvironnementContext from "../Contexts/environnement-context.tsx";
 
@@ -6,6 +7,9 @@ export default function SearchBar(): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
     const {environnement} = useContext(EnvironnementContext);
+
+    const navigate = useNavigate();
+
     const input = useRef(null);
 
     const handleKeyDown = (e: KeyboardEvent)=> {
@@ -20,7 +24,8 @@ export default function SearchBar(): React.JSX.Element {
 
     const launchSearch = ()=> {
         if(input.current?.value.length > 0) {
-            window.location = `https://dev-accessible.com/search-results?query=${input.current?.value}&language=${language}&environnement=${environnement}`;
+            // window.location = `https://dev-accessible.com/search-results?query=${input.current?.value}&language=${language}&environnement=${environnement}`;
+            navigate('/search-results',{state: {language: language, environnement: environnement, query: input.current?.value}})
         };
     };
 
