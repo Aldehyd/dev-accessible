@@ -48,6 +48,7 @@ export default function AchievmentDetails(): React.JSX.Element {
             <MainMenuModal isExpanded={isMainMenuExpanded} setIsExpanded={setIsMainMenuExpanded} />
             <main>
                 <MainTitle frenchText={achievment} englishText={achievment} />
+                <BackLink frenchText="Réalisations" englishText="Achievments" route="/achievments" />
                 <AchievmentDetailsMain achievment={currentAchievment} />
             </main>
             <footer>
