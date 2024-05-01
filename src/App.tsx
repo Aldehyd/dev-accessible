@@ -94,6 +94,7 @@ export default function App(): React.JSX.Element {
                                         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                                         <Route path="/accessibility" element={<Accessibility />} />
                                         <Route path="/search-results" element={<SearchResults />} />
+                                        <Route path="*" element={<Home />} />
                                     </Routes>
                                 </Router>
                             </CarouselContext.Provider>
