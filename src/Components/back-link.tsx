@@ -8,7 +8,7 @@ interface BackLinkPropsInterface {
     route?: string
 }
 
-export default function BackLink({frenchText="Accueil",englishText="Home",route="/"}: BackLinkPropsInterface): React.JSX.Element {
+export default function BackLink({frenchText="Accueil",englishText="Home",route="/home"}: BackLinkPropsInterface): React.JSX.Element {
 
     const navigate = useNavigate();
     const {language} = useContext(LanguageContext);

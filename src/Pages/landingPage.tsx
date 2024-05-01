@@ -10,6 +10,7 @@ import EnvironnementContext from "../Contexts/environnement-context.tsx";
 import LanguageModal from "../Modals/LanguageModal.tsx";
 import ConstructionWarningModal from "../Modals/constructionWarningModal.tsx";
 import AccessibilityAnalysisInfosModal from "../Modals/accessibilityAnalysisInfosModal.tsx";
+import { useNavigate } from "react-router-dom";
 
 export default function LandingPage(): React.JSX.Element {
 
@@ -23,6 +24,8 @@ export default function LandingPage(): React.JSX.Element {
 
     const [choice,setChoice] = useState("");
 
+    const navigate = useNavigate();
+
     const recruiterClassList = `landing-page_choice-container ${choice === "client" ? "broken" : ""}`;
     const clientClassList = `landing-page_choice-container ${choice === "recruiter" ? "broken" : ""}`;
 
@@ -33,7 +36,8 @@ export default function LandingPage(): React.JSX.Element {
 
         if(environnementSavedStatus !== undefined && environnementSavedStatus !== null) {
             changeEnvironnement(environnementSavedStatus);
-            window.location = window.location + "home";
+            // window.location = window.location + "home";
+            navigate('/home');
         };
     },[]);
 

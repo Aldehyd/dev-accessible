@@ -79,8 +79,8 @@ export default function App(): React.JSX.Element {
                                     <Routes>
                                         <Route path="/components" element={<Components />} />
                                         <Route path="/layouts" element={<Layouts />} />
-                                        {/* <Route path="/" element={<LandingPage />} /> */}
-                                        <Route path="/" element={<Home />} />
+                                        <Route path="/" element={<LandingPage />} />
+                                        <Route path="/home" element={<Home />} />
                                         <Route path="/who-am-i" element={<WhoAmI />} />
                                         <Route path="/achievments" element={<Achievments />} />
                                         <Route path="/achievments/:achievment" element={<AchievmentDetails />} />
