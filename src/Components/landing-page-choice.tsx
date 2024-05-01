@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import LanguageContext from '../Contexts/language-context.tsx';
 import EnvironnementContext from "../Contexts/environnement-context.tsx";
+import { useNavigate } from "react-router-dom";
 
 interface LandingPageChoicePropsInterface {
     frenchText: string,
@@ -11,6 +12,8 @@ interface LandingPageChoicePropsInterface {
 export default function LandingPageChoice({frenchText,englishText,setChoice}: LandingPageChoicePropsInterface): React.JSX.Element {
     
     const {language} = useContext(LanguageContext);
+
+    const navigate = useNavigate();
 
     const {changeEnvironnement} = useContext(EnvironnementContext);
 
@@ -33,9 +36,11 @@ export default function LandingPageChoice({frenchText,englishText,setChoice}: La
             };
         };
         if(document.body.classList.contains("animations")) {
-            setTimeout(()=> {window.location = window.location + "home"},5000);
+            // setTimeout(()=> {window.location = window.location + "home"},5000);
+            setTimeout(()=> {navigate("/home")},5000);
         } else {
-            window.location = window.location + "home";
+            // window.location = window.location + "home";
+            navigate("/home");
         };
     };
 
