@@ -12,6 +12,7 @@ import BottomMenu from "../Layout/bottomMenu.tsx";
 import LanguageModal from "../Modals/LanguageModal.tsx";
 import MainMenuModal from '../Modals/mainMenuModal.tsx';
 import AccessibilityAnalysisInfosModal from "../Modals/accessibilityAnalysisInfosModal.tsx";
+import BackLink from "../Components/back-link.tsx";
 
 export default function AchievmentDetails(): React.JSX.Element {
 
