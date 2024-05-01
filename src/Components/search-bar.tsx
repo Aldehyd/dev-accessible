@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useRef } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 
 export default function SearchBar(): React.JSX.Element {
@@ -6,17 +6,10 @@ export default function SearchBar(): React.JSX.Element {
     const {language} = useContext(LanguageContext);
     const input = useRef(null);
 
-    const [isSearching,setIsSearching] = useState<boolean>(false);
-
-    const classList = `search-bar-container ${isSearching ? 'searching' : ''}`;
-
     const handleKeyDown = (e: KeyboardEvent)=> {
         switch(e.key) {
-            case ' ':
-                e.preventDefault();
-                break;
             case 'Enter': 
-                this.launchSearch();
+                launchSearch();
                 break;
             default:
                 break;
@@ -25,40 +18,15 @@ export default function SearchBar(): React.JSX.Element {
 
     const launchSearch = ()=> {
         if(input.current?.value.length > 0) {
-
-            const query = {
-                query: input.current?.value
-            };
-            
-            window.location = 'http://localhost:3000/search-results';
-
-            const options = {
-                method: "POST",
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                },
-                body : JSON.stringify(query)
-            };
-    
-            fetch('http://localhost:4000/search',options)
-            .then(res => {
-                
-                console.log(res)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-
-            // setTimeout(()=> setIsSearching(false),1000);
+            window.location = `http://localhost:3000/search-results?query=${input.current?.value}&language=${language}`;
         };
     };
 
     return(
-        <div className={classList}>
+        <div className="search-bar-container">
             <span className="input-container">
                 <input type="text" placeholder={language === "french" ? "Rechercher..." : "Search..."}
-                 maxLength="26" onKeyDown={(e)=> handleKeyDown(e)} ref={input} />
+                 maxLength={26} onKeyDown={(e)=> handleKeyDown(e)} ref={input} />
             </span>
             <button type="button" className="search-button" 
                 aria-label={language === "french" ? "Rechercher" : "Search"}

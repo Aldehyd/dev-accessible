@@ -143,36 +143,53 @@ app.post("/search",(req,res)=> {
     
       // Navigate to the home page.
       await page.goto("https://dev-accessible.com/");
-      const links = await page.locator(".main-link").allInnerTexts();
-    
+
+    //   const linksToScan = ["Réalisations","Pourquoi l'accessibilité ?","Mentions légales","Confidentialité"];
+      const frenchLinksToScan = ["Réalisations","Pourquoi l'accessibilité ?","Mentions légales","Confidentialité"];
+      const englishLinksToScan = ["Privacy policy","Why accessibility ?","Legal mentions","Privacy policy"];
+      const url = ["achievments","why-accessibility","legal-mentions","privacy-policy"];
+
       let results = [];
-      console.log(req.body)
+     
       const searchQuery = req.body.query;
-      console.log(searchQuery)
-      for(let link of links) {
-        if(link !== "Accueil" && link !=="Home" && !link.includes("Accessibilité") && !link.includes("accessibilité")) {
+      const language = req.body.language;
+      
+      async function Search(links) {
+        for(let link of links) {
             await page.getByRole('link',{name: link}).click();
             const title = await page.locator("h1").innerText();
             const lines = await page.locator(`li:has-text("${searchQuery}")`).allInnerTexts();
             const paragraphs = await page.locator(`p:has-text("${searchQuery}")`).allInnerTexts();
+            const urlLink = url[frenchLinksToScan.indexOf(link)];
     
             const newResult = {
                 title: title,
                 lines: lines,
-                paragraphs: paragraphs
+                paragraphs: paragraphs,
+                link: urlLink
             };
             results = [...results,newResult];
     
             await page.locator(".back-link").click();
-        };
+          };
+          console.log(JSON.stringify(results))
+          res.send({results: JSON.stringify(results)});
+
+          // Close the browser
+            await browser.close();
       };
-      console.log(results)
-      res.send(JSON.stringify(results));
+
+      if(language === "french") {
+        Search(frenchLinksToScan);
+      } else {
+        Search(englishLinksToScan);
+      };
+      
+
       // Wait 10 seconds (or 10,000 milliseconds)
-      await page.waitForTimeout(10000);
+    //   await page.waitForTimeout(10000);
     
-      // Close the browser
-      await browser.close();
+      
     })();
 });
 

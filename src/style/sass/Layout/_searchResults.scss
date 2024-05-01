@@ -1,0 +1,11 @@
+.search-results {
+    &_subtitle {
+        margin: 0 auto 2rem auto;
+        width: fit-content;
+        font-size: 1.6rem;
+        font-weight: bold;
+    }
+    &_result {
+        margin-left: 40px;
+    }
+}

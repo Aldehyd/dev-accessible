@@ -1,7 +1,11 @@
 import { useContext } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 
-export default function Loader(): React.JSX.Element {
+interface LoaderPropsInterface {
+    search?: boolean
+}
+
+export default function Loader({search=false}: LoaderPropsInterface): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
 
@@ -10,7 +14,18 @@ export default function Loader(): React.JSX.Element {
     return (
         <div className={classList}>
         <p className="loader_text">
-            {language === "french" ? "CHARGEMENT" : "LOADING"}
+            {
+                language === "french" ?
+                    search ?
+                        "RECHERCHE EN COURS"
+                        :
+                        "CHARGEMENT"
+                    : 
+                    search ?
+                        "SEARCHING"
+                        :
+                        "LOADING"
+            }
         </p>
         <div className="loader_timeline">
             <span className="loader_timeline_unit loader_timeline_unit--1"></span>

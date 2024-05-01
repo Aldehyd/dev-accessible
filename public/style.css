@@ -4148,6 +4148,16 @@ body:not(.contrast).purple .prices-simulator_evaluation {
   transform: translate(50%, 50%);
 }
 
+.search-results_subtitle {
+  margin: 0 auto 2rem auto;
+  width: fit-content;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+.search-results_result {
+  margin-left: 40px;
+}
+
 .main-menu-modal {
   position: fixed;
   z-index: 5;
