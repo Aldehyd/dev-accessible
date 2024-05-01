@@ -30,11 +30,13 @@ export default function SearchResults(): React.JSX.Element {
         let params = new URLSearchParams(document.location.search);
         let query = params.get("query");
         let language = params.get("language");
+        let environnement = params.get("environnement");
         setQuery(query);
 
         const queryObject = {
             query: query,
-            language: language
+            language: language,
+            environnement: environnement
         };
 
         const options = {

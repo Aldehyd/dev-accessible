@@ -146,15 +146,35 @@ app.post("/search",(req,res)=> {
 
     //   const linksToScan = ["Réalisations","Pourquoi l'accessibilité ?","Mentions légales","Confidentialité"];
       const frenchLinksToScan = ["Réalisations","Pourquoi l'accessibilité ?","Mentions légales","Confidentialité"];
-      const englishLinksToScan = ["Privacy policy","Why accessibility ?","Legal mentions","Privacy policy"];
+      const englishLinksToScan = ["Achievments","Why accessibility ?","Legal mentions","Privacy"];
       const url = ["achievments","why-accessibility","legal-mentions","privacy-policy"];
 
       let results = [];
      
       const searchQuery = req.body.query;
       const language = req.body.language;
+      const environnement = req.body.environnement;
       
-      async function Search(links) {
+      async function Search(language,environnement,frenchLinks,englishLinks) {
+
+        let links = [];
+
+        if(language === "french") {
+            links = frenchLinks;
+        } else {
+            links = englishLinks;
+            await page.locator(".language-select").click();
+            await page.locator(".language-select_center_en").click();
+            await page.locator(".confirm-modal_buttons-container .basic-button-container:first-child").click();
+        };
+
+        await page.locator(".environnement-toggle-button").click();
+        await page.locator(".confirm-modal_buttons-container .basic-button-container:first-child").click();
+        if(environnement === "client") {
+            await page.locator(".environnement-toggle-button").click();
+            await page.locator(".confirm-modal_buttons-container .basic-button-container:first-child").click();
+        };
+
         for(let link of links) {
             await page.getByRole('link',{name: link}).click();
             const title = await page.locator("h1").innerText();
@@ -179,12 +199,7 @@ app.post("/search",(req,res)=> {
             await browser.close();
       };
 
-      if(language === "french") {
-        Search(frenchLinksToScan);
-      } else {
-        Search(englishLinksToScan);
-      };
-      
+    Search(language,environnement,frenchLinksToScan,englishLinksToScan);
 
       // Wait 10 seconds (or 10,000 milliseconds)
     //   await page.waitForTimeout(10000);
