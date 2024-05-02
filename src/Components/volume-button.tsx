@@ -1,16 +1,31 @@
+import { useState } from "react";
 
 interface VolumeButtonPropsInterface {
-    volume: string,
+    volume: number,
+    setVolume: (volume: number)=> void,
     setDisplay: (display: boolean)=> void
 }
 
-export default function VolumeButton({volume,setDisplay}: VolumeButtonPropsInterface): React.JSX.Element {
+export default function VolumeButton({volume,setVolume,setDisplay}: VolumeButtonPropsInterface): React.JSX.Element {
+    
+    const [savedVolume,setSavedVolume] = useState<number>(0);
+
+    const onClick = ()=> {
+        if(volume === 0) {
+            setVolume(savedVolume);
+        } else {
+            setSavedVolume(volume);
+            setVolume(0);
+        };
+    };
+    
     return (
         <button className="volume-button video-player-button" aria-label={"Volume"}
             onMouseOver={()=> setDisplay(true)}
-            onMouseLeave={()=> setDisplay(false)}>
+            onMouseLeave={()=> setDisplay(false)}
+            onClick={()=> onClick()}>
                 {
-                    volume === "muted" &&
+                    volume === 0 &&
                         <svg className="volume-button_icon volume-button_icon--muted" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                             viewBox="0 0 127.6 103.3">
                             <line className="cross" x1="-550.6" y1="-429.7" x2="-494.1" y2="-373.2"/>
@@ -30,7 +45,7 @@ export default function VolumeButton({volume,setDisplay}: VolumeButtonPropsInter
                         </svg>
                 }   
                 {
-                    volume === "low" &&
+                    volume <= 0.5 && volume !== 0 &&
                         <svg className="volume-button_icon volume-button_icon--low" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                 viewBox="0 0 109 99.1">
                             <path d="M-337.4,93.5l-8.4-8.4c-1.8-1.8-1.8-4.6,0-6.4l8.4-8.4c1.8-1.8,4.6-1.8,6.4,0l8.4,8.4c1.8,1.8,1.8,4.6,0,6.4l-8.4,8.4
@@ -51,7 +66,7 @@ export default function VolumeButton({volume,setDisplay}: VolumeButtonPropsInter
                         </svg>
                 }
                 {
-                    volume === "high" &&
+                    volume > 0.5 &&
                         <svg className="volume-button_icon volume-button_icon--high" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                 viewBox="0 0 128.3 108.3">
                             <path d="M-116.2,175.4l-8.4-8.4c-1.8-1.8-1.8-4.6,0-6.4l8.4-8.4c1.8-1.8,4.6-1.8,6.4,0l8.4,8.4c1.8,1.8,1.8,4.6,0,6.4l-8.4,8.4

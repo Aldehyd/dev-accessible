@@ -3020,6 +3020,16 @@ body:not(.contrast).purple .shortcut-setting-container_key-pictures {
 .video-player_control-bar .volume-button_icon .high {
   fill: none;
 }
+.video-player_control-bar .full-screen-button {
+  height: 4rem;
+  width: 4rem;
+}
+.video-player_control-bar .full-screen-button .full-screen-button_icon {
+  height: 100%;
+  width: 100%;
+  stroke: hsl(175deg, 95%, 55%);
+  fill: hsl(175deg, 95%, 55%);
+}
 .video-player-button {
   position: relative;
   color: hsl(175deg, 95%, 55%);
@@ -3051,6 +3061,8 @@ body:not(.contrast).purple .shortcut-setting-container_key-pictures {
   animation: onHoverButtonBefore 1s ease-in-out infinite alternate;
 }
 .video-player_background {
+  position: absolute;
+  left: 0;
   height: 100%;
   object-fit: cover;
 }
@@ -3144,10 +3156,12 @@ body:not(.contrast).purple .shortcut-setting-container_key-pictures {
   left: 50%;
   transform: translateX(-50%);
   height: fit-content;
+  width: 3rem;
   overflow: hidden;
 }
 .volume-slider_mask {
   position: absolute;
+  z-index: 1;
   bottom: 0;
   left: 0;
   display: flex;
@@ -3164,8 +3178,9 @@ body:not(.contrast).purple .shortcut-setting-container_key-pictures {
   background-color: #000;
 }
 .volume-slider_thumb {
-  height: 100%;
-  width: 0.6rem;
+  position: absolute;
+  bottom: 0;
+  width: 0.8rem;
   background-color: hsl(175deg, 95%, 55%);
   box-shadow: 0 0 0.5rem 0.2rem hsl(175deg, 95%, 55%);
 }

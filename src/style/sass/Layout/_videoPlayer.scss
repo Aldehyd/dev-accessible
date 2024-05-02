@@ -126,6 +126,16 @@
                     fill: none;
                 }
             }
+            & .full-screen-button {
+                height: 4rem;
+                width: 4rem;
+                & .full-screen-button_icon {
+                    height: 100%;
+                    width: 100%;
+                    stroke: map-get($colors,blue);
+                    fill: map-get($colors,blue);
+                }
+            }
         }
         &-button {
             position: relative;
@@ -158,6 +168,8 @@
             }
         }
         &_background {
+            position: absolute;
+            left: 0;
             height: 100%;
             object-fit: cover;
         }
@@ -251,10 +263,12 @@
         left: 50%;
         transform: translateX(-50%);
         height: fit-content;
+        width: 3rem;
         overflow: hidden;
     }
     &_mask {
         position: absolute;
+        z-index: 1;
         bottom: 0;
         left: 0;
         display: flex;
@@ -271,8 +285,9 @@
         }
     }
     &_thumb {
-        height: 100%;
-        width: 0.6rem;
+        position: absolute;
+        bottom: 0;
+        width: 0.8rem;
         background-color: map-get($colors,blue);
         box-shadow: 0 0 0.5rem 0.2rem map-get($colors,blue);
     }
