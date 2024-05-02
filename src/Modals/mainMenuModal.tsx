@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import MainLink from "../Components/main-link.tsx";
+import CustomLink from "../Components/custom-link.tsx";
 import EnvironnementContext from "../Contexts/environnement-context.tsx";
 import LanguageContext from "../Contexts/language-context.tsx";
 import ModalContext from "../Contexts/modal-context.tsx";
@@ -44,22 +44,22 @@ export default function MainMenuModal({isExpanded,setIsExpanded}: MainMenuPropsI
                 <ul role="menu"
                     aria-labelledby="main-menu-modal_toggle-button">
                     <li>
-                        <MainLink frenchText="Accueil" englishText="Home" route="/home" />
+                        <CustomLink type="main" frenchText="Accueil" englishText="Home" route="/home" />
                     </li>
                     <li>
-                        <MainLink frenchText="Qui suis-je" englishText="Who am I" route="/who-am-i" />
+                        <CustomLink type="main" frenchText="Qui suis-je" englishText="Who am I" route="/who-am-i" />
                     </li>
                     {
                         environnement === "recruiter" &&
                             <li>
-                                <MainLink frenchText="CV" englishText="CV" route="/cv" />
+                                <CustomLink type="main" frenchText="CV" englishText="CV" route="/cv" />
                             </li>
                     }
                     <li>
-                        <MainLink frenchText="Réalisations" englishText="Achievments" route="/achievments" />
+                        <CustomLink type="main" frenchText="Réalisations" englishText="Achievments" route="/achievments" />
                     </li>
                     <li>
-                        <MainLink frenchText="Pourquoi l'accessibilité ?" englishText="Why accessibility ?" route="/why-accessibility" />
+                        <CustomLink type="main" frenchText="Pourquoi l'accessibilité ?" englishText="Why accessibility ?" route="/why-accessibility" />
                     </li>
                     {/* <li>
                         <MainLink frenchText="Tarifs" englishText="Prices" route="/prices" />

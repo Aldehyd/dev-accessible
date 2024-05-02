@@ -4,8 +4,8 @@ import CVSection from "./cvSection.tsx";
 import AchievmentInterface from "../Interfaces/achievmentInterface.tsx";
 import DiplomaInterface from "../Interfaces/diplomaInterface.tsx";
 import LanguageInterface from "../Interfaces/languageInterface.tsx";
-import AvailableStatusIndicator from "../Components/availableStatusIndicator.tsx";
 import CVHeadSection from "./cvHeadSection.tsx";
+
 interface CVComponentPropsInterface {
     availableStatus: boolean,
     achievments: AchievmentInterface[],

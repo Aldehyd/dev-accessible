@@ -1,4 +1,4 @@
-import MainLink from "../Components/main-link.tsx";
+import CustomLink from "../Components/custom-link.tsx";
 
 export default function WhyAccessibilityMain(): React.JSX.Element {
     return (
@@ -42,7 +42,7 @@ export default function WhyAccessibilityMain(): React.JSX.Element {
                 du RGAA (Référentiel Général d'Amélioration de l'Accessibilité).</p>
             <p>Un site est considéré accessible quand il atteint un score de 100% de conformité
                 avec ces critères.</p>
-            <MainLink frenchText="Lien vers le RGAA" englishText="RGAA link" route="https://accessibilite.numerique.gouv.fr/" />
+            <CustomLink frenchText="Lien vers le RGAA" englishText="RGAA link" route="https://accessibilite.numerique.gouv.fr/" />
         </>
     )
 }

@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Components from './Components/index.tsx';
 import LanguageContext from './Contexts/language-context.tsx';
 import ShortcutsContext from './Contexts/shortcuts-context.tsx';
 import CarouselContext from './Contexts/caroussel-context.tsx';
@@ -77,7 +76,6 @@ export default function App(): React.JSX.Element {
                             <CarouselContext.Provider value={{displayCarousel,picturesFullScreen,currentPictureFullScreen,changeDisplayCarousel,changePicturesFullScreen,changeCurrentPictureFullScreen}}>
                                 <Router>
                                     <Routes>
-                                        <Route path="/components" element={<Components />} />
                                         <Route path="/layouts" element={<Layouts />} />
                                         <Route path="/" element={<LandingPage />} />
                                         <Route path="/home" element={<Home />} />

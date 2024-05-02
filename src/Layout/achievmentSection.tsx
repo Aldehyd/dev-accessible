@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import BasicPicture from "../Components/basic-picture.tsx";
-import MainLink from "../Components/main-link.tsx";
+import CustomLink from "../Components/custom-link.tsx";
 import LanguageContext from "../Contexts/language-context.tsx";
 import AchievmentInterface from "../Interfaces/achievmentInterface.tsx";
 
@@ -65,7 +65,7 @@ export default function AchievmentSection({achievment}: AchievmentSectionPropsIn
                     <dd>{achievment.accessibility.score === false ? (language === "french" ? "Non évaluée" : "Not evaluated") : achievment.accessibility.score + " %"}</dd>
                 </dl>
             </div>
-            <MainLink frenchText="Voir détails..." englishText="See details..." route={"/achievments/" + achievment.title.replace(".com","")} />
+            <CustomLink frenchText="Voir détails..." englishText="See details..." route={"/achievments/" + achievment.title.replace(".com","")} />
 
         </section>
     )

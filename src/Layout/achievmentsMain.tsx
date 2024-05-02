@@ -4,7 +4,6 @@ import AchievmentsFitler from "./achievmentsFilter.tsx";
 import { useState, useEffect } from "react";
 import AchievmentInterface from "../Interfaces/achievmentInterface.tsx";
 import Error from "../Components/error.tsx";
-import BackLink from "../Components/back-link.tsx";
 interface AchievmentsMainPropsInterface {
     achievments : AchievmentInterface[]
 }

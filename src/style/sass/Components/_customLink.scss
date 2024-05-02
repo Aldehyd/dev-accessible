@@ -1,11 +1,10 @@
-.main-link {
+.link {
     display: block;
     position: relative;
     padding: 1rem;
     width: fit-content;
     height: fit-content;
     text-decoration: none;
-    font-size: 1.8rem;
     color: map-get($colors,blue);
     background-color: map-get($colors,dark);
     border: solid map-get($colors,white) 0.2rem;
@@ -13,6 +12,12 @@
     transition: 200ms ease-in-out;
     overflow: hidden;
     cursor: pointer;
+    &.main-link {
+        font-size: 1.8rem;
+    }
+    &.secundary-link {
+        font-size: 1.6rem;
+    }
     &.back-link {
         display: flex;
         align-items: center;
@@ -45,7 +50,7 @@
 }
 
 body.animations {
-    & .main-link:hover::after {
+    & .link:hover::after {
         content: "";
         position: absolute;
         top: 0;
@@ -55,7 +60,7 @@ body.animations {
         box-shadow: 0 0 1rem 0.4rem map-get($colors,blue);
         animation: mainMenuLinkHover 800ms ease-in-out forwards; 
     }
-    & .main-link:focus-within::after {
+    & .link:focus-within::after {
         content: "";
         position: absolute;
         top: 0;
@@ -67,11 +72,11 @@ body.animations {
     }
 }
 body:not(.contrast) {
-    & .main-link {
+    & .link {
         text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
     }
     &.purple {
-        & .main-link {
+        & .link {
             color: map-get($colors,purple);
             text-shadow: 0 0.2rem 0.4rem map-get($colors,purple);
             &:hover::after {

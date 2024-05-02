@@ -1,5 +1,5 @@
 import Error from '../Components/error.tsx';
-import MainLink from '../Components/main-link.tsx';
+import CustomLink from '../Components/custom-link.tsx';
 import AchievmentsSeparator from '../Components/achievments-separator.tsx';
 
 interface SearchResultsMainPropsInterface {
@@ -41,7 +41,7 @@ export default function SearchResultsMain({results,query}: SearchResultsMainProp
                                                                 <div className="search-results_result">
                                                                     <h2>{result.title}</h2>
                                                                     <p key={line.index}>{line}</p>
-                                                                    <MainLink frenchText="Lire plus..." englishText="Read more..." route={"/"+result.link} />
+                                                                    <CustomLink frenchText="Lire plus..." englishText="Read more..." route={"/"+result.link} />
                                                                 </div>      
                                                                 <AchievmentsSeparator />
                                                             </>
@@ -58,7 +58,7 @@ export default function SearchResultsMain({results,query}: SearchResultsMainProp
                                                                 <div className="search-results_result">
                                                                     <h2>{result.title}</h2>
                                                                     <p key={paragraph.index}>{paragraph}</p>
-                                                                    <MainLink frenchText="Lire plus..." englishText="Read more..." route={"/"+result.link} />
+                                                                    <CustomLink frenchText="Lire plus..." englishText="Read more..." route={"/"+result.link} />
                                                                 </div>     
                                                                 <AchievmentsSeparator />
                                                             </> 

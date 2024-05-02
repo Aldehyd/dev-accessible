@@ -1381,14 +1381,13 @@ body.animations .accessibility-settings-button:hover .settings-svg {
   transform: rotate(360deg);
 }
 
-.main-link {
+.link {
   display: block;
   position: relative;
   padding: 1rem;
   width: fit-content;
   height: fit-content;
   text-decoration: none;
-  font-size: 1.8rem;
   color: hsl(175deg, 95%, 55%);
   background-color: #000;
   border: solid #f1f1f1 0.2rem;
@@ -1397,14 +1396,20 @@ body.animations .accessibility-settings-button:hover .settings-svg {
   overflow: hidden;
   cursor: pointer;
 }
-.main-link.back-link {
+.link.main-link {
+  font-size: 1.8rem;
+}
+.link.secundary-link {
+  font-size: 1.6rem;
+}
+.link.back-link {
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-bottom: 2rem;
   font-size: 1.4rem;
 }
-.main-link.back-link .back-link-svg {
+.link.back-link .back-link-svg {
   height: 1.5rem;
   width: 1.5rem;
   fill: hsl(175deg, 95%, 55%);
@@ -1426,7 +1431,7 @@ body.animations .accessibility-settings-button:hover .settings-svg {
     transform: translateX(20rem);
   }
 }
-body.animations .main-link:hover::after {
+body.animations .link:hover::after {
   content: "";
   position: absolute;
   top: 0;
@@ -1436,7 +1441,7 @@ body.animations .main-link:hover::after {
   box-shadow: 0 0 1rem 0.4rem hsl(175deg, 95%, 55%);
   animation: mainMenuLinkHover 800ms ease-in-out forwards;
 }
-body.animations .main-link:focus-within::after {
+body.animations .link:focus-within::after {
   content: "";
   position: absolute;
   top: 0;
@@ -1447,17 +1452,17 @@ body.animations .main-link:focus-within::after {
   animation: mainMenuLinkHover 800ms ease-in-out forwards;
 }
 
-body:not(.contrast) .main-link {
+body:not(.contrast) .link {
   text-shadow: 0 0.2rem 0.4rem hsl(175deg, 95%, 55%);
 }
-body:not(.contrast).purple .main-link {
+body:not(.contrast).purple .link {
   color: hsl(295deg, 95%, 55%);
   text-shadow: 0 0.2rem 0.4rem hsl(295deg, 95%, 55%);
 }
-body:not(.contrast).purple .main-link:hover::after {
+body:not(.contrast).purple .link:hover::after {
   box-shadow: 0 0 1rem 0.4rem hsl(295deg, 95%, 55%);
 }
-body:not(.contrast).purple .main-link:focus-within::after {
+body:not(.contrast).purple .link:focus-within::after {
   box-shadow: 0 0 1rem 0.4rem hsl(295deg, 95%, 55%);
 }
 body:not(.contrast).purple .back-link-svg {

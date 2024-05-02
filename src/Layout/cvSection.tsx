@@ -5,6 +5,7 @@ import AchievmentInterface from "../Interfaces/achievmentInterface.tsx";
 import DiplomaInterface from "../Interfaces/diplomaInterface.tsx";
 import LanguageInterface from "../Interfaces/languageInterface.tsx";
 import { addTechnoToTechnologies } from "../Functions/addTechnoToTechnologies.tsx";
+
 interface CVSectionInterface {
     type: string,
     achievments: AchievmentInterface[],

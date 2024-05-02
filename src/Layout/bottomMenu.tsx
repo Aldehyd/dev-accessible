@@ -1,5 +1,5 @@
 import BottomMenuLine from "../Components/bottomMenuLine.tsx";
-import MainLink from "../Components/main-link.tsx";
+import CustomLink from "../Components/custom-link.tsx";
 
 interface BottomMenuPropsInterface {
     home?: boolean
@@ -15,19 +15,19 @@ export default function BottomMenu({home=false}: BottomMenuPropsInterface): Reac
             {
                 home ?
                     <>
-                        <MainLink frenchText="Contact" englishText="Contact" route="/contact" />
-                        <MainLink frenchText="Plan du site" englishText="Site map" route="/site-map" />
-                        <MainLink frenchText="Mentions légales" englishText="Legal mentions" route="/legal-mentions" />
-                        <MainLink frenchText="Confidentialité" englishText="Privacy" route="/privacy-policy" />
-                        <MainLink frenchText="Accessibilité" englishText="Accessibility" route="/accessibility" />
+                        <CustomLink frenchText="Contact" englishText="Contact" route="/contact" />
+                        <CustomLink frenchText="Plan du site" englishText="Site map" route="/site-map" />
+                        <CustomLink frenchText="Mentions légales" englishText="Legal mentions" route="/legal-mentions" />
+                        <CustomLink frenchText="Confidentialité" englishText="Privacy" route="/privacy-policy" />
+                        <CustomLink frenchText="Accessibilité" englishText="Accessibility" route="/accessibility" />
                     </>
                     :
                     <>
-                        <MainLink frenchText="Mentions légales" englishText="Legal mentions" route="/legal-mentions" />
-                        <MainLink frenchText="Plan du site" englishText="Site map" route="/site-map" />
-                        <MainLink frenchText="Contact" englishText="Contact" route="/contact" />
-                        <MainLink frenchText="Confidentialité" englishText="Privacy" route="/privacy-policy" />
-                        <MainLink frenchText="Accessibilité" englishText="Accessibility" route="/accessibility" />
+                        <CustomLink frenchText="Mentions légales" englishText="Legal mentions" route="/legal-mentions" />
+                        <CustomLink frenchText="Plan du site" englishText="Site map" route="/site-map" />
+                        <CustomLink frenchText="Contact" englishText="Contact" route="/contact" />
+                        <CustomLink frenchText="Confidentialité" englishText="Privacy" route="/privacy-policy" />
+                        <CustomLink frenchText="Accessibilité" englishText="Accessibility" route="/accessibility" />
                     </>
             }
         </div>
