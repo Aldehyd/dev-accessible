@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { useNavigate} from "react-router-dom";
 import LanguageContext from "../Contexts/language-context.tsx";
 
@@ -14,7 +14,7 @@ export default function BackLink({frenchText="Accueil",englishText="Home",route=
     const {language} = useContext(LanguageContext);
 
     return(
-        <button className="main-link back-link" onClick={()=> navigate(route)}>
+        <button className="link back-link" onClick={()=> navigate(route)}>
             <svg className="back-link-svg" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                     viewBox="0 0 96.3 104.1">
                 <line className="st0" x1="-73.2" y1="-187.9" x2="-16.8" y2="-131.4"/>
