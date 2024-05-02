@@ -38,7 +38,7 @@ export default function WhoAmI(): React.JSX.Element {
                 <video controls style={{display:'block',margin: 'auto',height:'400px',width:'600px'}}>
                     <source src="/videos/presentation.mp4" type="video/mp4" />
                 </video>
-                <VideoPlayer video={presentationVideo} />
+                {/* <VideoPlayer video={presentationVideo} /> */}
             </main>
             <footer>
                 <BottomMenu />
