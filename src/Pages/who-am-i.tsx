@@ -9,6 +9,8 @@ import BottomMenu from "../Layout/bottomMenu.tsx";
 import LanguageModal from "../Modals/LanguageModal.tsx";
 import MainMenuModal from '../Modals/mainMenuModal.tsx';
 import AccessibilityAnalysisInfosModal from "../Modals/accessibilityAnalysisInfosModal.tsx";
+import {presentationVideo} from "../Datas/presentationVideo.tsx";
+import VideoPlayer from "../Layout/videoPlayer.tsx";
 
 export default function WhoAmI(): React.JSX.Element {
 
@@ -36,6 +38,7 @@ export default function WhoAmI(): React.JSX.Element {
                 <video controls style={{display:'block',margin: 'auto',height:'400px',width:'600px'}}>
                     <source src="/videos/presentation.mp4" type="video/mp4" />
                 </video>
+                <VideoPlayer video={presentationVideo} />
             </main>
             <footer>
                 <BottomMenu />

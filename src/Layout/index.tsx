@@ -19,7 +19,7 @@ import {setFontSize} from '../Functions/fontSizeSpinButton/setFontSize.tsx';
 import ShortcutModifier from "./shortcutModifier.tsx";
 import ShortcutModifiersSection from "./shortcutModifiersSection.tsx";
 import VideoPlayer from "./videoPlayer.tsx";
-import {video} from '../Datas/video.tsx';
+import {presentationVideo} from "../Datas/presentationVideo.tsx";
 import AchievmentSection from "./achievmentSection.tsx";
 import { achievments } from "../Datas/achievments.tsx";
 
@@ -67,7 +67,7 @@ export default function Layouts(): React.JSX.Element {
             <SpinButton name="fontSize" frenchLabel="Taille de la police" englishLabel="Font size" minValue={100} maxValue={200} defaultValue={100} handleKeyDown={handleKeyDown} increase={increase} decrease={decrease} effectFunction={setFontSize} />
             <Carousel pictures={pictures} />
             <ShortcutModifiersSection />
-            <VideoPlayer video={video} />
+            <VideoPlayer video={presentationVideo} />
             <AchievmentSection achievment={achievments[0]}/>
         </div>
     )

@@ -3,9 +3,12 @@ import LanguageContext from "../Contexts/language-context.tsx";
 import TimeSlider from "../Components/time-slider.tsx";
 import TimeCount from "../Components/time-count.tsx";
 import BasicButton from "../Components/basic-button.tsx";
+import VideoInterface from "../Interfaces/videoInterface.tsx";
+import VolumeSlider from "../Components/volume-slider.tsx";
+import VolumeButton from "../Components/volume-button.tsx";
 
 interface VideoPlayerPropsInterface {
-    video: {videoName: string, pictureName: string, pictureFrenchAlt: string, englishEnglishAlt: string, frenchTitle: string, englishTitle: string, frenchTranscription: string, englishTranscription: string}
+    video: VideoInterface
 }
 
 export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.JSX.Element {
@@ -21,6 +24,8 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
     const [isPlaying,setIsPlaying] = useState<boolean>(false);
     const [currentTime,setCurrentTime] = useState<number>(0);
     const [currentTimeInMinutesAndSeconds,setCurrentTimeInMinutesAndSeconds] = useState({minutes: 0, seconds: 0});
+    const [volume,setVolume] = useState<number>(0);
+    const [volumeSliderDisplay,setVolumeSliderDisplay] = useState<boolean>(false);
 
     const convertInMinutesAndSeconds : (value: number)=> {minutes: number, seconds: number} = (value)=> {
         let minutes = Math.floor(value / 60);
@@ -72,6 +77,9 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
         };
     };
 
+    const playButtonClassList = `play-button video-player-button ${isPlaying ? "pause" : "play"}`;
+    const volumeClassList = `video-player_control-bar_volume ${volumeSliderDisplay ? "display" : ""}`;
+
     useEffect(()=> {
         fullScreenMode ? 
             videoPlayerElement.current?.requestFullscreen() 
@@ -121,13 +129,17 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
                 {status === "video" &&
                     <div className="video-player_video" onClick={onVideoClick}>
                         <video ref={videoElement} tabIndex={0} onTimeUpdate={()=> setCurrentTime(videoElement.current.currentTime)}>
-                            <source src={"videos/" + video.videoName + ".mp4"} type="video/mp4" />
+                            <source src={"/videos/" + video.videoName + ".mp4"} type="video/mp4" />
                         </video>
                         {/* <img src={"img/" + video.pictureName + ".JPG"} alt={language === "french" ? video.pictureFrenchAlt : video.pictureEnglishAlt} className="video-player_background" /> */}
                         {!isPlaying && 
                             <button className="main-play-button" onClick={onPlayButtonClick}
                                 aria-label={language === "french" ? "Lancer la vidéo": "Play"}>
-                                <span className="main-play-button_play-icon">&#9654;</span>
+                                <svg className="main-play-button_play-icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 100.2 106.4" >
+                                    <path d="M-244.9-89.5l-53.3-30.8c-9.2-5.3-20.8,1.3-20.8,12v61.6c0,10.7,11.5,17.3,20.8,12l53.3-30.8
+                                        C-235.7-70.8-235.7-84.1-244.9-89.5z"/>
+                                    <path d="M91.1,47.5L21.5,7.3C15.9,4.1,8.9,8.1,8.9,14.6V95c0,6.5,7,10.6,12.7,7.3l69.6-40.2C96.7,58.8,96.7,50.7,91.1,47.5z"/>
+                                </svg>
                             </button>
                         }
                     </div>
@@ -138,39 +150,27 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
                     // onFocus={()=> clearTimeout(controlBarHide.current)}
                     >
                     <div className="video-player_control-bar_timeline">
-                        <button className="play-button video-player-button" 
+                        <button className={playButtonClassList}
                             onClick={onPlayButtonClick}
                             aria-label={language === "french" ? "Lancer la vidéo": "Play"}>
-                            <span className="play-button_play-icon">&#9654;</span>
+                            <svg className="play-icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 100.2 106.4" >
+                                <path d="M-244.9-89.5l-53.3-30.8c-9.2-5.3-20.8,1.3-20.8,12v61.6c0,10.7,11.5,17.3,20.8,12l53.3-30.8
+                                    C-235.7-70.8-235.7-84.1-244.9-89.5z"/>
+                                <path d="M91.1,47.5L21.5,7.3C15.9,4.1,8.9,8.1,8.9,14.6V95c0,6.5,7,10.6,12.7,7.3l69.6-40.2C96.7,58.8,96.7,50.7,91.1,47.5z"/>
+                            </svg>
+                            <span className="pause-icon">
+                                <span></span>
+                                <span></span>
+                            </span>
                         </button>
-                        {/* <div className="time-slider">
-                            <span className="time-slider_thumb" tabIndex={0} role="slider" 
-                                aria-valuemin="0" aria-valuemax="10" aria-valuenow={}
-                                aria-label="volume"></span>
-                        </div> */}
                         <TimeSlider videoElement={videoElement} duration={videoElement.current?.duration} currentValue={currentTime} setCurrentValue={setCurrentTime} currentValueMinutesAndSeconds={convertInMinutesAndSeconds(currentTime)} />
                     </div>
-                    {/* <div className="time-count">0:00 / 02:49</div> */}
                     <TimeCount currentTime={currentTimeInMinutesAndSeconds} duration={convertInMinutesAndSeconds(videoElement.current?.duration)} />
-                    <div className="video-player_control-bar_volume">
-                        <button className="volume-button video-player-button" aria-label={"Volume"}>
-                            <span className="volume-button_icon">&#128361;</span>
-                        </button>
-                        <div className="volume-slider-container">
-                            <div className="volume-slider">
-                                <div className="volume-slider_mask">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                                {/* <div className="volume-slider_thumb" tabIndex={0} role="slider" 
-                                aria-valuemin="0" aria-valuemax="10" aria-valuenow={}
-                                aria-label="volume" aria-orientation="vertical"></div> */}
-                            </div>
-                        </div>
+                    <div className={volumeClassList} >
+                        <VolumeButton volume={volume === 0 ? "muted" : (volume <=5 ? "low" : "high")} 
+                            setDisplay={setVolumeSliderDisplay} />
+                            
+                        <VolumeSlider volume={volume} setDisplay={setVolumeSliderDisplay} />
                     </div>
                     <button className="full-screen-button video-player-button" 
                         onClick={()=> setFullScreenMode(fullScreenMode => !fullScreenMode)}
