@@ -9,7 +9,7 @@
         overflow-y: visible;
         // overflow-x: hidden;
         width: 100%;
-        & .main-link {
+        & .link {
             &:nth-child(2) {
                 right: 30px;
                 left: inherit;
@@ -61,7 +61,7 @@
             fill: map-get($colors,white);
         }
     }
-    & .main-link {
+    & .link {
         position: absolute;
         bottom: 20px;
         &:nth-child(2) {
