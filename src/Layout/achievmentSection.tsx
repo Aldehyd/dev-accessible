@@ -3,7 +3,7 @@ import BasicPicture from "../Components/basic-picture.tsx";
 import CustomLink from "../Components/custom-link.tsx";
 import LanguageContext from "../Contexts/language-context.tsx";
 import AchievmentInterface from "../Interfaces/achievmentInterface.tsx";
-
+import EnvironnementContext from "../Contexts/environnement-context.tsx";
 interface AchievmentSectionPropsInterface {
     achievment: AchievmentInterface,
 }
@@ -11,6 +11,8 @@ interface AchievmentSectionPropsInterface {
 export default function AchievmentSection({achievment}: AchievmentSectionPropsInterface): React.JSX.Element {
     
     const {language} = useContext(LanguageContext);
+    const {environnement} = useContext(EnvironnementContext);
+
     const [technologiesList,setTechnologiesList] = useState<string>("");
     const [toolsList,setToolsList] = useState<string>("");
 
@@ -55,11 +57,21 @@ export default function AchievmentSection({achievment}: AchievmentSectionPropsIn
                     <dt>{language === "french" ? "Besoins" : "Need"} :</dt>
                     <dd>{language === "french" ? achievment.frenchNeed : achievment.englishNeed}</dd>
 
-                    <dt>{language === "french" ? "Outils de développement" : "Development tools"} :</dt>
-                    <dd>{toolsList}</dd>
+                    {
+                        environnement === "recruiter" &&
+                        <>
+                            <dt>{language === "french" ? "Outils de développement" : "Development tools"} :</dt>
+                            <dd>{toolsList}</dd>
+                        </>
+                    }
 
-                    <dt>Technologies :</dt>
-                    <dd>{technologiesList}</dd>
+                    {
+                        environnement === "recruiter" &&
+                            <>
+                                <dt>Technologies :</dt>
+                                <dd>{technologiesList}</dd>
+                            </>
+                    }
 
                     <dt>{language === "french" ? "Accessibilité" : "Accessibility"} :</dt>
                     <dd>{achievment.accessibility.score === false ? (language === "french" ? "Non évaluée" : "Not evaluated") : achievment.accessibility.score + " %"}</dd>
