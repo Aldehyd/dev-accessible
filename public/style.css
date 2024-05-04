@@ -3853,7 +3853,7 @@ body.animations .achievments-filter_content {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 3rem;
+  gap: 2rem;
   width: fit-content;
   max-width: 90%;
 }
@@ -4187,7 +4187,7 @@ body:not(.contrast).purple .prices-simulator_evaluation {
   position: absolute;
 }
 .main-menu_menu-item--home {
-  left: 30%;
+  left: 28%;
   top: 10%;
   transform: translate(-50%, -50%);
 }
