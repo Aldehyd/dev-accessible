@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 export default function Accessibot(): React.JSX.Element {
 
-    const [shadowColor,setShadowColor] = useState<string>("blue");
+    const [shadowColor,setShadowColor] = useState<string>("default");
     const [mouseOver,setMouseOver] = useState<boolean>(false);
     const [isWaiting,setIsWaiting] = useState<boolean>(false);
 
@@ -27,7 +27,7 @@ export default function Accessibot(): React.JSX.Element {
         <div className={classList} onMouseOver={()=> onMouseOver()} onMouseLeave={()=> onMouseLeave()}>
             {shadowColor === "red" && <div className="accessibility-bot_shadow accessibility-bot_shadow--red"></div>}
             {shadowColor === "green" && <div className="accessibility-bot_shadow accessibility-bot_shadow--green"></div>}
-            {shadowColor === "blue" && <div className="accessibility-bot_shadow accessibility-bot_shadow--blue"></div>}
+            {shadowColor === "default" && <div className="accessibility-bot_shadow accessibility-bot_shadow--default"></div>}
             <div className="accessibility-bot_body">
                 <div className="accessibility-bot_left-eye accessibility-bot_eyes"></div>
                 <div className="accessibility-bot_right-eye accessibility-bot_eyes"></div>

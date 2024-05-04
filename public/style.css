@@ -2363,12 +2363,12 @@ body:not(.contrast).purple .flying-saucer::after {
   transform: translate(-50%, -50%);
 }
 .accessibility-bot_shadow--red {
-  box-shadow: red 0 0 5px, red inset 0 0 5px;
+  box-shadow: hsl(0deg, 95%, 55%) 0 0 5px, red inset 0 0 5px;
 }
 .accessibility-bot_shadow--green {
-  box-shadow: green 0 0 5px, green inset 0 0 5px;
+  box-shadow: hsl(120deg, 95%, 55%) 0 0 5px, hsl(120deg, 95%, 55%) inset 0 0 5px;
 }
-.accessibility-bot_shadow--blue {
+.accessibility-bot_shadow--default {
   box-shadow: hsl(175deg, 95%, 55%) 0 0 5px, hsl(175deg, 95%, 55%) inset 0 0 5px;
 }
 .accessibility-bot_shadow-appear-effect {
@@ -2377,7 +2377,7 @@ body:not(.contrast).purple .flying-saucer::after {
   height: 0;
   width: 100%;
   background-color: hsl(175deg, 85%, 55%);
-  box-shadow: 0 0 4rem 2rem hsl(175deg, 85%, 55%);
+  box-shadow: 0 0 4rem 2rem hsl(175deg, 95%, 55%);
   transform-origin: 50% 0;
   opacity: 0;
 }
@@ -2414,6 +2414,26 @@ body.animations .accessibility-bot_hover .accessibility-bot_right-eye {
 }
 body.animations .accessibility-bot_shadow-appear-effect {
   animation: AccessibilityBotShadowAppearEffect 2s 600ms ease-in-out forwards;
+}
+
+body:not(.contrast).purple .accessibility-bot_body::after {
+  background-color: hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .accessibility-bot_eyes {
+  background-color: hsl(295deg, 95%, 55%);
+  box-shadow: hsl(295deg, 95%, 55%) 0 0 2px 1px;
+}
+body:not(.contrast).purple .accessibility-bot_mouth--happy {
+  border-bottom: solid 6px hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .accessibility-bot_mouth--sad {
+  border-top: solid 6px hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .accessibility-bot_shadow--default {
+  box-shadow: hsl(295deg, 95%, 55%) 0 0 5px, hsl(295deg, 95%, 55%) inset 0 0 5px;
+}
+body:not(.contrast).purple .accessibility-bot_shadow-appear-effect {
+  box-shadow: 0 0 4rem 2rem hsl(295deg, 95%, 55%);
 }
 
 @keyframes AccessibilityBotAppear {
@@ -4256,7 +4276,7 @@ body:not(.contrast).purple .prices-simulator_evaluation {
   position: relative;
   height: 75vh;
   width: 80vw;
-  padding-top: 40px;
+  padding-top: 30px;
 }
 .main-menu_line_svg {
   height: 100%;
@@ -4312,7 +4332,7 @@ body:not(.contrast).purple .prices-simulator_evaluation {
 .main-menu-modal {
   position: fixed;
   z-index: 5;
-  top: 40%;
+  top: 25%;
   left: 0;
   padding: 2.5rem 7rem 2.5rem 1.5rem;
   background-color: #f1f1f1;
