@@ -50,9 +50,13 @@ export default function MainMenuModal({isExpanded,setIsExpanded}: MainMenuPropsI
                         <CustomLink type="main" frenchText="Qui suis-je" englishText="Who am I" route="/who-am-i" />
                     </li>
                     {
-                        environnement === "recruiter" &&
+                        environnement === "recruiter" ?
                             <li>
                                 <CustomLink type="main" frenchText="CV" englishText="CV" route="/cv" />
+                            </li>
+                            :
+                            <li>
+                                <CustomLink type="main" frenchText="Prestations" englishText="Services" route="/services" />
                             </li>
                     }
                     <li>
