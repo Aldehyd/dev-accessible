@@ -20,9 +20,9 @@
 
 .video {
     &-title {
-    color: map-get($colors,blue);
-    font-size: 2rem;
-    text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
+        color: map-get($colors,blue);
+        font-size: 2rem;
+        text-shadow: 0 0.2rem 0.4rem map-get($colors,blue);
     }
     &-player {
         position: relative;
@@ -362,4 +362,42 @@ body.animations {
     }
 }
 
+body:not(.contrast) {
+    &.purple {
+        & .video-player {
+            &_transcription {
+                color: map-get($colors,purple);
+            }
+            & .main-play-button_play-icon {
+                fill: map-get($colors,purple);
+            }
+            &_control-bar .play-icon {
+                fill: map-get($colors,purple);
+            }
+            &_control-bar .pause-icon span {
+                background-color: map-get($colors,purple);
+            }
+            &_control-bar .volume-slider_thumb {
+                background-color: map-get($colors,purple);
+                box-shadow: 0 0 0.5rem 0.2rem map-get($colors,purple);
+            }
+            &_control-bar .volume-button_icon {
+                stroke: map-get($colors,purple);
+                fill: map-get($colors,purple);
+            }
+            &_control-bar .time-slider_thumb {
+                background-color: map-get($colors,purple);
+                box-shadow: 0 0 0.5rem 0.2rem map-get($colors,purple);
+            }
+            &_control-bar .time-count {
+                color: map-get($colors,purple);
+                text-shadow: 0 0.2rem 0.4rem map-get($colors,purple);
+            }
+            &_control-bar .full-screen-button_icon{
+                stroke: map-get($colors,purple);
+                fill: map-get($colors,purple);
+            }
+        }
+    }
+}
 

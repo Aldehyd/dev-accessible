@@ -3251,6 +3251,39 @@ body.animations .full-screen-button_icon {
   transition: 200ms ease-in-out;
 }
 
+body:not(.contrast).purple .video-player_transcription {
+  color: hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .video-player .main-play-button_play-icon {
+  fill: hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .video-player_control-bar .play-icon {
+  fill: hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .video-player_control-bar .pause-icon span {
+  background-color: hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .video-player_control-bar .volume-slider_thumb {
+  background-color: hsl(295deg, 95%, 55%);
+  box-shadow: 0 0 0.5rem 0.2rem hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .video-player_control-bar .volume-button_icon {
+  stroke: hsl(295deg, 95%, 55%);
+  fill: hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .video-player_control-bar .time-slider_thumb {
+  background-color: hsl(295deg, 95%, 55%);
+  box-shadow: 0 0 0.5rem 0.2rem hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .video-player_control-bar .time-count {
+  color: hsl(295deg, 95%, 55%);
+  text-shadow: 0 0.2rem 0.4rem hsl(295deg, 95%, 55%);
+}
+body:not(.contrast).purple .video-player_control-bar .full-screen-button_icon {
+  stroke: hsl(295deg, 95%, 55%);
+  fill: hsl(295deg, 95%, 55%);
+}
+
 .achievment-section {
   color: hsl(175deg, 95%, 55%);
   background-color: hsl(0deg, 6%, 10%);
