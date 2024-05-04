@@ -1,89 +1,135 @@
 .bottom-menu {
+    display: flex;
     position: relative;
-    bottom: 0;
-    height: fit-content;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
     width: 100%;
-    overflow-y: hidden;
+    background-color: map-get($colors,white);
+    @include tablette {
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 2rem 1rem;
+    }
+    @include desktop {
+        display: block;
+        bottom: 0;
+        height: fit-content;
+        padding: 0;
+        background-color: transparent;
+        overflow-y: hidden;
+    }
     &.home {
-        bottom: 60px;
-        overflow-y: visible;
-        // overflow-x: hidden;
-        width: 100%;
+        @include desktop {
+            bottom: 60px;
+            overflow-y: visible;
+            // overflow-x: hidden;
+            width: 100%;
+        }
         & .link {
             &:nth-child(2) {
-                right: 30px;
-                left: inherit;
-                top: inherit;
-                bottom: 270px;
-                transform: inherit
+                @include desktop {
+                    right: 30px;
+                    left: inherit;
+                    top: inherit;
+                    bottom: 270px;
+                    transform: inherit
+                }
             }
             &:nth-child(3) {
-                right: 140px;
-                top: inherit;
-                left: inherit;
-                bottom: 220px;
-                transform: inherit;
+                @include desktop {
+                    right: 140px;
+                    top: inherit;
+                    left: inherit;
+                    bottom: 220px;
+                    transform: inherit;
+                }
             }
             &:nth-child(4) {
-                right: 200px;
-                left: inherit;
-                top: inherit;
-                bottom: 160px;
-                transform: inherit
+                @include desktop {
+                    right: 200px;
+                    left: inherit;
+                    top: inherit;
+                    bottom: 160px;
+                    transform: inherit
+                }
             }
             &:nth-child(5) {
-                right: 280px;
-                left: inherit;
-                top: inherit;
-                bottom: 100px;
-                transform: inherit
+                @include desktop {
+                    right: 280px;
+                    left: inherit;
+                    top: inherit;
+                    bottom: 100px;
+                    transform: inherit
+                }
             }
             &:last-child {
-                right: 340px;
-                bottom: 40px;
+                @include desktop {
+                    right: 340px;
+                    bottom: 40px;
+                }
             }
         }
     }
     &-line {
         &--home-page {
-            position: absolute;
-            right: -50px;
-            bottom: -30px; 
-            height: 380px;
-            stroke: map-get($colors,white);
-            fill: map-get($colors,white);
+            display: none;
+            @include desktop {
+                display: block;
+                position: absolute;
+                right: -50px;
+                bottom: -30px; 
+                height: 380px;
+                stroke: map-get($colors,white);
+                fill: map-get($colors,white);
+            }
         }
         &--other-pages {
-            position: relative;
-            bottom: -160px;
-            height: 50%;
-            stroke: map-get($colors,white);
-            fill: map-get($colors,white);
+            @include desktop {
+                position: relative;
+                bottom: -160px;
+                height: 50%;
+                stroke: map-get($colors,white);
+                fill: map-get($colors,white);
+            }
         }
     }
     & .link {
-        position: absolute;
-        bottom: 20px;
+        @include desktop {
+            position: absolute;
+            bottom: 20px;
+        }
         &:nth-child(2) {
-            left: 210px;
+            @include desktop {
+                left: 210px;
+            }
         }
         &:nth-child(3) {
-            left: 35%;
-            transform: translateX(-50%);
-            top: 210px;
+            @include desktop {
+                left: 35%;
+                transform: translateX(-50%);
+                top: 210px;
+            }
         }
         &:nth-child(4) {
-            left: 50%;
-            transform: translateX(-50%);
-            top: 180px;
+            @include desktop {
+                left: 50%;
+                transform: translateX(-50%);
+                top: 180px;
+            }
         }
         &:nth-child(5) {
-            right: 35%;
-            transform: translateX(50%);
-            top: 210px;
+            @include desktop {
+                right: 35%;
+                transform: translateX(50%);
+                top: 210px;
+            }
         }
         &:last-child {
-            right: 200px;
+            @include desktop {
+                right: 200px;
+            }
         }
     }
 }

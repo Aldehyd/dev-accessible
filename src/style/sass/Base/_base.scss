@@ -16,8 +16,10 @@ body {
 
 body {
     &.home {
-        height: 100vh;
-        overflow: hidden;
+        @include desktop {
+            height: 100vh;
+            overflow: hidden;
+        }
     }
     &.has-modal {
         overflow: hidden;
