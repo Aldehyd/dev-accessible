@@ -18,18 +18,20 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
 
     const {language} = useContext(LanguageContext);
 
-    const videoPlayerElement = useRef(null);
-    const videoElement = useRef(null);
-    const controlBar = useRef(null);
-    const controlBarHide = useRef(null);
+    const videoPlayerElement = useRef<HTMLElement | null>(null);
+    const videoElement = useRef<HTMLVideoElement | null>(null);
+    const controlBar = useRef<HTMLElement | null>(null);
+    const controlBarHide = useRef<typeof setTimeout | null>(null);
 
     const [status,setStatus] = useState<string>("video");
     const [fullScreenMode,setFullScreenMode] = useState<boolean>(false);
     const [isPlaying,setIsPlaying] = useState<boolean>(false);
     const [currentTime,setCurrentTime] = useState<number>(0);
     const [currentTimeInMinutesAndSeconds,setCurrentTimeInMinutesAndSeconds] = useState({minutes: 0, seconds: 0});
+    const [isVideoEnded,setIsVideoEnded] = useState<boolean>(false);
     const [volume,setVolume] = useState<number>(0);
     const [volumeSliderDisplay,setVolumeSliderDisplay] = useState<boolean>(false);
+    const [mouseOverControlBar,setMouseOverControlBar] = useState<boolean>(false);
 
     const convertInMinutesAndSeconds : (value: number)=> {minutes: number, seconds: number} = (value)=> {
         let minutes = Math.floor(value / 60);
@@ -43,25 +45,42 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
     };
 
     const onPlayButtonClick = ()=> {
+        if(isVideoEnded) {
+            if(videoElement.current)
+                videoElement.current.currentTime = 0;
+            setIsVideoEnded(false);
+        };
         setIsPlaying(isPlaying => !isPlaying);
     };
 
     const onVideoClick = ()=> {
         if(isPlaying) {
             setIsPlaying(false);
+        } else if(currentTime !== 0) {
+            setIsPlaying(true);
         };
     };
 
-    const showControlBar = ()=> {
-        clearTimeout(controlBarHide.current);
-        controlBar.current?.classList.add('display');
-        controlBarHide.current = setTimeout(()=> {
-            controlBar.current.classList.remove('display');
-        },4000);
+    const hideControlBar = ()=> {
+        setTimeout(()=> {
+            if(controlBar.current && !mouseOverControlBar) {
+                controlBar.current.classList.remove('display');
+            };
+        },200);      
+        if(controlBarHide.current)
+            clearTimeout(controlBarHide.current);
     };
 
-    const hideControlBar = ()=> {
-        controlBar.current.classList.remove('display');
+    const showControlBar = ()=> {
+        if(status === "video") {
+            if(controlBar.current) {
+                clearTimeout(controlBarHide.current);
+                controlBar.current?.classList.add('display');
+                controlBarHide.current = setTimeout(()=> {
+                    hideControlBar();
+                },4000);
+            };
+        };
     };
 
     const handleKeyDown = (e)=> {
@@ -82,6 +101,8 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
     };
 
     const volumeClassList = `video-player_control-bar_volume ${volumeSliderDisplay ? "display" : ""}`;
+    const transcriptionClassList = `video-player_transcription ${status === "transcription" ? "display" : ""}`;
+    const videoClassList = `video-player_video ${status === "video" ? "display" : ""}`;
 
     useEffect(()=> {
         fullScreenMode ? 
@@ -99,7 +120,9 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
     },[isPlaying]);
 
     useEffect(()=> {
-        console.log('maj time')
+        if(videoElement.current.currentTime === videoElement.current.duration) {
+            setIsVideoEnded(true);
+        };
         setCurrentTime(videoElement.current?.currentTime);
     },[videoElement.current?.currentTime]);
 
@@ -112,15 +135,25 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
     },[volume]);
 
     useEffect(()=> {
-        if(status === "video") {
-            videoPlayerElement.current?.addEventListener('mouseover',()=> showControlBar());
-            videoPlayerElement.current?.addEventListener('mousemove',()=> showControlBar());
-            videoPlayerElement.current?.addEventListener('mouseleave',()=> hideControlBar());
-        } else {
-            videoPlayerElement.current?.removeEventListener('mouseover',showControlBar);
-            clearTimeout(controlBarHide.current);
+        if(isVideoEnded) {
+            setIsPlaying(false);
+        }
+    },[isVideoEnded]);
+
+    useEffect(()=> {
+        if(status === "transcription") {
+            setIsPlaying(false);
+            hideControlBar();
         };
     },[status]);
+
+    useEffect(()=> {
+        if(mouseOverControlBar) {
+            clearTimeout(controlBarHide.current);
+        } else {
+            showControlBar();
+        };
+    },[mouseOverControlBar]);
 
     return(
         <div className="video-container">
@@ -128,33 +161,35 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
                 {language === "french" ? video.frenchTitle : video.englishTitle}
             </h2>
             <div className="video-player" ref={videoPlayerElement} onKeyDown={(e)=> handleKeyDown(e)}
-                tabIndex={0}>
-                {status === "transcription" && 
-                    <div className="video-player_transcription">
-                        <p>{language === "french" ? video.frenchTranscription : video.englishTranscription}</p>
-                    </div>
-                }
-                {status === "video" &&
-                    <div className="video-player_video" onClick={onVideoClick}>
-                        <video ref={videoElement} tabIndex={0} onTimeUpdate={()=> setCurrentTime(videoElement.current.currentTime)}>
-                            <source src={"/videos/" + video.videoName + ".mp4"} type="video/mp4" />
-                        </video>
-                        {!isPlaying && currentTime === 0 && 
-                            <img src={"img/" + video.pictureName + ".JPG"} alt={language === "french" ? video.pictureFrenchAlt : video.pictureEnglishAlt} className="video-player_background" />
-                        }
-                        {!isPlaying && 
-                            <MainPlayButton onPlayButtonClick={onPlayButtonClick} />
-                        }
-                    </div>
-                }
+                onMouseOver={()=> showControlBar()} onMouseMove={()=> showControlBar()}
+                onMouseLeave={()=> hideControlBar()} tabIndex={0}>
+                <div className={transcriptionClassList}>
+                    <p>{language === "french" ? video.frenchTranscription : video.englishTranscription}</p>
+                </div>
+                <div className={videoClassList} onClick={onVideoClick}>
+                    <video ref={videoElement} tabIndex={0} onTimeUpdate={()=> setCurrentTime(videoElement.current.currentTime)}>
+                        <source src={"/videos/" + video.videoName + ".mp4"} type="video/mp4" />
+                    </video>
+                    {!isPlaying && currentTime === 0 && 
+                        <img src={"img/" + video.pictureName + ".JPG"} alt={language === "french" ? video.pictureFrenchAlt : video.pictureEnglishAlt} className="video-player_background" />
+                    }
+                    {!isPlaying && currentTime === 0 && 
+                        <MainPlayButton onPlayButtonClick={onPlayButtonClick} />
+                    }
+                </div>
                 
                 <div className="video-player_control-bar" ref={controlBar}
-                    onMouseOver={()=> clearTimeout(controlBarHide.current)}
-                    onFocus={()=> clearTimeout(controlBarHide.current)}
+                    onMouseOver={()=> setMouseOverControlBar(true)}
+                    onFocus={()=> setMouseOverControlBar(true)}
+                    onMouseLeave={()=> setMouseOverControlBar(false)}
+                    onBlur={()=> setMouseOverControlBar(false)}
                     >
                     <div className="video-player_control-bar_timeline">
                         <PlayButton onPlayButtonClick={onPlayButtonClick} isPlaying={isPlaying} />
-                        <TimeSlider videoElement={videoElement} duration={videoElement.current?.duration} currentValue={currentTime} setCurrentValue={setCurrentTime} currentValueMinutesAndSeconds={convertInMinutesAndSeconds(currentTime)} />
+                        <TimeSlider video={video} videoElement={videoElement} duration={videoElement.current?.duration} 
+                            currentValue={currentTime} setCurrentValue={setCurrentTime} 
+                            currentValueMinutesAndSeconds={convertInMinutesAndSeconds(currentTime)}
+                            convertInMinutesAndSeconds={convertInMinutesAndSeconds} />
                     </div>
                     <TimeCount currentTime={currentTimeInMinutesAndSeconds} duration={convertInMinutesAndSeconds(videoElement.current?.duration)} />
                     <div className={volumeClassList} >

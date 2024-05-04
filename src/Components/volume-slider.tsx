@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 interface VolumeSliderPropsInterface {
     volume: number,
     setVolume: (volume: number)=> void,
@@ -9,18 +9,44 @@ export default function VolumeSlider({volume,setVolume,setDisplay}: VolumeSlider
     
     const volumeSlider = useRef(null);
 
+    const [mouseDown,setMouseDown] = useState<boolean>(false);
+
     const changeVolume = (e)=> {
         const newVolume = 1 - Math.round(e.clientY - volumeSlider.current?.getBoundingClientRect().top)/volumeSlider.current.offsetHeight;
-        console.log(volume)
         setVolume(newVolume);
     };
+
+    const listenMouseUp = ()=> {
+        setMouseDown(false);
+    };
+
+    const handleMouseDown = (e)=> {
+        setMouseDown(true);
+    };
+
+    const handleMouseMove = (e)=> {
+        if(mouseDown) {
+            changeVolume(e);
+        };
+    };
+
+    useEffect(()=> {
+        if(mouseDown) {
+            window.addEventListener('mouseup',listenMouseUp);
+        } else {
+            window.removeEventListener('mouseup',listenMouseUp);
+        };
+        return ()=> window.removeEventListener('mouseup',listenMouseUp)
+    },[mouseDown]);
     
     return (
         <div className="volume-slider-container">
             <div className="volume-slider" ref={volumeSlider}
                 onMouseOver={()=> setDisplay(true)}
                 onMouseLeave={()=> setDisplay(false)}
-                onClick={(e)=> changeVolume(e)}>
+                onClick={(e)=> changeVolume(e)} 
+                onMouseDown={(e)=> handleMouseDown(e)}
+                onMouseMove={(e)=> handleMouseMove(e)}>
                 <div className="volume-slider_mask">
                     <span></span>
                     <span></span>

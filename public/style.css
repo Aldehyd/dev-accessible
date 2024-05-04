@@ -2900,14 +2900,17 @@ body:not(.contrast).purple .shortcut-setting-container_key-pictures {
   align-items: center;
   gap: 1rem;
 }
-.video-container.transcription .video-player_transcription {
+.video-container .video-player_transcription {
+  transform: translateY(-100%);
+}
+.video-container .video-player_transcription.display {
   transform: translateY(0);
 }
-.video-container.transcription .transcription .video-player_video {
+.video-container .video-player_video {
   transform: translateY(0);
 }
-.video-container.transcription .transcription .video-player_control-bar {
-  transform: translateY(100%);
+.video-container .video-player_video.display {
+  transform: translateY(-100%);
 }
 
 .video-title {
@@ -2918,7 +2921,7 @@ body:not(.contrast).purple .shortcut-setting-container_key-pictures {
 .video-player {
   position: relative;
   height: 30rem;
-  width: 40rem;
+  width: 53rem;
   background-color: #000;
   border: solid #f1f1f1 0.2rem;
   border-radius: 1rem;
@@ -2937,7 +2940,7 @@ body:not(.contrast).purple .shortcut-setting-container_key-pictures {
 .video-player_video {
   width: 100%;
   height: 100%;
-  background-color: yellow;
+  background-color: #000;
   transform: translateY(0);
   transition: 400ms ease-in-out;
 }
@@ -3029,6 +3032,15 @@ body:not(.contrast).purple .shortcut-setting-container_key-pictures {
   width: 100%;
   stroke: hsl(175deg, 95%, 55%);
   fill: hsl(175deg, 95%, 55%);
+}
+.video-player_control-bar .full-screen-button .full-screen-button_icon--leave {
+  transform: scale(1.8);
+}
+.video-player_control-bar .full-screen-button:hover .full-screen-button_icon--enter {
+  transform: scale(1.4);
+}
+.video-player_control-bar .full-screen-button:hover .full-screen-button_icon--leave {
+  transform: scale(1.4);
 }
 .video-player-button {
   position: relative;
@@ -3146,7 +3158,6 @@ body:not(.contrast).purple .shortcut-setting-container_key-pictures {
   border: solid #f1f1f1 0.2rem;
   transform-origin: 50% 0;
   transform: translateY(100%);
-  transition: 200ms 250ms ease-in-out;
   cursor: pointer;
 }
 .volume-slider-container {
@@ -3185,42 +3196,28 @@ body:not(.contrast).purple .shortcut-setting-container_key-pictures {
   box-shadow: 0 0 0.5rem 0.2rem hsl(175deg, 95%, 55%);
 }
 
-.button-container {
-  position: relative;
-  z-index: 0;
-  transition: 200ms ease-in-out;
-}
-
-.button-shadow {
+.video-preview {
+  display: flex;
+  flex-direction: column;
   position: absolute;
-  z-index: 0;
-  top: 0;
-  left: 0;
+  z-index: 1;
+  bottom: 3rem;
+  width: 11.8rem;
+  height: 9.5rem;
+  background-color: #000;
+  border: solid 0.2rem #f1f1f1;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.video-preview video {
+  flex-grow: 1;
   height: 100%;
   width: 100%;
-  border-radius: 1rem;
-  box-shadow: 0.5rem 0.5rem 0.5rem #000;
-  transition: 200ms ease-in-out;
 }
-
-.button-container:hover {
-  transform: translate(0.3rem, 0.3rem);
-}
-
-.button-container:hover .button-shadow {
-  transform: scale(0);
-}
-
-.video-container.transcription .video-transcription-button_transcription-text {
-  display: none;
-}
-
-.video-container:not(.transcription) .video-transcription-button_video-text {
-  display: none;
-}
-
-.video-player.play .main-play-button, .video-container.transcription .main-play-button {
-  animation: mainPlayButtonDisappear 400ms ease-in-out forwards;
+.video-preview_count {
+  display: block;
+  padding: 0.5rem 0;
+  text-align: center;
 }
 
 @keyframes mainPlayButtonDisappear {
@@ -3236,6 +3233,22 @@ body:not(.contrast).purple .shortcut-setting-container_key-pictures {
     transform: scale(0.95);
   }
 }
+body.animations .video-player.play .main-play-button {
+  animation: mainPlayButtonDisappear 400ms ease-in-out forwards;
+}
+body.animations .video-container.transcription .main-play-button {
+  animation: mainPlayButtonDisappear 400ms ease-in-out forwards;
+}
+body.animations .volume-slider {
+  transition: 200ms 200ms ease-in-out;
+}
+body.animations .video-player_control-bar_volume .volume-button_icon {
+  transition: 200ms ease-in-out;
+}
+body.animations .full-screen-button_icon {
+  transition: 200ms ease-in-out;
+}
+
 .achievment-section {
   color: hsl(175deg, 95%, 55%);
   background-color: hsl(0deg, 6%, 10%);

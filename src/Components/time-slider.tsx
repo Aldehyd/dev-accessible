@@ -1,45 +1,56 @@
 import { useContext, useState, useEffect, useRef, useCallback } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
+import VideoPreview from "./video-preview.tsx";
+import VideoInterface from "../Interfaces/videoInterface.tsx";
 
 interface TimeSliderPropsInterface {
+    video: VideoInterface,
     videoElement: any,
     duration: number,
     currentValue: number,
     setCurrentValue: (value: number)=>void,
-    currentValueMinutesAndSeconds: {minutes: number, seconds: number}
+    currentValueMinutesAndSeconds: {minutes: number,seconds: number},
+    convertInMinutesAndSeconds: (time: number)=> {minutes: number,seconds: number}
 }
 
-export default function TimeSlider({videoElement,duration,currentValue,setCurrentValue,currentValueMinutesAndSeconds}: TimeSliderPropsInterface): React.JSX.Element {
-    console.log('rerender')
+export default function TimeSlider({video,videoElement,duration,currentValue,setCurrentValue,currentValueMinutesAndSeconds,convertInMinutesAndSeconds}: TimeSliderPropsInterface): React.JSX.Element {
+    
     const {language} = useContext(LanguageContext);
 
     const sliderBar = useRef(null);
     const sliderThumb = useRef(null);
 
-    // const [isMouseDown,setIsMouseDown] = useState<boolean>(true);
-    const isMouseDown = useRef(false)
+    const [mouseDown,setMouseDown] = useState<boolean>(false);
     const [thumbPosition,setThumbPosition] = useState<number>(0);
+    const [previewCurrentTime,setPreviewCurrentTime] = useState<number>(0);
+    const [mouseOver,setMouseOver] = useState<boolean>(false);
 
-    const handleMouseUp = ()=> {
-        isMouseDown.current = false;
-        // setIsMouseDown(false);
+    const listenMouseUp = ()=> {
+        setMouseDown(false);
     };
 
-    const handleMouseDown = ()=> {
-        isMouseDown.current = true;
-        // setIsMouseDown(true);
+    const handleMouseDown = (e)=> {
+        setMouseDown(true);
+    };
+
+    const computeTime = (e)=> {
+        return Math.round((e.clientX - sliderBar.current.getBoundingClientRect().left)/sliderBar.current.offsetWidth*(duration))
+    };
+
+    const handleMouseMove = (e)=> {
+        const currentTime = computeTime(e);
+        if(mouseDown) {
+            setCurrentValue(currentTime);
+            videoElement.current.currentTime = currentTime;
+        } else {
+            setPreviewCurrentTime(currentTime);
+        }
     };
 
     const handleClick = (e)=> {
-        setCurrentValue(Math.round((e.clientX - sliderBar.current.getBoundingClientRect().left)/sliderBar.current.offsetWidth*(duration)));
-    };
-
-    const handleMouseMove =(e)=> {
-        console.log(isMouseDown)
-        if(isMouseDown) {
-            console.log('move')
-            setCurrentValue(Math.round((e.clientX - sliderBar.current.getBoundingClientRect().left)/sliderBar.current.offsetWidth*(duration)));
-        };
+        const currentTime = computeTime(e);
+        setCurrentValue(currentTime);
+        videoElement.current.currentTime = currentTime;
     };
 
     const handleKeyDown= (e)=> {
@@ -106,37 +117,35 @@ export default function TimeSlider({videoElement,duration,currentValue,setCurren
     },[currentValue,duration]);
 
     useEffect(()=> {
-        console.log('set event listener')
-        sliderBar.current.addEventListener('mousemove',(e)=> handleMouseMove(e));
-
-        return ()=> sliderBar.current.removeEventListener('mousemove',handleMouseMove);
-    },[]);
+        if(mouseDown) {
+            window.addEventListener('mouseup',listenMouseUp);
+        } else {
+            window.removeEventListener('mouseup',listenMouseUp);
+        };
+        return ()=> window.removeEventListener('mouseup',listenMouseUp)
+    },[mouseDown]);
 
     useEffect(()=> {
-        console.log(videoElement)
         videoElement.currentTime = currentValue;
-        console.log(videoElement)
         handleThumbPosition();
     },[currentValue,handleThumbPosition]);
 
-    useEffect(()=> {
-        console.log(isMouseDown)
-        if(isMouseDown) {
-            window.addEventListener('mouseup',()=> handleMouseUp());
-        } else {
-            window.removeEventListener('mouseup',handleMouseUp);
-        };
-    },[isMouseDown]);
-
     return(
         <div ref={sliderBar} className="time-slider"  
-        // onClick={(e)=>handleClick(e)}
+            onClick = {(e)=> handleClick(e)}
+            onMouseMove = {(e)=> handleMouseMove(e)}
+            onMouseOver = {()=> setMouseOver(true)}
+            onMouseLeave = {()=> setMouseOver(false)}
         >
             <span className="time-slider_thumb" tabIndex={0} role="slider" ref={sliderThumb}
                 aria-valuemin="0" aria-valuemax={duration} aria-valuenow={currentValue}
                 aria-valuetext={currentValueMinutesAndSeconds.minutes + 'minutes ' + language==="french" ? "et " : "and " + currentValueMinutesAndSeconds.seconds + language==="french" ? 'secondes' : 'seconds'}
-                aria-label={language === "french" ? "temps" : "time"} onMouseDown={handleMouseDown}
-                onKeyDown={handleKeyDown} style={{left: `${thumbPosition}px`}}></span>
+                aria-label={language === "french" ? "temps" : "time"} onMouseDown={(e)=> handleMouseDown(e)}
+                onKeyDown={()=> handleKeyDown()} style={{left: `${thumbPosition}px`}}></span>
+            {
+                mouseOver && !mouseDown && <VideoPreview video={video} currentTime={previewCurrentTime} sliderBar={sliderBar}
+                                convertInMinutesAndSeconds={convertInMinutesAndSeconds} />
+            }
         </div>
     )
 }
