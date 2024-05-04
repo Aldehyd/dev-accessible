@@ -17,9 +17,16 @@ export default function MainMenu(): React.JSX.Element {
                 <li className="main-menu_menu-item main-menu_menu-item--who-am-i">
                     <CustomLink type="main" frenchText="Qui suis-je ?" englishText="Who am I ?" route="/who-am-i" />
                 </li>
-                {environnement === "recruiter" && <li className="main-menu_menu-item main-menu_menu-item--cv">
-                    <CustomLink type="main" frenchText="CV" englishText="CV" route="/cv" />
-                </li>}
+                {
+                    environnement === "recruiter" ?
+                        <li className="main-menu_menu-item main-menu_menu-item--cv">
+                            <CustomLink type="main" frenchText="CV" englishText="CV" route="/cv" />
+                        </li>
+                        :
+                        <li className="main-menu_menu-item main-menu_menu-item--cv">
+                            <CustomLink type="main" frenchText="Prestations" englishText="Services" route="/services" />
+                        </li>
+                }
                 <li className="main-menu_menu-item main-menu_menu-item--achievments">
                     <CustomLink type="main" frenchText="Réalisations" englishText="Achievments" route="/achievments" />
                 </li>

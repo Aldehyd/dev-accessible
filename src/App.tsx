@@ -24,6 +24,7 @@ import LandingPage from './Pages/landingPage.tsx';
 import EnvironnementContext from './Contexts/environnement-context.tsx';
 import Home from './Pages/home.tsx';
 import SearchResults from './Pages/searchResults.tsx';
+import Services from './Pages/services.tsx';
 
 export default function App(): React.JSX.Element {
 
@@ -84,6 +85,7 @@ export default function App(): React.JSX.Element {
                                         <Route path="/achievments/:achievment" element={<AchievmentDetails />} />
                                         <Route path="/achievments/:achievment/privacy-policy" element={<AchievmentPrivacyPolicy />} />
                                         <Route path="/cv" element={<CV />} />
+                                        <Route path="/services" element={<Services />} />
                                         <Route path="/why-accessibility" element={<WhyAccessibility />} />
                                         {/* <Route path="/prices" element={<Prices />} /> */}
                                         <Route path="/contact" element={<Contact />} />
