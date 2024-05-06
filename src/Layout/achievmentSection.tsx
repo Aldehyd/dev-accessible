@@ -4,12 +4,13 @@ import CustomLink from "../Components/custom-link.tsx";
 import LanguageContext from "../Contexts/language-context.tsx";
 import AchievmentInterface from "../Interfaces/achievmentInterface.tsx";
 import EnvironnementContext from "../Contexts/environnement-context.tsx";
+import VideoPlayer from "../Layout/videoPlayer.tsx";
 interface AchievmentSectionPropsInterface {
     achievment: AchievmentInterface,
 }
 
 export default function AchievmentSection({achievment}: AchievmentSectionPropsInterface): React.JSX.Element {
-    
+  
     const {language} = useContext(LanguageContext);
     const {environnement} = useContext(EnvironnementContext);
 
@@ -17,26 +18,28 @@ export default function AchievmentSection({achievment}: AchievmentSectionPropsIn
     const [toolsList,setToolsList] = useState<string>("");
 
     useEffect(()=> {
-        const technologiesArray = [...achievment.technologies.frontEnd,...achievment.technologies.backEnd,...achievment.technologies.dataBase];
-        let technologiesList = "";
-        for(let techno of technologiesArray) {
-            if(technologiesArray.indexOf(techno) !== technologiesArray.length-1) {
-                technologiesList = technologiesList + techno + ", ";
-            } else {
-                technologiesList = technologiesList + techno;
+        if(achievment.englishType !== "Video" && achievment.technologies && achievment.developmentTools) {
+            const technologiesArray = [...achievment.technologies.frontEnd,...achievment.technologies.backEnd,...achievment.technologies.dataBase];
+            let technologiesList = "";
+            for(let techno of technologiesArray) {
+                if(technologiesArray.indexOf(techno) !== technologiesArray.length-1) {
+                    technologiesList = technologiesList + techno + ", ";
+                } else {
+                    technologiesList = technologiesList + techno;
+                };
             };
-        };
-        setTechnologiesList(technologiesList);
+            setTechnologiesList(technologiesList);
 
-        let toolsList = "";
-        for(let tool of achievment.developmentTools) {
-            if(achievment.developmentTools.indexOf(tool) !== achievment.developmentTools.length-1) {
-                toolsList = toolsList + tool + ", ";
-            } else {
-                toolsList = toolsList + tool;
+            let toolsList = "";
+            for(let tool of achievment.developmentTools) {
+                if(achievment.developmentTools.indexOf(tool) !== achievment.developmentTools.length-1) {
+                    toolsList = toolsList + tool + ", ";
+                } else {
+                    toolsList = toolsList + tool;
+                };
             };
+            setToolsList(toolsList);
         };
-        setToolsList(toolsList);
     },[]);
 
     return(
@@ -58,7 +61,7 @@ export default function AchievmentSection({achievment}: AchievmentSectionPropsIn
                     <dd>{language === "french" ? achievment.frenchNeed : achievment.englishNeed}</dd>
 
                     {
-                        environnement === "recruiter" &&
+                        environnement === "recruiter" && achievment.englishType !== "Video" && toolsList.length > 0 &&
                         <>
                             <dt>{language === "french" ? "Outils de développement" : "Development tools"} :</dt>
                             <dd>{toolsList}</dd>
@@ -66,19 +69,31 @@ export default function AchievmentSection({achievment}: AchievmentSectionPropsIn
                     }
 
                     {
-                        environnement === "recruiter" &&
+                        environnement === "recruiter" && achievment.englishType !== "Video" && technologiesList.length > 0 &&
                             <>
                                 <dt>Technologies :</dt>
                                 <dd>{technologiesList}</dd>
                             </>
                     }
 
-                    <dt>{language === "french" ? "Accessibilité" : "Accessibility"} :</dt>
-                    <dd>{achievment.accessibility.score === false ? (language === "french" ? "Non évaluée" : "Not evaluated") : achievment.accessibility.score + " %"}</dd>
+                    {
+                        achievment.accessibility &&
+                        <>
+                            <dt>{language === "french" ? "Accessibilité" : "Accessibility"} :</dt>
+                            <dd>{achievment.accessibility.score === false ? (language === "french" ? "Non évaluée" : "Not evaluated") : achievment.accessibility.score + " %"}</dd>
+                        </>
+                    }
                 </dl>
+                {
+                    achievment.englishType === "Video" &&
+                        <VideoPlayer video={achievment.video} />
+                }
             </div>
-            <CustomLink frenchText="Voir détails..." englishText="See details..." route={"/achievments/" + achievment.title.replace(".com","")} />
-
+            {
+                achievment.englishType !== "Video" &&
+                    <CustomLink frenchText="Voir détails..." englishText="See details..." 
+                        route={"/achievments/" + achievment.title.replace(".com","")} />
+            }
         </section>
     )
 }

@@ -266,5 +266,27 @@
             "englishNewConsent": "Should the changes affect processing activities performed on the basis of the User’s consent, the Owner shall collect new consent from the User, where required.",
             "lastChangeDate" : "04-04-24"
         }
+    },
+    {
+        "id": 3,
+        "title": "Suggestion site accessible",
+        "frenchType": "Vidéo",
+        "englishType": "Video",
+        "frenchNeed": "Suggestion pour une maison de santé.",
+        "englishNeed": "Suggestion for a heath institute.",
+        "year": "2024",
+        "video": {
+            "videoName": "msp",
+            "pictureName": "msp",
+            "pictureFrenchAlt": "Pourquoi un site internet accessible ?",
+            "pictureEnglishAlt": "Why an accessible website ?",
+            "frenchTitle": "Maison de santé",
+            "englishTitle": "Health institute",
+            "frenchTranscription": "Voici la transcription française de la vidéo",
+            "englishTranscription": "Here is the english transcription of the video"
+        },
+        "design": {
+            "tools": ["Figma","Adobe Illustrator","Adobe AfterEffects", "Adobe PremierePro"]
+        }
     }
 ]

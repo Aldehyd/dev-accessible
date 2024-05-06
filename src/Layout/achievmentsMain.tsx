@@ -22,7 +22,9 @@ export default function AchievmentsMain({achievments}: AchievmentsMainPropsInter
         
         if(type === "techno") {
             for(let filter of filterArray) {
-                filteredAchievments = filteredAchievments.filter(achievment => achievment.technologies[techno].includes(filter));
+                filteredAchievments = filteredAchievments.filter(achievment => {
+                    achievment.technologies && achievment.technologies[techno].includes(filter);
+                });
             };
         } else {
             for(let filter of filterArray) {

@@ -54,11 +54,12 @@ export default function AchievmentsFitler({typeFilter,setTypeFilter,yearFilter,s
 
     const initializeTechnologiesFilters:(type:string, array: {id: string, french: string, english: string}[],setArray: (array: {id: string, french: string, english: string}[])=>void)=> void = useCallback((type,array,setArray)=> {
         for(let achievment of achievments) {
-            for(let element of achievment.technologies[type]) {
-                if(!array.some(e => e.english === element)) {
-                    setArray([...array,{id: element.toLowerCase().replace(" ","_"), french: element, english: element}]);
+            if(achievment.technologies)
+                for(let element of achievment.technologies[type]) {
+                    if(!array.some(e => e.english === element)) {
+                        setArray([...array,{id: element.toLowerCase().replace(" ","_"), french: element, english: element}]);
+                    };
                 };
-            };
         };
     },[achievments]);
 
