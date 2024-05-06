@@ -1,7 +1,10 @@
 .main-menu {
     position: relative;
+    @include topMenuReducedWidth {
+        left: -40px;
+    }
     height: 75vh;
-    width: 80vw;
+    width: 75vw;
     padding-top: 30px;
     &_line_svg {
         height: 100%;

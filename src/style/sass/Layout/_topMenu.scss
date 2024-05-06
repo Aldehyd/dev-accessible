@@ -1,43 +1,56 @@
 .top-menu {
     position: relative;
-    height: 4rem;
-    width: 120rem;
-    max-width: 95%;
+    height: fit-content;
+    width: 100%;
+    padding: 1rem 0;
+    @include topMenuReducedWidth {
+        height: 4rem;
+    }
+    @include topMenuMaxWidth {
+        border-radius: 0 0 8rem 0;
+        max-width: 90%;
+    }
     background-color: map-get($colors,white);
-    border-radius: 0 0 8rem 0;
     box-shadow: inset -0.5rem -0.5rem 0.8rem 0.3rem map-get($colors,switchBlackBoxShadow);
     transform: translateY(0);
     &_buttons-invisible-container {
-        position: absolute;
-        top: 2rem;
         display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 2rem;
-        width: fit-content;
-        max-width: 90%;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        @include tablette {
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        @include topMenuReducedWidth {
+            justify-content: space-between;
+            position: absolute;
+            top: 2rem;
+            // width: 90%;
+        }
+        @include topMenuMaxWidth {
+            width: 90%;
+        }
         &.expanded {
             align-items: start;
         }
     }
 }
 
-@media screen and (max-width: 1000px) {
-    .top-menu {
-        max-width: 100%;
-        border-radius: 0;
-        height: fit-content;
-        padding: 1.5rem;
-    }
-    .top-menu_buttons-invisible-container {
-        position: static;
-        height: fit-content;
-    }
-    /* .top-menu_item {
-        position: static;
-        top: 0;
-    } */
-}
+// @media screen and (max-width: 1000px) {
+//     .top-menu {
+//         max-width: 100%;
+//         border-radius: 0;
+//         height: fit-content;
+//         padding: 1.5rem;
+//     }
+//     .top-menu_buttons-invisible-container {
+//         position: static;
+//         height: fit-content;
+//     }
+// }
 
 @keyframes topMenuAppear {
     from {

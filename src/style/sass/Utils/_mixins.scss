@@ -9,3 +9,15 @@
         @content;
     }
 }
+
+@mixin topMenuReducedWidth {
+    @media screen and (min-width: map-get($breakPoints,topMenuReducedWidth)) {
+        @content;
+    }
+}
+
+@mixin topMenuMaxWidth {
+    @media screen and (min-width: map-get($breakPoints,topMenuMaxWidth)) {
+        @content;
+    }
+}

@@ -12,7 +12,7 @@
         justify-content: space-around;
         padding: 2rem 1rem;
     }
-    @include desktop {
+    @include topMenuReducedWidth {
         display: block;
         bottom: 0;
         height: fit-content;
@@ -21,7 +21,7 @@
         overflow-y: hidden;
     }
     &.home {
-        @include desktop {
+        @include topMenuReducedWidth {
             bottom: 60px;
             overflow-y: visible;
             // overflow-x: hidden;
@@ -29,7 +29,7 @@
         }
         & .link {
             &:nth-child(2) {
-                @include desktop {
+                @include topMenuReducedWidth {
                     right: 30px;
                     left: inherit;
                     top: inherit;
@@ -38,7 +38,7 @@
                 }
             }
             &:nth-child(3) {
-                @include desktop {
+                @include topMenuReducedWidth {
                     right: 140px;
                     top: inherit;
                     left: inherit;
@@ -47,7 +47,7 @@
                 }
             }
             &:nth-child(4) {
-                @include desktop {
+                @include topMenuReducedWidth {
                     right: 200px;
                     left: inherit;
                     top: inherit;
@@ -56,7 +56,7 @@
                 }
             }
             &:nth-child(5) {
-                @include desktop {
+                @include topMenuReducedWidth {
                     right: 280px;
                     left: inherit;
                     top: inherit;
@@ -65,7 +65,7 @@
                 }
             }
             &:last-child {
-                @include desktop {
+                @include topMenuReducedWidth {
                     right: 340px;
                     bottom: 40px;
                 }
@@ -75,7 +75,7 @@
     &-line {
         &--home-page {
             display: none;
-            @include desktop {
+            @include topMenuReducedWidth {
                 display: block;
                 position: absolute;
                 right: -50px;
@@ -86,7 +86,7 @@
             }
         }
         &--other-pages {
-            @include desktop {
+            @include topMenuReducedWidth {
                 position: relative;
                 bottom: -160px;
                 height: 50%;
@@ -96,38 +96,38 @@
         }
     }
     & .link {
-        @include desktop {
+        @include topMenuReducedWidth {
             position: absolute;
             bottom: 20px;
         }
         &:nth-child(2) {
-            @include desktop {
+            @include topMenuReducedWidth {
                 left: 210px;
             }
         }
         &:nth-child(3) {
-            @include desktop {
+            @include topMenuReducedWidth {
                 left: 35%;
                 transform: translateX(-50%);
                 top: 210px;
             }
         }
         &:nth-child(4) {
-            @include desktop {
+            @include topMenuReducedWidth {
                 left: 50%;
                 transform: translateX(-50%);
                 top: 180px;
             }
         }
         &:nth-child(5) {
-            @include desktop {
+            @include topMenuReducedWidth {
                 right: 35%;
                 transform: translateX(50%);
                 top: 210px;
             }
         }
         &:last-child {
-            @include desktop {
+            @include topMenuReducedWidth {
                 right: 200px;
             }
         }
