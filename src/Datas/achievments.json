@@ -286,7 +286,7 @@
             "englishTranscription": "Here is the english transcription of the video"
         },
         "design": {
-            "tools": ["Figma","Adobe Illustrator","Adobe AfterEffects", "Adobe PremierePro"]
+            "tools": ["Adobe Illustrator","Adobe AfterEffects", "Adobe PremierePro"]
         }
     }
 ]
