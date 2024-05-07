@@ -2294,6 +2294,7 @@ body:not(.contrast).purple .flying-saucer::after {
 }
 
 .accessibility-bot {
+  display: none;
   position: absolute;
   z-index: 1;
   top: 62%;
@@ -2302,6 +2303,11 @@ body:not(.contrast).purple .flying-saucer::after {
   width: 80px;
   overflow: visible;
   opacity: 1;
+}
+@media screen and (min-width: 650px) {
+  .accessibility-bot {
+    display: block;
+  }
 }
 .accessibility-bot_body {
   position: absolute;
@@ -4315,10 +4321,19 @@ body:not(.contrast).purple .prices-simulator_evaluation {
     display: block;
   }
 }
+.main-menu_line_mobile {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 1rem;
+  width: 0.2rem;
+  background-color: #f1f1f1;
+}
 .main-menu_menu {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 2rem;
   height: 100%;
   width: 100%;
 }

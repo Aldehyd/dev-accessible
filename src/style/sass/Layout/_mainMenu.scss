@@ -19,10 +19,19 @@
             display: block;
         }
     }
+    &_line_mobile {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 1rem;
+        width: 0.2rem;
+        background-color: map-get($colors,white);
+    }
     &_menu {
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 2rem;
         @include tablette {
             display: block;
             position: absolute;
