@@ -6,15 +6,14 @@ import VideoInterface from "../Interfaces/videoInterface.tsx";
 interface TimeSliderPropsInterface {
     video: VideoInterface,
     videoElement: any,
-    duration: number,
     currentValue: number,
     setCurrentValue: (value: number)=>void,
     currentValueMinutesAndSeconds: {minutes: number,seconds: number},
     convertInMinutesAndSeconds: (time: number)=> {minutes: number,seconds: number}
 }
 
-export default function TimeSlider({video,videoElement,duration,currentValue,setCurrentValue,currentValueMinutesAndSeconds,convertInMinutesAndSeconds}: TimeSliderPropsInterface): React.JSX.Element {
-    
+export default function TimeSlider({video,videoElement,currentValue,setCurrentValue,currentValueMinutesAndSeconds,convertInMinutesAndSeconds}: TimeSliderPropsInterface): React.JSX.Element {
+   console.log(videoElement.current)
     const {language} = useContext(LanguageContext);
 
     const sliderBar = useRef(null);
@@ -34,27 +33,32 @@ export default function TimeSlider({video,videoElement,duration,currentValue,set
     };
 
     const computeTime = (e)=> {
-        if(sliderBar.current) {
-            return Math.round((e.clientX - sliderBar.current.getBoundingClientRect().left)/sliderBar.current.offsetWidth*(duration))
+        if(sliderBar.current && videoElement.current) {
+            console.log((e.clientX - sliderBar.current.getBoundingClientRect().left)/sliderBar.current.offsetWidth*(videoElement.current.duration))
+            return Math.round((e.clientX - sliderBar.current.getBoundingClientRect().left)/sliderBar.current.offsetWidth*(videoElement.current.duration))
         } else {
             return 0
         };
     };
 
     const handleMouseMove = (e)=> {
-        const currentTime = computeTime(e);
-        if(mouseDown) {
-            setCurrentValue(currentTime);
-            videoElement.current.currentTime = currentTime;
-        } else {
-            setPreviewCurrentTime(currentTime);
-        }
+        if(videoElement.current) {
+            const currentTime = computeTime(e);
+            if(mouseDown) {
+                setCurrentValue(currentTime);
+                videoElement.current.currentTime = currentTime;
+            } else {
+                console.log(currentTime)
+                setPreviewCurrentTime(currentTime);
+            };
+        };
     };
 
     const handleClick = (e)=> {
         const currentTime = computeTime(e);
         setCurrentValue(currentTime);
-        videoElement.current.currentTime = currentTime;
+        if(videoElement.current)
+            videoElement.current.currentTime = currentTime;
     };
 
     const handleKeyDown= (e)=> {
@@ -114,11 +118,12 @@ export default function TimeSlider({video,videoElement,duration,currentValue,set
         const sliderBarPaddingLeft = parseInt(getComputedStyle(sliderBar.current).paddingLeft);
         const sliderBarPaddings = sliderBarPaddingLeft + sliderBarPaddingRight;
         let position = 0;
-        position = Math.round(currentValue/duration *(sliderBar.current ? (sliderBar.current.offsetWidth - sliderBarPaddings) : 0) + sliderBarOffset);
+        if(videoElement.current)
+            position = Math.round(currentValue/videoElement.current.duration *(sliderBar.current ? (sliderBar.current.offsetWidth - sliderBarPaddings) : 0) + sliderBarOffset);
         const rectification = position / (sliderBar.current ? (sliderBar.current.offsetWidth - sliderBarPaddings) : 1) * (sliderThumb.current ? sliderThumb.current.offsetWidth : 0);
         const visualPosition = position - rectification;
         setThumbPosition(visualPosition);
-    },[currentValue,duration]);
+    },[currentValue,videoElement]);
 
     useEffect(()=> {
         if(mouseDown) {
@@ -130,7 +135,8 @@ export default function TimeSlider({video,videoElement,duration,currentValue,set
     },[mouseDown]);
 
     useEffect(()=> {
-        videoElement.currentTime = currentValue;
+        if(videoElement.current)
+            videoElement.current.currentTime = currentValue;
         handleThumbPosition();
     },[currentValue,handleThumbPosition]);
 
@@ -141,13 +147,15 @@ export default function TimeSlider({video,videoElement,duration,currentValue,set
             onMouseOver = {()=> setMouseOver(true)}
             onMouseLeave = {()=> setMouseOver(false)}
         >
+            {videoElement.current &&
             <span className="time-slider_thumb" tabIndex={0} role="slider" ref={sliderThumb}
-                aria-valuemin="0" aria-valuemax={duration} aria-valuenow={currentValue}
+                aria-valuemin="0" aria-valuemax={videoElement.current.duration} aria-valuenow={currentValue}
                 aria-valuetext={currentValueMinutesAndSeconds.minutes + 'minutes ' + language==="french" ? "et " : "and " + currentValueMinutesAndSeconds.seconds + language==="french" ? 'secondes' : 'seconds'}
                 aria-label={language === "french" ? "temps" : "time"} onMouseDown={(e)=> handleMouseDown(e)}
                 onKeyDown={()=> handleKeyDown()} style={{left: `${thumbPosition}px`}}></span>
+            }
             {
-                mouseOver && !mouseDown && <VideoPreview video={video} currentTime={previewCurrentTime} sliderBar={sliderBar}
+                mouseOver && !mouseDown && !isNaN(previewCurrentTime) && <VideoPreview video={video} currentTime={previewCurrentTime} sliderBar={sliderBar}
                                 convertInMinutesAndSeconds={convertInMinutesAndSeconds} />
             }
         </div>

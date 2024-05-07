@@ -15,7 +15,7 @@ interface VideoPlayerPropsInterface {
 }
 
 export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.JSX.Element {
-
+    
     const {language} = useContext(LanguageContext);
 
     const videoPlayerElement = useRef<HTMLElement | null>(null);
@@ -83,14 +83,19 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
         };
     };
 
+    const handleTimeUpdate = ()=> {
+        if(videoElement.current)
+            setCurrentTime(videoElement.current.currentTime);
+    };
+
     const handleKeyDown = (e)=> {
         switch(e.key) {
             case " ":
                 e.preventDefault();
-                if(isPlaying) {
+                if(isPlaying && videoElement.current) {
                     videoElement.current.pause();
                     setIsPlaying(false);
-                } else {
+                } else if(videoElement.current){
                     videoElement.current.play();
                     setIsPlaying(true);
                 };
@@ -120,10 +125,12 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
     },[isPlaying]);
 
     useEffect(()=> {
-        if(videoElement.current.currentTime === videoElement.current.duration) {
-            setIsVideoEnded(true);
+        if(videoElement.current) {
+            if(videoElement.current.currentTime === videoElement.current.duration) {
+                setIsVideoEnded(true);
+            };
+            setCurrentTime(videoElement.current.currentTime);
         };
-        setCurrentTime(videoElement.current?.currentTime);
     },[videoElement.current?.currentTime]);
 
     useEffect(()=> {
@@ -131,7 +138,8 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
     },[currentTime]);
 
     useEffect(()=> {
-        videoElement.current.volume = volume;
+        if(videoElement.current)
+            videoElement.current.volume = volume;
     },[volume]);
 
     useEffect(()=> {
@@ -167,7 +175,7 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
                     <p>{language === "french" ? video.frenchTranscription : video.englishTranscription}</p>
                 </div>
                 <div className={videoClassList} onClick={onVideoClick}>
-                    <video ref={videoElement} tabIndex={0} onTimeUpdate={()=> setCurrentTime(videoElement.current.currentTime)}>
+                    <video ref={videoElement} tabIndex={0} onTimeUpdate={()=> handleTimeUpdate()}>
                         <source src={"/videos/" + video.videoName + ".mp4"} type="video/mp4" />
                     </video>
                     {!isPlaying && currentTime === 0 && 
@@ -186,7 +194,7 @@ export default function VideoPlayer({video}: VideoPlayerPropsInterface): React.J
                     >
                     <div className="video-player_control-bar_timeline">
                         <PlayButton onPlayButtonClick={onPlayButtonClick} isPlaying={isPlaying} />
-                        <TimeSlider video={video} videoElement={videoElement} duration={videoElement.current?.duration} 
+                        <TimeSlider video={video} videoElement={videoElement} 
                             currentValue={currentTime} setCurrentValue={setCurrentTime} 
                             currentValueMinutesAndSeconds={convertInMinutesAndSeconds(currentTime)}
                             convertInMinutesAndSeconds={convertInMinutesAndSeconds} />
