@@ -20,11 +20,14 @@
         }
     }
     &_line_mobile {
+        @include tablette {
+            display: none;
+        }
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        height: 1rem;
-        width: 0.2rem;
+        height: 30rem;
+        width: 1.5rem;
         background-color: map-get($colors,white);
     }
     &_menu {
@@ -42,11 +45,11 @@
         width: 100%;
     }
     &_menu-item {
-        @include desktop {
+        @include tablette {
             position: absolute;
         }
         &--home {
-            @include desktop {
+            @include tablette  {
                 left: 28%;
                 top: 10%;
                 transform: translate(-50%,-50%);
@@ -54,28 +57,28 @@
             
         }
         &--who-am-i {
-            @include desktop {
+            @include tablette {
                 left: 40%;
                 top: 32%;
                 transform: translate(-50%,-50%);
             }
         }
         &--cv {
-            @include desktop {
+            @include tablette {
                 right: 40%;
                 top: 24%;
                 transform: translate(50%,-50%);
             }
         }
         &--achievments {
-            @include desktop {
+            @include tablette {
                 right: 28%;
                 bottom: 40%;
                 transform: translate(50%,50%);
             }
         }
         &--why-accessibility {
-            @include desktop {
+            @include tablette {
                 right: 40%;
                 bottom: 3%;
                 transform: translate(50%,50%);

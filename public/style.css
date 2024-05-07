@@ -2298,7 +2298,7 @@ body:not(.contrast).purple .flying-saucer::after {
   position: absolute;
   z-index: 1;
   top: 62%;
-  left: 25%;
+  left: 19%;
   height: 80px;
   width: 80px;
   overflow: visible;
@@ -4325,9 +4325,14 @@ body:not(.contrast).purple .prices-simulator_evaluation {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  height: 1rem;
-  width: 0.2rem;
+  height: 30rem;
+  width: 1.5rem;
   background-color: #f1f1f1;
+}
+@media screen and (min-width: 650px) {
+  .main-menu_line_mobile {
+    display: none;
+  }
 }
 .main-menu_menu {
   display: flex;
@@ -4345,40 +4350,40 @@ body:not(.contrast).purple .prices-simulator_evaluation {
     left: 0;
   }
 }
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 650px) {
   .main-menu_menu-item {
     position: absolute;
   }
 }
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 650px) {
   .main-menu_menu-item--home {
     left: 28%;
     top: 10%;
     transform: translate(-50%, -50%);
   }
 }
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 650px) {
   .main-menu_menu-item--who-am-i {
     left: 40%;
     top: 32%;
     transform: translate(-50%, -50%);
   }
 }
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 650px) {
   .main-menu_menu-item--cv {
     right: 40%;
     top: 24%;
     transform: translate(50%, -50%);
   }
 }
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 650px) {
   .main-menu_menu-item--achievments {
     right: 28%;
     bottom: 40%;
     transform: translate(50%, 50%);
   }
 }
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 650px) {
   .main-menu_menu-item--why-accessibility {
     right: 40%;
     bottom: 3%;
