@@ -24,8 +24,6 @@ export default function ModalLayout({setDisplay,frenchTitle,englishTitle,childre
         let height = modalContent.current?.offsetHeight;
         const topHeight = modalTop.current?.offsetHeight;
         const bottomHeight = modalTop.current?.offsetHeight;
-        console.log(height)
-        console.log(window.innerHeight)
         if(height + topHeight + bottomHeight > 0.8*window.innerHeight) {
             height = 0.7*window.innerHeight
         }

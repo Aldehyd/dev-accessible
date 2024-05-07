@@ -25,20 +25,21 @@ export default function CVSection({type,achievments,diplomas,languages}: CVSecti
     const addToolToDevTools : (achievments: AchievmentInterface[])=>void = useCallback((achievments) => {
         let devTools : {id: string, frenchTitle: string, englishTitle: string, projects: string[]}[] = [];
         for(let achievment of achievments) {
-            for(let tool of achievment.developmentTools) {
-                let isAlreadyInTools = false;
-                for(let devTool of devTools) {
-                    if(devTool.englishTitle === tool) {
-                        isAlreadyInTools = true;
+            if(achievment.developmentTools)
+                for(let tool of achievment.developmentTools) {
+                    let isAlreadyInTools = false;
+                    for(let devTool of devTools) {
+                        if(devTool.englishTitle === tool) {
+                            isAlreadyInTools = true;
+                        };
+                    };
+                    if(!isAlreadyInTools) {
+                        devTools.push({id: tool, frenchTitle: tool, englishTitle: tool, projects: [achievment.title]});
+                    } else {
+                        let toolToModify = devTools.find(dTool => dTool.id === tool);
+                        toolToModify?.projects.push(achievment.title);
                     };
                 };
-                if(!isAlreadyInTools) {
-                    devTools.push({id: tool, frenchTitle: tool, englishTitle: tool, projects: [achievment.title]});
-                } else {
-                    let toolToModify = devTools.find(dTool => dTool.id === tool);
-                    toolToModify?.projects.push(achievment.title);
-                };
-            };
         };
         setDevTools(devTools);
     },[]);
