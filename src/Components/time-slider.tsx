@@ -34,7 +34,11 @@ export default function TimeSlider({video,videoElement,duration,currentValue,set
     };
 
     const computeTime = (e)=> {
-        return Math.round((e.clientX - sliderBar.current.getBoundingClientRect().left)/sliderBar.current.offsetWidth*(duration))
+        if(sliderBar.current) {
+            return Math.round((e.clientX - sliderBar.current.getBoundingClientRect().left)/sliderBar.current.offsetWidth*(duration))
+        } else {
+            return 0
+        };
     };
 
     const handleMouseMove = (e)=> {

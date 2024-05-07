@@ -1,4 +1,4 @@
-import { useEffect,useRef,useState } from "react";
+import { useCallback, useEffect,useRef,useState } from "react";
 import VideoInterface from "../Interfaces/videoInterface.tsx";
 
 interface VideoPreviewPropsInterface {
@@ -14,9 +14,13 @@ export default function VideoPreview({video,currentTime,sliderBar,convertInMinut
     const previewElement = useRef(null);
     const [leftPosition,setLeftPosition] = useState<number>(0);
 
-    const handlePosition = ()=> {
-        const previewWidth = previewElement.current.offsetWidth;
-        const position = currentTime/videoElement.current.duration*sliderBar.current.offsetWidth;
+    const handlePosition = useCallback(()=> {
+        let previewWidth: number = 0;
+        let position: number = 0;
+        if(previewElement.current)
+            previewWidth = previewElement.current.offsetWidth;
+        if(videoElement.current)
+            position = currentTime/videoElement.current.duration*sliderBar.current.offsetWidth;
         if(position <= previewWidth/2) {
             setLeftPosition(0);
         } else if (sliderBar.current.offsetWidth - position <= previewWidth/2){
@@ -24,7 +28,7 @@ export default function VideoPreview({video,currentTime,sliderBar,convertInMinut
         } else {
             setLeftPosition(position - previewWidth/2);
         };
-    };
+    },[currentTime,sliderBar]);
 
     const rectifySeconds = (seconds)=> {
         let rectifiedSecondsCount = "";
@@ -36,9 +40,11 @@ export default function VideoPreview({video,currentTime,sliderBar,convertInMinut
     };
 
     useEffect(()=> {
-        videoElement.current.currentTime = Math.round(currentTime);
-        handlePosition();
-    },[currentTime]);
+        if(videoElement.current) {
+            videoElement.current.currentTime = Math.round(currentTime);
+            handlePosition();
+        };
+    },[currentTime,handlePosition]);
 
     return (
         <div style={{left: `${leftPosition}px`}} 
