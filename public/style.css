@@ -4289,54 +4289,86 @@ body:not(.contrast).purple .prices-simulator_evaluation {
 
 .main-menu {
   position: relative;
-  height: 75vh;
-  width: 75vw;
-  padding-top: 30px;
+  height: 100%;
+  width: 100%;
 }
 @media screen and (min-width: 1000px) {
   .main-menu {
     left: -40px;
   }
 }
+@media screen and (min-width: 650px) {
+  .main-menu {
+    height: 75vh;
+    width: 75vw;
+    padding-top: 3rem;
+  }
+}
 .main-menu_line_svg {
+  display: none;
   height: 100%;
   width: 100%;
   fill: #f1f1f1;
 }
+@media screen and (min-width: 650px) {
+  .main-menu_line_svg {
+    display: block;
+  }
+}
 .main-menu_menu {
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 100%;
   width: 100%;
 }
-.main-menu_menu-item {
-  position: absolute;
+@media screen and (min-width: 650px) {
+  .main-menu_menu {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
-.main-menu_menu-item--home {
-  left: 28%;
-  top: 10%;
-  transform: translate(-50%, -50%);
+@media screen and (min-width: 900px) {
+  .main-menu_menu-item {
+    position: absolute;
+  }
 }
-.main-menu_menu-item--who-am-i {
-  left: 40%;
-  top: 32%;
-  transform: translate(-50%, -50%);
+@media screen and (min-width: 900px) {
+  .main-menu_menu-item--home {
+    left: 28%;
+    top: 10%;
+    transform: translate(-50%, -50%);
+  }
 }
-.main-menu_menu-item--cv {
-  right: 40%;
-  top: 24%;
-  transform: translate(50%, -50%);
+@media screen and (min-width: 900px) {
+  .main-menu_menu-item--who-am-i {
+    left: 40%;
+    top: 32%;
+    transform: translate(-50%, -50%);
+  }
 }
-.main-menu_menu-item--achievments {
-  right: 28%;
-  bottom: 40%;
-  transform: translate(50%, 50%);
+@media screen and (min-width: 900px) {
+  .main-menu_menu-item--cv {
+    right: 40%;
+    top: 24%;
+    transform: translate(50%, -50%);
+  }
 }
-.main-menu_menu-item--why-accessibility {
-  right: 40%;
-  bottom: 3%;
-  transform: translate(50%, 50%);
+@media screen and (min-width: 900px) {
+  .main-menu_menu-item--achievments {
+    right: 28%;
+    bottom: 40%;
+    transform: translate(50%, 50%);
+  }
+}
+@media screen and (min-width: 900px) {
+  .main-menu_menu-item--why-accessibility {
+    right: 40%;
+    bottom: 3%;
+    transform: translate(50%, 50%);
+  }
 }
 
 .search-results_subtitle {
