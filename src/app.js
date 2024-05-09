@@ -36,7 +36,6 @@ app.get('/cv-languages',(_,res)=>{
     GetDatasFromCollection(res,"languages");
 });
 
-
 async function GetDatasFromCollection(res,collection) {
     const uri = process.env.STRING_URI;
     const client = new MongoClient(uri);
@@ -208,3 +207,7 @@ app.post("/search",(req,res)=> {
     })();
 });
 
+//handle redirections
+app.use((req, res) => { 
+    res.status(404).sendFile(path.join(__dirname,'/dist/index.html')) 
+}) 
