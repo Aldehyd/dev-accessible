@@ -10,6 +10,7 @@ import LanguageModal from "../Modals/LanguageModal.tsx";
 import MainMenuModal from '../Modals/mainMenuModal.tsx';
 import AccessibilityAnalysisInfosModal from "../Modals/accessibilityAnalysisInfosModal.tsx";
 import ServicesMain from "../Layout/servicesMain.tsx";
+import BurgerMenuButton from "../Components/burger-menu-button.tsx";
 
 export default function Services(): React.JSX.Element {
 
@@ -30,6 +31,7 @@ export default function Services(): React.JSX.Element {
                     setLanguageModalDisplay={setIsLanguageModalDisplayed}
                     setAccessibilityAnalysisModalDisplay={setIsAccessibilityAnalysisInfosModalDisplayed} />
             </header>
+            <BurgerMenuButton isExpanded={isMainMenuExpanded} setIsExpanded={setIsMainMenuExpanded} />
             <MainMenuModal isExpanded={isMainMenuExpanded} setIsExpanded={setIsMainMenuExpanded} />
             <main>
                 <BackLink />

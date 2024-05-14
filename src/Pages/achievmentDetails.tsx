@@ -13,6 +13,7 @@ import LanguageModal from "../Modals/LanguageModal.tsx";
 import MainMenuModal from '../Modals/mainMenuModal.tsx';
 import AccessibilityAnalysisInfosModal from "../Modals/accessibilityAnalysisInfosModal.tsx";
 import BackLink from "../Components/back-link.tsx";
+import BurgerMenuButton from "../Components/burger-menu-button.tsx";
 
 export default function AchievmentDetails(): React.JSX.Element {
 
@@ -46,6 +47,7 @@ export default function AchievmentDetails(): React.JSX.Element {
                     setLanguageModalDisplay={setIsLanguageModalDisplayed}
                     setAccessibilityAnalysisModalDisplay={setIsAccessibilityAnalysisInfosModalDisplayed} />
             </header>
+            <BurgerMenuButton setIsExpanded={setIsMainMenuExpanded} />
             <MainMenuModal isExpanded={isMainMenuExpanded} setIsExpanded={setIsMainMenuExpanded} />
             <main>
                 <MainTitle frenchText={achievment} englishText={achievment} />

@@ -11,6 +11,7 @@ import MainMenuModal from '../Modals/mainMenuModal.tsx';
 import AccessibilityAnalysisInfosModal from "../Modals/accessibilityAnalysisInfosModal.tsx";
 import {presentationVideo} from "../Datas/presentationVideo.tsx";
 import VideoPlayer from "../Layout/videoPlayer.tsx";
+import BurgerMenuButton from "../Components/burger-menu-button.tsx";
 
 export default function WhoAmI(): React.JSX.Element {
 
@@ -31,6 +32,7 @@ export default function WhoAmI(): React.JSX.Element {
                     setLanguageModalDisplay={setIsLanguageModalDisplayed}
                     setAccessibilityAnalysisModalDisplay={setIsAccessibilityAnalysisInfosModalDisplayed} />
             </header>
+            <BurgerMenuButton isExpanded={isMainMenuExpanded} setIsExpanded={setIsMainMenuExpanded} />
             <MainMenuModal isExpanded={isMainMenuExpanded} setIsExpanded={setIsMainMenuExpanded} />
             <main>
                 <BackLink />
