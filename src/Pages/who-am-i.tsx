@@ -12,6 +12,8 @@ import AccessibilityAnalysisInfosModal from "../Modals/accessibilityAnalysisInfo
 import {presentationVideo} from "../Datas/presentationVideo.tsx";
 import VideoPlayer from "../Layout/videoPlayer.tsx";
 import BurgerMenuButton from "../Components/burger-menu-button.tsx";
+import Accessibot from "../Components/accessibot.tsx";
+import AccessibotPlatform from "../Components/accessibot-platform.tsx";
 
 export default function WhoAmI(): React.JSX.Element {
 
@@ -34,6 +36,8 @@ export default function WhoAmI(): React.JSX.Element {
             </header>
             <BurgerMenuButton isExpanded={isMainMenuExpanded} setIsExpanded={setIsMainMenuExpanded} />
             <MainMenuModal isExpanded={isMainMenuExpanded} setIsExpanded={setIsMainMenuExpanded} />
+            <Accessibot />
+            <AccessibotPlatform />
             <main>
                 <BackLink />
                 <MainTitle frenchText="Qui suis-je ?" englishText="Who am I ?" />

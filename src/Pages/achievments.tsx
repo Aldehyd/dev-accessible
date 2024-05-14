@@ -16,6 +16,8 @@ import LanguageModal from "../Modals/LanguageModal.tsx";
 import MainMenuModal from '../Modals/mainMenuModal.tsx';
 import AccessibilityAnalysisInfosModal from "../Modals/accessibilityAnalysisInfosModal.tsx";
 import BurgerMenuButton from "../Components/burger-menu-button.tsx";
+import Accessibot from "../Components/accessibot.tsx";
+import AccessibotPlatform from "../Components/accessibot-platform.tsx";
 
 export default function Achievments(): React.JSX.Element {
 
@@ -60,6 +62,8 @@ export default function Achievments(): React.JSX.Element {
             </header>
             <BurgerMenuButton setIsExpanded={setIsMainMenuExpanded} />
             <MainMenuModal isExpanded={isMainMenuExpanded} setIsExpanded={setIsMainMenuExpanded} />
+            <Accessibot />
+            <AccessibotPlatform />
             <main>
                 <MainTitle frenchText="Réalisations" englishText="Achievments"/>
                 <BackLink />

@@ -1,0 +1,25 @@
+.accessibility-bot-platform {
+    display: none;
+    @include tablette {
+        display: block;
+    }
+    position: absolute;
+    right: -25px;
+    top: 130px;
+    height: 80px;
+    width: 160px;
+    stroke: #fff;
+    fill: #fff;
+}
+
+@keyframes platformAppear {
+    from {
+        transform: translateX(100%);
+    }
+}
+
+body.animations {
+    & .accessibility-bot-platform {
+        animation: platformAppear 400ms 800ms ease-out backwards;
+    }
+}

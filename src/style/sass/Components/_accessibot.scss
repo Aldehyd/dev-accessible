@@ -1,16 +1,29 @@
+body.home {
+    .accessibility-bot {
+        @include tablette {
+            top: 74%;
+            left: 10%;
+        }
+        @include desktop {
+            top: 62%;
+            left: 19%;
+        }
+    }
+}
+body:not(.home) {
+    .accessibility-bot {
+            top: 15%;
+            right: 25px;
+    }
+}
+
 .accessibility-bot {
     display: none;
     @include tablette {
         display: block;
-        top: 74%;
-        left: 10%;
     }
     position: absolute;
     z-index: 1;
-    @include desktop {
-        top: 62%;
-        left: 19%;
-    }
     height: 80px;
     width: 80px;
     overflow: visible;

@@ -14,6 +14,8 @@ import SearchResultsMain from "../Layout/searchResultsMain.tsx";
 import Loader from "../Components/loader.tsx";
 import Error from "../Components/error.tsx";
 import BurgerMenuButton from "../Components/burger-menu-button.tsx";
+import Accessibot from "../Components/accessibot.tsx";
+import AccessibotPlatform from "../Components/accessibot-platform.tsx";
 
 export default function SearchResults(): React.JSX.Element {
 
@@ -92,6 +94,8 @@ export default function SearchResults(): React.JSX.Element {
             </header>
             <BurgerMenuButton isExpanded={isMainMenuExpanded} setIsExpanded={setIsMainMenuExpanded} />
             <MainMenuModal isExpanded={isMainMenuExpanded} setIsExpanded={setIsMainMenuExpanded} />
+            <Accessibot />
+            <AccessibotPlatform />
             <main>
                 <BackLink />
                 <MainTitle frenchText="Résultats" englishText="Results" />

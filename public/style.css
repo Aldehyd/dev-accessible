@@ -14,6 +14,7 @@ body {
   font-family: "Oswald", sans-serif;
   color: hsl(175deg, 95%, 55%);
   background-color: #000;
+  overflow-x: hidden;
 }
 
 @media screen and (min-width: 900px) {
@@ -174,11 +175,16 @@ header {
 
 main {
   position: relative;
-  margin: 12rem auto 1rem;
+  margin: 10rem auto 1rem;
   padding: 2rem;
   max-width: 90%;
   border: solid 1rem #f1f1f1;
   border-radius: 40px;
+}
+@media screen and (min-width: 650px) {
+  main {
+    margin: 20rem auto 1rem;
+  }
 }
 
 main:not(.cv) { /*temporary*/
@@ -2319,6 +2325,24 @@ body:not(.contrast).purple .flying-saucer::after {
   box-shadow: 0 0 1rem 0.5rem hsl(295deg, 95%, 55%), inset 0 0 0.5rem 0.2rem hsl(295deg, 95%, 55%);
 }
 
+@media screen and (min-width: 650px) {
+  body.home .accessibility-bot {
+    top: 74%;
+    left: 10%;
+  }
+}
+@media screen and (min-width: 900px) {
+  body.home .accessibility-bot {
+    top: 62%;
+    left: 19%;
+  }
+}
+
+body:not(.home) .accessibility-bot {
+  top: 15%;
+  right: 25px;
+}
+
 .accessibility-bot {
   display: none;
   position: absolute;
@@ -2331,14 +2355,6 @@ body:not(.contrast).purple .flying-saucer::after {
 @media screen and (min-width: 650px) {
   .accessibility-bot {
     display: block;
-    top: 74%;
-    left: 10%;
-  }
-}
-@media screen and (min-width: 900px) {
-  .accessibility-bot {
-    top: 62%;
-    left: 19%;
   }
 }
 .accessibility-bot_body {
@@ -2664,6 +2680,31 @@ body.contrast .environnement-toggle-button {
 
 body.animations .environnement-toggle-button:hover::before {
   animation: onHoverBeforeButton 1400ms ease-in-out infinite;
+}
+
+.accessibility-bot-platform {
+  display: none;
+  position: absolute;
+  right: -25px;
+  top: 130px;
+  height: 80px;
+  width: 160px;
+  stroke: #fff;
+  fill: #fff;
+}
+@media screen and (min-width: 650px) {
+  .accessibility-bot-platform {
+    display: block;
+  }
+}
+
+@keyframes platformAppear {
+  from {
+    transform: translateX(100%);
+  }
+}
+body.animations .accessibility-bot-platform {
+  animation: platformAppear 400ms 800ms ease-out backwards;
 }
 
 .radio-group {
