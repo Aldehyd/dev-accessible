@@ -3,6 +3,7 @@ import CustomLink from "../Components/custom-link.tsx";
 import EnvironnementContext from "../Contexts/environnement-context.tsx";
 import LanguageContext from "../Contexts/language-context.tsx";
 import ModalContext from "../Contexts/modal-context.tsx";
+import CloseButton from "../Components/close-button.tsx";
 
 interface MainMenuPropsInterface {
     isExpanded: boolean,
@@ -29,6 +30,7 @@ export default function MainMenuModal({isExpanded,setIsExpanded}: MainMenuPropsI
 
     return (
         <div className="main-menu-modal" aria-expanded={isExpanded ? "true" : "false"}>
+            <CloseButton onWhiteBackground={true} onClickFunction={()=> setIsExpanded(false)}/>
             <div className="basic-button-container basic-button-container--on-white-background">
                 <button className="basic-button" id="main-menu-modal_toggle-button"
                     onClick={()=> onClickFunction()}>

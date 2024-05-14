@@ -14,7 +14,7 @@
     transition: transform 300ms ease-in-out;
     &[aria-expanded="true"] {
         transform: translateX(0);
-        & .basic-button-container .expand-arrow-svg {
+        & .basic-button-container:not(.basic-button-container--close-button) .expand-arrow-svg {
             transform: rotate(-90deg) translateX(-0.1rem);
         }
     }
@@ -24,7 +24,13 @@
         gap: 1rem;
         margin-bottom: 0;
     }
-    & .basic-button-container {
+    & .basic-button-container--close-button {
+        display: block;
+        @include tablette {
+            display: none;
+        }
+    }
+    & .basic-button-container:not(.basic-button-container--close-button) {
         display: none;
         @include tablette {
             display: block;
@@ -39,5 +45,9 @@
             transform: rotate(90deg) translateX(0.2rem);
             transition: 300ms ease-in-out;
         }
+    }
+    & .basic-button-container--close-button {
+        top: 1rem;
+        right: 2rem;
     }
 }

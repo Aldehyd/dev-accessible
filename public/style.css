@@ -1243,7 +1243,7 @@ body.animations .search-button:hover .magnifying-glass-svg {
 }
 
 .main-burger-menu {
-  margin: auto;
+  margin: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1253,6 +1253,11 @@ body.animations .search-button:hover .magnifying-glass-svg {
   border: solid #f1f1f1 0.2rem;
   border-radius: 1rem;
   cursor: pointer;
+}
+@media screen and (min-width: 650px) {
+  .main-burger-menu {
+    display: none;
+  }
 }
 .main-burger-menu span {
   display: inline-block;
@@ -4480,7 +4485,7 @@ body:not(.contrast).purple .prices-simulator_evaluation {
 .main-menu-modal[aria-expanded=true] {
   transform: translateX(0);
 }
-.main-menu-modal[aria-expanded=true] .basic-button-container .expand-arrow-svg {
+.main-menu-modal[aria-expanded=true] .basic-button-container:not(.basic-button-container--close-button) .expand-arrow-svg {
   transform: rotate(-90deg) translateX(-0.1rem);
 }
 .main-menu-modal ul {
@@ -4489,7 +4494,15 @@ body:not(.contrast).purple .prices-simulator_evaluation {
   gap: 1rem;
   margin-bottom: 0;
 }
-.main-menu-modal .basic-button-container {
+.main-menu-modal .basic-button-container--close-button {
+  display: block;
+}
+@media screen and (min-width: 650px) {
+  .main-menu-modal .basic-button-container--close-button {
+    display: none;
+  }
+}
+.main-menu-modal .basic-button-container:not(.basic-button-container--close-button) {
   display: none;
   position: absolute;
   top: 50%;
@@ -4497,15 +4510,19 @@ body:not(.contrast).purple .prices-simulator_evaluation {
   transform: translateX(50%) rotate(-90deg);
 }
 @media screen and (min-width: 650px) {
-  .main-menu-modal .basic-button-container {
+  .main-menu-modal .basic-button-container:not(.basic-button-container--close-button) {
     display: block;
   }
 }
-.main-menu-modal .basic-button-container .expand-arrow-svg {
+.main-menu-modal .basic-button-container:not(.basic-button-container--close-button) .expand-arrow-svg {
   height: 1.5rem;
   width: 1.5rem;
   transform: rotate(90deg) translateX(0.2rem);
   transition: 300ms ease-in-out;
+}
+.main-menu-modal .basic-button-container--close-button {
+  top: 1rem;
+  right: 2rem;
 }
 
 .modal-layout {

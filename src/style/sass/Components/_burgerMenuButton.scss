@@ -1,6 +1,9 @@
 .main-burger-menu {
-    margin: auto;
+    margin: 1rem;
     display: flex;
+    @include tablette {
+        display: none;
+    }
     flex-direction: column;
     align-items: center;
     gap: 1rem;
