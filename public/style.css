@@ -185,6 +185,21 @@ main:not(.cv) { /*temporary*/
   background-color: hsl(0deg, 6%, 10%);
 }
 
+body.home main {
+  max-width: 100%;
+  margin: 0;
+  padding: 4rem 2rem;
+  background-color: transparent;
+  border: none;
+  border-radius: inherit;
+}
+@media screen and (min-width: 650px) {
+  body.home main {
+    height: 100vh;
+    padding: inherit;
+  }
+}
+
 h1 {
   font-size: 1.8rem;
 }
@@ -2238,14 +2253,20 @@ body:not(.contrast).purple .progress-bar_bar {
   border-radius: 50%;
 }
 
-body.animations .landing-page_choice-container.broken .flying-saucer.left {
-  animation: leftMove 2.5s ease-in-out forwards;
+@media screen and (min-width: 650px) {
+  body.animations .landing-page_choice-container.broken .flying-saucer.left {
+    animation: leftMove 2.5s ease-in-out forwards;
+  }
 }
-body.animations .landing-page_choice-container.broken .flying-saucer.right {
-  animation: rightMove 2.5s ease-in-out forwards;
+@media screen and (min-width: 650px) {
+  body.animations .landing-page_choice-container.broken .flying-saucer.right {
+    animation: rightMove 2.5s ease-in-out forwards;
+  }
 }
-body.animations .landing-page_choice-container.broken .flying-saucer::after {
-  animation: shoot 1s 1s forwards;
+@media screen and (min-width: 650px) {
+  body.animations .landing-page_choice-container.broken .flying-saucer::after {
+    animation: shoot 1s 1s forwards;
+  }
 }
 
 @keyframes leftMove {
@@ -4058,10 +4079,14 @@ body.animations .top-menu {
     fill: #f1f1f1;
   }
 }
+.bottom-menu-line--other-pages {
+  display: none;
+}
 @media screen and (min-width: 1000px) {
   .bottom-menu-line--other-pages {
+    display: block;
     position: relative;
-    bottom: -160px;
+    bottom: -120px;
     height: 50%;
     stroke: #f1f1f1;
     fill: #f1f1f1;
@@ -4075,33 +4100,33 @@ body.animations .top-menu {
 }
 @media screen and (min-width: 1000px) {
   .bottom-menu .link:nth-child(2) {
-    left: 210px;
+    left: 130px;
   }
 }
 @media screen and (min-width: 1000px) {
   .bottom-menu .link:nth-child(3) {
-    left: 35%;
+    left: 30%;
     transform: translateX(-50%);
-    top: 210px;
+    top: 190px;
   }
 }
 @media screen and (min-width: 1000px) {
   .bottom-menu .link:nth-child(4) {
     left: 50%;
     transform: translateX(-50%);
-    top: 180px;
+    top: 145px;
   }
 }
 @media screen and (min-width: 1000px) {
   .bottom-menu .link:nth-child(5) {
-    right: 35%;
+    right: 30%;
     transform: translateX(50%);
-    top: 210px;
+    top: 190px;
   }
 }
 @media screen and (min-width: 1000px) {
   .bottom-menu .link:last-child {
-    right: 200px;
+    right: 130px;
   }
 }
 
@@ -4444,8 +4469,13 @@ body:not(.contrast).purple .prices-simulator_evaluation {
   background-color: #f1f1f1;
   border-radius: 0 2rem 2rem 0;
   box-shadow: inset rgba(0, 0, 0, 0.3) 0.5rem 0.5rem 0.5rem;
-  transform: translateX(-80%);
+  transform: translateX(-100%);
   transition: transform 300ms ease-in-out;
+}
+@media screen and (min-width: 650px) {
+  .main-menu-modal {
+    transform: translateX(-80%);
+  }
 }
 .main-menu-modal[aria-expanded=true] {
   transform: translateX(0);
@@ -4460,11 +4490,16 @@ body:not(.contrast).purple .prices-simulator_evaluation {
   margin-bottom: 0;
 }
 .main-menu-modal .basic-button-container {
+  display: none;
   position: absolute;
   top: 50%;
   right: 3rem;
-  display: block;
   transform: translateX(50%) rotate(-90deg);
+}
+@media screen and (min-width: 650px) {
+  .main-menu-modal .basic-button-container {
+    display: block;
+  }
 }
 .main-menu-modal .basic-button-container .expand-arrow-svg {
   height: 1.5rem;
@@ -4612,24 +4647,26 @@ body:not(.contrast) .warning-modal-container .modal-layout_title {
   text-shadow: 0 0.2rem 0.4rem hsl(0deg, 95%, 55%);
 }
 
-.under-construction-page {
-  height: 100vh;
-  display: flex;
-}
-.under-construction-page img {
-  height: 100%;
-  margin: auto;
-}
-
 .landing-page_main {
   transform: translateY(0);
   animation: choicesContainerAppear 0.8s 0.4s ease-in-out backwards;
 }
 .landing-page_choices-container {
-  height: 100%;
+  height: fit-content;
   width: 100%;
   display: flex;
-  overflow: hidden;
+  margin-top: 10rem;
+  padding: 2rem 0;
+  flex-direction: column;
+  gap: 2rem;
+}
+@media screen and (min-width: 650px) {
+  .landing-page_choices-container {
+    height: 100%;
+    flex-direction: row;
+    padding: inherit;
+    overflow: hidden;
+  }
 }
 .landing-page_choice-container {
   position: relative;
@@ -4639,13 +4676,18 @@ body:not(.contrast) .warning-modal-container .modal-layout_title {
 .landing-page_choice {
   position: relative;
   margin: auto;
-  font-size: 4rem;
+  font-size: 2rem;
   color: hsl(175deg, 95%, 55%);
   padding: 1rem 2rem;
   background-color: #000;
   border: solid 0.5rem hsl(175deg, 95%, 55%);
   border-radius: 4rem;
   cursor: pointer;
+}
+@media screen and (min-width: 650px) {
+  .landing-page_choice {
+    font-size: 4rem;
+  }
 }
 
 @keyframes choicesContainerAppear {
@@ -4720,8 +4762,10 @@ body.animations .landing-page_main.disappear {
   transform-origin: 50% 0;
   animation: choicesContainerDisappear 0.8s ease-in-out forwards;
 }
-body.animations .landing-page_choice-container.broken .landing-page_choice {
-  animation: broken 2.5s 1.7s forwards;
+@media screen and (min-width: 650px) {
+  body.animations .landing-page_choice-container.broken .landing-page_choice {
+    animation: broken 2.5s 1.7s forwards;
+  }
 }
 body.animations .landing-page_choice-container:hover .landing-page_choice {
   transform: scale(1.2);

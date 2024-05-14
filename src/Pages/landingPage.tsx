@@ -36,7 +36,6 @@ export default function LandingPage(): React.JSX.Element {
 
         if(environnementSavedStatus !== undefined && environnementSavedStatus !== null) {
             changeEnvironnement(environnementSavedStatus);
-            // window.location = window.location + "home";
             navigate('/home');
         };
     },[]);

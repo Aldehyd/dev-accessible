@@ -65,9 +65,6 @@ export default function MainMenuModal({isExpanded,setIsExpanded}: MainMenuPropsI
                     <li>
                         <CustomLink type="main" frenchText="Pourquoi l'accessibilité ?" englishText="Why accessibility ?" route="/why-accessibility" />
                     </li>
-                    {/* <li>
-                        <MainLink frenchText="Tarifs" englishText="Prices" route="/prices" />
-                    </li> */}
                 </ul>
             </nav>
         </div>

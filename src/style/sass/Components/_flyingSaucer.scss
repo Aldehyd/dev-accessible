@@ -50,13 +50,19 @@
 body.animations .landing-page_choice-container.broken {
     & .flying-saucer {
         &.left {
-            animation: leftMove 2.5s ease-in-out forwards;
+            @include tablette {
+                animation: leftMove 2.5s ease-in-out forwards;
+            }
         }
         &.right {
-            animation: rightMove 2.5s ease-in-out forwards;
+            @include tablette {
+                animation: rightMove 2.5s ease-in-out forwards;
+            }
         }
         &::after {
-            animation: shoot 1s 1s forwards;
+            @include tablette {
+                animation: shoot 1s 1s forwards;
+            }
         }
     }
 }

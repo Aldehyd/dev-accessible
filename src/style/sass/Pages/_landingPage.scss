@@ -4,10 +4,19 @@
         animation: choicesContainerAppear 0.8s 0.4s ease-in-out backwards;
     }
     &_choices-container {
-        height: 100%;
+        height: fit-content;
         width: 100%;
         display: flex;
-        overflow: hidden;
+        margin-top: 10rem;
+        padding: 2rem 0;
+        flex-direction: column;
+        gap: 2rem;
+        @include tablette {
+            height: 100%;
+            flex-direction: row;
+            padding: inherit;
+            overflow: hidden;
+        }
     }
     &_choice-container {
         position: relative;
@@ -17,7 +26,10 @@
     &_choice {
         position: relative;
         margin: auto;
-        font-size: 4rem;
+        font-size: 2rem;
+        @include tablette {
+            font-size: 4rem;
+        }
         color: map-get($colors,blue);
         padding: 1rem 2rem;
         background-color: map-get($colors,dark);
@@ -109,7 +121,9 @@ body.animations {
     }
     & .landing-page_choice-container {
         &.broken .landing-page_choice {
-            animation: broken 2.5s 1.7s forwards;
+            @include tablette {
+                animation: broken 2.5s 1.7s forwards;
+            }
         }
         &:hover .landing-page_choice {
             transform: scale(1.2);

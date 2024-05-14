@@ -86,9 +86,14 @@
             }
         }
         &--other-pages {
+            display: none;
+            // @include tablette {
+            //     display: block;
+            // }
             @include topMenuReducedWidth {
+                display: block;
                 position: relative;
-                bottom: -160px;
+                bottom: -120px;
                 height: 50%;
                 stroke: map-get($colors,white);
                 fill: map-get($colors,white);
@@ -102,33 +107,33 @@
         }
         &:nth-child(2) {
             @include topMenuReducedWidth {
-                left: 210px;
+                left: 130px;
             }
         }
         &:nth-child(3) {
             @include topMenuReducedWidth {
-                left: 35%;
+                left: 30%;
                 transform: translateX(-50%);
-                top: 210px;
+                top: 190px;
             }
         }
         &:nth-child(4) {
             @include topMenuReducedWidth {
                 left: 50%;
                 transform: translateX(-50%);
-                top: 180px;
+                top: 145px;
             }
         }
         &:nth-child(5) {
             @include topMenuReducedWidth {
-                right: 35%;
+                right: 30%;
                 transform: translateX(50%);
-                top: 210px;
+                top: 190px;
             }
         }
         &:last-child {
             @include topMenuReducedWidth {
-                right: 200px;
+                right: 130px;
             }
         }
     }

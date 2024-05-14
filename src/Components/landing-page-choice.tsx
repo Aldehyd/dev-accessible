@@ -19,27 +19,23 @@ export default function LandingPageChoice({frenchText,englishText,setChoice}: La
 
     const onClickFunction = ()=> {
         if(englishText.includes("client")) {
-            // localStorage.setItem("environnement","client");
             setChoice("client");
-            if(document.body.classList.contains("animations")) {
+            if(document.body.classList.contains("animations") && window.matchMedia('(min-width: 650px)').matches) {
                 setTimeout(()=> changeEnvironnement("client"),4000);
             } else {
                 changeEnvironnement("client");
             };
         } else {
-            // localStorage.setItem("environnement","recruiter");
             setChoice("recruiter");
-            if(document.body.classList.contains("animations")) {
+            if(document.body.classList.contains("animations") && window.matchMedia('(min-width: 650px)').matches) {
                 setTimeout(()=> changeEnvironnement("recruiter"),4000);
             } else {
                 changeEnvironnement("recruiter");
             };
         };
-        if(document.body.classList.contains("animations")) {
-            // setTimeout(()=> {window.location = window.location + "home"},5000);
+        if(document.body.classList.contains("animations") && window.matchMedia('(min-width: 650px)').matches) {
             setTimeout(()=> {navigate("/home")},5000);
         } else {
-            // window.location = window.location + "home";
             navigate("/home");
         };
     };

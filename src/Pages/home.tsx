@@ -47,9 +47,9 @@ export default function Home(): React.JSX.Element {
                     setAccessibilityAnalysisModalDisplay={setIsAccessibilityAnalysisInfosModalDisplayed}
                     home={true} />
             </header>
-            <div className="under-construction-page">
+            <main>
                 <MainMenu />
-            </div>
+            </main>
             <footer className="home">
                 <BottomMenu home={true} />
             </footer>

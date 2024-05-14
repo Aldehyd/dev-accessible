@@ -7,7 +7,10 @@
     background-color: map-get($colors,white);
     border-radius: 0 2rem 2rem 0;
     box-shadow: inset map-get($colors,switchBlackBoxShadow) 0.5rem 0.5rem 0.5rem;
-    transform: translateX(-80%);
+    transform: translateX(-100%);
+    @include tablette {
+        transform: translateX(-80%);
+    }
     transition: transform 300ms ease-in-out;
     &[aria-expanded="true"] {
         transform: translateX(0);
@@ -22,10 +25,13 @@
         margin-bottom: 0;
     }
     & .basic-button-container {
+        display: none;
+        @include tablette {
+            display: block;
+        }
         position: absolute;
         top: 50%;
         right: 3rem;
-        display: block;
         transform: translateX(50%) rotate(-90deg);
         & .expand-arrow-svg {
             height: 1.5rem;

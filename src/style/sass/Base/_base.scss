@@ -182,6 +182,18 @@ main {
 main:not(.cv) { /*temporary*/
     background-color: map-get($colors,darkBackground);
 }
+body.home main {
+    @include tablette {
+        height: 100vh;
+        padding: inherit;
+    }
+    max-width: 100%;
+    margin: 0;
+    padding: 4rem 2rem;
+    background-color: transparent;
+    border: none;
+    border-radius: inherit;
+}
 h1 {
     font-size: 1.8rem;
 }
