@@ -10,7 +10,7 @@ export default function AccessibilityMain(): React.JSX.Element {
     const [error,setError] = useState<boolean>(false);
 
     useEffect(()=> {
-        fetchData('https://dev-accessible.com/page-content?page=accessibility',setContent,setIsContentLoading,setError);
+        fetchData('http://localhost:4000/page-content?page=accessibility',setContent,setIsContentLoading,setError);
     },[]);
 
     return (
@@ -18,7 +18,7 @@ export default function AccessibilityMain(): React.JSX.Element {
             {isContentLoading && !error && <Loader />}
             {error && <Error frenchMessage="Une erreur est survenue. Veuillez rafraichir la page svp." englishMessage="An error has occured. Please refresh the current page." />}
             {!isContentLoading && !error &&
-                <>{content.content}</>
+                <p>{content[0]?.content[0].frenchContent}</p>
             }
         </>
     )
