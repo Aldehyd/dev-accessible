@@ -6,17 +6,16 @@ import TopMenu from "../Layout/topMenu.tsx";
 import MainTitle from "../Components/main-title.tsx";
 import BackLink from "../Components/back-link.tsx";
 import BottomMenu from "../Layout/bottomMenu.tsx";
-import LanguageContext from "../Contexts/language-context.tsx";
 import LanguageModal from "../Modals/LanguageModal.tsx";
 import MainMenuModal from '../Modals/mainMenuModal.tsx';
 import AccessibilityAnalysisInfosModal from "../Modals/accessibilityAnalysisInfosModal.tsx";
 import BurgerMenuButton from "../Components/burger-menu-button.tsx";
 import Accessibot from "../Components/accessibot.tsx";
 import AccessibotPlatform from "../Components/accessibot-platform.tsx";
+import AccessibilityMain from "../Layout/accessibilityMain.tsx";
 
 export default function Accessibility(): React.JSX.Element {
 
-    const {language} = useContext(LanguageContext);
     const {isModalDisplayed} = useContext(ModalContext);
     const [isAccessibilitySettingsModalDisplayed,setIsAccessibilitySettingsModalDisplayed] = useState<boolean>(false);
     const [isLanguageModalDisplayed,setIsLanguageModalDisplayed] = useState<boolean>(false);
@@ -41,9 +40,7 @@ export default function Accessibility(): React.JSX.Element {
             <main>
                 <BackLink />
                 <MainTitle frenchText="Accessibilité" englishText="Accessibility" />
-                <p>
-                    {language === "french" ? "L'évaluation n'a pas encore été réalisée." : "Evaluation not made yet."}
-                </p>
+                <AccessibilityMain />
             </main>
             <footer>
                 <BottomMenu />

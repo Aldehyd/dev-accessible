@@ -1,0 +1,25 @@
+import { useState, useEffect } from "react";
+import { fetchData } from "../Functions/fetchData.tsx";
+import Loader from "../Components/loader.tsx";
+import Error from "../Components/error.tsx";
+
+export default function AccessibilityMain(): React.JSX.Element {
+
+    const [content,setContent] = useState("");
+    const [isContentLoading,setIsContentLoading] = useState<boolean>(true);
+    const [error,setError] = useState<boolean>(false);
+
+    useEffect(()=> {
+        fetchData('https://dev-accessible.com/page-content?page=accessibility',setContent,setIsContentLoading,setError);
+    },[]);
+
+    return (
+        <>
+            {isContentLoading && !error && <Loader />}
+            {error && <Error frenchMessage="Une erreur est survenue. Veuillez rafraichir la page svp." englishMessage="An error has occured. Please refresh the current page." />}
+            {!isContentLoading && !error &&
+                <>{content.content}</>
+            }
+        </>
+    )
+}
