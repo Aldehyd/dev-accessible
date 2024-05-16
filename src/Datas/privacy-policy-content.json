@@ -4,30 +4,37 @@
     "englishTitle": "privacy policy",
     "content": [
         {
+            "id": 0,
             "type": "paragraph",
             "frenchContent": "Ce site n'utilise pas de cookies."
         },
         {
+            "id": 1,
             "type": "paragraph",
             "frenchContent": "Les seules données personnelles collectées sont l'adresse mail ainsi que les données personnelles fournies volontairement par l'utilisateur lors de l'envoi d'un message via le formulaire de la page de contact."
         },
         {
+            "id": 2,
             "type": "paragraph",
             "frenchContent": "Ces données sont uniquement accessibles à l'administrateur du site et ne sont partagées avec personne d'autre."
         },
         {
+            "id": 3,
             "type": "paragraph",
             "frenchContent": "Elles sont collectées dans le seul but de pouvoir répondre à la demande formulée par l'utilisateur."
         },
         {
+            "id": 4,
             "type": "paragraph",
             "frenchContent": "Les données sont conservées pour une durée maximale de deux ans."
         },
         {
+            "id": 5,
             "type": "paragraph",
             "frenchContent": "Conformément aux dispositions légales et réglementaires applicables, en particulier la loi no 78-17 du 6 janvier 1978 modifiée relative à l’informatique, aux fichiers et aux libertés et le règlement européen 2016/679 du 27 avril 2016 (applicable dès le 25 mai 2018), vous disposez des droits suivants :"
         },
         {
+            "id": 6,
             "type": "list",
             "options": "styled",
             "frenchContent": [
@@ -39,10 +46,12 @@
             ]
         },
         {
+            "id": 7,
             "type": "paragraph",
             "frenchContent": "Vous pouvez exercer vos droits par courriel : contact@dev-accessible.com"
         },
         {
+            "id": 8,
             "type": "paragraph",
             "frenchContent": "L'utilisateur dispose également du droit d'introduire une réclamation auprès de la CNIL (Commission Nationale de l'Informatique et des Libertés)."
         }

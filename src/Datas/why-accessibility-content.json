@@ -4,23 +4,28 @@
     "englishTitle": "why accessibility ?",
     "content": [
         {
+            "id": 0,
             "type": "title",
             "options": 2,
             "frenchContent": "Accessibilité numérique :"
         },
         {
+            "id": 1,
             "type": "quote",
             "frenchContent": "L’accessibilité numérique consiste à rendre les contenus et services numériques compréhensibles et utilisables par les personnes en situation de handicap."
         },
         {
+            "id": 2,
             "type": "paragraph",
             "frenchContent": "En France, 1 utilisateur d'internet sur 5 est en situation de handicap."
         },
         {
+            "id": 3,
             "type": "paragraph",
             "frenchContent": "L'accessibilité numérique :"
         },
         {
+            "id": 4,
             "type": "list",
             "options": "styled",
             "frenchContent": [
@@ -31,11 +36,13 @@
             ]
         },
         {
+            "id": 5,
             "type": "title",
             "options": 2,
             "frenchContent": "Qui est concerné par l'obligation d'accessibilité ?"
         },
         {
+            "id": 6,
             "type": "list",
             "options": "",
             "frenchContent": [
@@ -46,6 +53,7 @@
             ]
         },
         {
+            "id": 7,
             "type": "note",
             "frenchContent": [
                 "A noter",
@@ -53,19 +61,23 @@
             ]
         },
         {
+            "id": 8,
             "type": "title",
             "options": 2,
             "frenchContent": "Comment est évaluée l'accessibilité ?"
         },
         {
+            "id": 9,
             "type": "paragraph",
             "frenchContent": "En France, l'accessibilité d'une application web est évaluée selon les 106 critères du RGAA (Référentiel Général d'Amélioration de l'Accessibilité)."
         },
         {
+            "id": 10,
             "type": "paragraph",
             "frenchContent": "Un site est considéré accessible quand il atteint un score de 100% de conformité avec ces critères."
         },
         {
+            "id": 11,
             "type": "link",
             "frenchText": "Lien vers le RGAA",
             "englishText": "RGAA link",

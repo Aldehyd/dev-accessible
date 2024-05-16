@@ -4,6 +4,7 @@
     "englishTitle": "accessibility",
     "content": [
         {
+            "id": 0,
             "type": "paragraph",
             "frenchContent": "L'évaluation n'a pas encore été réalisée.",
             "englishContent": "Evaluation not made yet."

@@ -18,7 +18,13 @@ export default function AccessibilityMain(): React.JSX.Element {
             {isContentLoading && !error && <Loader />}
             {error && <Error frenchMessage="Une erreur est survenue. Veuillez rafraichir la page svp." englishMessage="An error has occured. Please refresh the current page." />}
             {!isContentLoading && !error &&
-                <p>{content[0]?.content[0].frenchContent}</p>
+                <>
+                    {content[0]?.content.map(contentUnit => {
+                        return <p key={contentUnit.id}>{contentUnit.frenchContent}</p>
+                    })}
+                </>
+
+                
             }
         </>
     )
