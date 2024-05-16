@@ -1,0 +1,75 @@
+{
+    "page": "why-accessibility",
+    "frenchTitle": "pourquoi l'accessibilité ?",
+    "englishTitle": "why accessibility ?",
+    "content": [
+        {
+            "type": "title",
+            "options": 2,
+            "frenchContent": "Accessibilité numérique :"
+        },
+        {
+            "type": "quote",
+            "frenchContent": "L’accessibilité numérique consiste à rendre les contenus et services numériques compréhensibles et utilisables par les personnes en situation de handicap."
+        },
+        {
+            "type": "paragraph",
+            "frenchContent": "En France, 1 utilisateur d'internet sur 5 est en situation de handicap."
+        },
+        {
+            "type": "paragraph",
+            "frenchContent": "L'accessibilité numérique :"
+        },
+        {
+            "type": "list",
+            "options": "styled",
+            "frenchContent": [
+                "permet d'inclure un nombre plus important d'utilisateurs",
+                "améliore l'expérience de tous les utilisateurs",
+                "améliore le référencement",
+                "est une obligation légale dans de nombreux cas"
+            ]
+        },
+        {
+            "type": "title",
+            "options": 2,
+            "frenchContent": "Qui est concerné par l'obligation d'accessibilité ?"
+        },
+        {
+            "type": "list",
+            "options": "",
+            "frenchContent": [
+                "1 - Les personnes morales de droit public ;",
+                "2 - Les personnes morales de droit privé délégataires d’une mission de service public, ainsi que celles créées pour satisfaire spécifiquement des besoins d’intérêt général ayant un caractère autre qu’industriel ou commercial et dont : Soit l’activité est financée majoritairement par une ou plusieurs personnes mentionnées aux 1° et 3° et au présent 2° ; Soit la gestion est soumise à leur contrôle ; Soit plus de la moitié des membres de l’organe d’administration, de direction ou de surveillance sont désignés par elles ;",
+                "3 - Les personnes morales de droit privé constituées par une ou plusieurs des personnes mentionnées aux 1° et 2° pour satisfaire spécifiquement des besoins d’intérêt général ayant un caractère autre qu’industriel ou commercial ;",
+                "4 - Les entreprises à compter d’un seuil de chiffre d’affaires de 250 millions d’euros calculé pour chaque personne sur la base de la moyenne du chiffre d’affaires annuel réalisé en France des trois derniers exercices comptables clos antérieurement à l’année considérée."
+            ]
+        },
+        {
+            "type": "note",
+            "frenchContent": [
+                "A noter",
+                "A partir de juin 2025, l'obligation sera étendue à toutes les entreprises privées de plus de 10 salariés et générant un chiffre d'affaire supérieur à 2 millions d'euros."
+            ]
+        },
+        {
+            "type": "title",
+            "options": 2,
+            "frenchContent": "Comment est évaluée l'accessibilité ?"
+        },
+        {
+            "type": "paragraph",
+            "frenchContent": "En France, l'accessibilité d'une application web est évaluée selon les 106 critères du RGAA (Référentiel Général d'Amélioration de l'Accessibilité)."
+        },
+        {
+            "type": "paragraph",
+            "frenchContent": "Un site est considéré accessible quand il atteint un score de 100% de conformité avec ces critères."
+        },
+        {
+            "type": "link",
+            "frenchText": "Lien vers le RGAA",
+            "englishText": "RGAA link",
+            "route": "https://accessibilite.numerique.gouv.fr/"
+        }
+    ]
+}
