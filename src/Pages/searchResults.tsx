@@ -46,7 +46,7 @@ export default function SearchResults(): React.JSX.Element {
             },
         };
 
-        fetch(`http://localhost:4000/search?language=${language}&environnement=${environnement}&query=${query}`,options)
+        fetch(`https://dev-accessible.com/search?language=${language}&environnement=${environnement}&query=${query}`,options)
         .then(res => {
             if(res.ok) {
                 return res.json();
