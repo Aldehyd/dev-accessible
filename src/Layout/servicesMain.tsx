@@ -48,7 +48,14 @@ export default function ServicesMain(): React.JSX.Element {
                                     language === "french" ?
                                         <p className="note"><span>{contentUnit.frenchContent[0]}</span><span>{contentUnit.frenchContent[1]}</span></p>
                                         :
-                                        <p className="note"><span>{contentUnit.frenchContent[0]}</span><span>{contentUnit.frenchContent[1]}</span></p>
+                                        <p className="note"><span>{contentUnit.englishContent[0]}</span><span>{contentUnit.englishContent[1]}</span></p>
+                                )
+                            case 'quote':
+                                return (
+                                    language === "french" ?
+                                        <q>{contentUnit.frenchContent}</q>
+                                        :
+                                        <q>{contentUnit.englishContent}</q>
                                 )
                             case 'paragraph':
                                 return (
