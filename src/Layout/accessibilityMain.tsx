@@ -14,7 +14,7 @@ export default function AccessibilityMain(): React.JSX.Element {
     const [error,setError] = useState<boolean>(false);
 
     useEffect(()=> {
-        fetchData('http://localhost:4000/page-content?page=accessibility',setContent,setIsContentLoading,setError);
+        fetchData('https://dev-accessible.com/page-content?page=accessibility',setContent,setIsContentLoading,setError);
     },[]);
 
     return (

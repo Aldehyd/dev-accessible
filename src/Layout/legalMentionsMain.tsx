@@ -16,7 +16,7 @@ export default function LegalMentionsMain(): React.JSX.Element {
     const [error,setError] = useState<boolean>(false);
 
     useEffect(()=> {
-        fetchData('http://localhost:4000/page-content?page=legal-mentions',setContent,setIsContentLoading,setError);
+        fetchData('https://dev-accessible.com/page-content?page=legal-mentions',setContent,setIsContentLoading,setError);
     },[]);
     
     return (

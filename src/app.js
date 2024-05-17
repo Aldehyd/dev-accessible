@@ -16,9 +16,9 @@ app.listen(port, ()=> {
 app.use(cors());
 app.use(express.json());
 
-// const public_path = path.join(__dirname,'/dist');
+const public_path = path.join(__dirname,'/dist');
 
-// app.use('/',express.static(public_path));
+app.use('/',express.static(public_path));
 
 app.get('/cv-status',(_,res)=>{
     GetDatasFromCollection(res,"availableStatus");
