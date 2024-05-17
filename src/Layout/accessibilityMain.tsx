@@ -38,9 +38,9 @@ export default function AccessibilityMain(): React.JSX.Element {
                                 return <ul className={contentUnit.options === "styled" ? "styled-list" : ""}>
                                     {
                                         language === "french" ?
-                                            contentUnit.frenchContent.map(line => <li key={contentUnit.indexOf(line)}>{line}</li>)
+                                            contentUnit.frenchContent.map(line => <li key={contentUnit.frenchContent.indexOf(line)}>{line}</li>)
                                             :
-                                            contentUnit.englishContent.map(line => <li key={contentUnit.indexOf(line)}>{line}</li>)
+                                            contentUnit.englishContent.map(line => <li key={contentUnit.englishContent.indexOf(line)}>{line}</li>)
                                     }
                                 </ul>
                             case 'note':
