@@ -62,7 +62,6 @@ export default function WhyAccessibilityMain(): React.JSX.Element {
                             default:
                                 break;
                         };
-                        
                     })}
                 </> 
             }

@@ -1,31 +1,67 @@
+import { useState, useContext, useEffect } from "react";
+import { fetchData } from "../Functions/fetchData.tsx";
+import CustomLink from "../Components/custom-link.tsx";
+import LanguageContext from "../Contexts/language-context.tsx";
+import Loader from "../Components/loader.tsx";
+import Error from "../Components/error.tsx";
 
 export default function PrivacyPolicyMain(): React.JSX.Element {
+
+    const {language} = useContext(LanguageContext);
+
+    const [content,setContent] = useState("");
+    const [isContentLoading,setIsContentLoading] = useState<boolean>(true);
+    const [error,setError] = useState<boolean>(false);
+
+    useEffect(()=> {
+        fetchData('http://localhost:4000/page-content?page=privacy-policy',setContent,setIsContentLoading,setError);
+    },[]);
+
     return (
-        <div>
-            <p>Ce site n'utilise pas de cookies.</p>
-            <p>Les seules données personnelles collectées sont l'adresse mail ainsi que les données 
-                personnelles fournies volontairement par l'utilisateur lors de l'envoi d'un message 
-                via le formulaire de la page de contact.</p>
-            <p>Ces données sont uniquement accessibles à l'administrateur du site et ne sont partagées
-                 avec personne d'autre.</p>
-            <p>Elles sont collectées dans le seul but de pouvoir répondre à la demande formulée par 
-                l'utilisateur.</p>
-            <p>Les données sont conservées pour une durée maximale de deux ans.</p>
-            <p>Conformément aux dispositions légales et réglementaires applicables, en particulier 
-                la loi no 78-17 du 6 janvier 1978 modifiée relative à l’informatique, aux fichiers 
-                et aux libertés et le règlement européen 2016/679 du 27 avril 2016 (applicable dès 
-                le 25 mai 2018), vous disposez des droits suivants :</p>
-            <ul>
-                <li>Exercer votre droit d’accès, pour connaître les données personnelles qui vous 
-                    concernent.</li>
-                <li>Demander la mise à jour de vos données, si celles-ci sont inexactes.</li>
-                <li>Demander la portabilité ou la suppression de vos données.</li>
-                <li>Demander la limitation du traitement de vos données.</li>
-                <li>Vous opposer, pour des motifs légitimes, au traitement de vos données.</li>
-            </ul>
-            <p>Vous pouvez exercer vos droits par courriel : contact@dev-accessible.com</p>
-            <p>L'utilisateur dispose également du droit d'introduire une réclamation auprès 
-                de la CNIL (Commission Nationale de l'Informatique et des Libertés).</p>
-        </div>
+        <>
+        {isContentLoading && !error && <Loader />}
+            {error && <Error frenchMessage="Une erreur est survenue. Veuillez rafraichir la page svp." englishMessage="An error has occured. Please refresh the current page." />}
+            {!isContentLoading && !error &&
+                content[0]?.content.map(contentUnit => {
+                    switch(contentUnit.type) {
+                        case 'title':
+                            if(contentUnit.options === 2) {
+                                return (language === "french" ? <h2>{contentUnit.frenchContent}</h2> : <h2>{contentUnit.englishContent}</h2>)
+                            } else if(contentUnit.options === 3) {
+                                return (language === "french" ? <h3>{contentUnit.frenchContent}</h3> : <h3>{contentUnit.englishContent}</h3>)
+                            } else if(contentUnit.options === 4) {
+                                return (language === "french" ? <h4>{contentUnit.frenchContent}</h4> : <h4>{contentUnit.englishContent}</h4>)
+                            };
+                            break;
+                        case 'list':
+                            return <ul className={contentUnit.options === "styled" ? "styled-list" : ""}>
+                                {
+                                    language === "french" ?
+                                        contentUnit.frenchContent.map(line => <li key={contentUnit.frenchContent.indexOf(line)}>{line}</li>)
+                                        :
+                                        contentUnit.englishContent.map(line => <li key={contentUnit.englishContent.indexOf(line)}>{line}</li>)
+                                }
+                            </ul>
+                        case 'note':
+                            return (
+                                language === "french" ?
+                                    <p className="note"><span>{contentUnit.frenchContent[0]}</span><span>{contentUnit.frenchContent[1]}</span></p>
+                                    :
+                                    <p className="note"><span>{contentUnit.frenchContent[0]}</span><span>{contentUnit.frenchContent[1]}</span></p>
+                            )
+                        case 'paragraph':
+                            return (
+                                language === "french" ?
+                                    <p key={contentUnit.id}>{contentUnit.frenchContent}</p>
+                                    :
+                                    <p key={contentUnit.id}>{contentUnit.englishContent}</p>
+                            )
+                        case 'link':
+                            return <CustomLink frenchText={contentUnit.frenchText} englishText={contentUnit.englishText} route={contentUnit.route} openInNewTab={contentUnit.options === "openInNewTab" ? true : false} />
+                        default:
+                            break;
+                    };
+                })}
+        </>
     );
 };
