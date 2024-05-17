@@ -22,7 +22,7 @@ export default function SearchResultsMain({results,query}: SearchResultsMainProp
                                 return(
                                     <>
                                         <div className="search-results_result">
-                                            <h2>{result.page}</h2>
+                                            <h2>{result.title}</h2>
                                             <p key={result.index}>{result.content}</p>
                                             <CustomLink frenchText="Lire plus..." englishText="Read more..." route={"/"+result.link} />
                                         </div>      

@@ -164,55 +164,69 @@ app.get("/search",(req,res)=> {
             await client.connect();
             const docs = await client.db(dbName).collection('pages-content').find();
             const array = await docs.toArray();
-
-            //search content when environnement = client too !
+            
             for(let page of array) {
-                console.log(page.page)
-                const paragraphs = page.content.filter(content => content.type === 'paragraph');
-                const notes = page.content.filter(content => content.type === 'note');
-                const quotes = page.content.filter(content => content.type === 'quote');
-                const lists = page.content.filter(content => content.type === 'list');
-                // const definitionLists = page.content.filter(content => content.type === 'definition-list');
-                // console.log('paragraphs:',paragraphs)
+    
+                let paragraphs = page.content.filter(content => content.type === 'paragraph');
+                let notes = page.content.filter(content => content.type === 'note');
+                let quotes = page.content.filter(content => content.type === 'quote');
+                let lists = page.content.filter(content => content.type === 'list');
+                let definitionLists = page.content.filter(content => content.type === 'definition-list');
+
+                if(environnement === "client") {
+                    if(page.clientContent !== undefined) {
+                        paragraphs = [...paragraphs,...page.clientContent.filter(content => content.type === 'paragraph')];
+                        notes = [...notes,...page.clientContent.filter(content => content.type === 'note')];
+                        quotes = [...quotes,...page.clientContent.filter(content => content.type === 'quote')];
+                        lists = [...lists,...page.clientContent.filter(content => content.type === 'list')];
+                        definitionLists= [...definitionLists,...page.clientContent.filter(content => content.type === 'definition-list')];
+                    }
+                }
+
                 let paragraphsContents = [];
                 let notesContents = [];
                 let quotesContents = [];
                 let listsContents = [];
-                // let definitionListsContents = [];
+                let definitionListsContents = [];
                 if(language === "french") {
                     paragraphsContents = paragraphs.map(paragraph => {return paragraph.frenchContent});
                     notesContents = notes.map(note => {return note.frenchContent});
                     quotesContents = quotes.map(quote => {return quote.frenchContent});
                     listsContents = lists.map(list => {return list.frenchContent});
-                    // definitionListsContents = definitionLists.map(list => {return list.frenchContent});
+                    definitionListsContents = definitionLists.map(list => {return list.frenchContent});
                 } else {
                     paragraphsContents = paragraphs.map(paragraph => {return paragraph.englishContent});
                     notesContents = notes.map(note => {return note.englishContent});
                     quotesContents = quotes.map(quote => {return quote.englishContent});
                     listsContents = lists.map(list => {return list.englishContent});
-                    // definitionListsContents = definitionLists.map(list => {return list.englishContent});
+                    definitionListsContents = definitionLists.map(list => {return list.englishContent});
                 };
-                // console.log('paragraphContents :',paragraphsContents)
+
                 const paragraphsResults = paragraphsContents.filter(paragraph => paragraph.includes(searchQuery));
                 const notesResults = notesContents.filter(note => note.includes(searchQuery));
                 const quotesResults = quotesContents.filter(quote => quote.includes(searchQuery));
-                // console.log('paragraphsResults :',paragraphsResults)
+
                 let listsResults = [];
                 for(let list of listsContents) {
                     const lines = list.filter(line => line.includes(searchQuery));
                     if(lines.length > 0)
                         listsResults = [...listsResults,lines];
                 };
-                //DO THE SAME WITH DEFINITIONS LIST
+                let definitionListsResults = [];
+                for(let list of definitionListsContents) {
+                    const lines = list.filter(line => line.includes(searchQuery));
+                    if(lines.length > 0)
+                        definitionListsResults = [...listsResults,lines];
+                };
 
                 const updateSearchResults = (untransformedResults,searchResults) => {
 
                     const generateResults = (results) => {
                         return results.map(result => {return {title: page.frenchTitle, content: result, link: page.page} })
                     };
-                    // console.log(untransformedResults.length)
+
                     const finalResults = generateResults(untransformedResults);
-                    // console.log(finalResults)
+
                     return finalResults;
                 };
                 
@@ -224,9 +238,10 @@ app.get("/search",(req,res)=> {
                     searchResults = [...searchResults,...updateSearchResults(quotesResults,searchResults)];
                 if(listsResults.length > 0)
                     searchResults = [...searchResults,...updateSearchResults(listsResults,searchResults)];
+                if(definitionListsResults.length > 0)
+                    searchResults = [...searchResults,...updateSearchResults(definitionListsResults,searchResults)];
                 
             };    
-            console.log('searchResults :',JSON.stringify(searchResults))
             res.send(JSON.stringify(searchResults));
         } catch(err) {
             res.send(err);
