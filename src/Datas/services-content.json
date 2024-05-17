@@ -1,0 +1,25 @@
+{
+    "page": "services",
+    "frenchTitle": "prestations",
+    "englishTitle": "services",
+    "content": [
+        {
+            "id": 0,
+            "type": "paragraph",
+            "frenchContent": "Je propose les prestations suivantes :"
+        },
+        {
+            "id": 1,
+            "type": "list",
+            "options": "styled",
+            "frenchContent": [
+                "Création de votre site internet (accessible ou non)",
+                "Design: logo, web design",
+                "Communication visuelle : photos, vidéos, motion design",
+                "Mise en accessibilité de votre site",
+                "Audit d'accessibilité",
+                "Accompagnement à la création de votre site internet (pour ceux qui souhaitent apprendre à coder)"
+            ]
+        }
+    ]
+}
