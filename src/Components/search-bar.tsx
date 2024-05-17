@@ -24,7 +24,6 @@ export default function SearchBar(): React.JSX.Element {
 
     const launchSearch = ()=> {
         if(input.current?.value.length > 0) {
-            // window.location = `https://dev-accessible.com/search-results?query=${input.current?.value}&language=${language}&environnement=${environnement}`;
             navigate('/search-results',{state: {language: language, environnement: environnement, query: input.current?.value}})
         };
     };

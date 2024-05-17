@@ -8,23 +8,12 @@ interface SearchResultsMainPropsInterface {
 }
 
 export default function SearchResultsMain({results,query}: SearchResultsMainPropsInterface): React.JSX.Element {
-   
-    const noResult = (results)=> {
-        for(let result of results) {
-            if(result.lines.length > 0) {
-                return false
-            } else if(result.paragraphs.length > 0) {
-                return false
-            };   
-        };
-        return true
-    };
 
     return (
         <>
             <p className="search-results_subtitle">{`Résultats de la recherche : "${query}"`}</p>
             {
-                noResult(results) ?
+                results.length === 0 ?
                     <Error frenchMessage="Aucun résultat..." englishMessage="No result..." />
                     :
                     <div>
@@ -32,45 +21,16 @@ export default function SearchResultsMain({results,query}: SearchResultsMainProp
                             results.map(result => {
                                 return(
                                     <>
-                                        <>
-                                            {
-                                                result.lines.length > 0 &&
-                                                    result.lines.map(line => {
-                                                        return(
-                                                            <>
-                                                                <div className="search-results_result">
-                                                                    <h2>{result.title}</h2>
-                                                                    <p key={line.index}>{line}</p>
-                                                                    <CustomLink frenchText="Lire plus..." englishText="Read more..." route={"/"+result.link} />
-                                                                </div>      
-                                                                <AchievmentsSeparator />
-                                                            </>
-                                                        )
-                                                    })
-                                            }
-                                        </>
-                                        <>
-                                            {
-                                                result.paragraphs.length > 0 &&
-                                                    result.paragraphs.map(paragraph => {
-                                                        return(
-                                                            <>
-                                                                <div className="search-results_result">
-                                                                    <h2>{result.title}</h2>
-                                                                    <p key={paragraph.index}>{paragraph}</p>
-                                                                    <CustomLink frenchText="Lire plus..." englishText="Read more..." route={"/"+result.link} />
-                                                                </div>     
-                                                                <AchievmentsSeparator />
-                                                            </> 
-                                                        )
-                                                    })
-                                            }
-                                        </>
-                                        
+                                        <div className="search-results_result">
+                                            <h2>{result.page}</h2>
+                                            <p key={result.index}>{result.content}</p>
+                                            <CustomLink frenchText="Lire plus..." englishText="Read more..." route={"/"+result.link} />
+                                        </div>      
+                                        <AchievmentsSeparator />
                                     </>
                                 )
                             })
-                        }
+                        } 
                     </div>
             }
         </>

@@ -33,32 +33,20 @@ export default function SearchResults(): React.JSX.Element {
     const {state} = useLocation();
 
     useEffect(()=> {
-        // let params = new URLSearchParams(document.location.search);
-        // let query = params.get("query");
-        // let language = params.get("language");
-        // let environnement = params.get("environnement");
-
         const {query} = state;
         const {language} = state;
         const {environnement} = state;
         setQuery(query);
 
-        const queryObject = {
-            query: query,
-            language: language,
-            environnement: environnement
-        };
-
         const options = {
-            method: "POST",
+            method: "GET",
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json"
             },
-            body : JSON.stringify(queryObject)
         };
 
-        fetch('https://dev-accessible.com/search',options)
+        fetch(`http://localhost:4000/search?language=${language}&environnement=${environnement}&query=${query}`,options)
         .then(res => {
             if(res.ok) {
                 return res.json();
@@ -67,7 +55,7 @@ export default function SearchResults(): React.JSX.Element {
         .then(data => {
             setIsSearching(false);
             if(data) {
-                setResults(JSON.parse(data.results));
+                setResults(data);
             } else {
                 setIsError(true);
                 setIsSearching(false);
@@ -81,6 +69,9 @@ export default function SearchResults(): React.JSX.Element {
 
     },[]);
 
+    useEffect(()=> {
+        console.log(results)
+    },[results])
     return (
         <>
             {isModalDisplayed && <ModalDarkBackground />}

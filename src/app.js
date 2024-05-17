@@ -146,86 +146,96 @@ app.post("/send_simulation",(req,res)=> {
 
 //--------------- search engine ------------------//
 
-app.post("/search",(req,res)=> {
-    const playwright = require("playwright");
-
-    (async () => {
-      // Launch a new instance of a Chromium browser
-      const browser = await playwright.chromium.launch({
-        // Set headless to false so you can see how Playwright is
-        // interacting with the browser
-        headless: false,
-      });
-      // Create a new Playwright context
-      const context = await browser.newContext();
-      // Create a new page/tab in the context.
-      const page = await context.newPage();
+app.get("/search",(req,res)=> {
     
-      // Navigate to the home page.
-      await page.goto("https://dev-accessible.com/");
+    const searchQuery = req.query['query'];
+    const language = req.query['language'];
+    const environnement = req.query['environnement'];
 
-    //   const linksToScan = ["Réalisations","Pourquoi l'accessibilité ?","Mentions légales","Confidentialité"];
-      const frenchLinksToScan = ["Réalisations","Pourquoi l'accessibilité ?","Mentions légales","Confidentialité"];
-      const englishLinksToScan = ["Achievments","Why accessibility ?","Legal mentions","Privacy"];
-      const url = ["achievments","why-accessibility","legal-mentions","privacy-policy"];
-
-      let results = [];
-     
-      const searchQuery = req.body.query;
-      const language = req.body.language;
-      const environnement = req.body.environnement;
-      
-      async function Search(language,environnement,frenchLinks,englishLinks) {
-
-        let links = [];
-
-        if(language === "french") {
-            links = frenchLinks;
-        } else {
-            links = englishLinks;
-            await page.locator(".language-select").click();
-            await page.locator(".language-select_center_en").click();
-            await page.locator(".confirm-modal_buttons-container .basic-button-container:first-child").click();
-        };
-
-        await page.locator(".environnement-toggle-button").click();
-        await page.locator(".confirm-modal_buttons-container .basic-button-container:first-child").click();
-        if(environnement === "client") {
-            await page.locator(".environnement-toggle-button").click();
-            await page.locator(".confirm-modal_buttons-container .basic-button-container:first-child").click();
-        };
-
-        for(let link of links) {
-            await page.getByRole('link',{name: link}).click();
-            const title = await page.locator("h1").innerText();
-            const lines = await page.locator(`li:has-text("${searchQuery}")`).allInnerTexts();
-            const paragraphs = await page.locator(`p:has-text("${searchQuery}")`).allInnerTexts();
-            const urlLink = url[frenchLinksToScan.indexOf(link)];
+    let searchResults = [];
     
-            const newResult = {
-                title: title,
-                lines: lines,
-                paragraphs: paragraphs,
-                link: urlLink
-            };
-            results = [...results,newResult];
+    async function Search() {
+        
+        const uri = process.env.STRING_URI;
+        const client = new MongoClient(uri);
+        const dbName = process.env.STRING_DBNAME;
     
-            await page.locator(".back-link").click();
-          };
-          console.log(JSON.stringify(results))
-          res.send({results: JSON.stringify(results)});
+        try {
+            await client.connect();
+            const docs = await client.db(dbName).collection('pages-content').find();
+            const array = await docs.toArray();
 
-          // Close the browser
-            await browser.close();
-      };
+            //search content when environnement = client too !
+            for(let page of array) {
+                console.log(page.page)
+                const paragraphs = page.content.filter(content => content.type === 'paragraph');
+                const notes = page.content.filter(content => content.type === 'note');
+                const quotes = page.content.filter(content => content.type === 'quote');
+                const lists = page.content.filter(content => content.type === 'list');
+                // const definitionLists = page.content.filter(content => content.type === 'definition-list');
+                // console.log('paragraphs:',paragraphs)
+                let paragraphsContents = [];
+                let notesContents = [];
+                let quotesContents = [];
+                let listsContents = [];
+                // let definitionListsContents = [];
+                if(language === "french") {
+                    paragraphsContents = paragraphs.map(paragraph => {return paragraph.frenchContent});
+                    notesContents = notes.map(note => {return note.frenchContent});
+                    quotesContents = quotes.map(quote => {return quote.frenchContent});
+                    listsContents = lists.map(list => {return list.frenchContent});
+                    // definitionListsContents = definitionLists.map(list => {return list.frenchContent});
+                } else {
+                    paragraphsContents = paragraphs.map(paragraph => {return paragraph.englishContent});
+                    notesContents = notes.map(note => {return note.englishContent});
+                    quotesContents = quotes.map(quote => {return quote.englishContent});
+                    listsContents = lists.map(list => {return list.englishContent});
+                    // definitionListsContents = definitionLists.map(list => {return list.englishContent});
+                };
+                // console.log('paragraphContents :',paragraphsContents)
+                const paragraphsResults = paragraphsContents.filter(paragraph => paragraph.includes(searchQuery));
+                const notesResults = notesContents.filter(note => note.includes(searchQuery));
+                const quotesResults = quotesContents.filter(quote => quote.includes(searchQuery));
+                // console.log('paragraphsResults :',paragraphsResults)
+                let listsResults = [];
+                for(let list of listsContents) {
+                    const lines = list.filter(line => line.includes(searchQuery));
+                    if(lines.length > 0)
+                        listsResults = [...listsResults,lines];
+                };
+                //DO THE SAME WITH DEFINITIONS LIST
 
-    Search(language,environnement,frenchLinksToScan,englishLinksToScan);
+                const updateSearchResults = (untransformedResults,searchResults) => {
 
-      // Wait 10 seconds (or 10,000 milliseconds)
-    //   await page.waitForTimeout(10000);
+                    const generateResults = (results) => {
+                        return results.map(result => {return {title: page.frenchTitle, content: result, link: page.page} })
+                    };
+                    // console.log(untransformedResults.length)
+                    const finalResults = generateResults(untransformedResults);
+                    // console.log(finalResults)
+                    return finalResults;
+                };
+                
+                if(paragraphsResults.length > 0)
+                    searchResults = [...searchResults,...updateSearchResults(paragraphsResults,searchResults)];
+                if(notesResults.length > 0)
+                    searchResults = [...searchResults,...updateSearchResults(notesResults,searchResults)];
+                if(quotesResults.length > 0)
+                    searchResults = [...searchResults,...updateSearchResults(quotesResults,searchResults)];
+                if(listsResults.length > 0)
+                    searchResults = [...searchResults,...updateSearchResults(listsResults,searchResults)];
+                
+            };    
+            console.log('searchResults :',JSON.stringify(searchResults))
+            res.send(JSON.stringify(searchResults));
+        } catch(err) {
+            res.send(err);
+        }  finally {
+            await client.close();
+        }
+    }
     
-      
-    })();
+    Search();
 });
 
 //handle redirections
