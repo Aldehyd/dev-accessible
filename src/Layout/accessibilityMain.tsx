@@ -1,9 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { fetchData } from "../Functions/fetchData.tsx";
 import Loader from "../Components/loader.tsx";
 import Error from "../Components/error.tsx";
+import CustomLink from "../Components/custom-link.tsx";
+import LanguageContext from "../Contexts/language-context.tsx";
 
 export default function AccessibilityMain(): React.JSX.Element {
+
+    const {language} = useContext(LanguageContext);
 
     const [content,setContent] = useState("");
     const [isContentLoading,setIsContentLoading] = useState<boolean>(true);
@@ -20,11 +24,47 @@ export default function AccessibilityMain(): React.JSX.Element {
             {!isContentLoading && !error &&
                 <>
                     {content[0]?.content.map(contentUnit => {
-                        return <p key={contentUnit.id}>{contentUnit.frenchContent}</p>
+                        switch(contentUnit.type) {
+                            case 'title':
+                                if(contentUnit.options === 2) {
+                                    return (language === "french" ? <h2>{contentUnit.frenchContent}</h2> : <h2>{contentUnit.englishContent}</h2>)
+                                } else if(contentUnit.options === 3) {
+                                    return (language === "french" ? <h3>{contentUnit.frenchContent}</h3> : <h3>{contentUnit.englishContent}</h3>)
+                                } else if(contentUnit.options === 4) {
+                                    return (language === "french" ? <h4>{contentUnit.frenchContent}</h4> : <h4>{contentUnit.englishContent}</h4>)
+                                };
+                                break;
+                            case 'list':
+                                return <ul className={contentUnit.options === "styled" ? "styled-list" : ""}>
+                                    {
+                                        language === "french" ?
+                                            contentUnit.frenchContent.map(line => <li key={contentUnit.indexOf(line)}>{line}</li>)
+                                            :
+                                            contentUnit.englishContent.map(line => <li key={contentUnit.indexOf(line)}>{line}</li>)
+                                    }
+                                </ul>
+                            case 'note':
+                                return (
+                                    language === "french" ?
+                                        <p className="note"><span>{contentUnit.frenchContent[0]}</span><span>{contentUnit.frenchContent[1]}</span></p>
+                                        :
+                                        <p className="note"><span>{contentUnit.frenchContent[0]}</span><span>{contentUnit.frenchContent[1]}</span></p>
+                                )
+                            case 'paragraph':
+                                return (
+                                    language === "french" ?
+                                        <p key={contentUnit.id}>{contentUnit.frenchContent}</p>
+                                        :
+                                        <p key={contentUnit.id}>{contentUnit.englishContent}</p>
+                                )
+                            case 'link':
+                                return <CustomLink frenchText={contentUnit.frenchText} englishText={contentUnit.englishText} route={contentUnit.route} />
+                            default:
+                                break;
+                        };
+                        
                     })}
-                </>
-
-                
+                </> 
             }
         </>
     )
