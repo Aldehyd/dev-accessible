@@ -58,7 +58,7 @@ export default function WhyAccessibilityMain(): React.JSX.Element {
                                         <p key={contentUnit.id}>{contentUnit.englishContent}</p>
                                 )
                             case 'link':
-                                return <CustomLink frenchText={contentUnit.frenchText} englishText={contentUnit.englishText} route={contentUnit.route} />
+                                return <CustomLink frenchText={contentUnit.frenchText} englishText={contentUnit.englishText} route={contentUnit.route} openInNewTab={contentUnit.options === "openInNewTab" ? true : false} />
                             default:
                                 break;
                         };

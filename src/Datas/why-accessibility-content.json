@@ -79,6 +79,7 @@
         {
             "id": 11,
             "type": "link",
+            "options": "openInNewTab",
             "frenchText": "Lien vers le RGAA",
             "englishText": "RGAA link",
             "route": "https://accessibilite.numerique.gouv.fr/"
