@@ -153,6 +153,12 @@ body.animations {
         &_shadow-appear-effect {
             animation: AccessibilityBotShadowAppearEffect 2s 600ms ease-in-out forwards;
         }
+        &_click {
+            animation: AccessibilityBotClick ease 2000ms;
+            & .accessibility-bot_body::after {
+                animation: AccessibilityBotClickBody ease 2000ms;
+            }
+        }
     }
 }
 
@@ -289,5 +295,36 @@ body:not(.contrast) {
     100% {
         transform: scale(8);
         opacity: 0.2;
+    }
+}
+@keyframes AccessibilityBotClick {
+    0% {
+        transform: translate3d(0,0,0);
+    }
+    60% {
+        transform: perspective(500px) translate3d(0,0,150px) rotate(-15deg);
+    }
+    70% {
+        transform: perspective(500px) translate3d(0,0,150px) rotate(15deg);
+    }
+    75% {
+        transform: perspective(500px) translate3d(0,0,150px) rotate(-15deg);
+    }
+    80% {
+        transform: perspective(500px) translate3d(0,0,150px);
+    }
+    100% {
+        transform: perspective(500px) translate3d(0,0,0);
+    }
+}
+@keyframes AccessibilityBotClickBody {
+    60% {
+        opacity: 0.5;
+    }
+    80% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
     }
 }

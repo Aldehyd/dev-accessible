@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { useState, useEffect } from "react";
 import AccessibilityAnalysisContext from "../Contexts/accessibility-analysis-context.tsx";
 
@@ -8,18 +8,27 @@ interface AccessibotPropsInterface {
 
 export default function Accessibot({setDisplay}: AccessibotPropsInterface): React.JSX.Element {
 
-    const {accessibilityAnalysis} = useContext(AccessibilityAnalysisContext);
+    const accessibot = useRef(null); 
+    
+    const botOffsetX = 70;
+    const botOffsetY = 40;
+
+    const {accessibilityAnalysis,changeAccessibilityAnalysis} = useContext(AccessibilityAnalysisContext);
 
     const [shadowColor,setShadowColor] = useState<string>("default");
     const [mouseOver,setMouseOver] = useState<boolean>(false);
     const [isWaiting,setIsWaiting] = useState<boolean>(false);
 
+    const [botPosition,setBotPosition] = useState(accessibilityAnalysis ? {left: accessibot.current.offsetX, top: accessibot.current.offsetY} : {});
+
     const onMouseOver = ()=> {
-        setMouseOver(true);
+        if(!accessibilityAnalysis)
+            setMouseOver(true);
     };
 
     const onMouseLeave = ()=> {
-        setMouseOver(false);
+        if(!accessibilityAnalysis)
+            setMouseOver(false);
     };
 
     const onClick = ()=> {
@@ -28,7 +37,26 @@ export default function Accessibot({setDisplay}: AccessibotPropsInterface): Reac
         };
     };
 
-    const classList = `accessibility-bot ${isWaiting ? "accessibility-bot_waiting" : ""} ${mouseOver ? "accessibility-bot_hover" : ""}`;
+    const onMouseMove = (e)=> {
+        setBotPosition({left: e.pageX - botOffsetX, top: e.pageY + botOffsetY})
+    };
+
+    const onKeyDown = (e)=> {
+        switch(e.key) {
+            case 'Escape':
+                exitAccessibilityMode();
+                break;
+            default:
+                break;
+        }
+    };
+
+    const exitAccessibilityMode = ()=> {
+        changeAccessibilityAnalysis(false);
+        setBotPosition({});
+    };
+
+    const classList = `accessibility-bot ${isWaiting ? "accessibility-bot_waiting" : ""} ${mouseOver ? "accessibility-bot_hover" : ""} ${accessibilityAnalysis ? "accessibility-bot_click" : ""}`;
 
     useEffect(()=> {
         setTimeout(()=> {
@@ -36,8 +64,31 @@ export default function Accessibot({setDisplay}: AccessibotPropsInterface): Reac
         },2600);
     },[]);
 
+    useEffect(()=> {
+        if(accessibilityAnalysis) {
+            window.addEventListener('mousemove',(e)=> {
+                onMouseMove(e);
+            });
+            window.addEventListener('keydown',(e)=> {
+                onKeyDown(e);
+            });
+            window.addEventListener('contextmenu',(e)=> {
+                e.preventDefault();
+                exitAccessibilityMode();
+            });
+        } else {
+            setBotPosition({});
+            window.removeEventListener('mousemove',onMouseMove);
+            window.removeEventListener('keydown',onKeyDown);
+            window.removeEventListener('contextmenu',exitAccessibilityMode);
+        };
+        return ()=> window.removeEventListener('mousemove',onMouseMove);
+    },[accessibilityAnalysis]);
+
     return (
-        <div className={classList} tabIndex={0} onClick={()=> onClick()} onMouseOver={()=> onMouseOver()} onMouseLeave={()=> onMouseLeave()}>
+        <div className={classList} tabIndex={0} ref={accessibot} onClick={()=> onClick()} 
+            onMouseOver={()=> onMouseOver()} onMouseLeave={()=> onMouseLeave()}
+            style={botPosition}>
             {shadowColor === "red" && <div className="accessibility-bot_shadow accessibility-bot_shadow--red"></div>}
             {shadowColor === "green" && <div className="accessibility-bot_shadow accessibility-bot_shadow--green"></div>}
             {shadowColor === "default" && <div className="accessibility-bot_shadow accessibility-bot_shadow--default"></div>}
