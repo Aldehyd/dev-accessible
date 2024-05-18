@@ -1460,6 +1460,34 @@ body.animations .accessibility-settings-button:hover .settings-svg {
   fill: hsl(175deg, 95%, 55%);
   transform: rotate(180deg);
 }
+.link.compliant {
+  overflow: visible;
+}
+.link.not-compliant {
+  overflow: visible;
+}
+.link.compliant::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.2rem 0.6rem hsl(120deg, 95%, 55%);
+}
+.link.not-compliant::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.2rem 0.6rem hsl(0deg, 95%, 55%);
+}
 
 @keyframes mainMenuLinkHover {
   0% {
@@ -1476,7 +1504,7 @@ body.animations .accessibility-settings-button:hover .settings-svg {
     transform: translateX(20rem);
   }
 }
-body.animations .link:hover::after {
+body.animations .link:not(.compliant):not(.not-compliant):hover::after {
   content: "";
   position: absolute;
   top: 0;
@@ -1486,7 +1514,7 @@ body.animations .link:hover::after {
   box-shadow: 0 0 1rem 0.4rem hsl(175deg, 95%, 55%);
   animation: mainMenuLinkHover 800ms ease-in-out forwards;
 }
-body.animations .link:focus-within::after {
+body.animations .link:not(.compliant):not(.not-compliant):focus-within::after {
   content: "";
   position: absolute;
   top: 0;
@@ -2408,19 +2436,20 @@ body:not(.home) .accessibility-bot {
   left: 60px;
 }
 .accessibility-bot_mouth {
-  display: none;
   position: absolute;
-  left: 50px;
+  left: 40px;
   width: 20px;
   height: 30px;
   border-radius: 50%;
 }
 .accessibility-bot_mouth--happy {
-  bottom: 40px;
+  display: none;
+  bottom: 26px;
   border-bottom: solid 6px hsl(175deg, 95%, 55%);
 }
 .accessibility-bot_mouth--sad {
-  bottom: 25px;
+  display: none;
+  bottom: 10px;
   border-top: solid 6px hsl(175deg, 95%, 55%);
 }
 .accessibility-bot_shadow {
@@ -2432,14 +2461,6 @@ body:not(.home) .accessibility-bot {
   background-color: transparent;
   border-radius: 50%;
   transform: translate(-50%, -50%);
-}
-.accessibility-bot_shadow--red {
-  box-shadow: hsl(0deg, 95%, 55%) 0 0 5px, red inset 0 0 5px;
-}
-.accessibility-bot_shadow--green {
-  box-shadow: hsl(120deg, 95%, 55%) 0 0 5px, hsl(120deg, 95%, 55%) inset 0 0 5px;
-}
-.accessibility-bot_shadow--default {
   box-shadow: hsl(175deg, 95%, 55%) 0 0 5px, hsl(175deg, 95%, 55%) inset 0 0 5px;
 }
 .accessibility-bot_shadow-appear-effect {
@@ -2465,6 +2486,26 @@ body:not(.home) .accessibility-bot {
   border: solid 0.2rem #f1f1f1;
   border-radius: 1rem;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+.accessibility-bot.compliant .accessibility-bot_mouth--happy {
+  display: block;
+}
+.accessibility-bot.compliant .accessibility-bot_shadow {
+  box-shadow: hsl(120deg, 95%, 55%) 0 0 5px, hsl(120deg, 95%, 55%) inset 0 0 5px;
+  animation: AccessibilityBotShadow ease-out 1000ms infinite;
+}
+.accessibility-bot.compliant .accessibility-bot_comment {
+  color: hsl(120deg, 95%, 55%);
+}
+.accessibility-bot.not-compliant .accessibility-bot_mouth--sad {
+  display: block;
+}
+.accessibility-bot.not-compliant .accessibility-bot_shadow {
+  box-shadow: hsl(0deg, 95%, 55%) 0 0 5px, hsl(0deg, 95%, 55%) inset 0 0 5px;
+  animation: AccessibilityBotShadow ease-out 1000ms infinite;
+}
+.accessibility-bot.not-compliant .accessibility-bot_comment {
+  color: hsl(0deg, 95%, 55%);
 }
 
 body.animations .accessibility-bot {
