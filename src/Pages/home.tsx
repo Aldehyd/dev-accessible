@@ -9,10 +9,12 @@ import LanguageModal from "../Modals/LanguageModal.tsx";
 import MainMenu from "../Layout/mainMenu.tsx";
 import Accessibot from "../Components/accessibot.tsx";
 import AccessibilityAnalysisInfosModal from "../Modals/accessibilityAnalysisInfosModal.tsx";
+import AccessibilityAnalysisModal from "../Modals/accessibilityAnalysisModal.tsx";
 
 export default function Home(): React.JSX.Element {
 
     const {isModalDisplayed,changeIsModalDisplayed} = useContext(ModalContext);
+    const [isAccessibilityAnalysisModalDisplayed,setIsAccessibilityAnalysisModalDisplayed] = useState<boolean>(false);
     const [isAccessibilitySettingsModalDisplayed,setIsAccessibilitySettingsModalDisplayed] = useState<boolean>(false);
     const [isLanguageModalDisplayed,setIsLanguageModalDisplayed] = useState<boolean>(false);
     const [isEnvironnementModalDisplayed,setIsEnvironnementModalDisplayed] = useState<boolean>(false);
@@ -36,6 +38,7 @@ export default function Home(): React.JSX.Element {
     return (
         <>
             {isModalDisplayed && <ModalDarkBackground />}
+            {isAccessibilityAnalysisModalDisplayed && <AccessibilityAnalysisModal setDisplay={setIsAccessibilityAnalysisModalDisplayed} />}
             {isLanguageModalDisplayed && <LanguageModal setDisplay={setIsLanguageModalDisplayed} />}
             {isEnvironnementModalDisplayed && <EnvironnementModal setDisplay={setIsEnvironnementModalDisplayed} />}
             {isAccessibilitySettingsModalDisplayed && <AccessibilitySettingsModal setDisplay={setIsAccessibilitySettingsModalDisplayed} />}
@@ -53,7 +56,7 @@ export default function Home(): React.JSX.Element {
             <footer className="home">
                 <BottomMenu home={true} />
             </footer>
-            <Accessibot />
+            <Accessibot setDisplay={setIsAccessibilityAnalysisModalDisplayed} />
         </>
     )
 }

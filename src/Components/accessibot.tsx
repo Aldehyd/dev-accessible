@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState, useEffect } from "react";
+import AccessibilityAnalysisContext from "../Contexts/accessibility-analysis-context.tsx";
 
-export default function Accessibot(): React.JSX.Element {
+interface AccessibotPropsInterface {
+    setDisplay: (display: boolean)=> void
+}
+
+export default function Accessibot({setDisplay}: AccessibotPropsInterface): React.JSX.Element {
+
+    const {accessibilityAnalysis} = useContext(AccessibilityAnalysisContext);
 
     const [shadowColor,setShadowColor] = useState<string>("default");
     const [mouseOver,setMouseOver] = useState<boolean>(false);
@@ -15,6 +22,12 @@ export default function Accessibot(): React.JSX.Element {
         setMouseOver(false);
     };
 
+    const onClick = ()=> {
+        if(!accessibilityAnalysis) {
+            setDisplay(true);
+        };
+    };
+
     const classList = `accessibility-bot ${isWaiting ? "accessibility-bot_waiting" : ""} ${mouseOver ? "accessibility-bot_hover" : ""}`;
 
     useEffect(()=> {
@@ -24,7 +37,7 @@ export default function Accessibot(): React.JSX.Element {
     },[]);
 
     return (
-        <div className={classList} onMouseOver={()=> onMouseOver()} onMouseLeave={()=> onMouseLeave()}>
+        <div className={classList} tabIndex={0} onClick={()=> onClick()} onMouseOver={()=> onMouseOver()} onMouseLeave={()=> onMouseLeave()}>
             {shadowColor === "red" && <div className="accessibility-bot_shadow accessibility-bot_shadow--red"></div>}
             {shadowColor === "green" && <div className="accessibility-bot_shadow accessibility-bot_shadow--green"></div>}
             {shadowColor === "default" && <div className="accessibility-bot_shadow accessibility-bot_shadow--default"></div>}
