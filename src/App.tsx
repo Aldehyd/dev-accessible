@@ -26,6 +26,7 @@ import Home from './Pages/home.tsx';
 import SearchResults from './Pages/searchResults.tsx';
 import Services from './Pages/services.tsx';
 import AccessibilityAnalysisContext from './Contexts/accessibility-analysis-context.tsx';
+import AccessibotCommentContext from './Contexts/accessibot-comment-context.tsx';
 
 export default function App(): React.JSX.Element {
 
@@ -37,6 +38,11 @@ export default function App(): React.JSX.Element {
     const [accessibilityAnalysis,setAccessibilityAnalysis] = useState<boolean>(false); 
     const changeAccessibilityAnalysis : (accessibilityAnalysis: boolean) => void = (accessibilityAnalysis)=> {
         setAccessibilityAnalysis(accessibilityAnalysis);
+    };
+
+    const [accessibotComment,setAccessibotComment] = useState({compliant: true, comment: ""}); 
+    const changeAccessibotComment = (accessibotComment)=> {
+        setAccessibotComment(accessibotComment);
     };
 
     const [language,setLanguage] = useState(localStorage.getItem('language') !== undefined && localStorage.getItem('language') !== null && localStorage.getItem('language') === "english" ? "english" : "french"); 
@@ -76,40 +82,42 @@ export default function App(): React.JSX.Element {
 
     return(
         <AccessibilityAnalysisContext.Provider value={{accessibilityAnalysis,changeAccessibilityAnalysis}}>
-            <ModalContext.Provider value ={{isModalDisplayed,changeIsModalDisplayed}}>
-                <LanguageContext.Provider value ={{language,changeLanguage}}>
-                    <EnvironnementContext.Provider value={{environnement,changeEnvironnement}}>
-                        <ShortcutsContext.Provider value={{shortcuts,changeShortcuts}}>
-                            <AchievmentsContext.Provider value={{achievments,changeAchievments}}>
-                                <CarouselContext.Provider value={{displayCarousel,picturesFullScreen,currentPictureFullScreen,changeDisplayCarousel,changePicturesFullScreen,changeCurrentPictureFullScreen}}>
-                                    <Router>
-                                        <Routes>
-                                            <Route path="/layouts" element={<Layouts />} />
-                                            <Route path="/" element={<LandingPage />} />
-                                            <Route path="/home" element={<Home />} />
-                                            <Route path="/who-am-i" element={<WhoAmI />} />
-                                            <Route path="/achievments" element={<Achievments />} />
-                                            <Route path="/achievments/:achievment" element={<AchievmentDetails />} />
-                                            <Route path="/achievments/:achievment/privacy-policy" element={<AchievmentPrivacyPolicy />} />
-                                            <Route path="/cv" element={<CV />} />
-                                            <Route path="/services" element={<Services />} />
-                                            <Route path="/why-accessibility" element={<WhyAccessibility />} />
-                                            {/* <Route path="/prices" element={<Prices />} /> */}
-                                            <Route path="/contact" element={<Contact />} />
-                                            <Route path="/legal-mentions" element={<LegalMentions />} />
-                                            <Route path="/site-map" element={<SiteMap />} />
-                                            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                                            <Route path="/accessibility" element={<Accessibility />} />
-                                            <Route path="/search-results" element={<SearchResults />} />
-                                            <Route path="*" element={<Home />} />
-                                        </Routes>
-                                    </Router>
-                                </CarouselContext.Provider>
-                            </AchievmentsContext.Provider>
-                        </ShortcutsContext.Provider>
-                    </EnvironnementContext.Provider>
-                </LanguageContext.Provider>
-            </ModalContext.Provider>
+            <AccessibotCommentContext.Provider value={{accessibotComment,changeAccessibotComment}}>
+                <ModalContext.Provider value ={{isModalDisplayed,changeIsModalDisplayed}}>
+                    <LanguageContext.Provider value ={{language,changeLanguage}}>
+                        <EnvironnementContext.Provider value={{environnement,changeEnvironnement}}>
+                            <ShortcutsContext.Provider value={{shortcuts,changeShortcuts}}>
+                                <AchievmentsContext.Provider value={{achievments,changeAchievments}}>
+                                    <CarouselContext.Provider value={{displayCarousel,picturesFullScreen,currentPictureFullScreen,changeDisplayCarousel,changePicturesFullScreen,changeCurrentPictureFullScreen}}>
+                                        <Router>
+                                            <Routes>
+                                                <Route path="/layouts" element={<Layouts />} />
+                                                <Route path="/" element={<LandingPage />} />
+                                                <Route path="/home" element={<Home />} />
+                                                <Route path="/who-am-i" element={<WhoAmI />} />
+                                                <Route path="/achievments" element={<Achievments />} />
+                                                <Route path="/achievments/:achievment" element={<AchievmentDetails />} />
+                                                <Route path="/achievments/:achievment/privacy-policy" element={<AchievmentPrivacyPolicy />} />
+                                                <Route path="/cv" element={<CV />} />
+                                                <Route path="/services" element={<Services />} />
+                                                <Route path="/why-accessibility" element={<WhyAccessibility />} />
+                                                {/* <Route path="/prices" element={<Prices />} /> */}
+                                                <Route path="/contact" element={<Contact />} />
+                                                <Route path="/legal-mentions" element={<LegalMentions />} />
+                                                <Route path="/site-map" element={<SiteMap />} />
+                                                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                                                <Route path="/accessibility" element={<Accessibility />} />
+                                                <Route path="/search-results" element={<SearchResults />} />
+                                                <Route path="*" element={<Home />} />
+                                            </Routes>
+                                        </Router>
+                                    </CarouselContext.Provider>
+                                </AchievmentsContext.Provider>
+                            </ShortcutsContext.Provider>
+                        </EnvironnementContext.Provider>
+                    </LanguageContext.Provider>
+                </ModalContext.Provider>
+            </AccessibotCommentContext.Provider>
         </AccessibilityAnalysisContext.Provider>
     )
 }

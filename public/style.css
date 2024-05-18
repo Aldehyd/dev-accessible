@@ -2452,6 +2452,20 @@ body:not(.home) .accessibility-bot {
   transform-origin: 50% 0;
   opacity: 0;
 }
+.accessibility-bot_comment {
+  position: absolute;
+  top: -90px;
+  left: 120px;
+  transition: ease-in-out 200ms;
+  padding: 1rem;
+  width: 30rem;
+  max-width: 300px;
+  font-weight: bold;
+  background-color: #000;
+  border: solid 0.2rem #f1f1f1;
+  border-radius: 1rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
 
 body.animations .accessibility-bot {
   transition: ease-in-out 500ms;

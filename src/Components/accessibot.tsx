@@ -1,6 +1,8 @@
 import React, { useContext, useRef } from "react";
 import { useState, useEffect } from "react";
 import AccessibilityAnalysisContext from "../Contexts/accessibility-analysis-context.tsx";
+import AccessibotCommentContext from "../Contexts/accessibot-comment-context.tsx";
+import LanguageContext from "../Contexts/language-context.tsx";
 
 interface AccessibotPropsInterface {
     setDisplay: (display: boolean)=> void
@@ -13,7 +15,9 @@ export default function Accessibot({setDisplay}: AccessibotPropsInterface): Reac
     const botOffsetX = 70;
     const botOffsetY = 40;
 
+    const {language} = useContext(LanguageContext);
     const {accessibilityAnalysis,changeAccessibilityAnalysis} = useContext(AccessibilityAnalysisContext);
+    const {accessibotComment,changeAccessibotComment} = useContext(AccessibotCommentContext);
 
     const [shadowColor,setShadowColor] = useState<string>("default");
     const [mouseOver,setMouseOver] = useState<boolean>(false);
@@ -99,6 +103,12 @@ export default function Accessibot({setDisplay}: AccessibotPropsInterface): Reac
                 <div className="accessibility-bot_mouth--sad accessibility-bot_mouth"></div>
             </div>
             <div className="accessibility-bot_shadow-appear-effect"></div>
+            {
+                accessibilityAnalysis && accessibotComment.hover &&
+                <div className="accessibility-bot_comment">
+                    {language === "french" ? accessibotComment.frenchContent : accessibotComment.englishContent}
+                </div>
+            }
         </div>
     )
 }

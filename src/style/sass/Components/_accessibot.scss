@@ -111,6 +111,20 @@ body:not(.home) {
         transform-origin: 50% 0;
         opacity: 0;
     }
+    &_comment {
+        position: absolute;
+        top: -90px;
+        left: 120px;
+        transition: ease-in-out 200ms;
+        padding: 1rem;
+        width: 30rem;
+        max-width: 300px;
+        font-weight: bold;
+        background-color: map-get($colors,dark);
+        border: solid 0.2rem map-get($colors,white);
+        border-radius: 1rem;
+        box-shadow: 0 0 5px map-get($colors,switchBlackBoxShadow);
+    }
 }
 
 // @media screen and (max-width: 1200px) {
