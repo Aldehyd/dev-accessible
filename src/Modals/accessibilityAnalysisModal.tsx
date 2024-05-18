@@ -19,7 +19,7 @@ export default function AccessibilityAnalysisModal({setDisplay}: AccessibilityAn
     };
 
     return (
-        <ModalLayout setDisplay={setDisplay} frenchTitle="Version" englishTitle="Version">
+        <ModalLayout setDisplay={setDisplay} frenchTitle="Analyse de l'accessibilité" englishTitle="Accessibility analysis">
             {
                 language === "french" ?
                     <p>

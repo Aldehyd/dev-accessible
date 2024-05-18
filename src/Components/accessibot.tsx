@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useCallback, useContext, useRef } from "react";
 import { useState, useEffect } from "react";
 import AccessibilityAnalysisContext from "../Contexts/accessibility-analysis-context.tsx";
 import AccessibotCommentContext from "../Contexts/accessibot-comment-context.tsx";
@@ -45,7 +45,12 @@ export default function Accessibot({setDisplay}: AccessibotPropsInterface): Reac
         setBotPosition({left: e.pageX - botOffsetX, top: e.pageY + botOffsetY})
     };
 
-    const onKeyDown = (e)=> {
+    const exitAccessibilityMode = useCallback(()=> {
+        changeAccessibilityAnalysis(false);
+        setBotPosition({});
+    },[changeAccessibilityAnalysis]);
+
+    const onKeyDown = useCallback((e)=> {
         switch(e.key) {
             case 'Escape':
                 exitAccessibilityMode();
@@ -53,14 +58,7 @@ export default function Accessibot({setDisplay}: AccessibotPropsInterface): Reac
             default:
                 break;
         }
-    };
-
-    const exitAccessibilityMode = ()=> {
-        changeAccessibilityAnalysis(false);
-        setBotPosition({});
-    };
-
-    const classList = `accessibility-bot ${isWaiting ? "accessibility-bot_waiting" : ""} ${mouseOver ? "accessibility-bot_hover" : ""} ${accessibilityAnalysis ? "accessibility-bot_click" : ""}`;
+    },[exitAccessibilityMode]);
 
     useEffect(()=> {
         setTimeout(()=> {
@@ -87,15 +85,15 @@ export default function Accessibot({setDisplay}: AccessibotPropsInterface): Reac
             window.removeEventListener('contextmenu',exitAccessibilityMode);
         };
         return ()=> window.removeEventListener('mousemove',onMouseMove);
-    },[accessibilityAnalysis]);
+    },[accessibilityAnalysis,exitAccessibilityMode,onKeyDown]);
+
+    const botClassList = `accessibility-bot ${isWaiting ? "accessibility-bot_waiting" : ""} ${mouseOver ? "accessibility-bot_hover" : ""} ${accessibilityAnalysis ? "accessibility-bot_click" : ""} ${accessibotComment.hover ? (accessibotComment.compliant ? "compliant" : "not-compliant") : ""}`;
 
     return (
-        <div className={classList} tabIndex={0} ref={accessibot} onClick={()=> onClick()} 
+        <div className={botClassList} tabIndex={0} ref={accessibot} onClick={()=> onClick()} 
             onMouseOver={()=> onMouseOver()} onMouseLeave={()=> onMouseLeave()}
             style={botPosition}>
-            {shadowColor === "red" && <div className="accessibility-bot_shadow accessibility-bot_shadow--red"></div>}
-            {shadowColor === "green" && <div className="accessibility-bot_shadow accessibility-bot_shadow--green"></div>}
-            {shadowColor === "default" && <div className="accessibility-bot_shadow accessibility-bot_shadow--default"></div>}
+            <div className="accessibility-bot_shadow"></div>
             <div className="accessibility-bot_body">
                 <div className="accessibility-bot_left-eye accessibility-bot_eyes"></div>
                 <div className="accessibility-bot_right-eye accessibility-bot_eyes"></div>
@@ -105,9 +103,9 @@ export default function Accessibot({setDisplay}: AccessibotPropsInterface): Reac
             <div className="accessibility-bot_shadow-appear-effect"></div>
             {
                 accessibilityAnalysis && accessibotComment.hover &&
-                <div className="accessibility-bot_comment">
+                <p className="accessibility-bot_comment">
                     {language === "french" ? accessibotComment.frenchContent : accessibotComment.englishContent}
-                </div>
+                </p>
             }
         </div>
     )
