@@ -41,6 +41,14 @@
         color: map-get($colors,red);
         opacity: 1;
     }
+    &_tip {
+        position: absolute;
+        bottom: 0;
+        transform: translateY(100%);
+        padding: 1rem;
+        background-color: map-get($colors,white);
+        border-radius: 1rem;
+    }
 }
 
 .accessibility-analysis-help-button {

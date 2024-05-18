@@ -1028,6 +1028,14 @@ body:not(.contrast).purple .input-container::after {
   color: hsl(0deg, 95%, 55%);
   opacity: 1;
 }
+.accessibility-analysis-toggle-button_tip {
+  position: absolute;
+  bottom: 0;
+  transform: translateY(100%);
+  padding: 1rem;
+  background-color: #f1f1f1;
+  border-radius: 1rem;
+}
 
 .accessibility-analysis-help-button {
   padding: 0 1rem;
@@ -2478,6 +2486,12 @@ body.animations .accessibility-bot_hover .accessibility-bot_right-eye {
 body.animations .accessibility-bot_shadow-appear-effect {
   animation: AccessibilityBotShadowAppearEffect 2s 600ms ease-in-out forwards;
 }
+body.animations .accessibility-bot_click {
+  animation: AccessibilityBotClick ease 2000ms;
+}
+body.animations .accessibility-bot_click .accessibility-bot_body::after {
+  animation: AccessibilityBotClickBody ease 2000ms;
+}
 
 body:not(.contrast).purple .accessibility-bot_body::after {
   background-color: hsl(295deg, 95%, 55%);
@@ -2604,6 +2618,37 @@ body:not(.contrast).purple .accessibility-bot_shadow-appear-effect {
   100% {
     transform: scale(8);
     opacity: 0.2;
+  }
+}
+@keyframes AccessibilityBotClick {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  60% {
+    transform: perspective(500px) translate3d(0, 0, 150px) rotate(-15deg);
+  }
+  70% {
+    transform: perspective(500px) translate3d(0, 0, 150px) rotate(15deg);
+  }
+  75% {
+    transform: perspective(500px) translate3d(0, 0, 150px) rotate(-15deg);
+  }
+  80% {
+    transform: perspective(500px) translate3d(0, 0, 150px);
+  }
+  100% {
+    transform: perspective(500px) translate3d(0, 0, 0);
+  }
+}
+@keyframes AccessibilityBotClickBody {
+  60% {
+    opacity: 0.5;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
   }
 }
 .environnement-toggle-button {
