@@ -1,25 +1,61 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useMemo } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 import EnvironnementContext from "../Contexts/environnement-context.tsx";
+import AccessibilityAnalysisContext from "../Contexts/accessibility-analysis-context.tsx";
+import AccessibotCommentContext from "../Contexts/accessibot-comment-context.tsx";
 
-export default function EnvironnementToggleButton({setDisplay}): React.JSX.Element {
+interface EnvironnementToggleButtonPropsInterface {
+    setDisplay: (display: boolean)=> void,
+    comment?: {
+        hover: boolean,
+        compliant: boolean,
+        frenchContent: string,
+        englishContent: string
+    }
+}
+
+export default function EnvironnementToggleButton({setDisplay,comment={hover: true,compliant: true,frenchContent: "Le bouton à bascule change de nom accessible en changeant d'état",englishContent: "The accessible name of the toggle button changes on state change"}}:EnvironnementToggleButtonPropsInterface): React.JSX.Element {
 
     const {language} = useContext(LanguageContext);
-    // const [environnement,setEnvironnement] = useState(useContext(EnvironnementContext).environnement);
     const {environnement} = useContext(EnvironnementContext);
+    const {accessibilityAnalysis} = useContext(AccessibilityAnalysisContext);
+    const {changeAccessibotComment} = useContext(AccessibotCommentContext);
 
     const [classNames,setClassNames] = useState<string>(`environnement-toggle-button`);
+    const [compliantClass,setCompliantClass] = useState<string>("");
+
+    const onAccessibilityAnalysisOver = ()=> {
+        if(accessibilityAnalysis) {
+            changeAccessibotComment(comment);
+            comment.compliant ? setCompliantClass("compliant") : setCompliantClass("not-compliant");
+        };
+    };
+
+    const onAccessibilityAnalysisLeave = ()=> {
+        if(accessibilityAnalysis) {
+            changeAccessibotComment({...comment, hover: false});
+            setCompliantClass("");
+        };
+    };
+
+    useEffect(()=> {
+        if(!accessibilityAnalysis) {
+            changeAccessibotComment({...comment, hover: false});
+            setCompliantClass("");
+        };
+    },[accessibilityAnalysis,changeAccessibotComment,comment]);
 
     const onClickFunction = ()=> {
         setDisplay(true);
     };
 
     useEffect(()=> {
-        setClassNames(`environnement-toggle-button ${environnement === "recruiter" ? "recruiter" : "client"}`);
+        setClassNames(`environnement-toggle-button ${environnement === "recruiter" ? "recruiter" : "client"} ${compliantClass}`);
     },[environnement]);
 
     return(
-        <button className={classNames} onClick={()=> onClickFunction()}>
+        <button className={classNames} onClick={()=> onClickFunction()}
+            onMouseOver={()=> onAccessibilityAnalysisOver()} onMouseLeave={()=> onAccessibilityAnalysisLeave()}>
             <span aria-hidden="true" className="environnement-toggle-button_invisible-text">Recruiter</span>
             <span className="environnement-toggle-button_overflow-container">
                 <span aria-hidden="true" className="environnement-toggle-button_invisible-text">Recruiter</span>
