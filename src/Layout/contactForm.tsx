@@ -97,7 +97,7 @@ export default function ContactForm(): React.JSX.Element {
             body: JSON.stringify(mailData)
         };
 
-        fetch('http://localhost:4000/send_mail',options)
+        fetch('https://dev-accessible.com/send_mail',options)
         .then(res => {
             if(res.ok) {
                 setStatus({invalid: {mail:false,subject:false,body:false}, link: false, sending: false,error: false,sent: true});
