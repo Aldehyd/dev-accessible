@@ -24,6 +24,7 @@ export default function Accessibot({setDisplay}: AccessibotPropsInterface): Reac
     const [isWaiting,setIsWaiting] = useState<boolean>(false);
     const [botObserver,setBotObserver] = useState<any>(null);
     const [botPosition,setBotPosition] = useState(accessibilityAnalysis ? {left: accessibot.current.offsetX, top: accessibot.current.offsetY} : {});
+    const [commentPositionClass,setCommentPositionClass] = useState<string>("default");
 
     const onMouseOver = ()=> {
         if(!accessibilityAnalysis)
@@ -125,7 +126,17 @@ export default function Accessibot({setDisplay}: AccessibotPropsInterface): Reac
         }
     },[accessibilityAnalysis,exitAccessibilityMode,onKeyDown]);
 
+    useEffect(()=> {
+        if(botPosition.left > document.documentElement.clientWidth/2) {
+            setCommentPositionClass("default");
+        } else {
+            setCommentPositionClass("right");
+        };
+    },[botPosition]);
+
     const botClassList = `accessibility-bot ${isWaiting ? "accessibility-bot_waiting" : ""} ${mouseOver ? "accessibility-bot_hover" : ""} ${accessibilityAnalysis ? "accessibility-bot_click" : ""} ${accessibotComment.hover ? (accessibotComment.compliant ? "compliant" : "not-compliant") : ""}`;
+
+    const commentClassList = `accessibility-bot_comment ${commentPositionClass}`;
 
     return (
         <div className={botClassList} tabIndex={0} ref={accessibot} onClick={()=> onClick()} 
@@ -141,7 +152,7 @@ export default function Accessibot({setDisplay}: AccessibotPropsInterface): Reac
             <div className="accessibility-bot_shadow-appear-effect"></div>
             {
                 accessibilityAnalysis && accessibotComment.hover &&
-                <p className="accessibility-bot_comment">
+                <p className={commentClassList}>
                     {language === "french" ? accessibotComment.frenchContent : accessibotComment.englishContent}
                 </p>
             }

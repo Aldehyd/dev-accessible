@@ -2547,8 +2547,9 @@ body:not(.home) .accessibility-bot {
 }
 .accessibility-bot_comment {
   position: absolute;
-  top: -90px;
-  left: 120px;
+  top: 60px;
+  left: 0;
+  transform: translateX(-100%);
   transition: ease-in-out 200ms;
   padding: 1rem;
   width: 30rem;
@@ -2558,6 +2559,10 @@ body:not(.home) .accessibility-bot {
   border: solid 0.2rem #f1f1f1;
   border-radius: 1rem;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+.accessibility-bot_comment.right {
+  left: 90px;
+  transform: translateX(0);
 }
 .accessibility-bot.compliant .accessibility-bot_mouth--happy {
   display: block;

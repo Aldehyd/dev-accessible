@@ -106,8 +106,9 @@ body:not(.home) {
     }
     &_comment {
         position: absolute;
-        top: -90px;
-        left: 120px;
+        top: 60px;
+        left: 0;
+        transform: translateX(-100%);
         transition: ease-in-out 200ms;
         padding: 1rem;
         width: 30rem;
@@ -117,6 +118,10 @@ body:not(.home) {
         border: solid 0.2rem map-get($colors,white);
         border-radius: 1rem;
         box-shadow: 0 0 5px map-get($colors,switchBlackBoxShadow);
+        &.right {
+            left: 90px;
+            transform: translateX(0);
+        }
     }
     &.compliant {
         & .accessibility-bot_mouth--happy {
