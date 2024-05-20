@@ -56,18 +56,18 @@ export default function AnimationToggleButton({comment={hover: true,compliant: t
     },[]);
 
     useEffect(()=> {
-        if(animationsStatus) {
-            document.body.classList.add('animations');
+        if(!accessibilityAnalysis) {
+            if(animationsStatus) {
+                document.body.classList.add('animations');
+            } else {
+                document.body.classList.remove('animations');
+            };
+            localStorage.setItem('animations',animationsStatus.toString());
         } else {
-            document.body.classList.remove('animations');
+            changeAccessibilityAnalysisWarning(true);
         };
-        localStorage.setItem('animations',animationsStatus.toString());
-
-        // setClassNames(`animations-toggle-button ${animationsStatus ? 'on' : 'off'}`);
-
     },[animationsStatus]);
 
-    // const [classNames,setClassNames] = useState<string>('animations-toggle-button');
     const classNames = `animations-toggle-button ${animationsStatus ? 'on' : 'off'} ${compliantClass}`;
 
     return(
