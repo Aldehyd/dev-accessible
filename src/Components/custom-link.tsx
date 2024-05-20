@@ -1,9 +1,9 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LanguageContext from "../Contexts/language-context.tsx";
 import AccessibilityAnalysisContext from "../Contexts/accessibility-analysis-context.tsx";
 import AccessibotCommentContext from "../Contexts/accessibot-comment-context.tsx";
-
+import AccessibilityAnalysisWarningContext from "../Contexts/accessibility-analysis-warning-context.tsx";
 interface CustomLinkInterface {
     frenchText: string,
     englishText: string,
@@ -23,6 +23,7 @@ export default function CustomLink({frenchText,englishText,openInNewTab=false,ro
     const {language} = useContext(LanguageContext);
     const {accessibilityAnalysis} = useContext(AccessibilityAnalysisContext);
     const {changeAccessibotComment} = useContext(AccessibotCommentContext);
+    const {changeAccessibilityAnalysisWarning} = useContext(AccessibilityAnalysisWarningContext);
 
     const [compliantClass,setCompliantClass] = useState<string>("");
 
@@ -40,6 +41,11 @@ export default function CustomLink({frenchText,englishText,openInNewTab=false,ro
         };
     };
 
+    const onClickFunction = ()=> {
+        if(accessibilityAnalysis)
+            changeAccessibilityAnalysisWarning(true);
+    };
+
     useEffect(()=> {
         if(!accessibilityAnalysis) {
             changeAccessibotComment({...comment, hover: false});
@@ -50,7 +56,7 @@ export default function CustomLink({frenchText,englishText,openInNewTab=false,ro
     const classList = `link ${type === "main" ? "main-link" : ""} ${type === "secundary" ? "secundary-link" : ""} ${compliantClass}`;
 
     return(
-        <Link to={accessibilityAnalysis ? "" : route} target={openInNewTab ? "_blank" : ""} className={classList} 
+        <Link to={accessibilityAnalysis ? "" : route} onClick={()=> onClickFunction()} target={openInNewTab ? "_blank" : ""} className={classList} 
             onMouseOver={()=> onAccessibilityAnalysisOver()} onMouseLeave={()=> onAccessibilityAnalysisLeave()}>
             {language === "french" ? frenchText : englishText}
         </Link>

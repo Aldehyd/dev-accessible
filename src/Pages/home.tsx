@@ -10,10 +10,14 @@ import MainMenu from "../Layout/mainMenu.tsx";
 import Accessibot from "../Components/accessibot.tsx";
 import AccessibilityAnalysisInfosModal from "../Modals/accessibilityAnalysisInfosModal.tsx";
 import AccessibilityAnalysisModal from "../Modals/accessibilityAnalysisModal.tsx";
+import AccessibilityAnalysisLeaveModal from "../Modals/accessibilityAnalysisLeaveModal.tsx";
+import AccessibilityAnalysisWarningContext from "../Contexts/accessibility-analysis-warning-context.tsx";
 
 export default function Home(): React.JSX.Element {
 
     const {isModalDisplayed,changeIsModalDisplayed} = useContext(ModalContext);
+    const {accessibilityAnalysisWarning,changeAccessibilityAnalysisWarning} = useContext(AccessibilityAnalysisWarningContext);
+
     const [isAccessibilityAnalysisModalDisplayed,setIsAccessibilityAnalysisModalDisplayed] = useState<boolean>(false);
     const [isAccessibilitySettingsModalDisplayed,setIsAccessibilitySettingsModalDisplayed] = useState<boolean>(false);
     const [isLanguageModalDisplayed,setIsLanguageModalDisplayed] = useState<boolean>(false);
@@ -43,6 +47,7 @@ export default function Home(): React.JSX.Element {
             {isEnvironnementModalDisplayed && <EnvironnementModal setDisplay={setIsEnvironnementModalDisplayed} />}
             {isAccessibilitySettingsModalDisplayed && <AccessibilitySettingsModal setDisplay={setIsAccessibilitySettingsModalDisplayed} />}
             {isAccessibilityAnalysisInfosModalDisplayed && <AccessibilityAnalysisInfosModal setDisplay={setIsAccessibilityAnalysisInfosModalDisplayed} />}
+            {accessibilityAnalysisWarning && <AccessibilityAnalysisLeaveModal setDisplay={changeAccessibilityAnalysisWarning}/>}
             <header>
                 <TopMenu setAccessibilityModalDisplay={setIsAccessibilitySettingsModalDisplayed}
                     setLanguageModalDisplay={setIsLanguageModalDisplayed}

@@ -3,6 +3,7 @@ import LanguageContext from "../Contexts/language-context.tsx";
 import EnvironnementContext from "../Contexts/environnement-context.tsx";
 import AccessibilityAnalysisContext from "../Contexts/accessibility-analysis-context.tsx";
 import AccessibotCommentContext from "../Contexts/accessibot-comment-context.tsx";
+import AccessibilityAnalysisWarningContext from "../Contexts/accessibility-analysis-warning-context.tsx";
 
 interface EnvironnementToggleButtonPropsInterface {
     setDisplay: (display: boolean)=> void,
@@ -20,8 +21,8 @@ export default function EnvironnementToggleButton({setDisplay,comment={hover: tr
     const {environnement} = useContext(EnvironnementContext);
     const {accessibilityAnalysis} = useContext(AccessibilityAnalysisContext);
     const {changeAccessibotComment} = useContext(AccessibotCommentContext);
+    const {changeAccessibilityAnalysisWarning} = useContext(AccessibilityAnalysisWarningContext);
 
-    // const [classNames,setClassNames] = useState<string>(`environnement-toggle-button`);
     const [compliantClass,setCompliantClass] = useState<string>("");
 
     const onAccessibilityAnalysisOver = ()=> {
@@ -46,8 +47,11 @@ export default function EnvironnementToggleButton({setDisplay,comment={hover: tr
     },[accessibilityAnalysis]);
 
     const onClickFunction = ()=> {
-        if(!accessibilityAnalysis)
+        if(!accessibilityAnalysis) {
             setDisplay(true);
+        } else {
+            changeAccessibilityAnalysisWarning(true);
+        };
     };
 
     const classNames = `environnement-toggle-button ${environnement === "recruiter" ? "recruiter" : "client"} ${compliantClass}`;
