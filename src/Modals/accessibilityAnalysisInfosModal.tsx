@@ -15,9 +15,9 @@ export default function AccessibilityAnalysisInfosModal({setDisplay}: Accessibil
             <p>
                 {
                     language === "french" ?
-                        "Le mode analyse de l'accessibilité n'est pas encore disponible."
+                        "Le mode analyse de l'accessibilité n'est pas encore complètement implémenté."
                         :
-                        "Accessibility analysis mode is not available yet."
+                        "Accessibility analysis mode is not entirely implemented yet."
                 }
             </p>
         </ModalLayout>
