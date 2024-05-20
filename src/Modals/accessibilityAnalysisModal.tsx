@@ -22,13 +22,15 @@ export default function AccessibilityAnalysisModal({setDisplay}: AccessibilityAn
         <ModalLayout setDisplay={setDisplay} frenchTitle="Analyse de l'accessibilité" englishTitle="Accessibility analysis">
             {
                 language === "french" ?
-                    <p>
-                        {`Voulez-vous activer le mode analyse de l'accessibilité ?`}
-                    </p>
+                    <>
+                        <p>Voulez-vous activer le mode analyse de l'accessibilité ?</p>
+                        <p>Attention ! Les liens et la plupart des boutons seront désactivés !</p>
+                    </>
                     :
-                    <p>
-                        {`Do you want to activate the accessibility analysis mode ?`}
-                    </p>
+                    <>
+                        <p>Do you want to activate the accessibility analysis mode ?</p>
+                        <p>Warning ! Links and most of buttons will be disabled !</p>
+                    </>
             }
             <div className="confirm-modal_buttons-container">
                 <BasicButton frenchText="Oui" englishText="Yes" onWhiteBackground={true} onClickFunction={()=> onClickFunction()} />
