@@ -45,12 +45,12 @@ export default function CustomLink({frenchText,englishText,openInNewTab=false,ro
             changeAccessibotComment({...comment, hover: false});
             setCompliantClass("");
         };
-    },[accessibilityAnalysis,changeAccessibotComment,comment]);
+    },[accessibilityAnalysis,setCompliantClass]);
 
     const classList = `link ${type === "main" ? "main-link" : ""} ${type === "secundary" ? "secundary-link" : ""} ${compliantClass}`;
 
     return(
-        <Link to={route} target={openInNewTab ? "_blank" : ""} className={classList} 
+        <Link to={accessibilityAnalysis ? "" : route} target={openInNewTab ? "_blank" : ""} className={classList} 
             onMouseOver={()=> onAccessibilityAnalysisOver()} onMouseLeave={()=> onAccessibilityAnalysisLeave()}>
             {language === "french" ? frenchText : englishText}
         </Link>

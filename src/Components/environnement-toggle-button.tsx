@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState, useMemo } from "react";
+import { useContext, useEffect, useState } from "react";
 import LanguageContext from "../Contexts/language-context.tsx";
 import EnvironnementContext from "../Contexts/environnement-context.tsx";
 import AccessibilityAnalysisContext from "../Contexts/accessibility-analysis-context.tsx";
@@ -21,7 +21,7 @@ export default function EnvironnementToggleButton({setDisplay,comment={hover: tr
     const {accessibilityAnalysis} = useContext(AccessibilityAnalysisContext);
     const {changeAccessibotComment} = useContext(AccessibotCommentContext);
 
-    const [classNames,setClassNames] = useState<string>(`environnement-toggle-button`);
+    // const [classNames,setClassNames] = useState<string>(`environnement-toggle-button`);
     const [compliantClass,setCompliantClass] = useState<string>("");
 
     const onAccessibilityAnalysisOver = ()=> {
@@ -43,15 +43,14 @@ export default function EnvironnementToggleButton({setDisplay,comment={hover: tr
             changeAccessibotComment({...comment, hover: false});
             setCompliantClass("");
         };
-    },[accessibilityAnalysis,changeAccessibotComment,comment]);
+    },[accessibilityAnalysis]);
 
     const onClickFunction = ()=> {
-        setDisplay(true);
+        if(!accessibilityAnalysis)
+            setDisplay(true);
     };
 
-    useEffect(()=> {
-        setClassNames(`environnement-toggle-button ${environnement === "recruiter" ? "recruiter" : "client"} ${compliantClass}`);
-    },[environnement]);
+    const classNames = `environnement-toggle-button ${environnement === "recruiter" ? "recruiter" : "client"} ${compliantClass}`;
 
     return(
         <button className={classNames} onClick={()=> onClickFunction()}
