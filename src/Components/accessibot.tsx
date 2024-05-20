@@ -19,10 +19,10 @@ export default function Accessibot({setDisplay}: AccessibotPropsInterface): Reac
     const {accessibilityAnalysis,changeAccessibilityAnalysis} = useContext(AccessibilityAnalysisContext);
     const {accessibotComment,changeAccessibotComment} = useContext(AccessibotCommentContext);
 
-    const [shadowColor,setShadowColor] = useState<string>("default");
+    // const [shadowColor,setShadowColor] = useState<string>("default");
     const [mouseOver,setMouseOver] = useState<boolean>(false);
     const [isWaiting,setIsWaiting] = useState<boolean>(false);
-
+    const [botObserver,setBotObserver] = useState<any>(null);
     const [botPosition,setBotPosition] = useState(accessibilityAnalysis ? {left: accessibot.current.offsetX, top: accessibot.current.offsetY} : {});
 
     const onMouseOver = ()=> {
@@ -60,6 +60,37 @@ export default function Accessibot({setDisplay}: AccessibotPropsInterface): Reac
         }
     },[exitAccessibilityMode]);
 
+    const handleBotIntersection = (entries)=> {
+        entries.forEach(entry => {
+            if(!entry.isIntersecting) {
+                if(entry.target.getBoundingClientRect().right > document.documentElement.clientWidth && entry.target.getBoundingClientRect().bottom < document.documentElement.clientHeight) {
+                    setBotPosition({left: accessibot.current?.offsetLeft - accessibot.current.offsetWidth, top: accessibot.current?.offsetTop});
+                } else if (entry.target.getBoundingClientRect().bottom > document.documentElement.clientHeight && entry.target.getBoundingClientRect().right < document.documentElement.clientWidth) {
+                    setBotPosition({left: accessibot.current?.offsetLeft, top: accessibot.current?.offsetTop - accessibot.current.offsetHeight});
+                } else if (entry.target.getBoundingClientRect().bottom < document.documentElement.clientHeight && entry.target.getBoundingClientRect().left < 0) {
+                    setBotPosition({left: accessibot.current?.offsetLeft + accessibot.current.offsetWidth, top: accessibot.current?.offsetTop});
+                };
+            };
+        });
+    };
+
+    const handleBotObserver = (query)=> {
+        if(botObserver)
+            if(query === "observe") {
+                botObserver.observe(accessibot.current);
+            } else {
+                botObserver.unobserve(accessibot.current);
+            };
+    }
+
+    useEffect(()=> {
+        const observerOptions = {
+            rootMargin: "0px",
+            threshold: 0.99
+        };
+        setBotObserver(new IntersectionObserver(handleBotIntersection,observerOptions));
+    },[]);
+
     useEffect(()=> {
         setTimeout(()=> {
             setIsWaiting(true);
@@ -82,6 +113,7 @@ export default function Accessibot({setDisplay}: AccessibotPropsInterface): Reac
             window.addEventListener('mousemove',handleMouseMove);
             window.addEventListener('keydown',handleKeyDown);
             window.addEventListener('contextmenu',handleContextMenu);
+            handleBotObserver('observe');
         } else {
             setBotPosition({});
         };
@@ -89,6 +121,7 @@ export default function Accessibot({setDisplay}: AccessibotPropsInterface): Reac
             window.removeEventListener('mousemove',handleMouseMove);
             window.removeEventListener('keydown',handleKeyDown);
             window.removeEventListener('contextmenu',handleContextMenu);
+            handleBotObserver('unobserve');
         }
     },[accessibilityAnalysis,exitAccessibilityMode,onKeyDown]);
 
