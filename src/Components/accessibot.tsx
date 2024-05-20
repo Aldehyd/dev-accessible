@@ -65,26 +65,31 @@ export default function Accessibot({setDisplay}: AccessibotPropsInterface): Reac
             setIsWaiting(true);
         },2600);
     },[]);
-
+    
     useEffect(()=> {
+        function handleMouseMove(e) {
+            onMouseMove(e);
+        };
+        function handleContextMenu(e) {
+            e.preventDefault();
+            exitAccessibilityMode();
+        };
+        function handleKeyDown(e) {
+            onKeyDown(e);
+        };
+
         if(accessibilityAnalysis) {
-            window.addEventListener('mousemove',(e)=> {
-                onMouseMove(e);
-            });
-            window.addEventListener('keydown',(e)=> {
-                onKeyDown(e);
-            });
-            window.addEventListener('contextmenu',(e)=> {
-                e.preventDefault();
-                exitAccessibilityMode();
-            });
+            window.addEventListener('mousemove',handleMouseMove);
+            window.addEventListener('keydown',handleKeyDown);
+            window.addEventListener('contextmenu',handleContextMenu);
         } else {
             setBotPosition({});
-            window.removeEventListener('mousemove',onMouseMove);
-            window.removeEventListener('keydown',onKeyDown);
-            window.removeEventListener('contextmenu',exitAccessibilityMode);
         };
-        return ()=> window.removeEventListener('mousemove',onMouseMove);
+        return ()=> {
+            window.removeEventListener('mousemove',handleMouseMove);
+            window.removeEventListener('keydown',handleKeyDown);
+            window.removeEventListener('contextmenu',handleContextMenu);
+        }
     },[accessibilityAnalysis,exitAccessibilityMode,onKeyDown]);
 
     const botClassList = `accessibility-bot ${isWaiting ? "accessibility-bot_waiting" : ""} ${mouseOver ? "accessibility-bot_hover" : ""} ${accessibilityAnalysis ? "accessibility-bot_click" : ""} ${accessibotComment.hover ? (accessibotComment.compliant ? "compliant" : "not-compliant") : ""}`;
