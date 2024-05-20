@@ -1198,6 +1198,30 @@ body.contrast .accessibility-analysis-help-button {
   text-shadow: 0 0.2rem 0.4rem hsl(175deg, 95%, 55%);
   cursor: pointer;
 }
+.search-button.compliant::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 0 0 0.2rem 0.6rem hsl(120deg, 95%, 55%);
+  transform: scale(1);
+}
+.search-button.not-compliant::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 0 0 0.2rem 0.6rem hsl(0deg, 95%, 55%);
+  transform: scale(1);
+}
 
 .magnifying-glass-svg {
   height: 2rem;
@@ -1280,7 +1304,7 @@ body.animations .search-bar-container.searching .input-container::after {
   box-shadow: 0 0 1rem 0.4rem hsl(175deg, 95%, 55%);
   animation: searchingAnimation 1000ms ease-in-out forwards;
 }
-body.animations .search-button:hover .magnifying-glass-svg {
+body.animations .search-button:not(.compliant):not(.not-compliant):hover .magnifying-glass-svg {
   animation: onSearchButtonHover 800ms ease-in-out infinite alternate;
 }
 
