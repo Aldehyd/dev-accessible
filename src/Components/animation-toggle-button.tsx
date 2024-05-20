@@ -1,9 +1,47 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import AccessibilityAnalysisContext from "../Contexts/accessibility-analysis-context.tsx";
+import AccessibotCommentContext from "../Contexts/accessibot-comment-context.tsx";
+import AccessibilityAnalysisWarningContext from "../Contexts/accessibility-analysis-warning-context.tsx";
 
-export default function AnimationToggleButton(): React.JSX.Element {
+interface AnimationToggleButtonPropsInterface {
+    comment?: {
+        hover: boolean,
+        compliant: boolean,
+        frenchContent: string,
+        englishContent: string
+    }
+}
+
+export default function AnimationToggleButton({comment={hover: true,compliant: true,frenchContent: "Le bouton à bascule change de nom accessible en changeant d'état",englishContent: "The accessible name of the toggle button changes on state change"}}:AnimationToggleButtonPropsInterface): React.JSX.Element {
+
+    const {accessibilityAnalysis} = useContext(AccessibilityAnalysisContext);
+    const {changeAccessibotComment} = useContext(AccessibotCommentContext);
+    const {changeAccessibilityAnalysisWarning} = useContext(AccessibilityAnalysisWarningContext);
 
     const [animationsStatus,setAnimationsStatus] = useState<boolean>(true);
-    const [classNames,setClassNames] = useState<string>('animations-toggle-button');
+
+    const [compliantClass,setCompliantClass] = useState<string>("");
+
+    const onAccessibilityAnalysisOver = ()=> {
+        if(accessibilityAnalysis) {
+            changeAccessibotComment(comment);
+            comment.compliant ? setCompliantClass("compliant") : setCompliantClass("not-compliant");
+        };
+    };
+
+    const onAccessibilityAnalysisLeave = ()=> {
+        if(accessibilityAnalysis) {
+            changeAccessibotComment({...comment, hover: false});
+            setCompliantClass("");
+        };
+    };
+
+    useEffect(()=> {
+        if(!accessibilityAnalysis) {
+            changeAccessibotComment({...comment, hover: false});
+            setCompliantClass("");
+        };
+    },[accessibilityAnalysis]);
 
     useEffect(()=> {
         const animationsSavedStatus = localStorage.getItem('animations');
@@ -25,12 +63,16 @@ export default function AnimationToggleButton(): React.JSX.Element {
         };
         localStorage.setItem('animations',animationsStatus.toString());
 
-        setClassNames(`animations-toggle-button ${animationsStatus ? 'on' : 'off'}`);
+        // setClassNames(`animations-toggle-button ${animationsStatus ? 'on' : 'off'}`);
 
     },[animationsStatus]);
 
+    // const [classNames,setClassNames] = useState<string>('animations-toggle-button');
+    const classNames = `animations-toggle-button ${animationsStatus ? 'on' : 'off'} ${compliantClass}`;
+
     return(
-        <button className={classNames} onClick={()=> setAnimationsStatus(animationsStatus => !animationsStatus)}>
+        <button className={classNames} onClick={()=> setAnimationsStatus(animationsStatus => !animationsStatus)}
+            onMouseOver={()=> onAccessibilityAnalysisOver()} onMouseLeave={()=> onAccessibilityAnalysisLeave()}>
             <span aria-hidden="true" className="animations-toggle-button_invisible-text">Animations OFF</span>
             <span className="animations-toggle-button_overflow-container">
                 <span aria-hidden="true" className="animations-toggle-button_invisible-text">Animations OFF</span>

@@ -465,6 +465,30 @@ body.animations .basic-button::after {
   box-shadow: 0 0 2rem 1rem hsl(0deg, 6%, 10%);
   transform: scale(0.9);
 }
+.animations-toggle-button.compliant::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.2rem 0.6rem hsl(120deg, 95%, 55%);
+  transform: scale(1);
+}
+.animations-toggle-button.not-compliant::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.2rem 0.6rem hsl(0deg, 95%, 55%);
+  transform: scale(1);
+}
 
 .animations-toggle-button.on .animations-toggle-button_text-container {
   transform: translateX(0);
@@ -496,7 +520,7 @@ body.contrast .animations-toggle-button {
   border-color: hsl(0deg, 6%, 10%);
 }
 
-body.animations .animations-toggle-button:hover::before {
+body.animations .animations-toggle-button:not(.compliant):not(.not-compliant):hover::before {
   animation: onHoverBeforeButton 1400ms ease-in-out infinite;
 }
 

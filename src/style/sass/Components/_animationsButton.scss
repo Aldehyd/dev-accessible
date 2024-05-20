@@ -45,6 +45,30 @@
         box-shadow: 0 0 2rem 1rem map-get($colors,darkBackground);
         transform: scale(0.9);
     }
+    &.compliant::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        border-radius: 1rem;
+        box-shadow: 0 0 0.2rem 0.6rem map-get($colors,green);
+        transform: scale(1);
+    }
+    &.not-compliant::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        border-radius: 1rem;
+        box-shadow: 0 0 0.2rem 0.6rem map-get($colors,red);
+        transform: scale(1);
+    }
 }
 
 .animations-toggle-button.on .animations-toggle-button_text-container {
@@ -79,7 +103,7 @@ body.contrast .animations-toggle-button {
 }
 
 body.animations {
-    & .animations-toggle-button:hover::before {
+    & .animations-toggle-button:not(.compliant):not(.not-compliant):hover::before {
         animation: onHoverBeforeButton 1400ms ease-in-out infinite;
     }
 }
