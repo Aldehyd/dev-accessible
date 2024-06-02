@@ -10,10 +10,17 @@ import PricesMain from "../Layout/pricesMain.tsx";
 import LanguageModal from "../Modals/LanguageModal.tsx";
 import MainMenuModal from '../Modals/mainMenuModal.tsx';
 import AccessibilityAnalysisInfosModal from "../Modals/accessibilityAnalysisInfosModal.tsx";
+import AccessibilityAnalysisWarningContext from "../Contexts/accessibility-analysis-warning-context.tsx";
+import AccessibilityAnalysisModal from "../Modals/accessibilityAnalysisModal.tsx";
+import Accessibot from "../Components/accessibot.tsx";
+import AccessibotPlatform from "../Components/accessibot-platform.tsx";
 
 export default function Prices(): React.JSX.Element {
 
     const {isModalDisplayed} = useContext(ModalContext);
+    const {accessibilityAnalysisWarning,changeAccessibilityAnalysisWarning} = useContext(AccessibilityAnalysisWarningContext);
+
+    const [isAccessibilityAnalysisModalDisplayed,setIsAccessibilityAnalysisModalDisplayed] = useState<boolean>(false);
     const [isAccessibilitySettingsModalDisplayed,setIsAccessibilitySettingsModalDisplayed] = useState<boolean>(false);
     const [isLanguageModalDisplayed,setIsLanguageModalDisplayed] = useState<boolean>(false);
     const [isMainMenuExpanded,setIsMainMenuExpanded] = useState<boolean>(false);
@@ -22,6 +29,7 @@ export default function Prices(): React.JSX.Element {
     return (
         <>
             {isModalDisplayed && <ModalDarkBackground />}
+            {isAccessibilityAnalysisModalDisplayed && <AccessibilityAnalysisModal setDisplay={setIsAccessibilityAnalysisModalDisplayed} />}
             {isLanguageModalDisplayed && <LanguageModal setDisplay={setIsLanguageModalDisplayed} />}
             {isAccessibilitySettingsModalDisplayed && <AccessibilitySettingsModal setDisplay={setIsAccessibilitySettingsModalDisplayed} />}
             {isAccessibilityAnalysisInfosModalDisplayed && <AccessibilityAnalysisInfosModal setDisplay={setIsAccessibilityAnalysisInfosModalDisplayed} />}
@@ -31,6 +39,8 @@ export default function Prices(): React.JSX.Element {
                     setAccessibilityAnalysisModalDisplay={setIsAccessibilityAnalysisInfosModalDisplayed} />
             </header>
             <MainMenuModal isExpanded={isMainMenuExpanded} setIsExpanded={setIsMainMenuExpanded} />
+            <Accessibot setDisplay={setIsAccessibilityAnalysisModalDisplayed} />
+            <AccessibotPlatform />
             <main>
                 <BackLink />
                 <MainTitle frenchText="Tarifs" englishText="Prices" />

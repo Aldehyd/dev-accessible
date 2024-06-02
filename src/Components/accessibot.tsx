@@ -76,7 +76,7 @@ export default function Accessibot({setDisplay}: AccessibotPropsInterface): Reac
     };
 
     const handleBotObserver = (query)=> {
-        if(botObserver)
+        if(botObserver && accessibot.current)
             if(query === "observe") {
                 botObserver.observe(accessibot.current);
             } else {

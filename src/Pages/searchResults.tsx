@@ -16,10 +16,15 @@ import Error from "../Components/error.tsx";
 import BurgerMenuButton from "../Components/burger-menu-button.tsx";
 import Accessibot from "../Components/accessibot.tsx";
 import AccessibotPlatform from "../Components/accessibot-platform.tsx";
+import AccessibilityAnalysisWarningContext from "../Contexts/accessibility-analysis-warning-context.tsx";
+import AccessibilityAnalysisModal from "../Modals/accessibilityAnalysisModal.tsx";
 
 export default function SearchResults(): React.JSX.Element {
 
     const {isModalDisplayed} = useContext(ModalContext);
+    const {accessibilityAnalysisWarning,changeAccessibilityAnalysisWarning} = useContext(AccessibilityAnalysisWarningContext);
+
+    const [isAccessibilityAnalysisModalDisplayed,setIsAccessibilityAnalysisModalDisplayed] = useState<boolean>(false);
     const [isAccessibilitySettingsModalDisplayed,setIsAccessibilitySettingsModalDisplayed] = useState<boolean>(false);
     const [isLanguageModalDisplayed,setIsLanguageModalDisplayed] = useState<boolean>(false);
     const [isMainMenuExpanded,setIsMainMenuExpanded] = useState<boolean>(false);
@@ -75,6 +80,7 @@ export default function SearchResults(): React.JSX.Element {
     return (
         <>
             {isModalDisplayed && <ModalDarkBackground />}
+            {isAccessibilityAnalysisModalDisplayed && <AccessibilityAnalysisModal setDisplay={setIsAccessibilityAnalysisModalDisplayed} />}
             {isLanguageModalDisplayed && <LanguageModal setDisplay={setIsLanguageModalDisplayed} />}
             {isAccessibilitySettingsModalDisplayed && <AccessibilitySettingsModal setDisplay={setIsAccessibilitySettingsModalDisplayed} />}
             {isAccessibilityAnalysisInfosModalDisplayed && <AccessibilityAnalysisInfosModal setDisplay={setIsAccessibilityAnalysisInfosModalDisplayed} />}
@@ -85,7 +91,7 @@ export default function SearchResults(): React.JSX.Element {
             </header>
             <BurgerMenuButton isExpanded={isMainMenuExpanded} setIsExpanded={setIsMainMenuExpanded} />
             <MainMenuModal isExpanded={isMainMenuExpanded} setIsExpanded={setIsMainMenuExpanded} />
-            <Accessibot />
+            <Accessibot setDisplay={setIsAccessibilityAnalysisModalDisplayed} />
             <AccessibotPlatform />
             <main>
                 <BackLink />
