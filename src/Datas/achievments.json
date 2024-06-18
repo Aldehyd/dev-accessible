@@ -116,9 +116,9 @@
             "englishWork": ["Global design", "components", "icons", "presentation video"],
             "tools": ["Figma","Adobe Illustrator","Adobe AfterEffects", "Adobe PremierePro"]
         },
-        "frenchDeployment": "Serveur mutualisé sur PlanetHoster",
-        "englishDeployment": "Common server on PlanetHoster",
-        "frenchComments": "Tous les composants ont été codés intégralement (aucune librairie utilisée) en React.",
+        "frenchDeployment": "Virtual Private Server chez Hostinger",
+        "englishDeployment": "Virtual Private Server on Hostinger",
+        "frenchComments": "Tous les composants ont été codés intégralement (aucune librairie utilisée) en Angular.",
         "englishComents": "All the components have been coded from scratch (no library used) with React.",
         "pictures": [
             {
@@ -288,5 +288,79 @@
         "design": {
             "tools": ["Adobe Illustrator","Adobe AfterEffects", "Adobe PremierePro"]
         }
+    },
+    {
+        "id": 4,
+        "title": "calculs-structure.fr",
+        "websiteLink": "https://calculs-structure.fr",
+        "githubLink": "https://github.com/Aldehyd/calculate",
+        "imageName": "/calcul-structure/section-tool-geometry",
+        "frenchAlt": "exemple de page du site",
+        "englishAlt": "website page example",
+        "frenchType": "Site internet",
+        "englishType": "Website",
+        "frenchNeed": "Plateforme regroupant des outils de calcul de structure.",
+        "englishNeed": "Engineering tools platform.",
+        "year": "2024",
+        "developmentTools": ["VsCode", "NPM", "Git"],
+        "technologies": {
+            "frontEnd": ["HTML", "ARIA", "CSS", "AngularJS", "TypeScript"],
+            "backEnd": ["NodeJS","Express"],
+            "dataBase": ["MongoDB"]
+        },
+        "accessibility": {
+            "score": false,
+            "frenchNonCompliance": ["Non évaluée"],
+            "englishNonCompliance": ["No evaluation yet"]
+        },
+        "frenchFonctionnalities": ["formulaire d'inscription","formulaire de connexion","API de requêtes vers base de données","sauvegarde et modification de projets","calculs de structure avec représentation graphique"],
+        "englishFonctionnalities": ["subscription form","connexion form", "API calls to database","save and modify projects","engineering calculation with graphical view"],
+        "design": {
+            "frenchWork": ["Design général", "composants"],
+            "englishWork": ["Global design", "components"],
+            "tools": ["Figma"]
+        },
+        "frenchDeployment": "Virtual Private Server chez Hostinger",
+        "englishDeployment": "Virtual Private Server chez Hostinger",
+        "frenchComments": "",
+        "englishComents": "",
+        "pictures": [
+            {
+                "id": 0,
+                "pictureName": "/calcul-structure/tools",
+                "frenchAlt": "page d'accueil",
+                "englishAlt": "home page"
+            },
+            {
+                "id": 1,
+                "pictureName": "/calcul-structure/section-tool-geometry",
+                "frenchAlt": "section à parois minces - géométrie",
+                "englishAlt": "thin walls section tool - geometry"
+            },
+            {
+                "id": 2,
+                "pictureName": "/calcul-structure/section-tool-analysis",
+                "frenchAlt": "section à parois minces - analyse",
+                "englishAlt": "thin walls section tool - analysis"
+            },
+            {
+                "id": 3,
+                "pictureName": "/calcul-structure/section-tool-area",
+                "frenchAlt": "section à parois minces - calcul de l'aire",
+                "englishAlt": "thin walls section tool - area"
+            },
+            {
+                "id": 4,
+                "pictureName": "/calcul-structure/login",
+                "frenchAlt": "page de connexion",
+                "englishAlt": "connexion page"
+            },
+            {
+                "id": 5,
+                "pictureName": "/calcul-structure/projects",
+                "frenchAlt": "page des projets sauvegardés",
+                "englishAlt": "saved projects page"
+            }
+        ]
     }
 ]
